@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --mode development"
   },
   "dependencies": {
     "lit-html": "^1.0.0",
@@ -18,7 +18,7 @@
     "@open-wc/building-webpack": "^2.13.40",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^1.5.0",
+    "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.1.1"
   }
 }

@@ -11,8 +11,14 @@
     "test:watch": "karma start --auto-watch=true --single-run=false"
   },
   "dependencies": {
+    "@rdf-esm/data-model": "^0.5.3",
+    "@rdf-esm/formats-common": "^0.5.2",
+    "@vanillawc/wc-codemirror": "^1.8.10",
+    "codemirror": "^5.56.0",
+    "into-stream": "^5.1.1",
     "lit-html": "^1.1.2",
-    "lit-element": "^2.2.1"
+    "lit-element": "^2.2.1",
+    "string-to-stream": "^3.0.1"
   },
   "devDependencies": {
     "@open-wc/testing-karma": "^3.0.0",

@@ -10,20 +10,26 @@
     "packages/*"
   ],
   "scripts": {
-    "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore --quiet",
-    "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
-    "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
-    "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
+    "lint:eslint": "eslint --quiet --ext .js,.html . --ignore-path .eslintignore",
+    "format:eslint": "eslint --quiet --ext .js,.html . --fix --ignore-path .eslintignore",
+    "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .eslintignore",
+    "format:prettier": "prettier \"**/*.js\" --write --ignore-path .eslintignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.11.0",
     "eslint": "^6.1.0",
     "@open-wc/eslint-config": "^2.0.0",
     "prettier": "^2.0.4",
     "eslint-config-prettier": "^6.11.0",
     "husky": "^1.0.0",
     "lint-staged": "^10.0.0"
+  },
+  "resolutions": {
+    "@babel/parser": "7.11.0"
   },
   "eslintConfig": {
     "extends": [
