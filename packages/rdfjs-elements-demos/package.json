@@ -1,0 +1,24 @@
+{
+  "name": "rdfjs-elements-demos",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Webcomponent rdfjs-elements-demos following open-wc recommendations",
+  "author": "rdfjs-elements-demos",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "lit-html": "^1.0.0",
+    "lit-element": "^2.0.1",
+    "rdfjs-editor": "*"
+  },
+  "devDependencies": {
+    "@open-wc/building-webpack": "^2.13.40",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^1.5.0",
+    "webpack-merge": "^5.1.1"
+  }
+}
