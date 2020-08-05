@@ -1,0 +1,26 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: "13"
+    - run: yarn ci
+    - run: yarn build
+      working-directory: packages/rdfjs-elements-demos
+    - name: GitHub Pages
+      uses: crazy-max/ghaction-github-pages@v2.1.1
+      with:
+        build-dir: dist
+        jekyll: false
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
