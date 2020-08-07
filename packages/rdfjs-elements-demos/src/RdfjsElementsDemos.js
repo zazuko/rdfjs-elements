@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit-element';
-import 'rdfjs-editor/rdfjs-editor.js';
+import '@rdfjs-elements/rdf-editor/rdf-editor.js';
 
 export class RdfjsElementsDemos extends LitElement {
   static get properties() {
@@ -31,7 +31,7 @@ export class RdfjsElementsDemos extends LitElement {
         height: 100vh;
       }
 
-      rdfjs-editor {
+      rdf-editor {
         height: 100%;
         padding: 20px;
       }
@@ -52,25 +52,25 @@ export class RdfjsElementsDemos extends LitElement {
     return html`
       <div class="editor">
         <h1>Input</h1>
-        <rdfjs-editor
+        <rdf-editor
           id="input"
           format="application/ld+json"
           .serialized="${this.input}"
-        ></rdfjs-editor>
+        ></rdf-editor>
       </div>
       <button @click="${this._translate}">&gt;</button>
       <div class="editor">
         <h1>Output</h1>
-        <rdfjs-editor
+        <rdf-editor
           format="text/turtle"
           readonly
           .quads="${this.output}"
-        ></rdfjs-editor>
+        ></rdf-editor>
       </div>
     `;
   }
 
   async _translate() {
-    this.output = await this.renderRoot.querySelector('#input').parse();
+    this.output = await this.renderRoot.querySelector('#input').quads;
   }
 }

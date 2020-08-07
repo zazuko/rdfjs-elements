@@ -1,5 +1,5 @@
 {
-  "name": "rdfjs-editor",
+  "name": "@rdfjs-elements/rdf-editor",
   "version": "0.0.0",
   "description": "Webcomponent rdfjs-editor following open-wc recommendations",
   "author": "Zazuko GmbH",
@@ -8,7 +8,11 @@
   "module": "rdfjs-editor.js",
   "scripts": {
     "test": "karma start --coverage",
-    "test:watch": "karma start --auto-watch=true --single-run=false"
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "analyze": "run-p analyze:*",
+    "analyze:wc": "wca --format json --outFile ./custom-elements.json",
+    "analyze:readme": "wca --outFile ./README.md",
+    "analyze:lit": "lit-analyzer --strict --quiet --rules.no-invalid-css off"
   },
   "dependencies": {
     "@rdf-esm/data-model": "^0.5.3",
@@ -16,13 +20,13 @@
     "@vanillawc/wc-codemirror": "^1.8.10",
     "codemirror": "^5.56.0",
     "into-stream": "^5.1.1",
-    "lit-html": "^1.1.2",
     "lit-element": "^2.2.1",
+    "lit-html": "^1.1.2",
     "string-to-stream": "^3.0.1"
   },
   "devDependencies": {
+    "@open-wc/testing": "^2.0.0",
     "@open-wc/testing-karma": "^3.0.0",
-    "deepmerge": "^3.2.0",
-    "@open-wc/testing": "^2.0.0"
+    "deepmerge": "^3.2.0"
   }
 }

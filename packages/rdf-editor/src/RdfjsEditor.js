@@ -1,4 +1,4 @@
-import { html, css, LitElement, property, query } from 'lit-element';
+import { html, css, LitElement } from 'lit-element';
 import toStream from 'string-to-stream';
 import intoStream from 'into-stream';
 import { serializers, parsers } from '@rdf-esm/formats-common';
@@ -31,6 +31,9 @@ function whenDefined(getter) {
 const Serialized = Symbol('serialized quads');
 const Format = Symbol('rdf serialization');
 
+/**
+ * An text editor custom element which parses and serializes RDF/JS Quads using a selected RDF format.
+ */
 export class RdfjsEditor extends LitElement {
   static get styles() {
     return css`
@@ -46,31 +49,60 @@ export class RdfjsEditor extends LitElement {
     `;
   }
 
-  @property({ type: Boolean, attribute: 'readonly', reflect: true })
-  readonly = false;
+  static get properties() {
+    return {
+      readonly: { type: Boolean, reflect: true },
+      format: { type: String }
+    }
+  }
 
-  __language = '';
+  /**
+   * The underlying `<wc-codemirror>` element
+   */
+  get codeMirror() {
+    return this.renderRoot.querySelector('wc-codemirror')
+  }
 
-  @query('wc-codemirror')
-  codeMirror = null;
-
+  /**
+   * The string representation of the RDF graph.
+   *
+   * The syntax is not validated until quads getter is invoked.
+   *
+   * @return {string}
+   */
   get serialized() {
     return this[Serialized];
   }
 
   set serialized(value) {
     this[Serialized] = value;
-    this.updateValue();
+
+    this.__updateValue();
   }
 
-  @property({ type: String })
+  /**
+   * Media type of the RDF serialization to use.
+   *
+   * Custom parsers and serializers must be added to @rdf-esm/formats-common
+   *
+   * @return {string}
+   */
   get format() {
     return this[Format];
   }
 
   set format(value) {
     this[Format] = value;
-    this.updateFormat();
+    this.__updateFormat();
+  }
+
+  /**
+   * Array of RDF/JS quads
+   *
+   * The getter is async!
+   */
+  get quads() {
+    return this.__parse()
   }
 
   set quads(value) {
@@ -92,31 +124,31 @@ export class RdfjsEditor extends LitElement {
   async firstUpdated(props) {
     super.firstUpdated(props);
     await whenDefined(() => this.codeMirror?.__initialized);
-    this.updateValue();
+    this.__updateValue();
     this.codeMirror.editor.setSize('100%', '100%');
   }
 
   render() {
     return html` <style>
-        @import url(https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.24.2/codemirror.min.css);
+        @import url("https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.24.2/codemirror.min.css");
       </style>
       <wc-codemirror mode="${this.format}" ?readonly="${this.readonly}">
       </wc-codemirror>`;
   }
 
-  updateFormat() {
+  __updateFormat() {
     if (this.codeMirror?.__initialized) {
       this.codeMirror.editor.setOption('mode', this.__language);
     }
   }
 
-  updateValue() {
+  __updateValue() {
     if (this.codeMirror?.__initialized) {
       this.codeMirror.editor.setValue(this[Serialized] || '');
     }
   }
 
-  async parse() {
+  async __parse() {
     const inputStream = toStream(this.codeMirror.editor.getValue());
     const quads = [];
     for await (const quad of parsers.import(this.format, inputStream)) {

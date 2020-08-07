@@ -1,6 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../rdfjs-editor.js';
+import '../rdf-editor.js';
 
 describe('RdfjsEditor', () => {
   it('has a default title "Hey there" and counter 5', async () => {
