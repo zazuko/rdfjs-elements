@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const { createDefaultConfig } = require('@open-wc/testing-karma');
-const merge = require('deepmerge');
+const { createDefaultConfig } = require('@open-wc/testing-karma')
+const merge = require('deepmerge')
 
 module.exports = config => {
   config.set(
@@ -22,6 +22,6 @@ module.exports = config => {
       },
       // you can overwrite/extend the config further
     })
-  );
-  return config;
-};
+  )
+  return config
+}

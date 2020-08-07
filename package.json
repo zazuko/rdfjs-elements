@@ -18,18 +18,20 @@
     "format": "npm run format:eslint && npm run format:prettier"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "^7.10.5",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/preset-env": "^7.11.0",
-    "eslint": "^6.1.0",
+    "@changesets/cli": "^2.9.2",
     "@open-wc/eslint-config": "^2.0.0",
-    "prettier": "^2.0.4",
+    "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.11.0",
-    "husky": "^1.0.0",
-    "lint-staged": "^10.0.0"
+    "husky": "^4.2.5",
+    "lint-staged": "^10.0.0",
+    "lit-analyzer": "^1.2.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.4",
+    "web-component-analyzer": "^1.1.6"
   },
   "resolutions": {
-    "@babel/parser": "7.11.0"
+    "@babel/parser": "7.11.1"
   },
   "eslintConfig": {
     "extends": [
@@ -39,16 +41,17 @@
   },
   "prettier": {
     "singleQuote": true,
-    "arrowParens": "avoid"
+    "arrowParens": "avoid",
+    "semi": false
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && yarn workspaces run analyze && git add **/custom-elements.json **/README.md"
     }
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
+      "eslint --quiet --fix",
       "prettier --write"
     ]
   }

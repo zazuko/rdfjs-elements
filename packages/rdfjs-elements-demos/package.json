@@ -7,12 +7,14 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development"
+    "start": "webpack-dev-server --mode development",
+    "analyze": "run-p analyze:*",
+    "analyze:lit": "lit-analyzer --strict --quiet --rules.no-invalid-css off"
   },
   "dependencies": {
     "lit-html": "^1.0.0",
     "lit-element": "^2.0.1",
-    "rdfjs-editor": "*"
+    "@rdfjs-elements/rdf-editor": "*"
   },
   "devDependencies": {
     "@open-wc/building-webpack": "^2.13.40",
