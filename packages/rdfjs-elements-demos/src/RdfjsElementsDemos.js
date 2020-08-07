@@ -1,12 +1,12 @@
-import { LitElement, html, css } from 'lit-element';
-import '@rdfjs-elements/rdf-editor/rdf-editor.js';
+import { LitElement, html, css } from 'lit-element'
+import '@rdfjs-elements/rdf-editor/rdf-editor.js'
 
 export class RdfjsElementsDemos extends LitElement {
   static get properties() {
     return {
       input: { type: String },
       output: { type: Array },
-    };
+    }
   }
 
   static get styles() {
@@ -35,17 +35,17 @@ export class RdfjsElementsDemos extends LitElement {
         height: 100%;
         padding: 20px;
       }
-    `;
+    `
   }
 
   constructor() {
-    super();
+    super()
     this.input = `{
   "@context": {
     "@vocab": "http://schema.org/"
   },
   "name": "John Doe"
-}`;
+}`
   }
 
   render() {
@@ -67,10 +67,10 @@ export class RdfjsElementsDemos extends LitElement {
           .quads="${this.output}"
         ></rdf-editor>
       </div>
-    `;
+    `
   }
 
   async _translate() {
-    this.output = await this.renderRoot.querySelector('#input').quads;
+    this.output = await this.renderRoot.querySelector('#input').quads
   }
 }
