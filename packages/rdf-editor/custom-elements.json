@@ -3,7 +3,7 @@
   "tags": [
     {
       "name": "rdf-editor",
-      "path": "./rdfjs-editor.js",
+      "path": "./rdf-editor.js",
       "description": "An text editor custom element which parses and serializes RDF/JS Quads using a selected RDF format.",
       "attributes": [
         {
