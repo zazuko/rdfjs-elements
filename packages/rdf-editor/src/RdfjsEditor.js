@@ -52,15 +52,15 @@ export class RdfjsEditor extends LitElement {
   static get properties() {
     return {
       readonly: { type: Boolean, reflect: true },
-      format: { type: String }
-    }
+      format: { type: String },
+    };
   }
 
   /**
    * The underlying `<wc-codemirror>` element
    */
   get codeMirror() {
-    return this.renderRoot.querySelector('wc-codemirror')
+    return this.renderRoot.querySelector('wc-codemirror');
   }
 
   /**
@@ -102,7 +102,7 @@ export class RdfjsEditor extends LitElement {
    * The getter is async!
    */
   get quads() {
-    return this.__parse()
+    return this.__parse();
   }
 
   set quads(value) {
@@ -130,7 +130,7 @@ export class RdfjsEditor extends LitElement {
 
   render() {
     return html` <style>
-        @import url("https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.24.2/codemirror.min.css");
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.24.2/codemirror.min.css');
       </style>
       <wc-codemirror mode="${this.format}" ?readonly="${this.readonly}">
       </wc-codemirror>`;
