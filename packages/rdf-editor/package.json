@@ -4,8 +4,8 @@
   "description": "Webcomponent rdfjs-editor following open-wc recommendations",
   "author": "Zazuko GmbH",
   "license": "MIT",
-  "main": "rdfjs-editor.js",
-  "module": "rdfjs-editor.js",
+  "main": "rdf-editor.js",
+  "module": "rdf-editor.js",
   "scripts": {
     "analyze": "run-p analyze:*",
     "analyze:wc": "wca --format json --outFile ./custom-elements.json",
