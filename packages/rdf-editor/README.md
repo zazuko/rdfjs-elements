@@ -10,4 +10,5 @@ An text editor custom element which parses and serializes RDF/JS Quads using a s
 | `format`     | `format`   |           | `string`          | Media type of the RDF serialization to use.<br /><br />Custom parsers and serializers must be added to @rdf-esm/formats-common |
 | `quads`      |            |           | `Promise<any[]>`  | Array of RDF/JS quads<br /><br />The getter is async! |
 | `readonly`   | `readonly` |           | `boolean`         |                                                  |
+| `ready`      |            |           | `Promise<any>`    |                                                  |
 | `serialized` |            |           | `string`          | The string representation of the RDF graph.<br /><br />The syntax is not validated until quads getter is invoked. |

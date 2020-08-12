@@ -16,7 +16,8 @@ jobs:
         with:
           node-version: 13
       - run: yarn install --frozen-lockfile
-      - run: yarn workspaces run analyze:lit
+      - run: npx lerna run analyze
+      - run: npx lerna run analyze:lit
   lint:
     runs-on: ubuntu-latest
 
@@ -38,3 +39,17 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn build
         working-directory: packages/rdfjs-elements-demos
+
+  karma:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "13"
+      - run: yarn install --frozen-lockfile
+      - run: yarn test
+      - name: Codecov
+        uses: codecov/codecov-action@v1.0.5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

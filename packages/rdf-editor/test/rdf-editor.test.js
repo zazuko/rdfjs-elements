@@ -1,33 +1,116 @@
-import { html, fixture, expect } from '@open-wc/testing'
+import { html, fixture, expect, assert } from '@open-wc/testing'
+import { nextFrame } from '@open-wc/testing-helpers'
+import { parsers, serializers } from '@rdfjs-elements/testing/formats-common'
+import { quad, blankNode } from '@rdf-esm/data-model'
+import { rdf, schema } from '@tpluscode/rdf-ns-builders'
 
 import '../rdf-editor.js'
 
 describe('RdfjsEditor', () => {
-  it('has a default title "Hey there" and counter 5', async () => {
-    const el = await fixture(html` <rdfjs-editor></rdfjs-editor> `)
+  describe('.format', () => {
+    it('setting via property set code mirror mode', async () => {
+      // given
+      const el = await fixture(
+        html`<rdf-editor format="application/ld+json"></rdf-editor> `
+      )
+      await el.ready
 
-    expect(el.title).to.equal('Hey there')
-    expect(el.counter).to.equal(5)
+      // when
+      el.format = 'text/turtle'
+      await nextFrame()
+
+      // then
+      expect(el.codeMirror.editor.getMode().name).to.equal('turtle')
+    })
+
+    it('setting via property set code mirror mode', async () => {
+      // given
+      const el = await fixture(
+        html`<rdf-editor format="application/ld+json"></rdf-editor> `
+      )
+      await el.ready
+
+      // when
+      el.format = 'text/turtle'
+      await nextFrame()
+
+      // then
+      expect(el.codeMirror.editor.getMode().name).to.equal('turtle')
+    })
+
+    it('setting via property reflects attribute', async () => {
+      // given
+      const el = await fixture(
+        html`<rdf-editor format="application/ld+json"></rdf-editor> `
+      )
+      await el.ready
+
+      // when
+      el.format = 'text/turtle'
+      await nextFrame()
+      await el.updateComplete
+
+      // then
+      expect(el.getAttribute('format')).to.equal('text/turtle')
+    })
+
+    it('setting via attribute set code mirror mode', async () => {
+      // given
+      const el = await fixture(
+        html`<rdf-editor format="application/ld+json"></rdf-editor> `
+      )
+      await el.ready
+
+      // when
+      el.setAttribute('format', 'text/turtle')
+      await nextFrame()
+
+      // then
+      expect(el.codeMirror.editor.getMode().name).to.equal('turtle')
+    })
   })
 
-  it('increases the counter on button click', async () => {
-    const el = await fixture(html` <rdfjs-editor></rdfjs-editor> `)
-    el.shadowRoot.querySelector('button').click()
+  describe('.quads', () => {
+    it('get rejects if parser is not found', async () => {
+      // given
+      const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
+      await el.ready
 
-    expect(el.counter).to.equal(6)
-  })
+      // then
+      await el.quads
+        .then(() => assert.fail())
+        .catch(e => {
+          expect(e.message).to.contain('No parser')
+        })
+    })
 
-  it('can override the title via attribute', async () => {
-    const el = await fixture(html`
-      <rdfjs-editor title="attribute title"></rdfjs-editor>
-    `)
+    it('gets quads coming from parser', async () => {
+      // given
+      const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
+      await el.ready
+      const expected = [quad(blankNode(), rdf.type, schema.Person)]
+      parsers.set('foo/bar', expected)
 
-    expect(el.title).to.equal('attribute title')
-  })
+      // when
+      const quads = await el.quads
 
-  it('passes the a11y audit', async () => {
-    const el = await fixture(html` <rdfjs-editor></rdfjs-editor> `)
+      // then
+      expect(quads).to.deep.eq(expected)
+    })
 
-    await expect(el).shadowDom.to.be.accessible()
+    it('sets serialized string to the editor', async () => {
+      // given
+      const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
+      await el.ready
+      serializers.set('foo/bar', 'foo bar')
+
+      // when
+      el.quads = []
+      await nextFrame()
+      await el.updateComplete
+
+      // then
+      expect(el.serialized).to.equal('foo bar')
+    })
   })
 })

@@ -29,6 +29,7 @@
          }
 */
 
+/* istanbul ignore next */
 window.CodeMirror.defineMode('ntriples', function () {
   var Location = {
     PRE_SUBJECT: 0,
