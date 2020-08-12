@@ -52,7 +52,7 @@ export class RdfjsEditor extends LitElement {
   static get properties() {
     return {
       readonly: { type: Boolean, reflect: true },
-      format: { type: String },
+      format: { type: String, reflect: true },
     }
   }
 
@@ -97,8 +97,10 @@ export class RdfjsEditor extends LitElement {
   }
 
   set format(value) {
+    const oldValue = this[Format]
     this[Format] = value
     this.__updateFormat()
+    this.requestUpdate('format', oldValue)
   }
 
   /**
