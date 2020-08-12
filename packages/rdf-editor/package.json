@@ -7,8 +7,6 @@
   "main": "rdfjs-editor.js",
   "module": "rdfjs-editor.js",
   "scripts": {
-    "test": "karma start --coverage",
-    "test:watch": "karma start --auto-watch=true --single-run=false",
     "analyze": "run-p analyze:*",
     "analyze:wc": "wca --format json --outFile ./custom-elements.json",
     "analyze:readme": "wca --outFile ./README.md",
@@ -26,8 +24,7 @@
   },
   "devDependencies": {
     "@open-wc/testing": "^2.0.0",
-    "@open-wc/testing-karma": "^3.0.0",
-    "deepmerge": "^3.2.0"
+    "@rdfjs-elements/testing": "*"
   },
   "publishConfig": {
     "access": "public"

@@ -56,6 +56,11 @@ export class RdfjsEditor extends LitElement {
     }
   }
 
+  constructor() {
+    super()
+    this.ready = whenDefined(() => this.codeMirror?.__initialized)
+  }
+
   /**
    * The underlying `<wc-codemirror>` element
    */
@@ -123,7 +128,7 @@ export class RdfjsEditor extends LitElement {
 
   async firstUpdated(props) {
     super.firstUpdated(props)
-    await whenDefined(() => this.codeMirror?.__initialized)
+    await this.ready
     this.__updateValue()
     this.codeMirror.editor.setSize('100%', '100%')
   }
@@ -138,7 +143,7 @@ export class RdfjsEditor extends LitElement {
 
   __updateFormat() {
     if (this.codeMirror?.__initialized) {
-      this.codeMirror.editor.setOption('mode', this.__language)
+      this.codeMirror.editor.setOption('mode', this[Format])
     }
   }
 

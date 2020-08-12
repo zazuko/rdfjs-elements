@@ -20,3 +20,4 @@ coverage/
 /_site/
 /dist/
 /out-tsc/
+*.log

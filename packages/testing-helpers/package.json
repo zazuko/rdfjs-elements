@@ -1,0 +1,8 @@
+{
+  "name": "@rdfjs-elements/testing",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "analyze": "exit 0"
+  }
+}

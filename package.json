@@ -10,6 +10,8 @@
     "packages/*"
   ],
   "scripts": {
+    "test": "karma start --coverage",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
     "lint:eslint": "eslint --quiet --ext .js,.html . --ignore-path .eslintignore",
     "format:eslint": "eslint --quiet --ext .js,.html . --fix --ignore-path .eslintignore",
     "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .eslintignore",
@@ -21,6 +23,8 @@
     "@babel/preset-env": "^7.11.0",
     "@changesets/cli": "^2.9.2",
     "@open-wc/eslint-config": "^2.0.0",
+    "@open-wc/testing-karma": "^3.0.0",
+    "deepmerge": "^3.2.0",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.11.0",
     "husky": "^4.2.5",
