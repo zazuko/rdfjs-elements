@@ -20,9 +20,7 @@ module.exports = config => {
 
       esm: {
         nodeResolve: true,
-        responseTransformers: [
-          fakeStreamModules()
-        ]
+        responseTransformers: [fakeStreamModules()],
       },
       // you can overwrite/extend the config further
     })

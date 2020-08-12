@@ -83,9 +83,7 @@ export class RdfjsEditor extends LitElement {
     const oldValue = this.serialized
     this[Serialized] = value
 
-    this.__updateValue().then(() =>
-      this.requestUpdate('serialized', oldValue)
-    )
+    this.__updateValue().then(() => this.requestUpdate('serialized', oldValue))
   }
 
   /**
@@ -102,9 +100,7 @@ export class RdfjsEditor extends LitElement {
   set format(value) {
     const oldValue = this[Format]
     this[Format] = value
-    this.__updateFormat().then(() =>
-      this.requestUpdate('format', oldValue)
-    )
+    this.__updateFormat().then(() => this.requestUpdate('format', oldValue))
   }
 
   /**
@@ -124,7 +120,7 @@ export class RdfjsEditor extends LitElement {
 
     ;(async () => {
       let serialized = ''
-      for await(const chunk of stream) {
+      for await (const chunk of stream) {
         serialized += chunk
       }
 

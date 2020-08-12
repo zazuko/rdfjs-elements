@@ -73,9 +73,7 @@ describe('RdfjsEditor', () => {
   describe('.quads', () => {
     it('get rejects if parser is not found', async () => {
       // given
-      const el = await fixture(
-        html`<rdf-editor format="foo/bar"></rdf-editor>`
-      )
+      const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
       await el.ready
 
       // then
@@ -88,13 +86,9 @@ describe('RdfjsEditor', () => {
 
     it('gets quads coming from parser', async () => {
       // given
-      const el = await fixture(
-        html`<rdf-editor format="foo/bar"></rdf-editor>`
-      )
+      const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
       await el.ready
-      const expected = [
-        quad(blankNode(), rdf.type, schema.Person)
-      ]
+      const expected = [quad(blankNode(), rdf.type, schema.Person)]
       parsers.set('foo/bar', expected)
 
       // when
@@ -106,9 +100,7 @@ describe('RdfjsEditor', () => {
 
     it('sets serialized string to the editor', async () => {
       // given
-      const el = await fixture(
-        html`<rdf-editor format="foo/bar"></rdf-editor>`
-      )
+      const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
       await el.ready
       serializers.set('foo/bar', 'foo bar')
 
@@ -120,5 +112,5 @@ describe('RdfjsEditor', () => {
       // then
       expect(el.serialized).to.equal('foo bar')
     })
-  });
+  })
 })
