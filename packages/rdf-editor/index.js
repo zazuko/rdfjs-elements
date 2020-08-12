@@ -1,1 +1,1 @@
-export { RdfjsEditor } from './src/RdfjsEditor.js'
+export { RdfEditor } from './src/RdfEditor.js'

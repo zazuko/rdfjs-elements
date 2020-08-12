@@ -34,7 +34,7 @@ const Format = Symbol('rdf serialization')
 /**
  * An text editor custom element which parses and serializes RDF/JS Quads using a selected RDF format.
  */
-export class RdfjsEditor extends LitElement {
+export class RdfEditor extends LitElement {
   static get styles() {
     return css`
       :host {

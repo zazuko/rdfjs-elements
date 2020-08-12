@@ -1,0 +1,9 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "rdf-snippet",
+      "path": "./rdf-snippet.js"
+    }
+  ]
+}

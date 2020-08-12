@@ -1,3 +1,3 @@
-import { RdfjsEditor } from './src/RdfjsEditor.js'
+import { RdfEditor } from './src/RdfEditor.js'
 
-window.customElements.define('rdf-editor', RdfjsEditor)
+window.customElements.define('rdf-editor', RdfEditor)
