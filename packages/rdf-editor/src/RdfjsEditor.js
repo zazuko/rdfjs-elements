@@ -80,9 +80,12 @@ export class RdfjsEditor extends LitElement {
   }
 
   set serialized(value) {
+    const oldValue = this.serialized
     this[Serialized] = value
 
-    this.__updateValue()
+    this.__updateValue().then(() =>
+      this.requestUpdate('serialized', oldValue)
+    )
   }
 
   /**
@@ -99,8 +102,9 @@ export class RdfjsEditor extends LitElement {
   set format(value) {
     const oldValue = this[Format]
     this[Format] = value
-    this.__updateFormat()
-    this.requestUpdate('format', oldValue)
+    this.__updateFormat().then(() =>
+      this.requestUpdate('format', oldValue)
+    )
   }
 
   /**
@@ -118,14 +122,14 @@ export class RdfjsEditor extends LitElement {
       intoStream.object(value || '')
     )
 
-    let serialized = ''
-    stream.on('data', chunk => {
-      serialized += chunk
-    })
-    stream.on('end', () => {
+    ;(async () => {
+      let serialized = ''
+      for await(const chunk of stream) {
+        serialized += chunk
+      }
+
       this.serialized = serialized
-    })
-    stream.on('error', console.error)
+    })()
   }
 
   async firstUpdated(props) {
@@ -143,22 +147,26 @@ export class RdfjsEditor extends LitElement {
       </wc-codemirror>`
   }
 
-  __updateFormat() {
-    if (this.codeMirror?.__initialized) {
-      this.codeMirror.editor.setOption('mode', this[Format])
-    }
+  async __updateFormat() {
+    await this.ready
+    this.codeMirror.editor.setOption('mode', this[Format])
   }
 
-  __updateValue() {
-    if (this.codeMirror?.__initialized) {
-      this.codeMirror.editor.setValue(this[Serialized] || '')
-    }
+  async __updateValue() {
+    await this.ready
+    this.codeMirror.editor.setValue(this[Serialized] || '')
   }
 
   async __parse() {
     const inputStream = toStream(this.codeMirror.editor.getValue())
     const quads = []
-    for await (const quad of parsers.import(this.format, inputStream)) {
+
+    const quadStream = parsers.import(this.format, inputStream)
+    if (!quadStream) {
+      throw new Error(`No parser found for ${this.format}`)
+    }
+
+    for await (const quad of quadStream) {
       quads.push(quad)
     }
 

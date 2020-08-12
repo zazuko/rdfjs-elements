@@ -10,9 +10,9 @@ module.exports = function factory () {
         body: `export default function() {}`
       }
     }
-    if (context.url.match(/into-stream/)) {
+    if (context.url.match(/node_modules\/into-stream\/index.js$/)) {
       return {
-        body: `export default function() {}`
+        body: `export { default } from '@rdfjs-elements/testing/into-stream/index.js';`
       }
     }
     return context
