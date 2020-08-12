@@ -1,7 +1,7 @@
 {
   "name": "@rdfjs-elements/rdf-editor",
   "version": "0.1.0",
-  "description": "Webcomponent rdfjs-editor following open-wc recommendations",
+  "description": "Code Mirror editor for RDF",
   "author": "Zazuko GmbH",
   "license": "MIT",
   "main": "rdf-editor.js",
@@ -11,6 +11,11 @@
     "analyze:wc": "wca --format json --outFile ./custom-elements.json",
     "analyze:readme": "wca --outFile ./README.md",
     "analyze:lit": "lit-analyzer --strict --quiet --rules.no-invalid-css off"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zazuko/rdfjs-elements.git",
+    "directory": "packages/rdf-editor"
   },
   "dependencies": {
     "@rdf-esm/data-model": "^0.5.3",
