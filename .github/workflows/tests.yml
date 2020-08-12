@@ -16,7 +16,8 @@ jobs:
         with:
           node-version: 13
       - run: yarn install --frozen-lockfile
-      - run: yarn workspaces run analyze:lit
+      - run: npx lerna run analyze
+      - run: npx lerna run analyze:lit
   lint:
     runs-on: ubuntu-latest
 
