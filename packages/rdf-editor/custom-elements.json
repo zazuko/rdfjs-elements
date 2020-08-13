@@ -22,8 +22,8 @@
         },
         {
           "name": "quads",
-          "description": "Gets or set RDF/JS quads. Setting will parse them using the chosen `format` and set to the text editor",
-          "type": "array"
+          "description": "get or sets the RDF/JS quads",
+          "type": "Quad[]"
         }
       ],
       "properties": [
@@ -52,8 +52,8 @@
         {
           "name": "quads",
           "attribute": "quads",
-          "description": "Gets or set RDF/JS quads. Setting will parse them using the chosen `format` and set to the text editor",
-          "type": "array"
+          "description": "get or sets the RDF/JS quads",
+          "type": "Quad[]"
         },
         {
           "name": "ready",

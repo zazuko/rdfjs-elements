@@ -21,7 +21,7 @@ const formatLabels = {
  * ## Usage
  *
  * The initial text of the RDF snippet must be added inside a child `<script>` element with `type` attribute set to the appropriate
- * RDF media type. The element's `formats` property is control the media types which should be available to see the snippet
+ * RDF media type. The element's `formats` property selects the media types which should be available as alternative serializations.
  *
  * The initial RDF representation remains unchanged, while selecting the output formats re-serializes the actual triples and presents the output.
  *

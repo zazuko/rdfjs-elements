@@ -83,8 +83,10 @@ const Quads = Symbol('parsed quads')
  *
  * @prop {Promise<void>} ready - a one-time promise which resolves when CodeMirror has been initialized
  *
- * @fires quads-changed - when the editor contents have changed and have been successfully parsed
- * @fires parsing-failed - when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason
+ * @prop {Quad[]} quads - get or sets the RDF/JS quads
+ *
+ * @fires {CustomEvent<{ quads: Quad[]; }>} quads-changed - when the editor contents have changed and have been successfully parsed
+ * @fires {CustomEvent<{ notFound?: boolean; error?: Error; }>} parsing-failed - when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason
  */
 export class RdfEditor extends LitElement {
   static get styles() {
