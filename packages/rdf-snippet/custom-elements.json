@@ -3,7 +3,29 @@
   "tags": [
     {
       "name": "rdf-snippet",
-      "path": "./rdf-snippet.js"
+      "path": "./rdf-snippet.js",
+      "attributes": [
+        {
+          "name": "input-format",
+          "type": "string"
+        },
+        {
+          "name": "output-formats",
+          "type": "array"
+        }
+      ],
+      "properties": [
+        {
+          "name": "inputFormat",
+          "attribute": "input-format",
+          "type": "string"
+        },
+        {
+          "name": "outputFormats",
+          "attribute": "output-formats",
+          "type": "array"
+        }
+      ]
     }
   ]
 }
