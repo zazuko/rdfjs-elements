@@ -107,6 +107,22 @@ describe('RdfjsEditor', () => {
       expect(notFound).to.eq(true)
     })
 
+    it('dispatches event when parser throws', async () => {
+      // given
+      const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
+      await el.ready
+      parsers.set('foo/bar', new Error('Parsing fails'))
+      el.__parse()
+
+      // when
+      const {
+        detail: { error },
+      } = await oneEvent(el, 'parsing-failed')
+
+      // then
+      expect(error).to.be.a('Error')
+    })
+
     it('gets quads coming from parser', async () => {
       // given
       const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)

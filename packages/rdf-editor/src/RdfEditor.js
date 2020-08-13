@@ -152,30 +152,36 @@ export class RdfEditor extends LitElement {
     const inputStream = toStream(this.codeMirror.editor.getValue())
     const quads = []
 
-    const quadStream = parsers.import(this.format, inputStream)
-    if (!quadStream) {
-      this.dispatchEvent(
-        new CustomEvent('parsing-failed', {
-          detail: {
-            notFound: true,
-          },
-        })
-      )
-      return
-    }
+    try {
+      const quadStream = parsers.import(this.format, inputStream)
+      if (!quadStream) {
+        this.dispatchEvent(
+          new CustomEvent('parsing-failed', {
+            detail: {
+              notFound: true,
+            },
+          })
+        )
+        return
+      }
 
     for await (const quad of quadStream) {
       quads.push(quad)
     }
 
-    this[Quads] = quads
-    this.dispatchEvent(
-      new CustomEvent('quads-changed', {
-        detail: {
-          value: quads,
-        },
-      })
-    )
+      this[Quads] = quads
+      this.dispatchEvent(
+        new CustomEvent('quads-changed', {
+          detail: {
+            value: quads,
+          },
+        })
+      )
+    } catch (error) {
+      this.dispatchEvent(new CustomEvent('parsing-failed', {
+        detail: { error }
+      }))
+    }
   }
 
   async __serialize() {
