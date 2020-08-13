@@ -4,26 +4,51 @@
     {
       "name": "rdf-snippet",
       "path": "./rdf-snippet.js",
+      "description": "An RDF viewer which allows switching between various serializations.\n\n## Usage\n\nThe initial text of the RDF snippet must be added inside a child `<script>` element with `type` attribute set to the appropriate\nRDF media type. The element's `formats` property is control the media types which should be available to see the snippet\n\nThe initial RDF representation remains unchanged, while selecting the output formats re-serializes the actual triples and presents the output.\n\n## Supported types\n\nOut of the box all common RDF formats are supported, where some can only be used for the input (no serializer available):\n\n- JSON-LD\n- N-Triples\n- N-Quads\n- Turtle/N3\n- TriG *(input only)*\n- RDF/XML *(input only)*\n\nSupport for additional types can be added by registering an RDF/JS-compliant parser and/or serializer using the [`@rdf-esm/formats-common`](https://npm.im/@rdf-esm/formats-common)\npackage:\n\n```js\nimport { parsers, serializers } from '@rdf-esm/formats-common'\n\n// by importing dynamically, the code will only be loaded when needed\nparsers.set('application/trix', async () => {\n   const TrixParser = await import('@hypothetical/trix-parser')\n   return new TrixParser()\n})\n\nserializers.set('application/trix', async () => {\n   const TrixSerializer = await import('@hypothetical/trix-serializer')\n   return new TrixSerializer()\n})\n```",
       "attributes": [
         {
-          "name": "input-format",
-          "type": "string"
+          "name": "layout",
+          "description": "controls the position of selection buttons",
+          "type": "\"vertical\"|\"horizontal\""
         },
         {
-          "name": "output-formats",
-          "type": "array"
+          "name": "formats",
+          "description": "comma-separated list of output formats",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "show",
+          "description": "gets a value indicating whether the input or editor is shown",
+          "type": "\"input\"|\"output\"",
+          "default": "\"input\""
         }
       ],
       "properties": [
         {
-          "name": "inputFormat",
-          "attribute": "input-format",
+          "name": "selectedFormat",
+          "description": "gets the selected output format",
           "type": "string"
         },
         {
-          "name": "outputFormats",
-          "attribute": "output-formats",
-          "type": "array"
+          "name": "layout",
+          "attribute": "layout",
+          "description": "controls the position of selection buttons",
+          "type": "\"vertical\"|\"horizontal\""
+        },
+        {
+          "name": "formats",
+          "attribute": "formats",
+          "description": "comma-separated list of output formats",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "show",
+          "attribute": "show",
+          "description": "gets a value indicating whether the input or editor is shown",
+          "type": "\"input\"|\"output\"",
+          "default": "\"input\""
         }
       ]
     }

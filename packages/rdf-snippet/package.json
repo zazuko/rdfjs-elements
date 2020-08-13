@@ -10,7 +10,9 @@
     "analyze": "run-p analyze:*",
     "analyze:wc": "wca --format json --outFile ./custom-elements.json",
     "analyze:readme": "wca --outFile ./README.md",
-    "analyze:lit": "lit-analyzer --strict --quiet"
+    "analyze:lit": "lit-analyzer --strict --quiet",
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,8 @@
   "devDependencies": {
     "@open-wc/testing": "^2.0.0",
     "@open-wc/testing-helpers": "^1.8.6",
-    "@rdfjs-elements/testing": "*"
+    "@rdfjs-elements/testing": "*",
+    "api-viewer-element": "^0.4.4"
   },
   "publishConfig": {
     "access": "public"

@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "@open-wc/testing": "^2.0.0",
-    "@open-wc/testing-helpers": "^1.8.6",
     "@rdfjs-elements/testing": "*",
     "@tpluscode/rdf-ns-builders": "^0.3.7"
   },

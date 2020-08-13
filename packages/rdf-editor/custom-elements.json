@@ -12,8 +12,18 @@
         },
         {
           "name": "format",
-          "description": "Media type of the RDF serialization to use.\n\nCustom parsers and serializers must be added to @rdf-esm/formats-common",
+          "description": "Media type of the RDF serialization to use.\n\nCustom parsers and serializers must be added to `@rdf-esm/formats-common`",
           "type": "string"
+        },
+        {
+          "name": "serialized",
+          "description": "The string representation of the RDF graph.\n\nNote that this property is only used to set the initial value of the editor. For updates `quads` should be used",
+          "type": "string"
+        },
+        {
+          "name": "quads",
+          "description": "Gets or set RDF/JS quads. Setting will parse them using the chosen `format` and set to the text editor",
+          "type": "array"
         }
       ],
       "properties": [
@@ -23,29 +33,41 @@
           "type": "boolean"
         },
         {
+          "name": "format",
+          "attribute": "format",
+          "description": "Media type of the RDF serialization to use.\n\nCustom parsers and serializers must be added to `@rdf-esm/formats-common`",
+          "type": "string"
+        },
+        {
+          "name": "serialized",
+          "attribute": "serialized",
+          "description": "The string representation of the RDF graph.\n\nNote that this property is only used to set the initial value of the editor. For updates `quads` should be used",
+          "type": "string"
+        },
+        {
           "name": "codeMirror",
           "description": "The underlying `<wc-codemirror>` element",
           "type": "Element | null"
         },
         {
-          "name": "serialized",
-          "description": "The string representation of the RDF graph.\n\nThe syntax is not validated until quads getter is invoked.",
-          "type": "string"
-        },
-        {
-          "name": "format",
-          "attribute": "format",
-          "description": "Media type of the RDF serialization to use.\n\nCustom parsers and serializers must be added to @rdf-esm/formats-common",
-          "type": "string"
-        },
-        {
           "name": "quads",
-          "description": "Array of RDF/JS quads\n\nThe getter is async!",
-          "type": "Promise<any[]>"
+          "attribute": "quads",
+          "description": "Gets or set RDF/JS quads. Setting will parse them using the chosen `format` and set to the text editor",
+          "type": "array"
         },
         {
           "name": "ready",
           "type": "Promise<any>"
+        }
+      ],
+      "events": [
+        {
+          "name": "quads-changed",
+          "description": "when the editor contents have changed and have been successfully parsed"
+        },
+        {
+          "name": "parsing-failed",
+          "description": "when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason"
         }
       ]
     }

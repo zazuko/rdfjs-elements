@@ -1,5 +1,4 @@
-import { html, fixture, expect, assert } from '@open-wc/testing'
-import { nextFrame } from '@open-wc/testing-helpers'
+import { html, fixture, expect, nextFrame, oneEvent } from '@open-wc/testing'
 import { parsers, serializers } from '@rdfjs-elements/testing/formats-common'
 import { quad, blankNode } from '@rdf-esm/data-model'
 import { rdf, schema } from '@tpluscode/rdf-ns-builders'
@@ -68,20 +67,44 @@ describe('RdfjsEditor', () => {
       // then
       expect(el.codeMirror.editor.getMode().name).to.equal('turtle')
     })
+
+    it('setting serializes quads in new format', async () => {
+      // given
+      const before = 'foo'
+      const after = 'bar'
+      const el = await fixture(
+        html`<rdf-editor
+          format="application/ld+json"
+          .serialized="${before}"
+        ></rdf-editor>`
+      )
+      await el.ready
+      serializers.set('text/turtle', after)
+
+      // when
+      el.format = 'text/turtle'
+
+      // then
+      el.codeMirror.editor.on('change', value => {
+        expect(value).to.equal('bar')
+      })
+    })
   })
 
   describe('.quads', () => {
-    it('get rejects if parser is not found', async () => {
+    it('dispatches event when parser is not found', async () => {
       // given
       const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
       await el.ready
+      el.__parse()
+
+      // when
+      const {
+        detail: { notFound },
+      } = await oneEvent(el, 'parsing-failed')
 
       // then
-      await el.quads
-        .then(() => assert.fail())
-        .catch(e => {
-          expect(e.message).to.contain('No parser')
-        })
+      expect(notFound).to.eq(true)
     })
 
     it('gets quads coming from parser', async () => {
@@ -90,12 +113,14 @@ describe('RdfjsEditor', () => {
       await el.ready
       const expected = [quad(blankNode(), rdf.type, schema.Person)]
       parsers.set('foo/bar', expected)
+      el.__parse()
 
       // when
-      const quads = await el.quads
+      const { detail } = await oneEvent(el, 'quads-changed')
 
       // then
-      expect(quads).to.deep.eq(expected)
+      expect(el.quads).to.deep.eq(expected)
+      expect(detail.value).to.deep.eq(expected)
     })
 
     it('sets serialized string to the editor', async () => {
@@ -106,11 +131,11 @@ describe('RdfjsEditor', () => {
 
       // when
       el.quads = []
-      await nextFrame()
-      await el.updateComplete
 
       // then
-      expect(el.serialized).to.equal('foo bar')
+      el.codeMirror.editor.on('change', value => {
+        expect(value).to.equal('foo bar')
+      })
     })
   })
 })
