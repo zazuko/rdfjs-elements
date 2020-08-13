@@ -30,23 +30,19 @@
       }
     }
   </style>
-  <title>rdf-snippet demo</title>
+  <title>rdf-editor demo</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
 <section id="api-viewer">
-  <api-viewer exclude-knobs="input,selectedFormat,show">
-    <template data-element="rdf-snippet" data-target="host">
-      <rdf-snippet formats='text/turtle,application/ld+json,application/n-quads'>
-        <script type="text/turtle">
-@base <http://tbbt.ld/> .
+  <api-viewer exclude-knobs="ready,serialized,quads">
+    <template data-element="rdf-editor" data-target="host">
+      <rdf-editor style="height: 200px" format="application/trig" serialized='@base <http://example.com> .
 @prefix schema: <http://schema.org/> .
 
-<john> a schema:Person ;
-  schema:name "John Doe" .
-        </script>
-      </rdf-snippet>
+<john-doe> a schema:Person ;
+  schema:name "John Doe" .'></rdf-editor>
     </template>
   </api-viewer>
 </section>

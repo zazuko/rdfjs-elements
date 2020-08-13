@@ -33,6 +33,45 @@ const Quads = Symbol('parsed quads')
 /**
  * An text editor custom element which parses and serializes RDF/JS Quads using a selected RDF format.
  *
+ * ## Usage
+ *
+ * The element requires a single property/attribute `format` which should be an RDF serialization media type supported by
+ * `@rdf-esm/formats-common` package.
+ *
+ * The element is easiest to bootstrap by setting the `serialized` property **before** first render. This property is
+ * only used to provide the initial contents of the editor as it is parsed on first render, when the element has been added
+ * to the page.
+ *
+ * ```js
+ * import '@rdfjs-elements/rdf-editor'
+ * import { html } from 'lit-html'
+ *
+ * const jsonld = {
+ *   '@context': {
+ *     '@base': 'http://example.com/',
+ *     '@vocab': 'http://schema.org/'
+ *   },
+ *   '@id': 'john-doe',
+ *   '@type': 'Person',
+ *   '@name': 'John Doe'
+ * }
+ *
+ * const initialValue = JSON.stringify(jsonld, null, 2)
+ *
+ * const template = html`<rdf-editor format="application/ld+json" .serialized="${initialValue}"></rdf-editor>`
+ * ```
+ *
+ * By default most common formats are supported
+ *
+ * - JSON-LD
+ * - N-Triples
+ * - N-Quads
+ * - RDF/XML
+ * - Turtle/N3
+ * - TriG *(no highlighting)*
+ *
+ * Syntax highlighting is relying on support from CodeMirror.
+ *
  * @prop {string} serialized - The string representation of the RDF graph.
  *
  * Note that this property is only used to set the initial value of the editor. For updates `quads` should be used
@@ -40,6 +79,8 @@ const Quads = Symbol('parsed quads')
  * @prop {string} format - Media type of the RDF serialization to use.
  *
  * Custom parsers and serializers must be added to `@rdf-esm/formats-common`
+ *
+ * @prop {Promise<void>} ready - a one-time promise which resolves when CodeMirror has been initialized
  *
  * @fires quads-changed - when the editor contents have changed and have been successfully parsed
  * @fires parsing-failed - when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason
@@ -165,9 +206,9 @@ export class RdfEditor extends LitElement {
         return
       }
 
-    for await (const quad of quadStream) {
-      quads.push(quad)
-    }
+      for await (const quad of quadStream) {
+        quads.push(quad)
+      }
 
       this[Quads] = quads
       this.dispatchEvent(
@@ -178,9 +219,11 @@ export class RdfEditor extends LitElement {
         })
       )
     } catch (error) {
-      this.dispatchEvent(new CustomEvent('parsing-failed', {
-        detail: { error }
-      }))
+      this.dispatchEvent(
+        new CustomEvent('parsing-failed', {
+          detail: { error },
+        })
+      )
     }
   }
 

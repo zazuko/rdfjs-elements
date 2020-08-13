@@ -10,7 +10,9 @@
     "analyze": "run-p analyze:*",
     "analyze:wc": "wca --format json --outFile ./custom-elements.json",
     "analyze:readme": "wca --outFile ./README.md",
-    "analyze:lit": "lit-analyzer --strict --quiet --rules.no-invalid-css off"
+    "analyze:lit": "lit-analyzer --strict --quiet --rules.no-invalid-css off",
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -30,7 +32,8 @@
   "devDependencies": {
     "@open-wc/testing": "^2.0.0",
     "@rdfjs-elements/testing": "*",
-    "@tpluscode/rdf-ns-builders": "^0.3.7"
+    "@tpluscode/rdf-ns-builders": "^0.3.7",
+    "api-viewer-element": "^0.4.4"
   },
   "publishConfig": {
     "access": "public"
