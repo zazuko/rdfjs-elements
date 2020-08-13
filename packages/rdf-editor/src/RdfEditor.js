@@ -6,6 +6,7 @@ import '@vanillawc/wc-codemirror'
 import './mode/javascript.js'
 import './mode/turtle.js'
 import './mode/ntriples.js'
+import './mode/xml.js'
 
 function whenDefined(getter) {
   const interval = 10
