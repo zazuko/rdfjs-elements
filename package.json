@@ -39,6 +39,9 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.1.1"
   },
+  "resolutions": {
+    "rdfxml-streaming-parser/readable-stream": "3.6.0"
+  },
   "eslintConfig": {
     "extends": [
       "@open-wc/eslint-config",

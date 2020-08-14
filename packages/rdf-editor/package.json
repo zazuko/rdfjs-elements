@@ -22,7 +22,7 @@
   "homepage": "https://zazuko.github.io/rdfjs-elements/rdf-editor/",
   "dependencies": {
     "@rdf-esm/data-model": "^0.5.3",
-    "@rdf-esm/formats-common": "^0.5.2",
+    "@rdf-esm/formats-common": "^0.5.3",
     "@vanillawc/wc-codemirror": "^1.8.10",
     "codemirror": "^5.56.0",
     "into-stream": "^5.1.1",
