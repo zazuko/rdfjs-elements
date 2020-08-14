@@ -134,7 +134,9 @@ export class RdfEditor extends LitElement {
   }
 
   set quads(value) {
+    const oldValue = this[Quads]
     this[Quads] = value
+    this.requestUpdate('quads', oldValue)
   }
 
   async updated(_changedProperties) {
@@ -145,7 +147,7 @@ export class RdfEditor extends LitElement {
       await this.__updateFormat()
       shouldSerialize = true
     }
-    if (_changedProperties.get('quads')) {
+    if (_changedProperties.has('quads')) {
       shouldSerialize = true
     }
     if (_changedProperties.has('readonly')) {

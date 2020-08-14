@@ -147,11 +147,11 @@ describe('RdfjsEditor', () => {
 
       // when
       el.quads = []
+      await el.updateComplete
+      await nextFrame()
 
       // then
-      el.codeMirror.editor.on('change', value => {
-        expect(value).to.equal('foo bar')
-      })
+      expect(el.codeMirror.editor.getValue()).to.equal('foo bar')
     })
   })
 
