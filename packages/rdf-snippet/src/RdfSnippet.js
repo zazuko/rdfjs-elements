@@ -23,6 +23,18 @@ const formatLabels = {
  * The initial text of the RDF snippet must be added inside a child `<script>` element with `type` attribute set to the appropriate
  * RDF media type. The element's `formats` property selects the media types which should be available as alternative serializations.
  *
+ * ```html
+ * <rdf-snippet formats="application/ld+json,application/n-quads">
+ *   <script type="text/turtle">
+ * (at)base <http://example.com/> .
+ * (at)prefix schema: <http://schema.org/> .
+ *
+ * <john> a schema:Person ;
+ *   schema:name "John Doe" .
+ *   </script>
+ * </rdf-snippet>
+ * ```
+ *
  * The initial RDF representation remains unchanged, while selecting the output formats re-serializes the actual triples and presents the output.
  *
  * ## Supported types
