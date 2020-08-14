@@ -19,6 +19,7 @@
     "url": "https://github.com/zazuko/rdfjs-elements.git",
     "directory": "packages/rdf-editor"
   },
+  "homepage": "https://zazuko.github.io/rdfjs-elements/rdf-editor/",
   "dependencies": {
     "@rdf-esm/data-model": "^0.5.3",
     "@rdf-esm/formats-common": "^0.5.2",

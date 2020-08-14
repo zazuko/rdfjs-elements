@@ -32,7 +32,7 @@ function whenDefined(getter) {
 const Quads = Symbol('parsed quads')
 
 /**
- * An text editor custom element which parses and serializes RDF/JS Quads using a selected RDF format.
+ * A text editor custom element which parses and serializes RDF/JS Quads using a selected RDF format.
  *
  * ## Usage
  *

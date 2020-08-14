@@ -19,6 +19,7 @@
     "url": "https://github.com/zazuko/rdfjs-elements.git",
     "directory": "packages/rdf-snippet"
   },
+  "homepage": "https://zazuko.github.io/rdfjs-elements/rdf-snippet/",
   "dependencies": {
     "@rdfjs-elements/rdf-editor": "*",
     "lit-element": "^2.3.1",
