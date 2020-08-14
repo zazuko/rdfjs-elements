@@ -148,6 +148,9 @@ export class RdfEditor extends LitElement {
     if (_changedProperties.get('quads')) {
       shouldSerialize = true
     }
+    if (_changedProperties.has('readonly')) {
+      this.codeMirror.editor.setOption('readOnly', this.readonly)
+    }
 
     if (shouldSerialize) {
       this.__serialize()
