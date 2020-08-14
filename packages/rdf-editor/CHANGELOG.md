@@ -1,5 +1,11 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.2.1
+
+### Patch Changes
+
+- fix: quads setter was not updating the serialized contents
+
 ## 0.2.0
 
 ### Minor Changes
