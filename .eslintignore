@@ -1,3 +1,4 @@
 packages/rdf-editor/src/mode/
 node_modules
 coverage/
+dist/

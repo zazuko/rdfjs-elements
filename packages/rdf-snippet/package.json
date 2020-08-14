@@ -1,38 +1,33 @@
 {
-  "name": "@rdfjs-elements/rdf-editor",
+  "name": "@rdfjs-elements/rdf-snippet",
   "version": "0.1.0",
-  "description": "Code Mirror editor for RDF",
+  "description": "Simple RDF viewer with buttons for switching between serializations",
   "author": "Zazuko GmbH",
   "license": "MIT",
-  "main": "rdf-editor.js",
-  "module": "rdf-editor.js",
+  "main": "rdf-snippet.js",
+  "module": "rdf-snippet.js",
   "scripts": {
     "analyze": "run-p analyze:*",
     "analyze:wc": "wca --format json --outFile ./custom-elements.json",
     "analyze:readme": "wca --outFile ./README.md",
-    "analyze:lit": "lit-analyzer --strict --quiet --rules.no-invalid-css off",
+    "analyze:lit": "lit-analyzer --strict --quiet",
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/zazuko/rdfjs-elements.git",
-    "directory": "packages/rdf-editor"
+    "directory": "packages/rdf-snippet"
   },
   "dependencies": {
-    "@rdf-esm/data-model": "^0.5.3",
-    "@rdf-esm/formats-common": "^0.5.2",
-    "@vanillawc/wc-codemirror": "^1.8.10",
-    "codemirror": "^5.56.0",
-    "into-stream": "^5.1.1",
-    "lit-element": "^2.2.1",
-    "lit-html": "^1.1.2",
-    "string-to-stream": "^3.0.1"
+    "@rdfjs-elements/rdf-editor": "*",
+    "lit-element": "^2.3.1",
+    "lit-html": "^1.2.1"
   },
   "devDependencies": {
     "@open-wc/testing": "^2.0.0",
+    "@open-wc/testing-helpers": "^1.8.6",
     "@rdfjs-elements/testing": "*",
-    "@tpluscode/rdf-ns-builders": "^0.3.7",
     "api-viewer-element": "^0.4.4"
   },
   "publishConfig": {

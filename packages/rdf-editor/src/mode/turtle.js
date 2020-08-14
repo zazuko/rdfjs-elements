@@ -1,7 +1,6 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
 // Distributed under an MIT license: https://codemirror.net/LICENSE
 
-/* istanbul ignore next */
 window.CodeMirror.defineMode('turtle', function (config) {
   var indentUnit = config.indentUnit;
   var curPunc;

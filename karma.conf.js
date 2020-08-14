@@ -21,6 +21,7 @@ module.exports = config => {
       esm: {
         nodeResolve: true,
         responseTransformers: [fakeStreamModules()],
+        coverageExclude: ['packages/rdf-editor/src/mode/*.js'],
       },
       // you can overwrite/extend the config further
     })

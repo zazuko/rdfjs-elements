@@ -6,6 +6,11 @@ class FakeSinkMap {
   import(format) {
     const result = this._mocks.get(format)
     this._mocks.delete(format)
+
+    if (result instanceof Error) {
+      throw result
+    }
+
     return result
   }
 

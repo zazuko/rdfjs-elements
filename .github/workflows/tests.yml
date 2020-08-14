@@ -37,8 +37,7 @@ jobs:
         with:
           node-version: "13"
       - run: yarn install --frozen-lockfile
-      - run: yarn build
-        working-directory: packages/rdfjs-elements-demos
+      - run: npx lerna run build
 
   karma:
     runs-on: ubuntu-latest

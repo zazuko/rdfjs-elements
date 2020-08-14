@@ -6,6 +6,7 @@ import '@vanillawc/wc-codemirror'
 import './mode/javascript.js'
 import './mode/turtle.js'
 import './mode/ntriples.js'
+import './mode/xml.js'
 
 function whenDefined(getter) {
   const interval = 10
@@ -28,11 +29,64 @@ function whenDefined(getter) {
   })
 }
 
-const Serialized = Symbol('serialized quads')
-const Format = Symbol('rdf serialization')
+const Quads = Symbol('parsed quads')
 
 /**
  * An text editor custom element which parses and serializes RDF/JS Quads using a selected RDF format.
+ *
+ * ## Usage
+ *
+ * The element requires a single property/attribute `format` which should be an RDF serialization media type supported by
+ * `@rdf-esm/formats-common` package.
+ *
+ * The element is easiest to bootstrap by setting the `serialized` property **before** first render. This property is
+ * only used to provide the initial contents of the editor as it is parsed on first render, when the element has been added
+ * to the page.
+ *
+ * ```js
+ * import '@rdfjs-elements/rdf-editor'
+ * import { html } from 'lit-html'
+ *
+ * const jsonld = {
+ *   '@context': {
+ *     '@base': 'http://example.com/',
+ *     '@vocab': 'http://schema.org/'
+ *   },
+ *   '@id': 'john-doe',
+ *   '@type': 'Person',
+ *   '@name': 'John Doe'
+ * }
+ *
+ * const initialValue = JSON.stringify(jsonld, null, 2)
+ *
+ * const template = html`<rdf-editor format="application/ld+json" .serialized="${initialValue}"></rdf-editor>`
+ * ```
+ *
+ * By default most common formats are supported
+ *
+ * - JSON-LD
+ * - N-Triples
+ * - N-Quads
+ * - RDF/XML
+ * - Turtle/N3
+ * - TriG *(no highlighting)*
+ *
+ * Syntax highlighting is relying on support from CodeMirror.
+ *
+ * @prop {string} serialized - The string representation of the RDF graph.
+ *
+ * Note that this property is only used to set the initial value of the editor. For updates `quads` should be used
+ *
+ * @prop {string} format - Media type of the RDF serialization to use.
+ *
+ * Custom parsers and serializers must be added to `@rdf-esm/formats-common`
+ *
+ * @prop {Promise<void>} ready - a one-time promise which resolves when CodeMirror has been initialized
+ *
+ * @prop {Quad[]} quads - get or sets the RDF/JS quads
+ *
+ * @fires {CustomEvent<{ quads: Quad[]; }>} quads-changed - when the editor contents have changed and have been successfully parsed
+ * @fires {CustomEvent<{ notFound?: boolean; error?: Error; }>} parsing-failed - when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason
  */
 export class RdfEditor extends LitElement {
   static get styles() {
@@ -53,6 +107,8 @@ export class RdfEditor extends LitElement {
     return {
       readonly: { type: Boolean, reflect: true },
       format: { type: String, reflect: true },
+      serialized: { type: String },
+      quads: { type: Array },
     }
   }
 
@@ -69,70 +125,51 @@ export class RdfEditor extends LitElement {
   }
 
   /**
-   * The string representation of the RDF graph.
+   * Gets or set RDF/JS quads. Setting will parse them using the chosen `format` and set to the text editor
    *
-   * The syntax is not validated until quads getter is invoked.
-   *
-   * @return {string}
-   */
-  get serialized() {
-    return this[Serialized]
-  }
-
-  set serialized(value) {
-    const oldValue = this.serialized
-    this[Serialized] = value
-
-    this.__updateValue().then(() => this.requestUpdate('serialized', oldValue))
-  }
-
-  /**
-   * Media type of the RDF serialization to use.
-   *
-   * Custom parsers and serializers must be added to @rdf-esm/formats-common
-   *
-   * @return {string}
-   */
-  get format() {
-    return this[Format]
-  }
-
-  set format(value) {
-    const oldValue = this[Format]
-    this[Format] = value
-    this.__updateFormat().then(() => this.requestUpdate('format', oldValue))
-  }
-
-  /**
-   * Array of RDF/JS quads
-   *
-   * The getter is async!
+   * @returns {Quad[]}
    */
   get quads() {
-    return this.__parse()
+    return this[Quads]
   }
 
   set quads(value) {
-    const stream = serializers.import(
-      this.format,
-      intoStream.object(value || '')
-    )
+    this[Quads] = value
+  }
 
-    ;(async () => {
-      let serialized = ''
-      for await (const chunk of stream) {
-        serialized += chunk
-      }
+  async updated(_changedProperties) {
+    super.updated(_changedProperties)
 
-      this.serialized = serialized
-    })()
+    let shouldSerialize = false
+    if (_changedProperties.get('format')) {
+      await this.__updateFormat()
+      shouldSerialize = true
+    }
+    if (_changedProperties.get('quads')) {
+      shouldSerialize = true
+    }
+
+    if (shouldSerialize) {
+      this.__serialize()
+    }
   }
 
   async firstUpdated(props) {
     super.firstUpdated(props)
     await this.ready
-    this.__updateValue()
     this.codeMirror.editor.setSize('100%', '100%')
+    this.codeMirror.editor.on('blur', () => this.__parse())
+
+    if (this.serialized) {
+      const firstParse = () => {
+        this.__parse()
+        this.codeMirror.editor.off('change', firstParse)
+      }
+      this.codeMirror.editor.on('change', firstParse)
+      this.__updateValue(this.serialized)
+    } else if (this.quads) {
+      this.__serialize()
+    }
   }
 
   render() {
@@ -145,27 +182,72 @@ export class RdfEditor extends LitElement {
 
   async __updateFormat() {
     await this.ready
-    this.codeMirror.editor.setOption('mode', this[Format])
+    this.codeMirror.editor.setOption('mode', this.format)
   }
 
-  async __updateValue() {
+  async __updateValue(value) {
     await this.ready
-    this.codeMirror.editor.setValue(this[Serialized] || '')
+    this.codeMirror.editor.setValue(value || '')
   }
 
   async __parse() {
+    await this.updateComplete
+
     const inputStream = toStream(this.codeMirror.editor.getValue())
     const quads = []
 
-    const quadStream = parsers.import(this.format, inputStream)
-    if (!quadStream) {
-      throw new Error(`No parser found for ${this.format}`)
+    try {
+      const quadStream = parsers.import(this.format, inputStream)
+      if (!quadStream) {
+        this.dispatchEvent(
+          new CustomEvent('parsing-failed', {
+            detail: {
+              notFound: true,
+            },
+          })
+        )
+        return
+      }
+
+      for await (const quad of quadStream) {
+        quads.push(quad)
+      }
+
+      this[Quads] = quads
+      this.dispatchEvent(
+        new CustomEvent('quads-changed', {
+          detail: {
+            value: quads,
+          },
+        })
+      )
+    } catch (error) {
+      this.dispatchEvent(
+        new CustomEvent('parsing-failed', {
+          detail: { error },
+        })
+      )
+    }
+  }
+
+  async __serialize() {
+    if (!this.format) return
+
+    const stream = serializers.import(
+      this.format,
+      intoStream.object(this.quads || [])
+    )
+
+    if (!stream) {
+      this.serialized = `No parser found for media type ${this.format}`
+      return
     }
 
-    for await (const quad of quadStream) {
-      quads.push(quad)
+    let serialized = ''
+    for await (const chunk of stream) {
+      serialized += chunk
     }
 
-    return quads
+    this.__updateValue(serialized)
   }
 }
