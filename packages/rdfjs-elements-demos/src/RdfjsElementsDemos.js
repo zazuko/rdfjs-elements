@@ -71,6 +71,6 @@ export class RdfjsElementsDemos extends LitElement {
   }
 
   async _translate() {
-    this.output = await this.renderRoot.querySelector('#input').quads
+    this.output = this.renderRoot.querySelector('#input').quads
   }
 }
