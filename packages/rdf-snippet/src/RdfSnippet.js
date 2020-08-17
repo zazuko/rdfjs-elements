@@ -18,7 +18,7 @@ const formatLabels = {
 /**
  * An RDF viewer which allows switching between various serializations.
  *
- * ## Usage
+ * ## Default usage
  *
  * The initial text of the RDF snippet must be added inside a child `<script>` element with `type` attribute set to the appropriate
  * RDF media type. The element's `formats` property selects the media types which should be available as alternative serializations.
@@ -26,8 +26,8 @@ const formatLabels = {
  * ```html
  * <rdf-snippet formats="application/ld+json,application/n-quads">
  *   <script type="text/turtle">
- * (at)base <http://example.com/> .
- * (at)prefix schema: <http://schema.org/> .
+ * ＠base <http://example.com/> .
+ * ＠prefix schema: <http://schema.org/> .
  *
  * <john> a schema:Person ;
  *   schema:name "John Doe" .
@@ -36,6 +36,15 @@ const formatLabels = {
  * ```
  *
  * The initial RDF representation remains unchanged, while selecting the output formats re-serializes the actual triples and presents the output.
+ *
+ * ## Usage with properties
+ *
+ * In case when a `<script>` cannot be used, the snippet can be initialized by passing the serialized input and input format using properties/attributes
+ *
+ * ```html
+ * <rdf-snippet .input="${turtle}" input-format="text/turtle">
+ * </rdf-snippet>
+ * ```
  *
  * ## Supported types
  *
@@ -69,6 +78,8 @@ const formatLabels = {
  * @prop {string} formats - comma-separated list of output formats
  * @prop {"input"|"output"} show - gets a value indicating whether the input or editor is shown
  * @prop {string} selectedFormat - gets the selected output format
+ * @prop {string} input - set the input serialized value (ignored when `<script>` is used)
+ * @prop {string} inputFormat - set the format of the input (ignored when `<script>` is used)
  *
  * @attr {"vertical"|"horizontal"} layout - controls the position of selection buttons
  */
@@ -76,7 +87,8 @@ export class RdfSnippet extends LitElement {
   static get properties() {
     return {
       formats: { type: String },
-      _input: { type: String },
+      input: { type: String, attribute: false },
+      inputFormat: { type: String, attribute: 'input-format' },
       selectedFormat: { type: String, attribute: false },
       show: { type: String },
       layout: { type: String, reflect: true },
@@ -145,14 +157,17 @@ export class RdfSnippet extends LitElement {
     this.formats = ''
     this[Quads] = []
     this.show = 'input'
+    this.inputFormat = 'text/turtle'
   }
 
   connectedCallback() {
     super.connectedCallback()
 
     const contentScript = this.querySelector('script')
-    this.inputFormat = contentScript?.getAttribute('type') || 'text/turtle'
-    this._input = contentScript?.textContent.trim()
+    if (contentScript) {
+      this.inputFormat = contentScript.getAttribute('type') || 'text/turtle'
+      this.input = contentScript.textContent.trim()
+    }
     ;[this.selectedFormat] = this._outputFormats
   }
 
@@ -164,7 +179,7 @@ export class RdfSnippet extends LitElement {
       <rdf-editor
         id="input"
         readonly
-        .serialized="${this._input}"
+        .serialized="${this.input}"
         .format="${this.inputFormat}"
         ?visible="${this.show === 'input'}"
       ></rdf-editor>

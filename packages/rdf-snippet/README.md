@@ -2,7 +2,7 @@
 
 An RDF viewer which allows switching between various serializations.
 
-## Usage
+## Default usage
 
 The initial text of the RDF snippet must be added inside a child `<script>` element with `type` attribute set to the appropriate
 RDF media type. The element's `formats` property selects the media types which should be available as alternative serializations.
@@ -10,8 +10,8 @@ RDF media type. The element's `formats` property selects the media types which s
 ```html
 <rdf-snippet formats="application/ld+json,application/n-quads">
    <script type="text/turtle">
-(at)base <http://example.com/> .
-(at)prefix schema: <http://schema.org/> .
+＠base <http://example.com/> .
+＠prefix schema: <http://schema.org/> .
 
 <john> a schema:Person ;
    schema:name "John Doe" .
@@ -20,6 +20,15 @@ RDF media type. The element's `formats` property selects the media types which s
 ```
 
 The initial RDF representation remains unchanged, while selecting the output formats re-serializes the actual triples and presents the output.
+
+## Usage with properties
+
+In case when a `<script>` cannot be used, the snippet can be initialized by passing the serialized input and input format using properties/attributes
+
+```html
+<rdf-snippet .input="${turtle}" input-format="text/turtle">
+</rdf-snippet>
+```
 
 ## Supported types
 
@@ -52,9 +61,11 @@ serializers.set('application/trix', async () => {
 
 ## Properties
 
-| Property         | Attribute | Type                       | Default | Description                                      |
-|------------------|-----------|----------------------------|---------|--------------------------------------------------|
-| `formats`        | `formats` | `string`                   | ""      | comma-separated list of output formats           |
-| `layout`         | `layout`  | `"vertical"\|"horizontal"` |         | controls the position of selection buttons       |
-| `selectedFormat` |           | `string`                   |         | gets the selected output format                  |
-| `show`           | `show`    | `"input"\|"output"`        | "input" | gets a value indicating whether the input or editor is shown |
+| Property         | Attribute      | Type                       | Default       | Description                                      |
+|------------------|----------------|----------------------------|---------------|--------------------------------------------------|
+| `formats`        | `formats`      | `string`                   | ""            | comma-separated list of output formats           |
+| `input`          |                | `string`                   |               | set the input serialized value (ignored when `<script>` is used) |
+| `inputFormat`    | `input-format` | `string`                   | "text/turtle" | set the format of the input (ignored when `<script>` is used) |
+| `layout`         | `layout`       | `"vertical"\|"horizontal"` |               | controls the position of selection buttons       |
+| `selectedFormat` |                | `string`                   |               | gets the selected output format                  |
+| `show`           | `show`         | `"input"\|"output"`        | "input"       | gets a value indicating whether the input or editor is shown |

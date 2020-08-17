@@ -16,6 +16,20 @@ describe('RdfSnippet', () => {
     expect(snippet._editor.serialized).to.eq(turtle)
   })
 
+  it('sets initial editor contents from property', async () => {
+    // given
+    const turtle = `@prefix schema: <http://schema.org/> .`
+    const snippet = await fixture(
+      html`<rdf-snippet
+        .input="${turtle}"
+        input-format="text/turtle"
+      ></rdf-snippet>`
+    )
+
+    // then
+    expect(snippet._editor.serialized).to.eq(turtle)
+  })
+
   it('should be read-only by default', async () => {
     // given
     const snippet = await fixture(html`<rdf-snippet></rdf-snippet>`)
