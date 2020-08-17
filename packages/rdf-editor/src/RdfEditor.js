@@ -112,9 +112,20 @@ export class RdfEditor extends LitElement {
     }
   }
 
-  constructor() {
-    super()
-    this.ready = whenDefined(() => this.codeMirror?.__initialized)
+  connectedCallback() {
+    super.connectedCallback()
+    this.ready = whenDefined(() => this.codeMirror?.__initialized).then(() =>
+      this.__initializeCodeMirror()
+    )
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback()
+    this.ready = null
+    if (this.codeMirror.editor) {
+      this.codeMirror.editor.toTextArea()
+    }
+    this.codeMirror.__initialized = false
   }
 
   /**
@@ -155,24 +166,6 @@ export class RdfEditor extends LitElement {
     }
 
     if (shouldSerialize) {
-      this.__serialize()
-    }
-  }
-
-  async firstUpdated(props) {
-    super.firstUpdated(props)
-    await this.ready
-    this.codeMirror.editor.setSize('100%', '100%')
-    this.codeMirror.editor.on('blur', () => this.__parse())
-
-    if (this.serialized) {
-      const firstParse = () => {
-        this.__parse()
-        this.codeMirror.editor.off('change', firstParse)
-      }
-      this.codeMirror.editor.on('change', firstParse)
-      this.__updateValue(this.serialized)
-    } else if (this.quads) {
       this.__serialize()
     }
   }
@@ -254,5 +247,21 @@ export class RdfEditor extends LitElement {
     }
 
     this.__updateValue(serialized)
+  }
+
+  __initializeCodeMirror() {
+    this.codeMirror.editor.setSize('100%', '100%')
+    this.codeMirror.editor.on('blur', () => this.__parse())
+
+    if (this.serialized) {
+      const firstParse = () => {
+        this.__parse()
+        this.codeMirror.editor.off('change', firstParse)
+      }
+      this.codeMirror.editor.on('change', firstParse)
+      this.__updateValue(this.serialized)
+    } else if (this.quads) {
+      this.__serialize()
+    }
   }
 }
