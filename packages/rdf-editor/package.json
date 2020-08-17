@@ -25,7 +25,7 @@
     "@rdf-esm/formats-common": "^0.5.3",
     "@vanillawc/wc-codemirror": "^1.8.10",
     "codemirror": "^5.56.0",
-    "into-stream": "^5.1.1",
+    "readable-stream": "^3",
     "lit-element": "^2.2.1",
     "lit-html": "^1.1.2",
     "string-to-stream": "^3.0.1"

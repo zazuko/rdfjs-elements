@@ -15,6 +15,11 @@ module.exports = function factory() {
         body: `export { default } from '@rdfjs-elements/testing/into-stream/index.js';`,
       }
     }
+    if (context.url.match(/node_modules\/readable-stream\/readable.js$/)) {
+      return {
+        body: `export { Readable } from '@rdfjs-elements/testing/stream/index.js';`,
+      }
+    }
     return context
   }
 }

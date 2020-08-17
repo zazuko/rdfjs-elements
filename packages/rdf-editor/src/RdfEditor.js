@@ -1,6 +1,6 @@
 import { html, css, LitElement } from 'lit-element'
 import toStream from 'string-to-stream'
-import intoStream from 'into-stream'
+import { Readable } from 'readable-stream'
 import { serializers, parsers } from '@rdf-esm/formats-common'
 import '@vanillawc/wc-codemirror'
 import './mode/javascript.js'
@@ -238,18 +238,27 @@ export class RdfEditor extends LitElement {
   async __serialize() {
     if (!this.format) return
 
-    const stream = serializers.import(
-      this.format,
-      intoStream.object(this.quads || [])
-    )
+    const quads = [...(this.quads || [])]
+    const stream = new Readable({
+      objectMode: true,
+      read() {
+        this.push(quads.shift())
 
-    if (!stream) {
+        if (quads.length === 0) {
+          this.push(null)
+        }
+      },
+    })
+
+    const quadStream = serializers.import(this.format, stream)
+
+    if (!quadStream) {
       this.serialized = `No parser found for media type ${this.format}`
       return
     }
 
     let serialized = ''
-    for await (const chunk of stream) {
+    for await (const chunk of quadStream) {
       serialized += chunk
     }
 
