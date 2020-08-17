@@ -1,6 +1,17 @@
 # @rdfjs-elements/rdf-snippet
 
+## 0.1.1
+
+### Patch Changes
+
+- 5c78420: feat: using properties and attributes for setting up the snippet
+- Updated dependencies [e37a4d9]
+- Updated dependencies [ca3aac4]
+- Updated dependencies [ce4da12]
+  - @rdfjs-elements/rdf-editor@0.2.2
+
 ## 0.1.0
+
 ### Minor Changes
 
 - de692db: Initial release of the `rdf-snippet` element

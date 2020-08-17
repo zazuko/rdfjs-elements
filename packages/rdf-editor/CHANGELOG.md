@@ -1,5 +1,13 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.2.2
+
+### Patch Changes
+
+- e37a4d9: Update `@rdf-esm/formats-common` to have proper import of RDF/XML parser
+- ca3aac4: Disconnected callback would cause phantom codemirrors
+- ce4da12: Replace into-stream dependency with readable-stream
+
 ## 0.2.1
 
 ### Patch Changes
