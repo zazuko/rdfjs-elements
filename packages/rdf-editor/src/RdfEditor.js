@@ -235,11 +235,12 @@ export class RdfEditor extends LitElement {
     const stream = new Readable({
       objectMode: true,
       read() {
-        this.push(quads.shift())
-
         if (quads.length === 0) {
           this.push(null)
+          return
         }
+
+        this.push(quads.shift())
       },
     })
 

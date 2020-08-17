@@ -48,6 +48,9 @@
           "type": "\"vertical\"|\"horizontal\""
         },
         {
+          "name": "displayed"
+        },
+        {
           "name": "formats",
           "attribute": "formats",
           "description": "comma-separated list of output formats",
