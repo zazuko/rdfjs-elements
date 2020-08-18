@@ -247,7 +247,7 @@ export class RdfEditor extends LitElement {
     const quadStream = serializers.import(this.format, stream)
 
     if (!quadStream) {
-      this.serialized = `No parser found for media type ${this.format}`
+      this.serialized = `No serializer found for media type ${this.format}`
       return
     }
 
@@ -257,6 +257,14 @@ export class RdfEditor extends LitElement {
     }
 
     this.__updateValue(serialized)
+    this.serialized = serialized
+    this.dispatchEvent(
+      new CustomEvent('serialized', {
+        detail: {
+          value: serialized,
+        },
+      })
+    )
   }
 
   __initializeCodeMirror() {

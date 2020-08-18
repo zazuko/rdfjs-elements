@@ -5,7 +5,7 @@
 ```html
 <div id="wrapper">
   <ol>
-    <li 
+    <li
       input=""
       selected=""
     >
@@ -27,10 +27,12 @@
   </rdf-editor>
   <rdf-editor
     format="application/ld+json"
+    id="output"
     readonly=""
   >
   </rdf-editor>
 </div>
+
 ```
 
 #### `switching output changes the output editor format`
@@ -57,9 +59,11 @@
   </rdf-editor>
   <rdf-editor
     format="application/ld+json"
+    id="output"
     readonly=""
   >
   </rdf-editor>
 </div>
 
 ```
+

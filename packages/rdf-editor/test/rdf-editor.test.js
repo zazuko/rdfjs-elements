@@ -152,6 +152,24 @@ describe('RdfjsEditor', () => {
 
       // then
       expect(el.codeMirror.editor.getValue()).to.equal('foo bar')
+      expect(el.serialized).to.equal('foo bar')
+    })
+
+    it('dispatches event when serializing is done', async () => {
+      // given
+      const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
+      await el.ready
+      serializers.set('foo/bar', 'foo bar')
+
+      // when
+      const serializedEvent = oneEvent(el, 'serialized')
+      el.quads = []
+      const {
+        detail: { value },
+      } = await serializedEvent
+
+      // then
+      expect(value).to.equal('foo bar')
     })
   })
 

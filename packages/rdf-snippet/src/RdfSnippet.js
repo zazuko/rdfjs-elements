@@ -4,6 +4,7 @@ import { repeat } from 'lit-html/directives/repeat'
 import '@rdfjs-elements/rdf-editor'
 
 const Quads = Symbol('quads')
+const PreviousOutputFormat = Symbol('previous output')
 
 const formatLabels = {
   'text/turtle': 'Turtle',
@@ -139,8 +140,21 @@ export class RdfSnippet extends LitElement {
     `
   }
 
+  /**
+   * Gets the text contents of the currently showing editor
+   *
+   * @return {string}
+   */
+  get value() {
+    return this.show === 'input' ? this.input : this._outputEditor.serialized
+  }
+
   get _editor() {
     return this.renderRoot.querySelector('#input')
+  }
+
+  get _outputEditor() {
+    return this.renderRoot.querySelector('#output')
   }
 
   get _outputFormats() {
@@ -184,10 +198,12 @@ export class RdfSnippet extends LitElement {
         ?visible="${this.show === 'input'}"
       ></rdf-editor>
       <rdf-editor
+        id="output"
         readonly
         .quads="${this[Quads]}"
         .format="${this.selectedFormat}"
         ?visible="${this.show === 'output'}"
+        @serialized="${this.__dispatchChangeEvent}"
       ></rdf-editor>
     </div>`
   }
@@ -215,6 +231,8 @@ export class RdfSnippet extends LitElement {
 
   _showInput() {
     this.show = 'input'
+    this.__dispatchChangeEvent()
+    this[PreviousOutputFormat] = this.selectedFormat
   }
 
   _showOutput(format) {
@@ -225,6 +243,19 @@ export class RdfSnippet extends LitElement {
       }
       this.selectedFormat = format
       this.show = 'output'
+      if (format === this[PreviousOutputFormat]) {
+        this.__dispatchChangeEvent()
+      }
     }
+  }
+
+  __dispatchChangeEvent() {
+    this.dispatchEvent(
+      new CustomEvent('value-changed', {
+        detail: {
+          value: this.value,
+        },
+      })
+    )
   }
 }

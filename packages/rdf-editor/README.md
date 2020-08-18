@@ -58,3 +58,4 @@ Syntax highlighting is relying on support from CodeMirror.
 |------------------|--------------------------------------------------|--------------------------------------------------|
 | `parsing-failed` | `CustomEvent<{ notFound?: boolean; error?: Error; }>` | when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason |
 | `quads-changed`  | `CustomEvent<{ quads: Quad[]; }>`                | when the editor contents have changed and have been successfully parsed |
+| `serialized`     | `CustomEvent<{ value: string; }>`                |                                                  |
