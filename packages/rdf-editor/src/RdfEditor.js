@@ -256,6 +256,10 @@ export class RdfEditor extends LitElement {
       serialized += chunk
     }
 
+    if (this.format === 'application/ld+json') {
+      serialized = JSON.stringify(JSON.parse(serialized), null, 2)
+    }
+
     this.__updateValue(serialized)
     this.serialized = serialized
     this.dispatchEvent(
