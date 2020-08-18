@@ -155,6 +155,23 @@ describe('RdfjsEditor', () => {
       expect(el.serialized).to.equal('foo bar')
     })
 
+    it('nicely stringifies JSON-LD', async () => {
+      // given
+      const el = await fixture(
+        html`<rdf-editor format="application/ld+json"></rdf-editor>`
+      )
+      await el.ready
+      serializers.set('application/ld+json', '{ "foo": "bar" }')
+
+      // when
+      el.quads = []
+      await el.updateComplete
+      await nextFrame()
+
+      // then
+      expect(el.serialized).to.equal(JSON.stringify({ foo: 'bar' }, null, 2))
+    })
+
     it('dispatches event when serializing is done', async () => {
       // given
       const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)

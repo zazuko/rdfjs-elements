@@ -113,10 +113,8 @@ describe('RdfSnippet', () => {
 
   it('switching to output raises event', async () => {
     // given
-    serializers.set('application/ld+json', 'json-ld')
-    const snippet = await fixture(html`<rdf-snippet
-      formats="application/ld+json"
-    >
+    serializers.set('text/n3', 'n3')
+    const snippet = await fixture(html`<rdf-snippet formats="text/n3">
       <script type="application/rdf+xml"></script>
     </rdf-snippet>`)
 
@@ -128,15 +126,13 @@ describe('RdfSnippet', () => {
     } = await changeEvent
 
     // then
-    expect(value).to.equal('json-ld')
+    expect(value).to.equal('n3')
   })
 
   it('switching to input raises event', async () => {
     // given
-    serializers.set('application/ld+json', 'json-ld')
-    const snippet = await fixture(html`<rdf-snippet
-      formats="application/ld+json"
-    >
+    serializers.set('text/n3', 'n3')
+    const snippet = await fixture(html`<rdf-snippet formats="text/n3">
       <script type="application/rdf+xml">
         rdf-xml
       </script>
@@ -177,10 +173,8 @@ describe('RdfSnippet', () => {
 
     it('gets the output contents when output is shown', async () => {
       // given
-      serializers.set('application/ld+json', 'json-ld')
-      const snippet = await fixture(html`<rdf-snippet
-        formats="application/ld+json"
-      >
+      serializers.set('text/n3', 'notation 3')
+      const snippet = await fixture(html`<rdf-snippet formats="text/n3">
         <script type="application/rdf+xml">
           rdf/xml
         </script>
@@ -193,7 +187,7 @@ describe('RdfSnippet', () => {
       const { value } = snippet
 
       // then
-      expect(value).to.equal('json-ld')
+      expect(value).to.equal('notation 3')
     })
   })
 })
