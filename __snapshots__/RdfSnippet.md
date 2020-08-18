@@ -7,14 +7,20 @@
   <ol>
     <li
       input=""
-      selected=""
+      part="format input selected"
     >
       RDF/XML
     </li>
-    <li output="">
+    <li
+      output=""
+      part="format output "
+    >
       JSON‑LD
     </li>
-    <li output="">
+    <li
+      output=""
+      part="format output "
+    >
       Turtle
     </li>
   </ol>
@@ -42,11 +48,14 @@
   <ol>
     <li
       input=""
-      selected=""
+      part="format input selected"
     >
       RDF/XML
     </li>
-    <li output="">
+    <li
+      output=""
+      part="format output "
+    >
       JSON‑LD
     </li>
   </ol>

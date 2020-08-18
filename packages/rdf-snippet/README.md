@@ -75,3 +75,12 @@ serializers.set('application/trix', async () => {
 | Event           | Type                              |
 |-----------------|-----------------------------------|
 | `value-changed` | `CustomEvent<{ value: string; }>` |
+
+## CSS Shadow Parts
+
+| Part       | Description                             |
+|------------|-----------------------------------------|
+| `format`   | every format selection button           |
+| `input`    | selection button for the input format   |
+| `output`   | selection button for the output formats |
+| `selected` | the currently selected format button    |

@@ -65,6 +65,24 @@
         {
           "name": "value-changed"
         }
+      ],
+      "cssParts": [
+        {
+          "name": "format",
+          "description": "every format selection button"
+        },
+        {
+          "name": "input",
+          "description": "selection button for the input format"
+        },
+        {
+          "name": "output",
+          "description": "selection button for the output formats"
+        },
+        {
+          "name": "selected",
+          "description": "the currently selected format button"
+        }
       ]
     }
   ]

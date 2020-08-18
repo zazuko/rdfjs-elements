@@ -37,6 +37,20 @@
 <body>
 <section id="api-viewer">
   <api-viewer exclude-knobs="input,selectedFormat,show">
+    <template data-element="rdf-snippet" data-target="prefix">
+      <style>
+        rdf-snippet::part(format) {
+          color: blue
+        }
+        rdf-snippet::part(selected) {
+          color: red;
+          border-color: red;
+        }
+        rdf-snippet::part(format):hover {
+          background-color: rgba(169, 169, 169, 0.38);
+        }
+      </style>
+    </template>
     <template data-element="rdf-snippet" data-target="host">
       <rdf-snippet formats='text/turtle,application/ld+json,application/n-quads'>
         <script type="text/turtle">

@@ -83,6 +83,11 @@ const formatLabels = {
  * @prop {string} inputFormat - set the format of the input (ignored when `<script>` is used)
  *
  * @attr {"vertical"|"horizontal"} layout - controls the position of selection buttons
+ *
+ * @csspart format - every format selection button
+ * @csspart input - selection button for the input format
+ * @csspart output - selection button for the output formats
+ * @csspart selected - the currently selected format button
  */
 export class RdfSnippet extends LitElement {
   static get properties() {
@@ -129,7 +134,7 @@ export class RdfSnippet extends LitElement {
         border: solid 1px black;
       }
 
-      li[selected] {
+      li[part$='selected'] {
         text-decoration: underline;
       }
 
@@ -208,24 +213,14 @@ export class RdfSnippet extends LitElement {
   }
 
   _renderButtons() {
-    return html` <li
-        input
-        ?selected="${this[Show] === 'input'}"
-        @click="${this._showInput}"
-      >
+    const inputParts = `format input ${
+      this[Show] === 'input' ? 'selected' : ''
+    }`
+
+    return html` <li input part="${inputParts}" @click="${this._showInput}">
         ${formatLabels[this.inputFormat] || this.inputFormat}
       </li>
-      ${repeat(
-        this._outputFormats,
-        format => html`<li
-          output
-          ?selected="${this[Show] === 'output' &&
-          this.selectedFormat === format}"
-          @click="${this._showOutput(format)}"
-        >
-          ${formatLabels[format] || format}
-        </li>`
-      )}`
+      ${repeat(this._outputFormats, this.__renderOutputButton.bind(this))}`
   }
 
   _showInput() {
@@ -248,6 +243,18 @@ export class RdfSnippet extends LitElement {
       }
       this.requestUpdate()
     }
+  }
+
+  __renderOutputButton(format) {
+    const parts = `format output ${
+      this[Show] === 'output' && this.selectedFormat === format
+        ? 'selected'
+        : ''
+    }`
+
+    return html`<li output part="${parts}" @click="${this._showOutput(format)}">
+      ${formatLabels[format] || format}
+    </li>`
   }
 
   __dispatchChangeEvent() {
