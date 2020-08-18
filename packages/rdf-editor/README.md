@@ -59,3 +59,21 @@ Syntax highlighting is relying on support from CodeMirror.
 | `parsing-failed` | `CustomEvent<{ notFound?: boolean; error?: Error; }>` | when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason |
 | `quads-changed`  | `CustomEvent<{ quads: Quad[]; }>`                | when the editor contents have changed and have been successfully parsed |
 | `serialized`     | `CustomEvent<{ value: string; }>`                |                                                  |
+
+## CSS Shadow Parts
+
+| Part                          | Description                                      |
+|-------------------------------|--------------------------------------------------|
+| `CodeMirror`                  | The main CodeMirror wrapper element. This and other parts are directly generated from CSS classes set by CodeMirror and should be fairly self-explanatory but not equally useful 😉 |
+| `CodeMirror-code`             |                                                  |
+| `CodeMirror-cursors`          |                                                  |
+| `CodeMirror-gutter-filler`    |                                                  |
+| `CodeMirror-gutters`          |                                                  |
+| `CodeMirror-hscrollbar`       |                                                  |
+| `CodeMirror-linenumbers`      |                                                  |
+| `CodeMirror-lines`            |                                                  |
+| `CodeMirror-measure`          |                                                  |
+| `CodeMirror-scroll`           |                                                  |
+| `CodeMirror-scrollbar-filler` |                                                  |
+| `CodeMirror-sizer`            |                                                  |
+| `CodeMirror-vscrollbar`       |                                                  |

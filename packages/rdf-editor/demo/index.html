@@ -37,6 +37,13 @@
 <body>
 <section id="api-viewer">
   <api-viewer exclude-knobs="ready,serialized,quads">
+    <template data-element="rdf-editor" data-target="prefix">
+      <style>
+        rdf-editor::part(CodeMirror-gutters) {
+          background-color: rgba(255, 0, 0, 0.4)
+        }
+      </style>
+    </template>
     <template data-element="rdf-editor" data-target="host">
       <rdf-editor style="height: 200px" format="application/trig" serialized='@base <http://example.com> .
 @prefix schema: <http://schema.org/> .

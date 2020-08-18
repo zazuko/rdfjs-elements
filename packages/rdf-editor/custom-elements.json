@@ -73,6 +73,48 @@
         {
           "name": "serialized"
         }
+      ],
+      "cssParts": [
+        {
+          "name": "CodeMirror",
+          "description": "The main CodeMirror wrapper element. This and other parts are directly generated from CSS classes set by CodeMirror and should be fairly self-explanatory but not equally useful 😉"
+        },
+        {
+          "name": "CodeMirror-vscrollbar"
+        },
+        {
+          "name": "CodeMirror-hscrollbar"
+        },
+        {
+          "name": "CodeMirror-scrollbar-filler"
+        },
+        {
+          "name": "CodeMirror-gutter-filler"
+        },
+        {
+          "name": "CodeMirror-scroll"
+        },
+        {
+          "name": "CodeMirror-sizer"
+        },
+        {
+          "name": "CodeMirror-lines"
+        },
+        {
+          "name": "CodeMirror-measure"
+        },
+        {
+          "name": "CodeMirror-cursors"
+        },
+        {
+          "name": "CodeMirror-code"
+        },
+        {
+          "name": "CodeMirror-gutters"
+        },
+        {
+          "name": "CodeMirror-linenumbers"
+        }
       ]
     }
   ]

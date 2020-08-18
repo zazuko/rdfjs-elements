@@ -87,6 +87,21 @@ const Quads = Symbol('parsed quads')
  *
  * @fires {CustomEvent<{ quads: Quad[]; }>} quads-changed - when the editor contents have changed and have been successfully parsed
  * @fires {CustomEvent<{ notFound?: boolean; error?: Error; }>} parsing-failed - when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason
+ *
+ * @csspart CodeMirror - The main CodeMirror wrapper element. This and other parts are directly generated from CSS classes set by CodeMirror and should be fairly self-explanatory but not equally useful 😉
+ * @csspart CodeMirror-vscrollbar
+ * @csspart CodeMirror-hscrollbar
+ * @csspart CodeMirror-scrollbar-filler
+ * @csspart CodeMirror-gutter-filler
+ * @csspart CodeMirror-scroll
+ * @csspart CodeMirror-sizer
+ * @csspart CodeMirror-lines
+ * @csspart CodeMirror-measure
+ * @csspart CodeMirror-measure
+ * @csspart CodeMirror-cursors
+ * @csspart CodeMirror-code
+ * @csspart CodeMirror-gutters
+ * @csspart CodeMirror-linenumbers
  */
 export class RdfEditor extends LitElement {
   static get styles() {
@@ -114,8 +129,20 @@ export class RdfEditor extends LitElement {
 
   connectedCallback() {
     super.connectedCallback()
-    this.ready = whenDefined(() => this.codeMirror?.__initialized).then(() =>
-      this.__initializeCodeMirror()
+    this.ready = whenDefined(() => this.codeMirror?.__initialized).then(
+      async () => {
+        await this.__initializeCodeMirror()
+        ;[...this.renderRoot.querySelectorAll('[class^=CodeMirror]')].forEach(
+          el => {
+            el.classList.forEach(clas => {
+              if (clas.match(/^CodeMirror/)) {
+                el.setAttribute('part', clas)
+              }
+            })
+          }
+        )
+        this.codeMirror.editor.refresh()
+      }
     )
   }
 
@@ -271,7 +298,7 @@ export class RdfEditor extends LitElement {
     )
   }
 
-  __initializeCodeMirror() {
+  async __initializeCodeMirror() {
     this.codeMirror.editor.setSize('100%', '100%')
     this.codeMirror.editor.on('blur', () => this.__parse())
 
@@ -283,7 +310,7 @@ export class RdfEditor extends LitElement {
       this.codeMirror.editor.on('change', firstParse)
       this.__updateValue(this.serialized)
     } else if (this.quads) {
-      this.__serialize()
+      await this.__serialize()
     }
   }
 }
