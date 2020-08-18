@@ -63,10 +63,16 @@ serializers.set('application/trix', async () => {
 
 | Property         | Attribute      | Modifiers | Type                       | Default       | Description                                      |
 |------------------|----------------|-----------|----------------------------|---------------|--------------------------------------------------|
-| `displayed`      |                | readonly  |                            |               |                                                  |
 | `formats`        | `formats`      |           | `string`                   | ""            | comma-separated list of output formats           |
 | `input`          |                |           | `string`                   |               | set the input serialized value (ignored when `<script>` is used) |
 | `inputFormat`    | `input-format` |           | `string`                   | "text/turtle" | set the format of the input (ignored when `<script>` is used) |
 | `layout`         | `layout`       |           | `"vertical"\|"horizontal"` |               | controls the position of selection buttons       |
 | `selectedFormat` |                |           | `string`                   |               | gets the selected output format                  |
 | `show`           | `show`         |           | `"input"\|"output"`        | "input"       | gets a value indicating whether the input or editor is shown |
+| `value`          |                | readonly  | `string`                   |               | Gets the text contents of the currently showing editor |
+
+## Events
+
+| Event           | Type                              |
+|-----------------|-----------------------------------|
+| `value-changed` | `CustomEvent<{ value: string; }>` |

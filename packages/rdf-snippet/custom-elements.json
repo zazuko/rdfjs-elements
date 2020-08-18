@@ -48,7 +48,9 @@
           "type": "\"vertical\"|\"horizontal\""
         },
         {
-          "name": "displayed"
+          "name": "value",
+          "description": "Gets the text contents of the currently showing editor",
+          "type": "string"
         },
         {
           "name": "formats",
@@ -70,6 +72,11 @@
           "description": "set the format of the input (ignored when `<script>` is used)",
           "type": "string",
           "default": "\"text/turtle\""
+        }
+      ],
+      "events": [
+        {
+          "name": "value-changed"
         }
       ]
     }

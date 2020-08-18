@@ -5,9 +5,9 @@
 ####   `should reflect attribute`
 
 ```html
-<rdf-editor 
-  readonly="" 
+<rdf-editor
   format="foo/bar"
+  readonly=""
 >
 </rdf-editor>
 

@@ -1,4 +1,5 @@
-import { html, fixture, expect } from '@open-wc/testing'
+import { html, fixture, expect, nextFrame, oneEvent } from '@open-wc/testing'
+import { serializers } from '@rdfjs-elements/testing/formats-common'
 
 import '../rdf-snippet.js'
 
@@ -109,5 +110,91 @@ describe('RdfSnippet', () => {
     // then
     expect(snippet).shadowDom.to.equalSnapshot()
     expect(snippet.show).to.equal('output')
+  })
+
+  it('switching to output raises event', async () => {
+    // given
+    serializers.set('application/ld+json', 'json-ld')
+    const snippet = await fixture(html`<rdf-snippet
+      formats="application/ld+json"
+    >
+      <script type="application/rdf+xml"></script>
+    </rdf-snippet>`)
+
+    // when
+    const changeEvent = oneEvent(snippet, 'value-changed')
+    snippet.renderRoot.querySelector('li[output]').click()
+    const {
+      detail: { value },
+    } = await changeEvent
+
+    // then
+    expect(value).to.equal('json-ld')
+  })
+
+  it('switching to input raises event', async () => {
+    // given
+    serializers.set('application/ld+json', 'json-ld')
+    const snippet = await fixture(html`<rdf-snippet
+      formats="application/ld+json"
+    >
+      <script type="application/rdf+xml">
+        rdf-xml
+      </script>
+    </rdf-snippet>`)
+    const changeToOutput = oneEvent(snippet, 'value-changed')
+    snippet.renderRoot.querySelector('li[output]').click()
+    await changeToOutput
+
+    // when
+    const changeToInput = oneEvent(snippet, 'value-changed')
+    snippet.renderRoot.querySelector('li[input]').click()
+    const {
+      detail: { value },
+    } = await changeToInput
+
+    // then
+    expect(value).to.equal('rdf-xml')
+  })
+
+  describe('.value', () => {
+    it('gets the input contents when input is shown', async () => {
+      // given
+      const snippet = await fixture(html`<rdf-snippet
+        formats="application/ld+json"
+      >
+        <script type="application/rdf+xml">
+          input
+        </script>
+      </rdf-snippet>`)
+
+      // when
+      await snippet.updateComplete
+      const { value } = snippet
+
+      // then
+      expect(value).to.equal('input')
+    })
+
+    it('gets the output contents when output is shown', async () => {
+      // given
+      serializers.set('application/ld+json', 'json-ld')
+      const snippet = await fixture(html`<rdf-snippet
+        formats="application/ld+json"
+      >
+        <script type="application/rdf+xml">
+          rdf/xml
+        </script>
+      </rdf-snippet>`)
+
+      // when
+      snippet.renderRoot.querySelector('li[output]').click()
+      await snippet.updateComplete
+      await nextFrame()
+      const { value } = snippet
+
+      // then
+      expect(value).to.equal('json-ld')
+    })
   })
 })
