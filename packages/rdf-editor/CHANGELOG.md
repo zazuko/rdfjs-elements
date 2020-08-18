@@ -1,5 +1,11 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.2.4
+
+### Patch Changes
+
+- 22ea655: Injecting shadow parts to CodeMirror elements
+
 ## 0.2.3
 
 ### Patch Changes
