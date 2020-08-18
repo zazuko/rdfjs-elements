@@ -5,6 +5,7 @@ import '@rdfjs-elements/rdf-editor'
 
 const Quads = Symbol('quads')
 const PreviousOutputFormat = Symbol('previous output')
+const Show = Symbol('Shown editor')
 
 const formatLabels = {
   'text/turtle': 'Turtle',
@@ -77,7 +78,6 @@ const formatLabels = {
  * ```
  *
  * @prop {string} formats - comma-separated list of output formats
- * @prop {"input"|"output"} show - gets a value indicating whether the input or editor is shown
  * @prop {string} selectedFormat - gets the selected output format
  * @prop {string} input - set the input serialized value (ignored when `<script>` is used)
  * @prop {string} inputFormat - set the format of the input (ignored when `<script>` is used)
@@ -91,7 +91,6 @@ export class RdfSnippet extends LitElement {
       input: { type: String, attribute: false },
       inputFormat: { type: String, attribute: 'input-format' },
       selectedFormat: { type: String, attribute: false },
-      show: { type: String },
       layout: { type: String, reflect: true },
     }
   }
@@ -146,7 +145,7 @@ export class RdfSnippet extends LitElement {
    * @return {string}
    */
   get value() {
-    return this.show === 'input' ? this.input : this._outputEditor.serialized
+    return this[Show] === 'input' ? this.input : this._outputEditor.serialized
   }
 
   get _editor() {
@@ -170,7 +169,7 @@ export class RdfSnippet extends LitElement {
     super()
     this.formats = ''
     this[Quads] = []
-    this.show = 'input'
+    this[Show] = 'input'
     this.inputFormat = 'text/turtle'
   }
 
@@ -195,14 +194,14 @@ export class RdfSnippet extends LitElement {
         readonly
         .serialized="${this.input}"
         .format="${this.inputFormat}"
-        ?visible="${this.show === 'input'}"
+        ?visible="${this[Show] === 'input'}"
       ></rdf-editor>
       <rdf-editor
         id="output"
         readonly
         .quads="${this[Quads]}"
         .format="${this.selectedFormat}"
-        ?visible="${this.show === 'output'}"
+        ?visible="${this[Show] === 'output'}"
         @serialized="${this.__dispatchChangeEvent}"
       ></rdf-editor>
     </div>`
@@ -211,7 +210,7 @@ export class RdfSnippet extends LitElement {
   _renderButtons() {
     return html` <li
         input
-        ?selected="${this.show === 'input'}"
+        ?selected="${this[Show] === 'input'}"
         @click="${this._showInput}"
       >
         ${formatLabels[this.inputFormat] || this.inputFormat}
@@ -220,7 +219,7 @@ export class RdfSnippet extends LitElement {
         this._outputFormats,
         format => html`<li
           output
-          ?selected="${this.show === 'output' &&
+          ?selected="${this[Show] === 'output' &&
           this.selectedFormat === format}"
           @click="${this._showOutput(format)}"
         >
@@ -230,9 +229,10 @@ export class RdfSnippet extends LitElement {
   }
 
   _showInput() {
-    this.show = 'input'
+    this[Show] = 'input'
     this.__dispatchChangeEvent()
     this[PreviousOutputFormat] = this.selectedFormat
+    this.requestUpdate()
   }
 
   _showOutput(format) {
@@ -242,10 +242,11 @@ export class RdfSnippet extends LitElement {
         this[Quads] = this._editor.quads
       }
       this.selectedFormat = format
-      this.show = 'output'
+      this[Show] = 'output'
       if (format === this[PreviousOutputFormat]) {
         this.__dispatchChangeEvent()
       }
+      this.requestUpdate()
     }
   }
 

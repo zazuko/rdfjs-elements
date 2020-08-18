@@ -18,12 +18,6 @@
           "default": "\"\""
         },
         {
-          "name": "show",
-          "description": "gets a value indicating whether the input or editor is shown",
-          "type": "\"input\"|\"output\"",
-          "default": "\"input\""
-        },
-        {
           "name": "input-format",
           "description": "set the format of the input (ignored when `<script>` is used)",
           "type": "string",
@@ -58,13 +52,6 @@
           "description": "comma-separated list of output formats",
           "type": "string",
           "default": "\"\""
-        },
-        {
-          "name": "show",
-          "attribute": "show",
-          "description": "gets a value indicating whether the input or editor is shown",
-          "type": "\"input\"|\"output\"",
-          "default": "\"input\""
         },
         {
           "name": "inputFormat",
