@@ -109,7 +109,6 @@ describe('RdfSnippet', () => {
 
     // then
     expect(snippet).shadowDom.to.equalSnapshot()
-    expect(snippet.show).to.equal('output')
   })
 
   it('switching to output raises event', async () => {

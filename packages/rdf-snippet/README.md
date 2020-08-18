@@ -68,7 +68,6 @@ serializers.set('application/trix', async () => {
 | `inputFormat`    | `input-format` |           | `string`                   | "text/turtle" | set the format of the input (ignored when `<script>` is used) |
 | `layout`         | `layout`       |           | `"vertical"\|"horizontal"` |               | controls the position of selection buttons       |
 | `selectedFormat` |                |           | `string`                   |               | gets the selected output format                  |
-| `show`           | `show`         |           | `"input"\|"output"`        | "input"       | gets a value indicating whether the input or editor is shown |
 | `value`          |                | readonly  | `string`                   |               | Gets the text contents of the currently showing editor |
 
 ## Events
