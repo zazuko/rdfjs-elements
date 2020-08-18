@@ -1,5 +1,19 @@
 # @rdfjs-elements/rdf-snippet
 
+## 0.2.0
+
+### Minor Changes
+
+- a1aed29: Remove the `show` property
+
+### Patch Changes
+
+- f334c99: Added CSS Shadow Parts to style format buttons
+- 102e90a: added a `value` property to get the contents of current editor
+- Updated dependencies [eb8d8af]
+- Updated dependencies [102e90a]
+  - @rdfjs-elements/rdf-editor@0.2.3
+
 ## 0.1.1
 
 ### Patch Changes

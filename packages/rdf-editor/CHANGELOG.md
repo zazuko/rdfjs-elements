@@ -1,5 +1,12 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.2.3
+
+### Patch Changes
+
+- eb8d8af: JSON-LD should be stringified with proper indentation
+- 102e90a: `serialized` property is now updated when quads are parsed
+
 ## 0.2.2
 
 ### Patch Changes

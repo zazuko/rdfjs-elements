@@ -1,6 +1,6 @@
 {
   "name": "@rdfjs-elements/rdf-snippet",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Simple RDF viewer with buttons for switching between serializations",
   "author": "Zazuko GmbH",
   "license": "MIT",
