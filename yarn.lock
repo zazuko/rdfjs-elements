@@ -1025,6 +1025,45 @@
     human-id "^1.0.2"
     prettier "^1.18.2"
 
+"@graphy/content.ttl.write@^4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@graphy/content.ttl.write/-/content.ttl.write-4.2.1.tgz#5c693e088f5fbdab502ac49087f26281a1175619"
+  integrity sha512-b7doraBEw7Q7e2uJyJSfZL89jCb7lqSjYz0qAWM1MvpctiBk3dLGhHliC2NQhCXsO/m0p7XyHjTCKI84JX7SGQ==
+  dependencies:
+    "@graphy/core.class.writable" "^4.2.1"
+    "@graphy/core.data.factory" "^4.2.1"
+    big-integer "^1.6.48"
+
+"@graphy/core.class.scribable@^4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@graphy/core.class.scribable/-/core.class.scribable-4.2.1.tgz#666db8aeba62916ca8c61de3ef3810ae592682c3"
+  integrity sha512-+hm7P1jZ13xo53ohfzVDoakCxtiVsQXfTEgLDwTSo7QWy9n6W5GYumGR48ilTL1xtMgmVIxO+dLVNYn/ibzIYQ==
+  dependencies:
+    "@graphy/core.data.factory" "^4.2.1"
+    "@graphy/core.iso.stream" "^4.2.1"
+
+"@graphy/core.class.writable@^4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@graphy/core.class.writable/-/core.class.writable-4.2.1.tgz#d9925e679d507f946c4ac5e19ea03d2682ac13b0"
+  integrity sha512-R6FYh3BF4eGBH/EUOBgTiZgsRFCOnUthzHEHStc87ltDnOosJi9UUnjisqSoNNzbGw8CyjW9T6o0guD0JEayiw==
+  dependencies:
+    "@graphy/core.class.scribable" "^4.2.1"
+    "@graphy/core.data.factory" "^4.2.1"
+
+"@graphy/core.data.factory@^4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@graphy/core.data.factory/-/core.data.factory-4.2.1.tgz#ad610c2b8cf43439b341556f0f1eda2effad7606"
+  integrity sha512-LcgerHCs/TqXlUlZrUJkvGt7JHa+e/oLN3Lbcz73OqZgr4QC91ikoGd+1FvqkumNOV8kmSCTWZcESMu3pPuVag==
+  dependencies:
+    uri-js "^4.2.2"
+
+"@graphy/core.iso.stream@^4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@graphy/core.iso.stream/-/core.iso.stream-4.2.1.tgz#cd2e711e97c553b10b42a5f08351c843d7b4ea0e"
+  integrity sha512-jwCVZiw9FpR+K1GJZIZjWpLe27N5HNvSditcDKS/oS/qyrL/cOzgMSYgDFD1zrEIfpc4+9ux0K52C3iHPPJayA==
+  dependencies:
+    readable-stream "^3.6.0"
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
@@ -2519,6 +2558,11 @@ better-path-resolve@1.0.0:
   integrity sha512-pbnl5XzGBdrFU/wT4jqmJVPn2B6UHPBOhzMQkY/SPUPB6QtUXtmBHBIwCbXJol93mOpGMnQyP/+BB19q04xj7g==
   dependencies:
     is-windows "^1.0.0"
+
+big-integer@^1.6.48:
+  version "1.6.48"
+  resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.48.tgz#8fd88bd1632cba4a1c8c3e3d7159f08bb95b4b9e"
+  integrity sha512-j51egjPa7/i+RdiRuJbPdJ2FIUYYPhvYLjzoYbcMMm62ooO6F94fETG4MTs46zPAF9Brs04OajboA/qTGuz78w==
 
 big.js@^5.2.2:
   version "5.2.2"
