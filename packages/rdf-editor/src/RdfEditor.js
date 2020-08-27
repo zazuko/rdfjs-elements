@@ -1,8 +1,5 @@
 import { html, css, LitElement } from 'lit-element'
-import toStream from 'string-to-stream'
-import { Readable } from 'readable-stream'
 import '@vanillawc/wc-codemirror'
-import { serializers, parsers, formats } from './formats.js'
 import './mode/javascript.js'
 import './mode/turtle.js'
 import './mode/ntriples.js'
@@ -241,8 +238,8 @@ export class RdfEditor extends LitElement {
   async __parse() {
     await this.updateComplete
 
-    // const { parsers } = await import('./formats.js')
-    // const toStream = (await import('string-to-stream')).default
+    const { parsers } = await import('./formats.js')
+    const { toStream } = await import('./stream')
 
     const inputStream = toStream(this.codeMirror.editor.getValue())
     const quads = []
@@ -284,8 +281,8 @@ export class RdfEditor extends LitElement {
   async __serialize() {
     if (!this.format) return
 
-    // const { serializers } = await import('./formats.js')
-    // const { Readable } = (await import('readable-stream')).default
+    const { serializers, formats } = await import('./formats.js')
+    const { Readable } = await import('./stream')
 
     const quads = [...(this.quads || [])]
     const stream = new Readable({
