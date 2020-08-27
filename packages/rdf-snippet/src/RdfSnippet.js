@@ -82,7 +82,7 @@ const formatLabels = {
  * @prop {string} selectedFormat - gets the selected output format
  * @prop {string} input - set the input serialized value (ignored when `<script>` is used)
  * @prop {string} inputFormat - set the format of the input (ignored when `<script>` is used)
- *
+ * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
  * @attr {"vertical"|"horizontal"} layout - controls the position of selection buttons
  *
  * @csspart format - every format selection button
@@ -98,6 +98,7 @@ export class RdfSnippet extends LitElement {
       inputFormat: { type: String, attribute: 'input-format' },
       selectedFormat: { type: String, attribute: false },
       layout: { type: String, reflect: true },
+      prefixes: { type: String },
     }
   }
 
@@ -174,6 +175,7 @@ export class RdfSnippet extends LitElement {
   constructor() {
     super()
     this.formats = ''
+    this.prefixes = ''
     this[Quads] = []
     this[Show] = 'input'
     this.inputFormat = 'text/turtle'
@@ -205,6 +207,7 @@ export class RdfSnippet extends LitElement {
       <rdf-editor
         id="output"
         readonly
+        .prefixes="${this.prefixes}"
         .quads="${this[Quads]}"
         .format="${this.selectedFormat}"
         ?visible="${this[Show] === 'output'}"

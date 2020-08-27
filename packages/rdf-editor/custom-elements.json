@@ -16,6 +16,11 @@
           "type": "string"
         },
         {
+          "name": "prefixes",
+          "description": "a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
+          "type": "string"
+        },
+        {
           "name": "serialized",
           "description": "The string representation of the RDF graph.\n\nNote that this property is only used to set the initial value of the editor. For updates `quads` should be used",
           "type": "string"
@@ -41,6 +46,12 @@
           "name": "format",
           "attribute": "format",
           "description": "Media type of the RDF serialization to use.\n\nCustom parsers and serializers must be added to `@rdf-esm/formats-common`",
+          "type": "string"
+        },
+        {
+          "name": "prefixes",
+          "attribute": "prefixes",
+          "description": "a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
           "type": "string"
         },
         {

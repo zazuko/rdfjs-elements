@@ -2,19 +2,13 @@ import { html, css, LitElement } from 'lit-element'
 import toStream from 'string-to-stream'
 import { Readable } from 'readable-stream'
 import '@vanillawc/wc-codemirror'
-import * as ns from '@tpluscode/rdf-ns-builders'
 import { serializers, parsers, formats } from './formats.js'
 import './mode/javascript.js'
 import './mode/turtle.js'
 import './mode/ntriples.js'
 import './mode/xml.js'
 
-const prefixes = {
-  schema: ns.schema().value,
-  rdf: ns.rdf().value,
-  rdfs: ns.rdfs().value,
-  xsd: ns.xsd().value,
-}
+const defaultPrefixes = ['rdf', 'rdfs', 'xsd']
 
 function whenDefined(getter) {
   const interval = 10
@@ -93,6 +87,8 @@ const Quads = Symbol('parsed quads')
  *
  * @prop {Quad[]} quads - get or sets the RDF/JS quads
  *
+ * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
+ *
  * @fires {CustomEvent<{ quads: Quad[]; }>} quads-changed - when the editor contents have changed and have been successfully parsed
  * @fires {CustomEvent<{ notFound?: boolean; error?: Error; }>} parsing-failed - when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason
  *
@@ -130,6 +126,7 @@ export class RdfEditor extends LitElement {
     return {
       readonly: { type: Boolean, reflect: true },
       format: { type: String, reflect: true },
+      prefixes: { type: String, attribute: 'prefixes' },
       serialized: { type: String },
       quads: { type: Array },
     }
@@ -183,6 +180,24 @@ export class RdfEditor extends LitElement {
     const oldValue = this[Quads]
     this[Quads] = value
     this.requestUpdate('quads', oldValue)
+  }
+
+  get _prefixes() {
+    return async () => {
+      const ns = await import('@tpluscode/rdf-ns-builders')
+
+      const prefixes = (this.prefixes || '')
+        .split(',')
+        .map(prefix => prefix.trim())
+
+      return [...defaultPrefixes, ...prefixes].reduce((map, prefix) => {
+        if (prefix in ns) {
+          return { ...map, [prefix]: ns[prefix]().value }
+        }
+
+        return map
+      }, {})
+    }
   }
 
   async updated(_changedProperties) {
@@ -285,7 +300,9 @@ export class RdfEditor extends LitElement {
       },
     })
 
-    const quadStream = serializers.import(this.format, stream, { prefixes })
+    const quadStream = serializers.import(this.format, stream, {
+      prefixes: await this._prefixes(),
+    })
 
     if (!quadStream) {
       this.serialized = `No serializer found for media type ${this.format}`

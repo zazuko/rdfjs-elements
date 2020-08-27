@@ -67,6 +67,7 @@ serializers.set('application/trix', async () => {
 | `input`          |                |           | `string`                   |               | set the input serialized value (ignored when `<script>` is used) |
 | `inputFormat`    | `input-format` |           | `string`                   | "text/turtle" | set the format of the input (ignored when `<script>` is used) |
 | `layout`         | `layout`       |           | `"vertical"\|"horizontal"` |               | controls the position of selection buttons       |
+| `prefixes`       | `prefixes`     |           | `string`                   | ""            | a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used |
 | `selectedFormat` |                |           | `string`                   |               | gets the selected output format                  |
 | `value`          |                | readonly  | `string`                   |               | Gets the text contents of the currently showing editor |
 

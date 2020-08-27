@@ -147,8 +147,7 @@ describe('RdfjsEditor', () => {
 
       // when
       el.quads = []
-      await el.updateComplete
-      await nextFrame()
+      await oneEvent(el, 'serialized')
 
       // then
       expect(el.codeMirror.editor.getValue()).to.equal('foo bar')
@@ -165,8 +164,7 @@ describe('RdfjsEditor', () => {
 
       // when
       el.quads = []
-      await el.updateComplete
-      await nextFrame()
+      await oneEvent(el, 'serialized')
 
       // then
       expect(el.serialized).to.equal(JSON.stringify({ foo: 'bar' }, null, 2))
@@ -187,6 +185,32 @@ describe('RdfjsEditor', () => {
 
       // then
       expect(value).to.equal('foo bar')
+    })
+
+    it('serializes using default+additional prefixes', async () => {
+      // given
+      const el = await fixture(
+        html`<rdf-editor
+          format="foo/bar"
+          prefixes="schema,dcterms"
+        ></rdf-editor>`
+      )
+      await el.ready
+      serializers.set('foo/bar', 'foo bar')
+
+      // when
+      el.quads = []
+      await oneEvent(el, 'serialized')
+
+      // then
+      expect(serializers.lastImport.options.prefixes).to.have.property(
+        'schema',
+        'http://schema.org/'
+      )
+      expect(serializers.lastImport.options.prefixes).to.have.property(
+        'dcterms',
+        'http://purl.org/dc/terms/'
+      )
     })
   })
 

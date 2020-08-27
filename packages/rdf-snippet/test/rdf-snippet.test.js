@@ -1,4 +1,4 @@
-import { html, fixture, expect, nextFrame, oneEvent } from '@open-wc/testing'
+import { html, fixture, expect, oneEvent } from '@open-wc/testing'
 import { serializers } from '@rdfjs-elements/testing/formats-common'
 
 import '../rdf-snippet.js'
@@ -182,8 +182,10 @@ describe('RdfSnippet', () => {
 
       // when
       snippet.renderRoot.querySelector('li[output]').click()
-      await snippet.updateComplete
-      await nextFrame()
+      await oneEvent(
+        snippet.renderRoot.querySelector('rdf-editor#output'),
+        'serialized'
+      )
       const { value } = snippet
 
       // then

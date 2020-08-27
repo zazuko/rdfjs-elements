@@ -1,9 +1,15 @@
 class FakeSinkMap {
   constructor() {
     this._mocks = new Map()
+    this.lastImport = {}
   }
 
-  import(format) {
+  import(format, stream, options) {
+    this.lastImport = {
+      format,
+      options,
+    }
+
     const result = this._mocks.get(format)
     this._mocks.delete(format)
 
