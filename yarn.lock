@@ -1025,6 +1025,60 @@
     human-id "^1.0.2"
     prettier "^1.18.2"
 
+"@graphy/content.trig.scribe@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@graphy/content.trig.scribe/-/content.trig.scribe-4.3.0.tgz#1966ce39f7f5e9dfeba3340d7e322093c5b4fdd1"
+  integrity sha512-Tv9WEhxRKHLOlGmiMm71nxoGrWnaNj9JvkRVadyc3UMLE1341QqeWw0QZw43oueJUdyHMMrKrZ+phKTf7zjDlQ==
+  dependencies:
+    "@graphy/core.class.writable" "^4.3.0"
+    "@graphy/core.data.factory" "^4.3.0"
+
+"@graphy/content.ttl.scribe@^4.2.1":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@graphy/content.ttl.scribe/-/content.ttl.scribe-4.3.0.tgz#a8e0284797200e8c220f7ed1beac61fbdf1c9d23"
+  integrity sha512-rJ5ctYPZqgGaZz0CmYb4v/2v4EQUFpGw8AXzudDFJfp528jBx3VQmyjopXIfvVl2GWVazdNYpruMEWItAl20zQ==
+  dependencies:
+    "@graphy/core.class.writable" "^4.3.0"
+    "@graphy/core.data.factory" "^4.3.0"
+
+"@graphy/content.xml.scribe@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@graphy/content.xml.scribe/-/content.xml.scribe-4.3.0.tgz#cc05dde887f0a94f9db2e262bd607a0d0258ad33"
+  integrity sha512-LYaI/qDInfPna/wF1wxr6u6ZLBmq++z4Pi3982YvCcAuh4AX1iOXqsHzfPClg5W+QBX7KAmqs4HQBCtWGtj9mw==
+  dependencies:
+    "@graphy/core.class.writable" "^4.3.0"
+    "@graphy/core.data.factory" "^4.3.0"
+
+"@graphy/core.class.scribable@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@graphy/core.class.scribable/-/core.class.scribable-4.3.0.tgz#a74f1757ff28a97890a3774bd0629c9b58dcad27"
+  integrity sha512-IsEfpz97rHznk1NDjs5djQPOYPisNG4URpMr+uKoigwNmuQ1Btzd9m5+0q2wcxpoKMt9RgETme5ufVlr5x6PFQ==
+  dependencies:
+    "@graphy/core.data.factory" "^4.3.0"
+    "@graphy/core.iso.stream" "^4.3.0"
+
+"@graphy/core.class.writable@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@graphy/core.class.writable/-/core.class.writable-4.3.0.tgz#a46d54ec4c62b670a3dc3dd92b488370bc7ce2c2"
+  integrity sha512-LGaT7ai3lJipB8WUg06vH86TMeRV8IIFQeDpZSvxyK0V59K9wy8vOO872PCIgZzbidC6jmt+KiHJ2JW1OS3/1A==
+  dependencies:
+    "@graphy/core.class.scribable" "^4.3.0"
+    "@graphy/core.data.factory" "^4.3.0"
+
+"@graphy/core.data.factory@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@graphy/core.data.factory/-/core.data.factory-4.3.0.tgz#fe6021f0ce3159186ee472e162408474ac3c5418"
+  integrity sha512-JBgHMbJb+Goa4IPZ9qVaki/A72lM66Cd7v6429qxBEKlQIeDEGNoM3CGR4qM1RKlb61u9NCEhT9mHuUnkmcxJg==
+  dependencies:
+    uri-js "^4.2.2"
+
+"@graphy/core.iso.stream@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@graphy/core.iso.stream/-/core.iso.stream-4.3.0.tgz#01f70ec3a4b611f94998cbfc026d39de93592768"
+  integrity sha512-7NP+gbXWb6JokYrAwowVvjiCKAH9aGPb0JKs9N9Egnib5dbvowP3lE6/nJhbNTL6L0Yeo/7JIKuVWrnHKWKzhg==
+  dependencies:
+    readable-stream "^3.6.0"
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
@@ -1387,6 +1441,16 @@
     readable-stream "^3.6.0"
     readable-to-readable "^0.1.0"
 
+"@rdfjs/serializer-jsonld-ext@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@rdfjs/serializer-jsonld-ext/-/serializer-jsonld-ext-2.0.0.tgz#9f8fa09402a58146ad145596dff22ebe5cbff402"
+  integrity sha512-I+ERM9dFWWokwyQqJDLxOWZL9NvS0HCz0y0bN+2SKl6+dj+HMGQe7zZqQE/ExYyQT270ay1W2qkAMF+yqfejNg==
+  dependencies:
+    "@rdfjs/sink" "^1.0.2"
+    concat-stream "^2.0.0"
+    jsonld "^1.6.2"
+    readable-stream "^3.4.0"
+
 "@rdfjs/serializer-jsonld@^1.2.2":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@rdfjs/serializer-jsonld/-/serializer-jsonld-1.2.2.tgz#dc098f549a412c12ac0c98bc862b1930957ccc6a"
@@ -1619,6 +1683,11 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
+"@types/jsonld@*":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@types/jsonld/-/jsonld-1.5.1.tgz#361e98bdc07814f5c98a42b4063430b243a8fa9b"
+  integrity sha512-8XI88iiCBVqmNCMBqPOgJhJPPuiIW1Tp2sXqe3NwD137ljhQVkDWY8cuYBBDZQoBYfGzUJvja527bbwqVbRnHQ==
+
 "@types/karma-coverage-istanbul-reporter@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@types/karma-coverage-istanbul-reporter/-/karma-coverage-istanbul-reporter-2.1.0.tgz#cc913da37827a8d2149021dbebd294a5db01388e"
@@ -1759,12 +1828,27 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
   integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
 
+"@types/rdf-js@*":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@types/rdf-js/-/rdf-js-3.0.3.tgz#3c606f9bd25b2429b87249d6203c2ffeaab55c98"
+  integrity sha512-1dvodNHh/YpLovHA/b046Nu+xERVt0KcYJFQH1A8S4ZcMj+stYtx4ypXw0X2/oatbREUo4JW+cjoBll3CVtwSQ==
+  dependencies:
+    "@types/node" "*"
+
 "@types/rdf-js@^2.0.1":
   version "2.0.12"
   resolved "https://registry.yarnpkg.com/@types/rdf-js/-/rdf-js-2.0.12.tgz#d305a0b6fd105e33f58d5c1b3de33ff8edcb3210"
   integrity sha512-NBzHFHp2vHOJkPlSqzsOrkEsD9grKn+PdFjZieIw59pc0FlRG6WEQAjQZvHzFxJlYzC6ZDCFyTA1wBvUnnzUQw==
   dependencies:
     "@types/node" "*"
+
+"@types/rdfjs__serializer-jsonld-ext@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@types/rdfjs__serializer-jsonld-ext/-/rdfjs__serializer-jsonld-ext-2.0.2.tgz#c340fe21fb82d4d28e28a504dba454ee86420fce"
+  integrity sha512-Oi8pMKy1onh1yHe7zw46Fv7xJXVxLIifXmOmGEt+axzL1QN7h26oQHK+CbJsttVnpkxI/N7Mrbhs+79joJX8sg==
+  dependencies:
+    "@types/jsonld" "*"
+    "@types/rdf-js" "*"
 
 "@types/resolve@0.0.8":
   version "0.0.8"
@@ -6235,7 +6319,7 @@ jsonify@~0.0.0:
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
   integrity sha1-LHS27kHZPKUbe1qu6PUDYx0lKnM=
 
-jsonld@^1.8.1:
+jsonld@^1.6.2, jsonld@^1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/jsonld/-/jsonld-1.8.1.tgz#55ea541b22b8af5a5d6a5e32328e3f2678148882"
   integrity sha512-f0rusl5v8aPKS3jApT5fhYsdTC/JpyK1PoJ+ZtYYtZXoyb1J0Z///mJqLwrfL/g4NueFSqPymDYIi1CcSk7b8Q==

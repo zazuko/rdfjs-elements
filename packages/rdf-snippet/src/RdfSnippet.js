@@ -1,5 +1,6 @@
 import { css, html, LitElement } from 'lit-element'
 import { repeat } from 'lit-html/directives/repeat'
+import { formats } from '@rdfjs-elements/rdf-editor/index.js'
 
 import '@rdfjs-elements/rdf-editor'
 
@@ -8,13 +9,13 @@ const PreviousOutputFormat = Symbol('previous output')
 const Show = Symbol('Shown editor')
 
 const formatLabels = {
-  'text/turtle': 'Turtle',
-  'application/ld+json': html`JSON&#8209;LD`,
-  'application/trig': 'TriG',
-  'application/n-quads': html`N&#8209;Quads`,
-  'application/n-triples': html`N&#8209;Triples`,
-  'text/n3': 'Notation3',
-  'application/rdf+xml': 'RDF/XML',
+  [formats.turtle]: 'Turtle',
+  [formats.jsonLd]: html`JSON&#8209;LD`,
+  [formats.trig]: 'TriG',
+  [formats.nquads]: html`N&#8209;Quads`,
+  [formats.ntriples]: html`N&#8209;Triples`,
+  [formats.notation3]: 'Notation3',
+  [formats.rdfXml]: 'RDF/XML',
 }
 
 /**
@@ -81,7 +82,7 @@ const formatLabels = {
  * @prop {string} selectedFormat - gets the selected output format
  * @prop {string} input - set the input serialized value (ignored when `<script>` is used)
  * @prop {string} inputFormat - set the format of the input (ignored when `<script>` is used)
- *
+ * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
  * @attr {"vertical"|"horizontal"} layout - controls the position of selection buttons
  *
  * @csspart format - every format selection button
@@ -97,6 +98,7 @@ export class RdfSnippet extends LitElement {
       inputFormat: { type: String, attribute: 'input-format' },
       selectedFormat: { type: String, attribute: false },
       layout: { type: String, reflect: true },
+      prefixes: { type: String },
     }
   }
 
@@ -162,17 +164,18 @@ export class RdfSnippet extends LitElement {
   }
 
   get _outputFormats() {
-    const formats = this.formats.split(',').map(f => f.trim())
+    const outputFormats = this.formats.split(',').map(f => f.trim())
     const inputFormatInFormats = this.formats.indexOf(this.inputFormat)
     if (inputFormatInFormats >= 0) {
-      formats.splice(inputFormatInFormats, 1)
+      outputFormats.splice(inputFormatInFormats, 1)
     }
-    return formats
+    return outputFormats
   }
 
   constructor() {
     super()
     this.formats = ''
+    this.prefixes = ''
     this[Quads] = []
     this[Show] = 'input'
     this.inputFormat = 'text/turtle'
@@ -204,6 +207,7 @@ export class RdfSnippet extends LitElement {
       <rdf-editor
         id="output"
         readonly
+        .prefixes="${this.prefixes}"
         .quads="${this[Quads]}"
         .format="${this.selectedFormat}"
         ?visible="${this[Show] === 'output'}"

@@ -18,6 +18,12 @@
           "default": "\"\""
         },
         {
+          "name": "prefixes",
+          "description": "a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
           "name": "input-format",
           "description": "set the format of the input (ignored when `<script>` is used)",
           "type": "string",
@@ -50,6 +56,13 @@
           "name": "formats",
           "attribute": "formats",
           "description": "comma-separated list of output formats",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "prefixes",
+          "attribute": "prefixes",
+          "description": "a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
           "type": "string",
           "default": "\"\""
         },

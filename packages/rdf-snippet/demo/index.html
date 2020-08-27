@@ -52,13 +52,17 @@
       </style>
     </template>
     <template data-element="rdf-snippet" data-target="host">
-      <rdf-snippet formats='text/turtle,application/ld+json,application/n-quads'>
+      <rdf-snippet formats='text/n3,application/ld+json,application/n-quads,application/trig' prefixes="schema">
         <script type="text/turtle">
 @base <http://tbbt.ld/> .
 @prefix schema: <http://schema.org/> .
 
 <john> a schema:Person ;
   schema:name "John Doe" .
+
+<john> schema:knows [
+                      schema:name "Jane", "Janet"
+                    ] .
         </script>
       </rdf-snippet>
     </template>

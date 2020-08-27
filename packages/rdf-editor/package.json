@@ -21,8 +21,14 @@
   },
   "homepage": "https://zazuko.github.io/rdfjs-elements/rdf-editor/",
   "dependencies": {
+    "@graphy/content.ttl.scribe": "^4.2.1",
+    "@graphy/content.xml.scribe": "^4.3.0",
+    "@graphy/content.trig.scribe": "^4.3.0",
+    "@rdfjs/serializer-jsonld-ext": "^2.0.0",
     "@rdf-esm/data-model": "^0.5.3",
     "@rdf-esm/formats-common": "^0.5.3",
+    "@rdf-esm/sink-map": "^0.5.2",
+    "@tpluscode/rdf-ns-builders": "^0.3.7",
     "@vanillawc/wc-codemirror": "^1.8.10",
     "codemirror": "^5.56.0",
     "readable-stream": "^3",
@@ -33,7 +39,7 @@
   "devDependencies": {
     "@open-wc/testing": "^2.0.0",
     "@rdfjs-elements/testing": "*",
-    "@tpluscode/rdf-ns-builders": "^0.3.7",
+    "@types/rdfjs__serializer-jsonld-ext": "^2.0.2",
     "api-viewer-element": "^0.4.4"
   },
   "publishConfig": {

@@ -17,7 +17,13 @@ module.exports = function factory() {
     }
     if (context.url.match(/node_modules\/readable-stream\/readable.js$/)) {
       return {
-        body: `export { Readable } from '@rdfjs-elements/testing/stream/index.js';`,
+        body: `export * from '@rdfjs-elements/testing/stream/index.js';
+export { default } from '@rdfjs-elements/testing/stream/index.js';`,
+      }
+    }
+    if (context.url.match(/node_modules\/.+\/sink-map\/index.js$/)) {
+      return {
+        body: `export { FakeSinkMap as SinkMap } from '@rdfjs-elements/testing/sink-map/index.js';`,
       }
     }
     return context
