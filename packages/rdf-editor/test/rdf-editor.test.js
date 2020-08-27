@@ -1,7 +1,7 @@
 import { html, fixture, expect, nextFrame, oneEvent } from '@open-wc/testing'
-import { parsers, serializers } from '@rdfjs-elements/testing/formats-common'
 import { quad, blankNode } from '@rdf-esm/data-model'
 import { rdf, schema } from '@tpluscode/rdf-ns-builders'
+import { parsers, serializers } from '../formats.js'
 
 import '../rdf-editor.js'
 

@@ -1,5 +1,5 @@
 import { html, fixture, expect, oneEvent } from '@open-wc/testing'
-import { serializers } from '@rdfjs-elements/testing/formats-common'
+import { serializers } from '@rdfjs-elements/rdf-editor/formats.js'
 
 import '../rdf-snippet.js'
 

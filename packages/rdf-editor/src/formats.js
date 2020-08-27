@@ -1,8 +1,10 @@
-import { serializers } from '@rdf-esm/formats-common'
+import * as formatsCommon from '@rdf-esm/formats-common'
+import { SinkMap } from '@rdf-esm/sink-map'
 import * as graphy from './serializers/graphy.js'
 import jsonld from './serializers/jsonld.js'
 
-export { serializers, parsers } from '@rdf-esm/formats-common'
+export const serializers = new SinkMap([...formatsCommon.serializers])
+export const parsers = new SinkMap([...formatsCommon.parsers])
 
 export const formats = {
   jsonLd: 'application/ld+json',

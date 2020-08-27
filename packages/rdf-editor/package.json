@@ -27,6 +27,7 @@
     "@rdfjs/serializer-jsonld-ext": "^2.0.0",
     "@rdf-esm/data-model": "^0.5.3",
     "@rdf-esm/formats-common": "^0.5.3",
+    "@rdf-esm/sink-map": "^0.5.2",
     "@tpluscode/rdf-ns-builders": "^0.3.7",
     "@vanillawc/wc-codemirror": "^1.8.10",
     "codemirror": "^5.56.0",
