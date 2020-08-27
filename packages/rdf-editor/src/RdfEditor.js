@@ -2,11 +2,19 @@ import { html, css, LitElement } from 'lit-element'
 import toStream from 'string-to-stream'
 import { Readable } from 'readable-stream'
 import '@vanillawc/wc-codemirror'
-import { serializers, parsers } from './formats.js'
+import * as ns from '@tpluscode/rdf-ns-builders'
+import { serializers, parsers, formats } from './formats.js'
 import './mode/javascript.js'
 import './mode/turtle.js'
 import './mode/ntriples.js'
 import './mode/xml.js'
+
+const prefixes = {
+  schema: ns.schema().value,
+  rdf: ns.rdf().value,
+  rdfs: ns.rdfs().value,
+  xsd: ns.xsd().value,
+}
 
 function whenDefined(getter) {
   const interval = 10
@@ -218,6 +226,9 @@ export class RdfEditor extends LitElement {
   async __parse() {
     await this.updateComplete
 
+    // const { parsers } = await import('./formats.js')
+    // const toStream = (await import('string-to-stream')).default
+
     const inputStream = toStream(this.codeMirror.editor.getValue())
     const quads = []
 
@@ -258,6 +269,9 @@ export class RdfEditor extends LitElement {
   async __serialize() {
     if (!this.format) return
 
+    // const { serializers } = await import('./formats.js')
+    // const { Readable } = (await import('readable-stream')).default
+
     const quads = [...(this.quads || [])]
     const stream = new Readable({
       objectMode: true,
@@ -271,7 +285,7 @@ export class RdfEditor extends LitElement {
       },
     })
 
-    const quadStream = serializers.import(this.format, stream)
+    const quadStream = serializers.import(this.format, stream, { prefixes })
 
     if (!quadStream) {
       this.serialized = `No serializer found for media type ${this.format}`
@@ -283,7 +297,7 @@ export class RdfEditor extends LitElement {
       serialized += chunk
     }
 
-    if (this.format === 'application/ld+json') {
+    if (this.format === formats.jsonLd) {
       serialized = JSON.stringify(JSON.parse(serialized), null, 2)
     }
 

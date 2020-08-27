@@ -1,21 +1,21 @@
 import { serializers } from '@rdf-esm/formats-common'
-import { schema } from '@tpluscode/rdf-ns-builders'
+import * as graphy from './serializers/graphy.js'
+import jsonld from './serializers/jsonld.js'
 
 export { serializers, parsers } from '@rdf-esm/formats-common'
 
-serializers.set('text/n3', async () => {
-  const writer = (await import('@graphy/content.ttl.write')).default
+export const formats = {
+  jsonLd: 'application/ld+json',
+  ntriples: 'application/n-triples',
+  nquads: 'application/n-quads',
+  notation3: 'text/n3',
+  rdfXml: 'application/rdf+xml',
+  trig: 'application/trig',
+  turtle: 'text/turtle',
+}
 
-  return {
-    import(quadStream) {
-      const turtleWriter = writer({
-        prefixes: {
-          schema: schema().value,
-        },
-      })
-      turtleWriter.import(quadStream)
-
-      return turtleWriter
-    },
-  }
-})
+serializers.set(formats.jsonLd, jsonld)
+serializers.set(formats.notation3, graphy.turtle)
+serializers.set(formats.turtle, graphy.turtle)
+serializers.set(formats.trig, graphy.trig)
+// serializers.set(formats.rdfXml, graphy.rdfXml) TODO: uncomment when fixed in blake-regalia/graphy.js#

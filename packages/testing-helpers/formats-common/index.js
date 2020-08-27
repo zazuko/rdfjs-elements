@@ -15,7 +15,24 @@ class FakeSinkMap {
   }
 
   set(format, results) {
-    this._mocks.set(format, results)
+    if (results instanceof Error) {
+      this._mocks.set(format, results)
+    } else {
+      const fakeSink = {
+        import() {
+          return results
+        },
+        [Symbol.iterator]() {
+          return results[Symbol.iterator]()
+        },
+      }
+
+      this._mocks.set(format, fakeSink)
+    }
+  }
+
+  [Symbol.iterator]() {
+    return this._mocks[Symbol.iterator]()
   }
 }
 
