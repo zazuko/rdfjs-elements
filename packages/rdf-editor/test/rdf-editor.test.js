@@ -1,16 +1,20 @@
 import { html, fixture, expect, nextFrame, oneEvent } from '@open-wc/testing'
-import { quad, blankNode } from '@rdf-esm/data-model'
+import { quad, blankNode, namedNode } from '@rdf-esm/data-model'
 import { rdf, schema } from '@tpluscode/rdf-ns-builders'
 import { parsers, serializers } from '../formats.js'
 
 import '../rdf-editor.js'
 
+const quads = [quad(blankNode(), namedNode('p'), blankNode())]
 describe('RdfjsEditor', () => {
   describe('.format', () => {
     it('setting via property set code mirror mode', async () => {
       // given
       const el = await fixture(
-        html`<rdf-editor format="application/ld+json"></rdf-editor> `
+        html`<rdf-editor
+          format="application/ld+json"
+          .quads="${quads}"
+        ></rdf-editor> `
       )
       await el.ready
 
@@ -25,7 +29,10 @@ describe('RdfjsEditor', () => {
     it('setting via property set code mirror mode', async () => {
       // given
       const el = await fixture(
-        html`<rdf-editor format="application/ld+json"></rdf-editor> `
+        html`<rdf-editor
+          format="application/ld+json"
+          .quads="${quads}"
+        ></rdf-editor> `
       )
       await el.ready
 
@@ -40,7 +47,10 @@ describe('RdfjsEditor', () => {
     it('setting via property reflects attribute', async () => {
       // given
       const el = await fixture(
-        html`<rdf-editor format="application/ld+json"></rdf-editor> `
+        html`<rdf-editor
+          format="application/ld+json"
+          .quads="${quads}"
+        ></rdf-editor> `
       )
       await el.ready
 
@@ -76,6 +86,7 @@ describe('RdfjsEditor', () => {
         html`<rdf-editor
           format="application/ld+json"
           .serialized="${before}"
+          .quads="${quads}"
         ></rdf-editor>`
       )
       await el.ready
@@ -259,9 +270,11 @@ describe('RdfjsEditor', () => {
   })
 
   describe('.prefixes', () => {
-    it('causes update when set', async () => {
+    it('setting triggers serialization', async () => {
       // given
-      const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
+      const el = await fixture(
+        html`<rdf-editor format="foo/bar" .quads="${quads}"></rdf-editor>`
+      )
       await el.ready
       serializers.set('foo/bar', 'after')
 
@@ -272,6 +285,21 @@ describe('RdfjsEditor', () => {
       // then
       expect(el.codeMirror.editor.getValue()).to.equal('after')
       expect(el.serialized).to.equal('after')
+    })
+
+    it('setting does not serialize when dataset is empty', async () => {
+      // given
+      const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
+      await el.ready
+      serializers.set('foo/bar', 'after')
+
+      // when
+      el.prefixes = 'schema'
+      await nextFrame()
+
+      // then
+      expect(el.codeMirror.editor.getValue()).to.equal('')
+      expect(el.serialized).to.be.undefined
     })
   })
 })

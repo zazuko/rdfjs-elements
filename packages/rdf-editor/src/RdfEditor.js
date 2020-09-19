@@ -203,7 +203,7 @@ export class RdfEditor extends LitElement {
     let shouldSerialize = false
     if (_changedProperties.get('format')) {
       await this.__updateFormat()
-      shouldSerialize = true
+      shouldSerialize = this.quads.length > 0
     }
     if (_changedProperties.has('quads')) {
       shouldSerialize = true
@@ -212,7 +212,7 @@ export class RdfEditor extends LitElement {
       this.codeMirror.editor.setOption('readOnly', this.readonly)
     }
     if (_changedProperties.has('prefixes')) {
-      shouldSerialize = true
+      shouldSerialize = this.quads.length > 0
     }
 
     if (shouldSerialize) {
