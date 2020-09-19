@@ -11,9 +11,7 @@ describe('RdfjsEditor', () => {
     it('setting via property set code mirror mode', async () => {
       // given
       const el = await fixture(
-        html`<rdf-editor
-          format="application/ld+json"
-        ></rdf-editor> `
+        html`<rdf-editor format="application/ld+json"></rdf-editor> `
       )
       await el.ready
 
@@ -221,6 +219,20 @@ describe('RdfjsEditor', () => {
         'dcterms',
         'http://purl.org/dc/terms/'
       )
+    })
+
+    it('setter ignore falsy value', async () => {
+      // given
+      const el = await fixture(
+        html`<rdf-editor format="foo/bar" .quads="${quads}"></rdf-editor>`
+      )
+      await el.ready
+
+      // when
+      el.quads = undefined
+
+      // then
+      expect(el.quads).to.eq(quads)
     })
   })
 
