@@ -257,4 +257,21 @@ describe('RdfjsEditor', () => {
       expect(editor).dom.to.equalSnapshot()
     })
   })
+
+  describe('.prefixes', () => {
+    it('causes update when set', async () => {
+      // given
+      const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
+      await el.ready
+      serializers.set('foo/bar', 'after')
+
+      // when
+      el.prefixes = 'schema'
+      await oneEvent(el, 'serialized')
+
+      // then
+      expect(el.codeMirror.editor.getValue()).to.equal('after')
+      expect(el.serialized).to.equal('after')
+    })
+  })
 })

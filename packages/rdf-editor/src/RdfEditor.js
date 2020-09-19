@@ -211,6 +211,9 @@ export class RdfEditor extends LitElement {
     if (_changedProperties.has('readonly')) {
       this.codeMirror.editor.setOption('readOnly', this.readonly)
     }
+    if (_changedProperties.has('prefixes')) {
+      shouldSerialize = true
+    }
 
     if (shouldSerialize) {
       this.__serialize()
