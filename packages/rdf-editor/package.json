@@ -21,9 +21,9 @@
   },
   "homepage": "https://zazuko.github.io/rdfjs-elements/rdf-editor/",
   "dependencies": {
-    "@graphy/content.ttl.scribe": "^4.2.1",
-    "@graphy/content.xml.scribe": "^4.3.0",
-    "@graphy/content.trig.scribe": "^4.3.0",
+    "@graphy/content.ttl.scribe": "^4.3.3",
+    "@graphy/content.xml.scribe": "^4.3.3",
+    "@graphy/content.trig.scribe": "^4.3.3",
     "@rdfjs/serializer-jsonld-ext": "^2.0.0",
     "@rdf-esm/data-model": "^0.5.3",
     "@rdf-esm/formats-common": "^0.5.3",

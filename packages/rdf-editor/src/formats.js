@@ -20,4 +20,4 @@ serializers.set(formats.jsonLd, jsonld)
 serializers.set(formats.notation3, graphy.turtle)
 serializers.set(formats.turtle, graphy.turtle)
 serializers.set(formats.trig, graphy.trig)
-// serializers.set(formats.rdfXml, graphy.rdfXml) TODO: uncomment when fixed in blake-regalia/graphy.js#
+serializers.set(formats.rdfXml, graphy.rdfXml)

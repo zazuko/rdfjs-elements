@@ -14,5 +14,5 @@ async function serializer(importScribe) {
 }
 
 export const turtle = () => serializer(import('@graphy/content.ttl.scribe'))
-// export const rdfXml = () => serializer(import('@graphy/content.xml.scribe')) TODO: uncomment when fixed in blake-regalia/graphy.js#31
+export const rdfXml = () => serializer(import('@graphy/content.xml.scribe'))
 export const trig = () => serializer(import('@graphy/content.trig.scribe'))
