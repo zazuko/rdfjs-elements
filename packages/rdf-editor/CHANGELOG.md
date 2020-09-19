@@ -1,5 +1,11 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.3.2
+
+### Patch Changes
+
+- a0aa402: Only serialize on prefix change when there are quads to prevent discarding of initial string value
+
 ## 0.3.1
 
 ### Patch Changes
