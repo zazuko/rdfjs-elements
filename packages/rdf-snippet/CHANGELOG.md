@@ -1,5 +1,15 @@
 # @rdfjs-elements/rdf-snippet
 
+## 0.2.1
+
+### Patch Changes
+
+- 54a319d: Property to set prefixes used when serializing the input quads
+- Updated dependencies [54a319d]
+- Updated dependencies [fe02249]
+- Updated dependencies [519435d]
+  - @rdfjs-elements/rdf-editor@0.3.0
+
 ## 0.2.0
 
 ### Minor Changes

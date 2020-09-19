@@ -1,5 +1,17 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.3.0
+
+### Minor Changes
+
+- 519435d: Switched to Turtle and JSON-LD serializers to ones that support better formatting
+  Added a Trig serializer
+
+### Patch Changes
+
+- 54a319d: Property to set prefixes used when serializing the input quads
+- fe02249: Added RDF/XML serializer support
+
 ## 0.2.4
 
 ### Patch Changes
