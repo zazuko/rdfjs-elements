@@ -13,7 +13,6 @@ describe('RdfjsEditor', () => {
       const el = await fixture(
         html`<rdf-editor
           format="application/ld+json"
-          .quads="${quads}"
         ></rdf-editor> `
       )
       await el.ready
