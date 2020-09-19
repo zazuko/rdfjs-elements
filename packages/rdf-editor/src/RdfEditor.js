@@ -174,6 +174,10 @@ export class RdfEditor extends LitElement {
   }
 
   set quads(value) {
+    if (typeof value === 'undefined' || value === null) {
+      return
+    }
+
     const oldValue = this[Quads]
     this[Quads] = value
     this.requestUpdate('quads', oldValue)
@@ -201,9 +205,10 @@ export class RdfEditor extends LitElement {
     super.updated(_changedProperties)
 
     let shouldSerialize = false
+    const hasQuads = this.quads && this.quads.length > 0
     if (_changedProperties.get('format')) {
       await this.__updateFormat()
-      shouldSerialize = this.quads.length > 0
+      shouldSerialize = hasQuads
     }
     if (_changedProperties.has('quads')) {
       shouldSerialize = true
@@ -212,7 +217,7 @@ export class RdfEditor extends LitElement {
       this.codeMirror.editor.setOption('readOnly', this.readonly)
     }
     if (_changedProperties.has('prefixes')) {
-      shouldSerialize = this.quads.length > 0
+      shouldSerialize = hasQuads
     }
 
     if (shouldSerialize) {
