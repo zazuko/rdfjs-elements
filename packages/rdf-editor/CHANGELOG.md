@@ -1,5 +1,12 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.3.3
+
+### Patch Changes
+
+- 4fbc669: Prevent .quads from ever being undefined
+- aeec100: Prevent unnecessary parsing when content does not change
+
 ## 0.3.2
 
 ### Patch Changes
