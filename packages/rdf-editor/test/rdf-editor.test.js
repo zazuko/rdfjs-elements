@@ -1,3 +1,4 @@
+/* global CodeMirror */
 import { html, fixture, expect, nextFrame, oneEvent } from '@open-wc/testing'
 import { quad, blankNode, namedNode } from '@rdf-esm/data-model'
 import { rdf, schema } from '@tpluscode/rdf-ns-builders'
@@ -7,6 +8,39 @@ import '../rdf-editor.js'
 
 const quads = [quad(blankNode(), namedNode('p'), blankNode())]
 describe('RdfjsEditor', () => {
+  it('parses content on blur', async () => {
+    // given
+    const el = await fixture(
+      html`<rdf-editor format="application/ld+json"></rdf-editor> `
+    )
+    parsers.set('application/ld+json', quads)
+
+    // when
+    await el.__updateValue('foo')
+    CodeMirror.signal(el.codeMirror.editor, 'blur')
+    await oneEvent(el, 'quads-changed')
+
+    // then
+    expect(el.quads).to.deep.eq(quads)
+  })
+
+  it('parses content on blur only when contents have changed', async () => {
+    // given
+    const el = await fixture(
+      html`<rdf-editor
+        format="application/ld+json"
+        .quads="${quads}"
+      ></rdf-editor> `
+    )
+    await el.ready
+
+    // when
+    CodeMirror.signal(el.codeMirror.editor, 'blur')
+
+    // then
+    expect(el.quads).to.eq(quads)
+  })
+
   describe('.format', () => {
     it('setting via property set code mirror mode', async () => {
       // given

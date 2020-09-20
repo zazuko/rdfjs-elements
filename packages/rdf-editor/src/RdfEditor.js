@@ -6,6 +6,7 @@ import './mode/ntriples.js'
 import './mode/xml.js'
 
 const defaultPrefixes = ['rdf', 'rdfs', 'xsd']
+const Dirty = Symbol('Editor dirty')
 
 function whenDefined(getter) {
   const interval = 10
@@ -336,7 +337,16 @@ export class RdfEditor extends LitElement {
 
   async __initializeCodeMirror() {
     this.codeMirror.editor.setSize('100%', '100%')
-    this.codeMirror.editor.on('blur', () => this.__parse())
+    this.codeMirror.editor.on('blur', async () => {
+      if (this[Dirty]) {
+        await this.__parse()
+      }
+
+      this[Dirty] = false
+    })
+    this.codeMirror.editor.on('change', () => {
+      this[Dirty] = true
+    })
 
     if (this.serialized) {
       const firstParse = () => {
