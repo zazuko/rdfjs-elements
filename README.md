@@ -8,3 +8,9 @@ Custom elements wrapping RDF/JS libraries
 | -- | -- | -- | -- |
 | [`rdf‑editor`](packages/rdf-editor) | [![Published on npm](https://img.shields.io/npm/v/@rdfjs-elements/rdf-editor.svg)](https://www.npmjs.com/package/@rdfjs-elements/rdf-editor) | [API/Demo](https://zazuko.github.io/rdfjs-elements/rdf-editor) | Text editor with code highlighting which uses RDF/JS parsers and serializers |
 | [`rdf‑snippet`](packages/rdf-snippet) | [![Published on npm](https://img.shields.io/npm/v/@rdfjs-elements/rdf-snippet.svg)](https://www.npmjs.com/package/@rdfjs-elements/rdf-snippet)| [API/Demo](https://zazuko.github.io/rdfjs-elements/rdf-snippet) | Snippet viewer with ability to switch between RDF representations |
+
+## Other packages
+
+| Package | | Description |
+| -- | -- | -- |
+| `@rdjs-elements/formats-pretty` | [![Published on npm](https://img.shields.io/npm/v/@rdfjs-elements/formats-pretty.svg)](https://npm.im/@rdfjs-elements/formats-pretty) | [`@rdfjs/formats-common`](https://npm.im/@rdfjs/formats-common) with serializers configured to do pretty-printing  
