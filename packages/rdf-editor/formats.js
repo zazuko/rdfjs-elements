@@ -1,1 +1,1 @@
-export * from './src/formats.js'
+export * from '@rdfjs-elements/formats-pretty'
