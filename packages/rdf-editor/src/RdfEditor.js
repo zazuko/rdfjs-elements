@@ -290,9 +290,7 @@ export class RdfEditor extends LitElement {
   async __serialize() {
     if (!this.format) return
 
-    const { serializers, formats } = await import(
-      '@rdfjs-elements/formats-pretty'
-    )
+    const formats = await import('@rdfjs-elements/formats-pretty')
     const { Readable } = await import('./stream')
 
     const quads = [...(this.quads || [])]
@@ -308,7 +306,7 @@ export class RdfEditor extends LitElement {
       },
     })
 
-    const quadStream = serializers.import(this.format, stream, {
+    const quadStream = formats.serializers.import(this.format, stream, {
       prefixes: await this._prefixes(),
     })
 
@@ -322,7 +320,7 @@ export class RdfEditor extends LitElement {
       serialized += chunk
     }
 
-    if (this.format === formats.jsonLd) {
+    if (this.format === formats.formats.jsonLd) {
       serialized = JSON.stringify(JSON.parse(serialized), null, 2)
     }
 

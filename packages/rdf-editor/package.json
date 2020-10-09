@@ -32,7 +32,7 @@
     "string-to-stream": "^3.0.1"
   },
   "devDependencies": {
-    "@open-wc/testing": "^2.0.0",
+    "@open-wc/testing": "^2.5.29",
     "@rdfjs-elements/testing": "*",
     "api-viewer-element": "^0.4.4"
   },
