@@ -1,0 +1,47 @@
+{
+  "name": "@rdfjs-elements/formats-pretty",
+  "version": "0.0.0",
+  "description": "RDF/JS Sink Maps with serializers configured for pretty printing",
+  "author": "Zazuko GmbH",
+  "license": "MIT",
+  "main": "index.js",
+  "module": "index.js",
+  "type": "module",
+  "files": [
+    "*.js",
+    "*.d.ts",
+    "serializers",
+    "*.cjs"
+  ],
+  "exports": {
+    ".": {
+      "require": "./index.cjs",
+      "module": "./index.js"
+    }
+  },
+  "scripts": {
+    "prepack": "babel . --out-file-extension .cjs --out-dir ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zazuko/rdfjs-elements.git",
+    "directory": "packages/formats"
+  },
+  "dependencies": {
+    "@graphy/content.ttl.scribe": "^4.3.3",
+    "@graphy/content.xml.scribe": "^4.3.3",
+    "@graphy/content.trig.scribe": "^4.3.3",
+    "@rdfjs/serializer-jsonld-ext": "^2.0.0",
+    "@rdf-esm/formats-common": "^0.5.5",
+    "@rdf-esm/sink-map": "^0.5.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@types/rdfjs__serializer-jsonld-ext": "^2.0.2",
+    "babel-plugin-add-import-extension": "^1.4.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

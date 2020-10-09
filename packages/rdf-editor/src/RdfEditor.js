@@ -247,7 +247,7 @@ export class RdfEditor extends LitElement {
   async __parse() {
     await this.updateComplete
 
-    const { parsers } = await import('./formats.js')
+    const { parsers } = await import('@rdfjs-elements/formats-pretty')
     const { toStream } = await import('./stream')
 
     const inputStream = toStream(this.codeMirror.editor.getValue())
@@ -290,7 +290,9 @@ export class RdfEditor extends LitElement {
   async __serialize() {
     if (!this.format) return
 
-    const { serializers, formats } = await import('./formats.js')
+    const { serializers, formats } = await import(
+      '@rdfjs-elements/formats-pretty'
+    )
     const { Readable } = await import('./stream')
 
     const quads = [...(this.quads || [])]
