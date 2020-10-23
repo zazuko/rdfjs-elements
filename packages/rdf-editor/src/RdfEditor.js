@@ -132,21 +132,21 @@ export class RdfEditor extends LitElement {
 
   connectedCallback() {
     super.connectedCallback()
-    this.ready = whenDefined(() => this.codeMirror?.__initialized).then(
-      async () => {
-        await this.__initializeCodeMirror()
-        ;[...this.renderRoot.querySelectorAll('[class^=CodeMirror]')].forEach(
-          el => {
-            el.classList.forEach(clas => {
-              if (clas.match(/^CodeMirror/)) {
-                el.setAttribute('part', clas)
-              }
-            })
-          }
-        )
-        this.codeMirror.editor.refresh()
-      }
-    )
+    this.ready = whenDefined(
+      () => this.codeMirror && this.codeMirror.__initialized
+    ).then(async () => {
+      await this.__initializeCodeMirror()
+      ;[...this.renderRoot.querySelectorAll('[class^=CodeMirror]')].forEach(
+        el => {
+          el.classList.forEach(clas => {
+            if (clas.match(/^CodeMirror/)) {
+              el.setAttribute('part', clas)
+            }
+          })
+        }
+      )
+      this.codeMirror.editor.refresh()
+    })
   }
 
   disconnectedCallback() {
