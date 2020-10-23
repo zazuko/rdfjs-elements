@@ -1,5 +1,11 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.3.4
+
+### Patch Changes
+
+- 16005be: Do not use optional chaining syntax
+
 ## 0.3.3
 
 ### Patch Changes
