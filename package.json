@@ -17,7 +17,8 @@
     "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .eslintignore",
     "format:prettier": "prettier \"**/*.js\" --write --ignore-path .eslintignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
-    "format": "npm run format:eslint && npm run format:prettier"
+    "format": "npm run format:eslint && npm run format:prettier",
+    "release": "changeset publish"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.11.0",
