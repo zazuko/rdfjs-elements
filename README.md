@@ -13,4 +13,5 @@ Custom elements wrapping RDF/JS libraries
 
 | Package | | Description |
 | -- | -- | -- |
-| [`@rdjs-elements/formats-pretty`](packages/formats) | [![Published on npm](https://img.shields.io/npm/v/@rdfjs-elements/formats-pretty.svg)](https://npm.im/@rdfjs-elements/formats-pretty) | [`@rdfjs/formats-common`](https://npm.im/@rdfjs/formats-common) with serializers configured to do pretty-printing  
+| [`@rdjs-elements/formats-pretty`](packages/formats) | [![Published on npm](https://img.shields.io/npm/v/@rdfjs-elements/formats-pretty.svg)](https://npm.im/@rdfjs-elements/formats-pretty) | [`@rdfjs/formats-common`](https://npm.im/@rdfjs/formats-common) with serializers configured to do pretty-printing  |
+| [`@rdjs-elements/testing`](packages/testing) | [![Published on npm](https://img.shields.io/npm/v/@rdfjs-elements/testing.svg)](https://npm.im/@rdfjs-elements/testing) | A [es-dev-server plugin](https://github.com/open-wc/es-dev-server) which serves stubs of node stream modules |
