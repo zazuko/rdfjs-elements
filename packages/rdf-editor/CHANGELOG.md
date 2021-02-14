@@ -1,5 +1,11 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.3.5
+
+### Patch Changes
+
+- c989b8f: Upgrade @tplusode/rdf-ns-builders and @rdf-esm/data-model
+
 ## 0.3.4
 
 ### Patch Changes
