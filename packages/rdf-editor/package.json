@@ -21,9 +21,9 @@
   },
   "homepage": "https://zazuko.github.io/rdfjs-elements/rdf-editor/",
   "dependencies": {
-    "@rdf-esm/data-model": "^0.5.3",
+    "@rdf-esm/data-model": "^0.5.4",
     "@rdfjs-elements/formats-pretty": "^0.1.0",
-    "@tpluscode/rdf-ns-builders": "^0.3.7",
+    "@tpluscode/rdf-ns-builders": "^0.4",
     "@vanillawc/wc-codemirror": "^1.8.10",
     "codemirror": "^5.56.0",
     "readable-stream": "^3",
