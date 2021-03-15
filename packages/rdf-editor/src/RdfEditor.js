@@ -127,7 +127,13 @@ export class RdfEditor extends LitElement {
       prefixes: { type: String, attribute: 'prefixes' },
       serialized: { type: String },
       quads: { type: Array },
+      isParsing: { type: Boolean },
     }
+  }
+
+  constructor() {
+    super()
+    this.isParsing = false
   }
 
   connectedCallback() {
@@ -245,6 +251,7 @@ export class RdfEditor extends LitElement {
   }
 
   async __parse() {
+    this.isParsing = true
     await this.updateComplete
 
     const { parsers } = await import('@rdfjs-elements/formats-pretty')
@@ -284,6 +291,8 @@ export class RdfEditor extends LitElement {
           detail: { error },
         })
       )
+    } finally {
+      this.isParsing = false
     }
   }
 

@@ -43,15 +43,16 @@ Syntax highlighting is relying on support from CodeMirror.
 
 ## Properties
 
-| Property     | Attribute    | Modifiers | Type              | Description                                      |
-|--------------|--------------|-----------|-------------------|--------------------------------------------------|
-| `codeMirror` |              | readonly  | `Element \| null` | The underlying `<wc-codemirror>` element         |
-| `format`     | `format`     |           | `string`          | Media type of the RDF serialization to use.<br /><br />Custom parsers and serializers must be added to `@rdf-esm/formats-common` |
-| `prefixes`   | `prefixes`   |           | `string`          | a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used |
-| `quads`      | `quads`      |           | `Quad[]`          | get or sets the RDF/JS quads                     |
-| `readonly`   | `readonly`   |           | `boolean`         |                                                  |
-| `ready`      |              |           | `Promise<void>`   | a one-time promise which resolves when CodeMirror has been initialized |
-| `serialized` | `serialized` |           | `string`          | The string representation of the RDF graph.<br /><br />Note that this property is only used to set the initial value of the editor. For updates `quads` should be used |
+| Property     | Attribute    | Modifiers | Type              | Default | Description                                      |
+|--------------|--------------|-----------|-------------------|---------|--------------------------------------------------|
+| `codeMirror` |              | readonly  | `Element \| null` |         | The underlying `<wc-codemirror>` element         |
+| `format`     | `format`     |           | `string`          |         | Media type of the RDF serialization to use.<br /><br />Custom parsers and serializers must be added to `@rdf-esm/formats-common` |
+| `isParsing`  | `isParsing`  |           | `boolean`         | false   |                                                  |
+| `prefixes`   | `prefixes`   |           | `string`          |         | a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used |
+| `quads`      | `quads`      |           | `Quad[]`          |         | get or sets the RDF/JS quads                     |
+| `readonly`   | `readonly`   |           | `boolean`         |         |                                                  |
+| `ready`      |              |           | `Promise<void>`   |         | a one-time promise which resolves when CodeMirror has been initialized |
+| `serialized` | `serialized` |           | `string`          |         | The string representation of the RDF graph.<br /><br />Note that this property is only used to set the initial value of the editor. For updates `quads` should be used |
 
 ## Events
 

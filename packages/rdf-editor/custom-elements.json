@@ -29,6 +29,11 @@
           "name": "quads",
           "description": "get or sets the RDF/JS quads",
           "type": "Quad[]"
+        },
+        {
+          "name": "isParsing",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "properties": [
@@ -70,6 +75,12 @@
           "attribute": "quads",
           "description": "get or sets the RDF/JS quads",
           "type": "Quad[]"
+        },
+        {
+          "name": "isParsing",
+          "attribute": "isParsing",
+          "type": "boolean",
+          "default": "false"
         }
       ],
       "events": [
