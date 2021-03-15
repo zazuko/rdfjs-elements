@@ -1,5 +1,11 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.3.6
+
+### Patch Changes
+
+- 3b4e1b5: Add `isParsing` property on rdf-editor
+
 ## 0.3.5
 
 ### Patch Changes
