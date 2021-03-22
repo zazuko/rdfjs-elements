@@ -160,10 +160,6 @@ export class RdfEditor extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback()
     this.ready = null
-    if (this.codeMirror.editor) {
-      this.codeMirror.editor.toTextArea()
-    }
-    this.codeMirror.__initialized = false
   }
 
   /**
@@ -216,14 +212,10 @@ export class RdfEditor extends LitElement {
     let shouldSerialize = false
     const hasQuads = this.quads && this.quads.length > 0
     if (_changedProperties.get('format')) {
-      await this.__updateFormat()
       shouldSerialize = hasQuads
     }
     if (_changedProperties.has('quads')) {
       shouldSerialize = true
-    }
-    if (_changedProperties.has('readonly')) {
-      this.codeMirror.editor.setOption('readOnly', this.readonly)
     }
     if (_changedProperties.has('prefixes')) {
       shouldSerialize = hasQuads
@@ -240,11 +232,6 @@ export class RdfEditor extends LitElement {
       </style>
       <wc-codemirror mode="${this.format}" ?readonly="${this.readonly}">
       </wc-codemirror>`
-  }
-
-  async __updateFormat() {
-    await this.ready
-    this.codeMirror.editor.setOption('mode', this.format)
   }
 
   async __updateValue(value) {

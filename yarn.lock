@@ -2060,10 +2060,10 @@
   dependencies:
     "@types/node" "*"
 
-"@vanillawc/wc-codemirror@^1.8.10":
-  version "1.8.10"
-  resolved "https://registry.yarnpkg.com/@vanillawc/wc-codemirror/-/wc-codemirror-1.8.10.tgz#c2d889311d5e69ad297e336b2b0f70cc191d87c9"
-  integrity sha512-UKMD/UOpF1uRl29nlwvwQqSMBqsl+uDWYlGx82wIYbIBJkeqPrSo1Ez1rGi9jc1CL7/XwUr7u+l/kTwZAEkrEg==
+"@vanillawc/wc-codemirror@^1.9.1":
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/@vanillawc/wc-codemirror/-/wc-codemirror-1.9.1.tgz#ec2c747f29b6160ed9fc179412c106efc8c4fa15"
+  integrity sha512-6Np09pPSZ9dVHo6P8JprlG9mdU33KYbkN0Rkdu1juSm0Kht4/RUtj3q76Lp1BiQ48IUMkH+rrjT+OoGIsM6XFA==
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
