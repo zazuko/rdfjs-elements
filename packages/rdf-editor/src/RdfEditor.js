@@ -87,6 +87,8 @@ const Quads = Symbol('parsed quads')
  *
  * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
  *
+ * @prop {boolean} isParsing - set to true while the elements parses data when the code hass changed
+ *
  * @fires {CustomEvent<{ quads: Quad[]; }>} quads-changed - when the editor contents have changed and have been successfully parsed
  * @fires {CustomEvent<{ notFound?: boolean; error?: Error; }>} parsing-failed - when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason
  *
@@ -127,7 +129,7 @@ export class RdfEditor extends LitElement {
       prefixes: { type: String, attribute: 'prefixes' },
       serialized: { type: String },
       quads: { type: Array },
-      isParsing: { type: Boolean },
+      isParsing: { type: Boolean, attribute: 'is-parsing', reflect: true },
     }
   }
 

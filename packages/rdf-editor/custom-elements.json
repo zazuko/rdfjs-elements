@@ -31,7 +31,8 @@
           "type": "Quad[]"
         },
         {
-          "name": "isParsing",
+          "name": "is-parsing",
+          "description": "set to true while the elements parses data when the code hass changed",
           "type": "boolean",
           "default": "false"
         }
@@ -78,7 +79,8 @@
         },
         {
           "name": "isParsing",
-          "attribute": "isParsing",
+          "attribute": "is-parsing",
+          "description": "set to true while the elements parses data when the code hass changed",
           "type": "boolean",
           "default": "false"
         }
