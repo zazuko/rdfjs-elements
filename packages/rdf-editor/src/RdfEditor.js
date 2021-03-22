@@ -1,33 +1,8 @@
-import { html, css, LitElement } from 'lit-element'
-import '@vanillawc/wc-codemirror'
+import Editor from '@rdfjs-elements/editor-base'
 import './mode/javascript.js'
 import './mode/turtle.js'
 import './mode/ntriples.js'
 import './mode/xml.js'
-
-const defaultPrefixes = ['rdf', 'rdfs', 'xsd']
-const Dirty = Symbol('Editor dirty')
-
-function whenDefined(getter) {
-  const interval = 10
-  const maxWaits = 100
-  let counter = 0
-
-  return new Promise((resolve, reject) => {
-    const awaiter = setInterval(() => {
-      const value = getter()
-      if (value) {
-        clearInterval(awaiter)
-        resolve()
-      }
-      counter += 1
-      if (counter === maxWaits) {
-        clearInterval(awaiter)
-        reject(new Error('Value did not become truthy in time'))
-      }
-    }, interval)
-  })
-}
 
 const Quads = Symbol('parsed quads')
 
@@ -81,55 +56,18 @@ const Quads = Symbol('parsed quads')
  *
  * Custom parsers and serializers must be added to `@rdf-esm/formats-common`
  *
- * @prop {Promise<void>} ready - a one-time promise which resolves when CodeMirror has been initialized
- *
  * @prop {Quad[]} quads - get or sets the RDF/JS quads
- *
- * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
- *
- * @prop {boolean} isParsing - set to true while the elements parses data when the code hass changed
  *
  * @fires {CustomEvent<{ quads: Quad[]; }>} quads-changed - when the editor contents have changed and have been successfully parsed
  * @fires {CustomEvent<{ notFound?: boolean; error?: Error; }>} parsing-failed - when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason
  *
- * @csspart CodeMirror - The main CodeMirror wrapper element. This and other parts are directly generated from CSS classes set by CodeMirror and should be fairly self-explanatory but not equally useful 😉
- * @csspart CodeMirror-vscrollbar
- * @csspart CodeMirror-hscrollbar
- * @csspart CodeMirror-scrollbar-filler
- * @csspart CodeMirror-gutter-filler
- * @csspart CodeMirror-scroll
- * @csspart CodeMirror-sizer
- * @csspart CodeMirror-lines
- * @csspart CodeMirror-measure
- * @csspart CodeMirror-measure
- * @csspart CodeMirror-cursors
- * @csspart CodeMirror-code
- * @csspart CodeMirror-gutters
- * @csspart CodeMirror-linenumbers
  */
-export class RdfEditor extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: block;
-        text-align: left;
-      }
-
-      wc-codemirror {
-        width: 100%;
-        height: 100%;
-      }
-    `
-  }
-
+export class RdfEditor extends Editor {
   static get properties() {
     return {
-      readonly: { type: Boolean, reflect: true },
       format: { type: String, reflect: true },
-      prefixes: { type: String, attribute: 'prefixes' },
       serialized: { type: String },
       quads: { type: Array },
-      isParsing: { type: Boolean, attribute: 'is-parsing', reflect: true },
     }
   }
 
@@ -138,35 +76,9 @@ export class RdfEditor extends LitElement {
     this.isParsing = false
   }
 
-  connectedCallback() {
-    super.connectedCallback()
-    this.ready = whenDefined(
-      () => this.codeMirror && this.codeMirror.__initialized
-    ).then(async () => {
-      await this.__initializeCodeMirror()
-      ;[...this.renderRoot.querySelectorAll('[class^=CodeMirror]')].forEach(
-        el => {
-          el.classList.forEach(clas => {
-            if (clas.match(/^CodeMirror/)) {
-              el.setAttribute('part', clas)
-            }
-          })
-        }
-      )
-      this.codeMirror.editor.refresh()
-    })
-  }
-
   disconnectedCallback() {
     super.disconnectedCallback()
     this.ready = null
-  }
-
-  /**
-   * The underlying `<wc-codemirror>` element
-   */
-  get codeMirror() {
-    return this.renderRoot.querySelector('wc-codemirror')
   }
 
   /**
@@ -188,24 +100,6 @@ export class RdfEditor extends LitElement {
     this.requestUpdate('quads', oldValue)
   }
 
-  get _prefixes() {
-    return async () => {
-      const ns = await import('@tpluscode/rdf-ns-builders')
-
-      const prefixes = (this.prefixes || '')
-        .split(',')
-        .map(prefix => prefix.trim())
-
-      return [...defaultPrefixes, ...prefixes].reduce((map, prefix) => {
-        if (prefix in ns) {
-          return { ...map, [prefix]: ns[prefix]().value }
-        }
-
-        return map
-      }, {})
-    }
-  }
-
   async updated(_changedProperties) {
     super.updated(_changedProperties)
 
@@ -224,14 +118,6 @@ export class RdfEditor extends LitElement {
     if (shouldSerialize) {
       this.__serialize()
     }
-  }
-
-  render() {
-    return html` <style>
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.24.2/codemirror.min.css');
-      </style>
-      <wc-codemirror mode="${this.format}" ?readonly="${this.readonly}">
-      </wc-codemirror>`
   }
 
   async __updateValue(value) {
@@ -334,17 +220,7 @@ export class RdfEditor extends LitElement {
   }
 
   async __initializeCodeMirror() {
-    this.codeMirror.editor.setSize('100%', '100%')
-    this.codeMirror.editor.on('blur', async () => {
-      if (this[Dirty]) {
-        await this.__parse()
-      }
-
-      this[Dirty] = false
-    })
-    this.codeMirror.editor.on('change', () => {
-      this[Dirty] = true
-    })
+    await super.__initializeCodeMirror()
 
     if (this.serialized) {
       const firstParse = () => {

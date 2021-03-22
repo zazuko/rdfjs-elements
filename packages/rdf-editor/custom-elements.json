@@ -7,17 +7,8 @@
       "description": "A text editor custom element which parses and serializes RDF/JS Quads using a selected RDF format.\n\n## Usage\n\nThe element requires a single property/attribute `format` which should be an RDF serialization media type supported by\n`@rdf-esm/formats-common` package.\n\nThe element is easiest to bootstrap by setting the `serialized` property **before** first render. This property is\nonly used to provide the initial contents of the editor as it is parsed on first render, when the element has been added\nto the page.\n\n```js\nimport '@rdfjs-elements/rdf-editor'\nimport { html } from 'lit-html'\n\nconst jsonld = {\n   '@context': {\n     '@base': 'http://example.com/',\n     '@vocab': 'http://schema.org/'\n   },\n   '@id': 'john-doe',\n   '@type': 'Person',\n   '@name': 'John Doe'\n}\n\nconst initialValue = JSON.stringify(jsonld, null, 2)\n\nconst template = html`<rdf-editor format=\"application/ld+json\" .serialized=\"${initialValue}\"></rdf-editor>`\n```\n\nBy default most common formats are supported\n\n- JSON-LD\n- N-Triples\n- N-Quads\n- RDF/XML\n- Turtle/N3\n- TriG *(no highlighting)*\n\nSyntax highlighting is relying on support from CodeMirror.",
       "attributes": [
         {
-          "name": "readonly",
-          "type": "boolean"
-        },
-        {
           "name": "format",
           "description": "Media type of the RDF serialization to use.\n\nCustom parsers and serializers must be added to `@rdf-esm/formats-common`",
-          "type": "string"
-        },
-        {
-          "name": "prefixes",
-          "description": "a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
           "type": "string"
         },
         {
@@ -31,13 +22,40 @@
           "type": "Quad[]"
         },
         {
+          "name": "readonly",
+          "type": "boolean"
+        },
+        {
+          "name": "prefixes",
+          "description": "a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
+          "type": "string"
+        },
+        {
           "name": "is-parsing",
-          "description": "set to true while the elements parses data when the code hass changed",
+          "description": "set to true while the elements parses data when the code has changed",
           "type": "boolean",
           "default": "false"
         }
       ],
       "properties": [
+        {
+          "name": "format",
+          "attribute": "format",
+          "description": "Media type of the RDF serialization to use.\n\nCustom parsers and serializers must be added to `@rdf-esm/formats-common`",
+          "type": "string"
+        },
+        {
+          "name": "serialized",
+          "attribute": "serialized",
+          "description": "The string representation of the RDF graph.\n\nNote that this property is only used to set the initial value of the editor. For updates `quads` should be used",
+          "type": "string"
+        },
+        {
+          "name": "quads",
+          "attribute": "quads",
+          "description": "get or sets the RDF/JS quads",
+          "type": "Quad[]"
+        },
         {
           "name": "ready",
           "description": "a one-time promise which resolves when CodeMirror has been initialized",
@@ -49,40 +67,22 @@
           "type": "boolean"
         },
         {
-          "name": "format",
-          "attribute": "format",
-          "description": "Media type of the RDF serialization to use.\n\nCustom parsers and serializers must be added to `@rdf-esm/formats-common`",
-          "type": "string"
-        },
-        {
           "name": "prefixes",
           "attribute": "prefixes",
           "description": "a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
           "type": "string"
         },
         {
-          "name": "serialized",
-          "attribute": "serialized",
-          "description": "The string representation of the RDF graph.\n\nNote that this property is only used to set the initial value of the editor. For updates `quads` should be used",
-          "type": "string"
+          "name": "isParsing",
+          "attribute": "is-parsing",
+          "description": "set to true while the elements parses data when the code has changed",
+          "type": "boolean",
+          "default": "false"
         },
         {
           "name": "codeMirror",
           "description": "The underlying `<wc-codemirror>` element",
           "type": "Element | null"
-        },
-        {
-          "name": "quads",
-          "attribute": "quads",
-          "description": "get or sets the RDF/JS quads",
-          "type": "Quad[]"
-        },
-        {
-          "name": "isParsing",
-          "attribute": "is-parsing",
-          "description": "set to true while the elements parses data when the code hass changed",
-          "type": "boolean",
-          "default": "false"
         }
       ],
       "events": [
