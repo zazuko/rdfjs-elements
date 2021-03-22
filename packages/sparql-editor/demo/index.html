@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="Description" content="Put your description here.">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      'Oxygen-Sans', Ubuntu, Cantarell, sans-serif;
+    }
+
+    section {
+      max-width: 800px;
+      margin: 1rem auto 1.5rem;
+    }
+
+    h2 {
+      margin: 0 0 0.5rem;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      a {
+        padding: 8px 0;
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+  <title>sparql-editor demo</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+<section id="api-viewer">
+  <api-viewer exclude-knobs="ready,value,isParsing">
+    <template data-element="rdf-editor" data-target="prefix">
+      <style>
+        rdf-editor::part(CodeMirror-gutters) {
+          background-color: rgba(255, 0, 0, 0.4)
+        }
+      </style>
+    </template>
+    <template data-element="sparql-editor" data-target="host">
+      <sparql-editor style="height: 200px" prefixes="schema" base-iri="http://example.com" value='CONSTRUCT { ?s ?p ?o }
+FROM <john-doe>
+WHERE {
+  <john-doe> a schema:Person ;
+  schema:name "John Doe" .
+}'></sparql-editor>
+    </template>
+  </api-viewer>
+</section>
+
+<script type="module" src="./index.js"></script>
+</body>
+
+</html>

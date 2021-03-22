@@ -77,7 +77,7 @@ export default class Editor extends LitElement {
     this.ready = whenDefined(
       () => this.codeMirror && this.codeMirror.__initialized
     ).then(async () => {
-      await this.__initializeCodeMirror()
+      await this._initializeCodeMirror()
       ;[...this.renderRoot.querySelectorAll('[class^=CodeMirror]')].forEach(
         el => {
           el.classList.forEach(clas => {
@@ -124,11 +124,35 @@ export default class Editor extends LitElement {
       </wc-codemirror>`
   }
 
-  async __initializeCodeMirror() {
+  async parse() {
+    if (this.isParsing) {
+      return
+    }
+
+    this.isParsing = true
+    try {
+      await this._parse()
+    } catch (error) {
+      this.dispatchEvent(
+        new CustomEvent('parsing-failed', {
+          detail: { error },
+        })
+      )
+    } finally {
+      this.isParsing = false
+    }
+  }
+
+  async _updateValue(value) {
+    await this.ready
+    this.codeMirror.editor.setValue(value || '')
+  }
+
+  async _initializeCodeMirror() {
     this.codeMirror.editor.setSize('100%', '100%')
     this.codeMirror.editor.on('blur', async () => {
       if (this[Dirty]) {
-        await this.__parse()
+        await this.parse()
       }
 
       this[Dirty] = false

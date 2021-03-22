@@ -120,55 +120,37 @@ export class RdfEditor extends Editor {
     }
   }
 
-  async __updateValue(value) {
-    await this.ready
-    this.codeMirror.editor.setValue(value || '')
-  }
-
-  async __parse() {
-    this.isParsing = true
-    await this.updateComplete
-
+  async _parse() {
     const { parsers } = await import('@rdfjs-elements/formats-pretty')
     const { toStream } = await import('./stream')
 
     const inputStream = toStream(this.codeMirror.editor.getValue())
     const quads = []
 
-    try {
-      const quadStream = parsers.import(this.format, inputStream)
-      if (!quadStream) {
-        this.dispatchEvent(
-          new CustomEvent('parsing-failed', {
-            detail: {
-              notFound: true,
-            },
-          })
-        )
-        return
-      }
-
-      for await (const quad of quadStream) {
-        quads.push(quad)
-      }
-
-      this[Quads] = quads
+    const quadStream = parsers.import(this.format, inputStream)
+    if (!quadStream) {
       this.dispatchEvent(
-        new CustomEvent('quads-changed', {
+        new CustomEvent('parsing-failed', {
           detail: {
-            value: quads,
+            notFound: true,
           },
         })
       )
-    } catch (error) {
-      this.dispatchEvent(
-        new CustomEvent('parsing-failed', {
-          detail: { error },
-        })
-      )
-    } finally {
-      this.isParsing = false
+      return
     }
+
+    for await (const quad of quadStream) {
+      quads.push(quad)
+    }
+
+    this[Quads] = quads
+    this.dispatchEvent(
+      new CustomEvent('quads-changed', {
+        detail: {
+          value: quads,
+        },
+      })
+    )
   }
 
   async __serialize() {
@@ -219,8 +201,8 @@ export class RdfEditor extends Editor {
     )
   }
 
-  async __initializeCodeMirror() {
-    await super.__initializeCodeMirror()
+  async _initializeCodeMirror() {
+    await super._initializeCodeMirror()
 
     if (this.serialized) {
       const firstParse = () => {
@@ -228,7 +210,7 @@ export class RdfEditor extends Editor {
         this.codeMirror.editor.off('change', firstParse)
       }
       this.codeMirror.editor.on('change', firstParse)
-      this.__updateValue(this.serialized)
+      this._updateValue(this.serialized)
     } else if (this.quads) {
       await this.__serialize()
     }

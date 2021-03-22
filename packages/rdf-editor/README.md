@@ -54,6 +54,12 @@ Syntax highlighting is relying on support from CodeMirror.
 | `ready`      |              |           | `Promise<void>`   |         | a one-time promise which resolves when CodeMirror has been initialized |
 | `serialized` | `serialized` |           | `string`          |         | The string representation of the RDF graph.<br /><br />Note that this property is only used to set the initial value of the editor. For updates `quads` should be used |
 
+## Methods
+
+| Method  | Type                |
+|---------|---------------------|
+| `parse` | `(): Promise<void>` |
+
 ## Events
 
 | Event            | Type                                             | Description                                      |

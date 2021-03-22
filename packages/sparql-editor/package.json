@@ -1,0 +1,33 @@
+{
+  "name": "@rdfjs-elements/sparql-editor",
+  "description": "CodeMirror configured for editing SPARQL",
+  "version": "0.0.0",
+  "author": "Zazuko GmbH",
+  "license": "MIT",
+  "main": "sparql-editor.js",
+  "module": "sparql-editor.js",
+  "scripts": {
+    "analyze": "run-p analyze:*",
+    "analyze:wc": "wca --format json --outFile ./custom-elements.json",
+    "analyze:readme": "wca --outFile ./README.md",
+    "analyze:lit": "lit-analyzer --strict --quiet --rules.no-invalid-css off",
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production"
+  },
+  "dependencies": {
+    "@rdfjs-elements/editor-base": "^0.0.0",
+    "sparqljs": "^3.4.1"
+  },
+  "devDependencies": {
+    "api-viewer-element": "^0.4.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zazuko/rdfjs-elements.git",
+    "directory": "packages/sparql-editor"
+  },
+  "homepage": "https://zazuko.github.io/rdfjs-elements/sparql-editor/",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "sparql-editor",
+      "path": "./sparql-editor.js",
+      "description": "A text editor custom element which highlights and parses SPARQL queries.\n\nIt uses [sparqljs](https://npm.im/sparqljs) to parse the query text.\n\n## Usage\n\nSimply add the element to a page. It is possible to provide common prefixes and a base IRI\nso that they don't have to be explicitly added in the SPARQL string\n\n```js\nimport '@rdfjs-elements/sparql-editor'\nimport { html } from 'lit-html'\n\nconst value = `CONSTRUCT { ?s ?p ?o }\nFROM <john-doe>\nWHERE {\n   <john-doe> a schema:Person ;\n   schema:name \"John Doe\" .\n}`\n\nconst template = html`<rdf-editor prefixes=\"schema\" baseIRI=\"http://example.com/\" .value=\"${value}\"></rdf-editor>`\n```",
+      "attributes": [
+        {
+          "name": "value",
+          "description": "The raw contents of the code editor",
+          "type": "string"
+        },
+        {
+          "name": "base-iri",
+          "description": "Value of the `BASE` directive which will be injected to the query",
+          "type": "string"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean"
+        },
+        {
+          "name": "prefixes",
+          "description": "a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
+          "type": "string"
+        },
+        {
+          "name": "is-parsing",
+          "description": "set to true while the elements parses data when the code has changed",
+          "type": "boolean"
+        }
+      ],
+      "properties": [
+        {
+          "name": "value",
+          "attribute": "value",
+          "description": "The raw contents of the code editor",
+          "type": "string"
+        },
+        {
+          "name": "baseIRI",
+          "attribute": "base-iri",
+          "description": "Value of the `BASE` directive which will be injected to the query",
+          "type": "string"
+        },
+        {
+          "name": "format",
+          "type": "string"
+        },
+        {
+          "name": "query",
+          "description": "The JS object representing the query",
+          "type": "object"
+        },
+        {
+          "name": "ready",
+          "description": "a one-time promise which resolves when CodeMirror has been initialized",
+          "type": "Promise<void>"
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": "boolean"
+        },
+        {
+          "name": "prefixes",
+          "attribute": "prefixes",
+          "description": "a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
+          "type": "string"
+        },
+        {
+          "name": "isParsing",
+          "attribute": "is-parsing",
+          "description": "set to true while the elements parses data when the code has changed",
+          "type": "boolean"
+        },
+        {
+          "name": "codeMirror",
+          "description": "The underlying `<wc-codemirror>` element",
+          "type": "Element | null"
+        }
+      ],
+      "events": [
+        {
+          "name": "parsed",
+          "description": "when the editor contents have changed and have been successfully parsed"
+        },
+        {
+          "name": "parsing-failed",
+          "description": "when there as in an error in parsing the query"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "CodeMirror",
+          "description": "The main CodeMirror wrapper element. This and other parts are directly generated from CSS classes set by CodeMirror and should be fairly self-explanatory but not equally useful 😉"
+        },
+        {
+          "name": "CodeMirror-vscrollbar"
+        },
+        {
+          "name": "CodeMirror-hscrollbar"
+        },
+        {
+          "name": "CodeMirror-scrollbar-filler"
+        },
+        {
+          "name": "CodeMirror-gutter-filler"
+        },
+        {
+          "name": "CodeMirror-scroll"
+        },
+        {
+          "name": "CodeMirror-sizer"
+        },
+        {
+          "name": "CodeMirror-lines"
+        },
+        {
+          "name": "CodeMirror-measure"
+        },
+        {
+          "name": "CodeMirror-cursors"
+        },
+        {
+          "name": "CodeMirror-code"
+        },
+        {
+          "name": "CodeMirror-gutters"
+        },
+        {
+          "name": "CodeMirror-linenumbers"
+        }
+      ]
+    }
+  ]
+}
