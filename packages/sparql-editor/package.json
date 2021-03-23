@@ -19,6 +19,8 @@
     "sparqljs": "^3.4.1"
   },
   "devDependencies": {
+    "@open-wc/testing": "^2.5.29",
+    "@rdfjs-elements/testing": "^0.1.0",
     "api-viewer-element": "^0.4.4"
   },
   "repository": {

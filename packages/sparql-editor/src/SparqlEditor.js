@@ -1,9 +1,9 @@
 import Editor from '@rdfjs-elements/editor-base'
-import { Parser, Generator } from 'sparqljs'
+import Sparql from 'sparqljs'
 import './mode/sparql.js'
 
 const Parsed = Symbol('sparql-object')
-const generator = new Generator()
+const generator = new Sparql.Generator()
 
 /**
  * A text editor custom element which highlights and parses SPARQL queries.
@@ -61,8 +61,8 @@ export class SparqlEditor extends Editor {
     let shouldParse = false
 
     if (_changedProperties.has('value')) {
+      shouldParse = true
       await this._updateValue(this.value)
-      shouldParse = this.value !== this.codeMirror.editor.getValue()
     }
 
     if (_changedProperties.has('prefixes')) {
@@ -74,21 +74,13 @@ export class SparqlEditor extends Editor {
     }
   }
 
-  firstUpdated(_changedProperties) {
-    super.firstUpdated(_changedProperties)
-    if (_changedProperties.has('value')) {
-      this._updateValue(this.value)
-    }
-  }
-
   async _parse() {
     try {
-      const parser = new Parser({
+      const parser = new Sparql.Parser({
         baseIRI: this.baseIRI,
         prefixes: await this._prefixes(),
       })
 
-      this.value = this.codeMirror.editor.getValue()
       const query = parser.parse(this.value)
       this[Parsed] = query
 
