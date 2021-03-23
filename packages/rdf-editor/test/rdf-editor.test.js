@@ -16,7 +16,7 @@ describe('RdfjsEditor', () => {
     parsers.set('application/ld+json', quads)
 
     // when
-    await el.__updateValue('foo')
+    await el._updateValue('foo')
     CodeMirror.signal(el.codeMirror.editor, 'blur')
     await oneEvent(el, 'quads-changed')
 
@@ -138,7 +138,7 @@ describe('RdfjsEditor', () => {
       // given
       const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
       await el.ready
-      el.__parse()
+      el.parse()
 
       // when
       const {
@@ -154,7 +154,7 @@ describe('RdfjsEditor', () => {
       const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
       await el.ready
       parsers.set('foo/bar', new Error('Parsing fails'))
-      el.__parse()
+      el.parse()
 
       // when
       const {
@@ -171,7 +171,7 @@ describe('RdfjsEditor', () => {
       await el.ready
       const expected = [quad(blankNode(), rdf.type, schema.Person)]
       parsers.set('foo/bar', expected)
-      el.__parse()
+      el.parse()
 
       // when
       const { detail } = await oneEvent(el, 'quads-changed')
@@ -271,34 +271,6 @@ describe('RdfjsEditor', () => {
   })
 
   describe('.readonly', () => {
-    it('should toggle the code mirror setting when set to false', async () => {
-      // given
-      const editor = await fixture(
-        html`<rdf-editor readonly format="foo/bar"></rdf-editor>`
-      )
-
-      // when
-      editor.readonly = false
-      await editor.updateComplete
-
-      // then
-      expect(editor.codeMirror.editor.getOption('readOnly')).to.be.false
-    })
-
-    it('should toggle the code mirror setting when set to true', async () => {
-      // given
-      const editor = await fixture(
-        html`<rdf-editor format="foo/bar"></rdf-editor>`
-      )
-
-      // when
-      editor.readonly = true
-      await editor.updateComplete
-
-      // then
-      expect(editor.codeMirror.editor.getOption('readOnly')).to.be.true
-    })
-
     it('should reflect attribute', async () => {
       // given
       const editor = await fixture(

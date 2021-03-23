@@ -190,7 +190,7 @@ export class RdfEditor extends Editor {
       serialized = JSON.stringify(JSON.parse(serialized), null, 2)
     }
 
-    this.__updateValue(serialized)
+    this._updateValue(serialized)
     this.serialized = serialized
     this.dispatchEvent(
       new CustomEvent('serialized', {
