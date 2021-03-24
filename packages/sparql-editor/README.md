@@ -67,4 +67,4 @@ const template = html`<rdf-editor prefixes="schema" baseIRI="http://example.com/
 | `CodeMirror-scrollbar-filler` |                                                  |
 | `CodeMirror-sizer`            |                                                  |
 | `CodeMirror-vscrollbar`       |                                                  |
-| `error`                       | Line or part of line highlighted as result of parsing error. By default styled with red `background-color` |
+| `error`                       | Line or part of line highlighted as result of parsing error. By default style is red wavy underline |

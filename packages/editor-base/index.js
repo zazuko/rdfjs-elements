@@ -34,7 +34,7 @@ function whenDefined(getter) {
  *
  * @prop {boolean} isParsing - set to true while the elements parses data when the code has changed
  *
- * @csspart error - Line or part of line highlighted as result of parsing error. By default styled with red `background-color`
+ * @csspart error - Line or part of line highlighted as result of parsing error. By default style is red wavy underline
  * @csspart CodeMirror - The main CodeMirror wrapper element. This and other parts are directly generated from CSS classes set by CodeMirror and should be fairly self-explanatory but not equally useful 😉
  * @csspart CodeMirror-vscrollbar
  * @csspart CodeMirror-hscrollbar
@@ -59,7 +59,9 @@ export default class Editor extends LitElement {
       }
 
       [part='error'] {
-        background-color: rgba(255, 0, 0, 0.3);
+        text-decoration: underline;
+        text-decoration-color: red;
+        text-decoration-style: wavy;
       }
 
       wc-codemirror {

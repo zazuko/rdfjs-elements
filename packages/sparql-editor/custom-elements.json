@@ -94,7 +94,7 @@
       "cssParts": [
         {
           "name": "error",
-          "description": "Line or part of line highlighted as result of parsing error. By default styled with red `background-color`"
+          "description": "Line or part of line highlighted as result of parsing error. By default style is red wavy underline"
         },
         {
           "name": "CodeMirror",
