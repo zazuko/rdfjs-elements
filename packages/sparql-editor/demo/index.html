@@ -37,10 +37,13 @@
 <body>
 <section id="api-viewer">
   <api-viewer exclude-knobs="ready,value,isParsing">
-    <template data-element="rdf-editor" data-target="prefix">
+    <template data-element="sparql-editor" data-target="prefix">
       <style>
-        rdf-editor::part(CodeMirror-gutters) {
-          background-color: rgba(255, 0, 0, 0.4)
+        sparql-editor::part(error) {
+          background-color: unset;
+          text-decoration: underline;
+          text-decoration-color: red;
+          text-decoration-style: wavy;
         }
       </style>
     </template>
@@ -48,7 +51,7 @@
       <sparql-editor style="height: 200px" prefixes="schema" base-iri="http://example.com" value='CONSTRUCT { ?s ?p ?o }
 FROM <john-doe>
 WHERE {
-  <john-doe> a schema:Person ;
+  <john-doe> a schema:Person
   schema:name "John Doe" .
 }'></sparql-editor>
     </template>

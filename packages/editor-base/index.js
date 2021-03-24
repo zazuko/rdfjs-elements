@@ -34,6 +34,7 @@ function whenDefined(getter) {
  *
  * @prop {boolean} isParsing - set to true while the elements parses data when the code has changed
  *
+ * @csspart error - Line or part of line highlighted as result of parsing error. By default styled with red `background-color`
  * @csspart CodeMirror - The main CodeMirror wrapper element. This and other parts are directly generated from CSS classes set by CodeMirror and should be fairly self-explanatory but not equally useful 😉
  * @csspart CodeMirror-vscrollbar
  * @csspart CodeMirror-hscrollbar
@@ -55,6 +56,10 @@ export default class Editor extends LitElement {
       :host {
         display: block;
         text-align: left;
+      }
+
+      [part='error'] {
+        background-color: rgba(255, 0, 0, 0.3);
       }
 
       wc-codemirror {
@@ -129,10 +134,18 @@ export default class Editor extends LitElement {
       return
     }
 
+    if (this.__errorMarker) {
+      this.__errorMarker.clear()
+    }
+
     this.isParsing = true
     try {
       await this._parse()
     } catch (error) {
+      if (typeof this._errorLine === 'function') {
+        this.__highlightError(this._errorLine(error))
+      }
+
       this.dispatchEvent(
         new CustomEvent('parsing-failed', {
           detail: { error },
@@ -160,5 +173,23 @@ export default class Editor extends LitElement {
     this.codeMirror.editor.on('change', () => {
       this[Dirty] = true
     })
+  }
+
+  __highlightError(range) {
+    let from = { line: 0, ch: 0 }
+    let to = { line: 0, ch: Number.MAX_SAFE_INTEGER }
+
+    if (range && range.from) {
+      from = range.from
+    }
+    if (range && range.to) {
+      to = range.to
+    }
+    const title = range ? range.message : ''
+
+    this.__errorMarker = this.codeMirror.editor.getDoc().markText(from, to, {
+      attributes: { part: 'error', title },
+    })
+    this.codeMirror.editor.scrollIntoView(from)
   }
 }

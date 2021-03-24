@@ -206,7 +206,7 @@ export class RdfEditor extends Editor {
 
     if (this.serialized) {
       const firstParse = () => {
-        this.__parse()
+        this.parse()
         this.codeMirror.editor.off('change', firstParse)
       }
       this.codeMirror.editor.on('change', firstParse)
@@ -214,5 +214,20 @@ export class RdfEditor extends Editor {
     } else if (this.quads) {
       await this.__serialize()
     }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  _errorLine(error) {
+    const errorDetails = { message: error.message }
+
+    if (error.context && error.context.line) {
+      errorDetails.from = { line: error.context.line - 1, ch: 0 }
+      errorDetails.to = {
+        line: error.context.line - 1,
+        ch: Number.MAX_SAFE_INTEGER,
+      }
+    }
+
+    return errorDetails
   }
 }

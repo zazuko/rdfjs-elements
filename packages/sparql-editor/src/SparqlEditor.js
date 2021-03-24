@@ -81,7 +81,7 @@ export class SparqlEditor extends Editor {
         prefixes: await this._prefixes(),
       })
 
-      const query = parser.parse(this.value)
+      const query = parser.parse(this.codeMirror.editor.getValue())
       this[Parsed] = query
 
       this.dispatchEvent(
@@ -96,5 +96,21 @@ export class SparqlEditor extends Editor {
       this[Parsed] = undefined
       throw error
     }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  _errorLine(error) {
+    const { hash, message } = error
+
+    if (hash) {
+      const { loc } = hash
+      return {
+        from: { line: loc.first_line - 1, ch: loc.first_column },
+        to: { line: loc.last_line - 1, ch: loc.last_column },
+        message,
+      }
+    }
+
+    return { message }
   }
 }

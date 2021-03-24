@@ -85,3 +85,4 @@ Syntax highlighting is relying on support from CodeMirror.
 | `CodeMirror-scrollbar-filler` |                                                  |
 | `CodeMirror-sizer`            |                                                  |
 | `CodeMirror-vscrollbar`       |                                                  |
+| `error`                       | Line or part of line highlighted as result of parsing error. By default styled with red `background-color` |

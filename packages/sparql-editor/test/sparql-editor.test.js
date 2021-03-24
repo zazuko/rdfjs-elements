@@ -45,6 +45,7 @@ describe('SparqlEditor', () => {
 
     // when
     el.value = 'SELECT * WHERE { ?s ?p ?o }'
+    await new Promise(resolve => el.codeMirror.editor.on('change', resolve))
     const { detail } = await oneEvent(el, 'parsed')
 
     // then
@@ -75,5 +76,35 @@ describe('SparqlEditor', () => {
 
     // then
     expect(detail.error).to.be.ok
+  })
+
+  it('highlights text when parsing fails', async () => {
+    // given
+    const value = 'SELECT { ?s ?p ?o } WHERE { ?s ?p ?o }'
+    const el = await fixture(
+      html`<sparql-editor .value="${value}"></sparql-editor>`
+    )
+
+    // when
+    await oneEvent(el, 'parsing-failed')
+
+    // then
+    expect(el.shadowRoot.querySelector('[part=error]')).to.be.ok
+  })
+
+  it('removes highlight text when parsing succeeds', async () => {
+    // given
+    const value = 'SELECT { ?s ?p ?o } WHERE { ?s ?p ?o }'
+    const el = await fixture(
+      html`<sparql-editor .value="${value}"></sparql-editor>`
+    )
+    await oneEvent(el, 'parsing-failed')
+
+    // when
+    el.value = 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }'
+    await oneEvent(el, 'parsed')
+
+    // then
+    expect(el.shadowRoot.querySelector('[part=error]')).to.be.null
   })
 })
