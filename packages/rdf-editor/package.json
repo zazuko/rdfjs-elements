@@ -1,6 +1,6 @@
 {
   "name": "@rdfjs-elements/rdf-editor",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "Code Mirror editor for RDF",
   "author": "Zazuko GmbH",
   "license": "MIT",
@@ -22,7 +22,7 @@
   "homepage": "https://zazuko.github.io/rdfjs-elements/rdf-editor/",
   "dependencies": {
     "@rdf-esm/data-model": "^0.5.4",
-    "@rdfjs-elements/editor-base": "^0.0.0",
+    "@rdfjs-elements/editor-base": "^0.1.0",
     "@rdfjs-elements/formats-pretty": "^0.1.0",
     "readable-stream": "^3",
     "string-to-stream": "^3.0.1"

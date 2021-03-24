@@ -1,5 +1,15 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.3.7
+
+### Patch Changes
+
+- d0f7ead: Error highlighting
+- 8b0d8e6: Reflect `is-parsing` attribute
+- Updated dependencies [b6ae5fc]
+- Updated dependencies [d0f7ead]
+  - @rdfjs-elements/editor-base@0.1.0
+
 ## 0.3.6
 
 ### Patch Changes
