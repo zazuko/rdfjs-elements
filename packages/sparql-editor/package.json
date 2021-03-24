@@ -1,11 +1,11 @@
 {
-  "name": "@rdfjs-elements/rdf-editor",
-  "version": "0.3.6",
-  "description": "Code Mirror editor for RDF",
+  "name": "@rdfjs-elements/sparql-editor",
+  "description": "CodeMirror configured for editing SPARQL",
+  "version": "0.0.0",
   "author": "Zazuko GmbH",
   "license": "MIT",
-  "main": "rdf-editor.js",
-  "module": "rdf-editor.js",
+  "main": "sparql-editor.js",
+  "module": "sparql-editor.js",
   "scripts": {
     "analyze": "run-p analyze:*",
     "analyze:wc": "wca --format json --outFile ./custom-elements.json",
@@ -14,25 +14,21 @@
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zazuko/rdfjs-elements.git",
-    "directory": "packages/rdf-editor"
-  },
-  "homepage": "https://zazuko.github.io/rdfjs-elements/rdf-editor/",
   "dependencies": {
-    "@rdf-esm/data-model": "^0.5.4",
     "@rdfjs-elements/editor-base": "^0.0.0",
-    "@rdfjs-elements/formats-pretty": "^0.1.0",
-    "readable-stream": "^3",
-    "string-to-stream": "^3.0.1"
+    "sparqljs": "^3.4.1"
   },
   "devDependencies": {
     "@open-wc/testing": "^2.5.29",
     "@rdfjs-elements/testing": "^0.1.0",
-    "@tpluscode/rdf-ns-builders": "^0.4",
     "api-viewer-element": "^0.4.4"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zazuko/rdfjs-elements.git",
+    "directory": "packages/sparql-editor"
+  },
+  "homepage": "https://zazuko.github.io/rdfjs-elements/sparql-editor/",
   "publishConfig": {
     "access": "public"
   }

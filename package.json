@@ -27,6 +27,7 @@
     "@open-wc/testing-karma": "^4.0.8",
     "@open-wc/building-webpack": "^2.13.40",
     "deepmerge": "^3.2.0",
+    "es-dev-commonjs-transformer": "^0.2.0",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.11.0",
     "husky": "^4.2.5",

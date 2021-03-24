@@ -2,24 +2,19 @@
   "version": "experimental",
   "tags": [
     {
-      "name": "rdf-editor",
-      "path": "./rdf-editor.js",
-      "description": "A text editor custom element which parses and serializes RDF/JS Quads using a selected RDF format.\n\n## Usage\n\nThe element requires a single property/attribute `format` which should be an RDF serialization media type supported by\n`@rdf-esm/formats-common` package.\n\nThe element is easiest to bootstrap by setting the `serialized` property **before** first render. This property is\nonly used to provide the initial contents of the editor as it is parsed on first render, when the element has been added\nto the page.\n\n```js\nimport '@rdfjs-elements/rdf-editor'\nimport { html } from 'lit-html'\n\nconst jsonld = {\n   '@context': {\n     '@base': 'http://example.com/',\n     '@vocab': 'http://schema.org/'\n   },\n   '@id': 'john-doe',\n   '@type': 'Person',\n   '@name': 'John Doe'\n}\n\nconst initialValue = JSON.stringify(jsonld, null, 2)\n\nconst template = html`<rdf-editor format=\"application/ld+json\" .serialized=\"${initialValue}\"></rdf-editor>`\n```\n\nBy default most common formats are supported\n\n- JSON-LD\n- N-Triples\n- N-Quads\n- RDF/XML\n- Turtle/N3\n- TriG *(no highlighting)*\n\nSyntax highlighting is relying on support from CodeMirror.",
+      "name": "sparql-editor",
+      "path": "./sparql-editor.js",
+      "description": "A text editor custom element which highlights and parses SPARQL queries.\n\nIt uses [sparqljs](https://npm.im/sparqljs) to parse the query text.\n\n## Usage\n\nSimply add the element to a page. It is possible to provide common prefixes and a base IRI\nso that they don't have to be explicitly added in the SPARQL string\n\n```js\nimport '@rdfjs-elements/sparql-editor'\nimport { html } from 'lit-html'\n\nconst value = `CONSTRUCT { ?s ?p ?o }\nFROM <john-doe>\nWHERE {\n   <john-doe> a schema:Person ;\n   schema:name \"John Doe\" .\n}`\n\nconst template = html`<rdf-editor prefixes=\"schema\" baseIRI=\"http://example.com/\" .value=\"${value}\"></rdf-editor>`\n```",
       "attributes": [
         {
-          "name": "format",
-          "description": "Media type of the RDF serialization to use.\n\nCustom parsers and serializers must be added to `@rdf-esm/formats-common`",
+          "name": "value",
+          "description": "The raw contents of the code editor",
           "type": "string"
         },
         {
-          "name": "serialized",
-          "description": "The string representation of the RDF graph.\n\nNote that this property is only used to set the initial value of the editor. For updates `quads` should be used",
+          "name": "base-iri",
+          "description": "Value of the `BASE` directive which will be injected to the query",
           "type": "string"
-        },
-        {
-          "name": "quads",
-          "description": "get or sets the RDF/JS quads",
-          "type": "Quad[]"
         },
         {
           "name": "readonly",
@@ -33,28 +28,30 @@
         {
           "name": "is-parsing",
           "description": "set to true while the elements parses data when the code has changed",
-          "type": "boolean",
-          "default": "false"
+          "type": "boolean"
         }
       ],
       "properties": [
         {
+          "name": "value",
+          "attribute": "value",
+          "description": "The raw contents of the code editor",
+          "type": "string"
+        },
+        {
+          "name": "baseIRI",
+          "attribute": "base-iri",
+          "description": "Value of the `BASE` directive which will be injected to the query",
+          "type": "string"
+        },
+        {
           "name": "format",
-          "attribute": "format",
-          "description": "Media type of the RDF serialization to use.\n\nCustom parsers and serializers must be added to `@rdf-esm/formats-common`",
           "type": "string"
         },
         {
-          "name": "serialized",
-          "attribute": "serialized",
-          "description": "The string representation of the RDF graph.\n\nNote that this property is only used to set the initial value of the editor. For updates `quads` should be used",
-          "type": "string"
-        },
-        {
-          "name": "quads",
-          "attribute": "quads",
-          "description": "get or sets the RDF/JS quads",
-          "type": "Quad[]"
+          "name": "query",
+          "description": "The JS object representing the query",
+          "type": "object"
         },
         {
           "name": "ready",
@@ -76,8 +73,7 @@
           "name": "isParsing",
           "attribute": "is-parsing",
           "description": "set to true while the elements parses data when the code has changed",
-          "type": "boolean",
-          "default": "false"
+          "type": "boolean"
         },
         {
           "name": "codeMirror",
@@ -87,15 +83,12 @@
       ],
       "events": [
         {
-          "name": "quads-changed",
+          "name": "parsed",
           "description": "when the editor contents have changed and have been successfully parsed"
         },
         {
           "name": "parsing-failed",
-          "description": "when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason"
-        },
-        {
-          "name": "serialized"
+          "description": "when there as in an error in parsing the query"
         }
       ],
       "cssParts": [

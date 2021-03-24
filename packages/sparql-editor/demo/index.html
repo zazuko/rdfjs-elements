@@ -30,13 +30,13 @@
       }
     }
   </style>
-  <title>rdf-editor demo</title>
+  <title>sparql-editor demo</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
 <section id="api-viewer">
-  <api-viewer exclude-knobs="ready,serialized,quads,isParsing">
+  <api-viewer exclude-knobs="ready,value,isParsing">
     <template data-element="rdf-editor" data-target="prefix">
       <style>
         rdf-editor::part(CodeMirror-gutters) {
@@ -44,12 +44,13 @@
         }
       </style>
     </template>
-    <template data-element="rdf-editor" data-target="host">
-      <rdf-editor style="height: 200px" format="application/trig" serialized='@base <http://example.com> .
-@prefix schema: <http://schema.org/> .
-
-<john-doe> a schema:Person ;
-  schema:name "John Doe" .'></rdf-editor>
+    <template data-element="sparql-editor" data-target="host">
+      <sparql-editor style="height: 200px" prefixes="schema" base-iri="http://example.com" value='CONSTRUCT { ?s ?p ?o }
+FROM <john-doe>
+WHERE {
+  <john-doe> a schema:Person ;
+  schema:name "John Doe" .
+}'></sparql-editor>
     </template>
   </api-viewer>
 </section>
