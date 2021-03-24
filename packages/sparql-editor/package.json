@@ -1,7 +1,7 @@
 {
   "name": "@rdfjs-elements/sparql-editor",
   "description": "CodeMirror configured for editing SPARQL",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "Zazuko GmbH",
   "license": "MIT",
   "main": "sparql-editor.js",
@@ -15,7 +15,7 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
-    "@rdfjs-elements/editor-base": "^0.0.0",
+    "@rdfjs-elements/editor-base": "^0.1.0",
     "sparqljs": "^3.4.1"
   },
   "devDependencies": {
