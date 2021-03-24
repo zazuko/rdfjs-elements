@@ -93,6 +93,10 @@
       ],
       "cssParts": [
         {
+          "name": "error",
+          "description": "Line or part of line highlighted as result of parsing error. By default styled with red `background-color`"
+        },
+        {
           "name": "CodeMirror",
           "description": "The main CodeMirror wrapper element. This and other parts are directly generated from CSS classes set by CodeMirror and should be fairly self-explanatory but not equally useful 😉"
         },
