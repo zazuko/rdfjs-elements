@@ -1,5 +1,14 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.3.8
+
+### Patch Changes
+
+- fac4158: Updated LICENSE year
+- Updated dependencies [fac4158]
+  - @rdfjs-elements/editor-base@0.1.1
+  - @rdfjs-elements/formats-pretty@0.1.1
+
 ## 0.3.7
 
 ### Patch Changes

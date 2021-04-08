@@ -1,5 +1,13 @@
 # @rdfjs-elements/rdf-snippet
 
+## 0.2.2
+
+### Patch Changes
+
+- fac4158: Added LICENSE file
+- Updated dependencies [fac4158]
+  - @rdfjs-elements/rdf-editor@0.3.8
+
 ## 0.2.1
 
 ### Patch Changes
