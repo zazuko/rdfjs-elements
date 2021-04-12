@@ -140,6 +140,11 @@ export class RdfSnippet extends LitElement {
         text-decoration: underline;
       }
 
+      rdf-editor,
+      #wrapper {
+        height: 100%;
+      }
+
       rdf-editor:not([visible]) {
         display: none;
       }
