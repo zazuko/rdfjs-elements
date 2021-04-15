@@ -1,5 +1,15 @@
 # @rdfjs-elements/sparql-editor
 
+## 0.1.2
+
+### Patch Changes
+
+- 2d71f49: Add .value property
+- 14e1621: Add option to parse automaticlly when typing
+- Updated dependencies [2d71f49]
+- Updated dependencies [14e1621]
+  - @rdfjs-elements/editor-base@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes
