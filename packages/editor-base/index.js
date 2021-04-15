@@ -1,7 +1,9 @@
 import { html, css, LitElement } from 'lit-element'
 import '@vanillawc/wc-codemirror'
+import { debounce } from 'throttle-debounce'
 
 const Dirty = Symbol('Editor dirty')
+const ParseHandler = Symbol('ParseHandler')
 const defaultPrefixes = ['rdf', 'rdfs', 'xsd']
 
 function whenDefined(getter) {
@@ -33,6 +35,10 @@ function whenDefined(getter) {
  * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
  *
  * @prop {boolean} isParsing - set to true while the elements parses data when the code has changed
+ *
+ * @prop {boolean} autoParse - if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event
+ *
+ * @prop {Number} parseDelay - time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set
  *
  * @csspart error - Line or part of line highlighted as result of parsing error. By default style is red wavy underline
  * @csspart CodeMirror - The main CodeMirror wrapper element. This and other parts are directly generated from CSS classes set by CodeMirror and should be fairly self-explanatory but not equally useful 😉
@@ -76,7 +82,14 @@ export default class Editor extends LitElement {
       readonly: { type: Boolean, reflect: true },
       prefixes: { type: String, attribute: 'prefixes' },
       isParsing: { type: Boolean, attribute: 'is-parsing', reflect: true },
+      autoParse: { type: Boolean, attribute: 'auto-parse' },
+      parseDelay: { type: Number },
     }
+  }
+
+  constructor() {
+    super()
+    this.parseDelay = 250
   }
 
   connectedCallback() {
@@ -131,6 +144,16 @@ export default class Editor extends LitElement {
     return this.codeMirror.editor.getValue()
   }
 
+  updated(_changedProperties) {
+    super.updated(_changedProperties)
+    if (
+      _changedProperties.has('autoParse') ||
+      _changedProperties.has('parseDelay')
+    ) {
+      this.__setParseHandler()
+    }
+  }
+
   render() {
     return html` <style>
         @import url('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.24.2/codemirror.min.css');
@@ -173,16 +196,36 @@ export default class Editor extends LitElement {
 
   async _initializeCodeMirror() {
     this.codeMirror.editor.setSize('100%', '100%')
-    this.codeMirror.editor.on('blur', async () => {
-      if (this[Dirty]) {
-        await this.parse()
-      }
-
-      this[Dirty] = false
-    })
+    this.__setParseHandler()
     this.codeMirror.editor.on('change', () => {
       this[Dirty] = true
     })
+  }
+
+  __setParseHandler() {
+    if (this[ParseHandler]) {
+      this.codeMirror.editor.off('blur', this[ParseHandler])
+      this.codeMirror.editor.off('change', this[ParseHandler])
+    }
+
+    if (this.autoParse) {
+      this[ParseHandler] = debounce(
+        this.parseDelay,
+        this.__beginParse.bind(this)
+      )
+      this.codeMirror.editor.on('change', this[ParseHandler])
+    } else {
+      this[ParseHandler] = this.__beginParse.bind(this)
+      this.codeMirror.editor.on('blur', this[ParseHandler])
+    }
+  }
+
+  async __beginParse() {
+    if (this[Dirty]) {
+      await this.parse()
+    }
+
+    this[Dirty] = false
   }
 
   __highlightError(range) {

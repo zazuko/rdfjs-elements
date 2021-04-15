@@ -10,6 +10,7 @@
     "packages/*"
   ],
   "scripts": {
+    "analyze": "npx lerna run analyze",
     "test": "karma start --coverage",
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "lint:eslint": "eslint --quiet --ext .js,.html . --ignore-path .eslintignore",
