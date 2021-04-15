@@ -1,7 +1,7 @@
 {
   "name": "@rdfjs-elements/editor-base",
   "description": "Base lit-element class for other RDF/JS input elements",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Zazuko GmbH",
   "license": "MIT",
   "main": "index.js",

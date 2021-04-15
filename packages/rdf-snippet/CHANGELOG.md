@@ -1,5 +1,15 @@
 # @rdfjs-elements/rdf-snippet
 
+## 0.2.3
+
+### Patch Changes
+
+- ef36c69: The editor inside `rdf-snippet` should fill vertical space
+- 7fad36f: Option to hide the input editor
+- Updated dependencies [2d71f49]
+- Updated dependencies [14e1621]
+  - @rdfjs-elements/rdf-editor@0.3.9
+
 ## 0.2.2
 
 ### Patch Changes
