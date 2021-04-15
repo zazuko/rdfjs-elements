@@ -12,6 +12,11 @@
           "type": "\"vertical\"|\"horizontal\""
         },
         {
+          "name": "only-output",
+          "description": "hides the input editor and only shows the outputs",
+          "type": "boolean"
+        },
+        {
           "name": "formats",
           "description": "comma-separated list of output formats",
           "type": "string",
@@ -46,6 +51,12 @@
           "attribute": "layout",
           "description": "controls the position of selection buttons",
           "type": "\"vertical\"|\"horizontal\""
+        },
+        {
+          "name": "onlyOutput",
+          "attribute": "only-output",
+          "description": "hides the input editor and only shows the outputs",
+          "type": "boolean"
         },
         {
           "name": "value",

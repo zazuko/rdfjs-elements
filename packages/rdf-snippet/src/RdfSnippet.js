@@ -83,6 +83,7 @@ const formatLabels = {
  * @prop {string} input - set the input serialized value (ignored when `<script>` is used)
  * @prop {string} inputFormat - set the format of the input (ignored when `<script>` is used)
  * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
+ * @prop {boolean} onlyOutput - hides the input editor and only shows the outputs
  * @attr {"vertical"|"horizontal"} layout - controls the position of selection buttons
  *
  * @csspart format - every format selection button
@@ -99,6 +100,7 @@ export class RdfSnippet extends LitElement {
       selectedFormat: { type: String, attribute: false },
       layout: { type: String, reflect: true },
       prefixes: { type: String },
+      onlyOutput: { type: Boolean, attribute: 'only-output' },
     }
   }
 
@@ -207,7 +209,7 @@ export class RdfSnippet extends LitElement {
         readonly
         .serialized="${this.input}"
         .format="${this.inputFormat}"
-        ?visible="${this[Show] === 'input'}"
+        ?visible="${this[Show] === 'input' && !this.onlyOutput}"
       ></rdf-editor>
       <rdf-editor
         id="output"
@@ -221,15 +223,30 @@ export class RdfSnippet extends LitElement {
     </div>`
   }
 
-  _renderButtons() {
-    const inputParts = `format input ${
-      this[Show] === 'input' ? 'selected' : ''
-    }`
+  updated(_changedProperties) {
+    super.updated(_changedProperties)
+    if (
+      _changedProperties.has('onlyOutput') &&
+      this.onlyOutput &&
+      this[Show] === 'input'
+    ) {
+      this._showOutput(this._outputFormats[0])()
+    }
+  }
 
-    return html` <li input part="${inputParts}" @click="${this._showInput}">
+  _renderButtons() {
+    const inputFormatButton = () => {
+      const inputParts = `format input ${
+        this[Show] === 'input' ? 'selected' : ''
+      }`
+
+      return html`<li input part="${inputParts}" @click="${this._showInput}">
         ${formatLabels[this.inputFormat] || this.inputFormat}
-      </li>
-      ${repeat(this._outputFormats, this.__renderOutputButton.bind(this))}`
+      </li>`
+    }
+
+    return html` ${this.onlyOutput ? '' : inputFormatButton()}
+    ${repeat(this._outputFormats, this.__renderOutputButton.bind(this))}`
   }
 
   _showInput() {
