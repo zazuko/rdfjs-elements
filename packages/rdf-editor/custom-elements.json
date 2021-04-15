@@ -35,6 +35,17 @@
           "description": "set to true while the elements parses data when the code has changed",
           "type": "boolean",
           "default": "false"
+        },
+        {
+          "name": "auto-parse",
+          "description": "if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event",
+          "type": "boolean"
+        },
+        {
+          "name": "parseDelay",
+          "description": "time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set",
+          "type": "Number",
+          "default": "250"
         }
       ],
       "properties": [
@@ -80,6 +91,12 @@
           "default": "false"
         },
         {
+          "name": "autoParse",
+          "attribute": "auto-parse",
+          "description": "if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event",
+          "type": "boolean"
+        },
+        {
           "name": "codeMirror",
           "description": "The underlying `<wc-codemirror>` element",
           "type": "Element | null"
@@ -88,6 +105,13 @@
           "name": "value",
           "description": "Gets the text contents of the underlying editor",
           "type": "string"
+        },
+        {
+          "name": "parseDelay",
+          "attribute": "parseDelay",
+          "description": "time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set",
+          "type": "Number",
+          "default": "250"
         }
       ],
       "events": [

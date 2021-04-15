@@ -26,9 +26,20 @@
           "type": "boolean"
         },
         {
+          "name": "auto-parse",
+          "description": "if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event",
+          "type": "boolean"
+        },
+        {
           "name": "value",
           "description": "The raw contents of the code editor",
           "type": "string"
+        },
+        {
+          "name": "parseDelay",
+          "description": "time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set",
+          "type": "Number",
+          "default": "250"
         }
       ],
       "properties": [
@@ -70,6 +81,12 @@
           "type": "boolean"
         },
         {
+          "name": "autoParse",
+          "attribute": "auto-parse",
+          "description": "if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event",
+          "type": "boolean"
+        },
+        {
           "name": "codeMirror",
           "description": "The underlying `<wc-codemirror>` element",
           "type": "Element | null"
@@ -79,6 +96,13 @@
           "attribute": "value",
           "description": "The raw contents of the code editor",
           "type": "string"
+        },
+        {
+          "name": "parseDelay",
+          "attribute": "parseDelay",
+          "description": "time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set",
+          "type": "Number",
+          "default": "250"
         }
       ],
       "events": [
