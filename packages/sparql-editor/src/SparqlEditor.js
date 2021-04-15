@@ -81,7 +81,7 @@ export class SparqlEditor extends Editor {
         prefixes: await this._prefixes(),
       })
 
-      const query = parser.parse(this.codeMirror.editor.getValue())
+      const query = parser.parse(this.value)
       this[Parsed] = query
 
       this.dispatchEvent(

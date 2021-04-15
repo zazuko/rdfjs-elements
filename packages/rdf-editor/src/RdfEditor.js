@@ -124,7 +124,7 @@ export class RdfEditor extends Editor {
     const { parsers } = await import('@rdfjs-elements/formats-pretty')
     const { toStream } = await import('./stream')
 
-    const inputStream = toStream(this.codeMirror.editor.getValue())
+    const inputStream = toStream(this.value)
     const quads = []
 
     const quadStream = parsers.import(this.format, inputStream)
