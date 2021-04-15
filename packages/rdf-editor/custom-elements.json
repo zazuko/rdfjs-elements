@@ -83,6 +83,11 @@
           "name": "codeMirror",
           "description": "The underlying `<wc-codemirror>` element",
           "type": "Element | null"
+        },
+        {
+          "name": "value",
+          "description": "Gets the text contents of the underlying editor",
+          "type": "string"
         }
       ],
       "events": [

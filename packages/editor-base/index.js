@@ -123,6 +123,14 @@ export default class Editor extends LitElement {
     return this.renderRoot.querySelector('wc-codemirror')
   }
 
+  /**
+   * Gets the text contents of the underlying editor
+   * @returns {string}
+   */
+  get value() {
+    return this.codeMirror.editor.getValue()
+  }
+
   render() {
     return html` <style>
         @import url('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.24.2/codemirror.min.css');

@@ -32,14 +32,14 @@ In case when a `<script>` cannot be used, the snippet can be initialized by pass
 
 ## Supported types
 
-Out of the box all common RDF formats are supported:
+Out of the box all common RDF formats are supported, where some can only be used for the input (no serializer available):
 
 - JSON-LD
 - N-Triples
 - N-Quads
 - Turtle/N3
-- TriG
-- RDF/XML
+- TriG *(input only)*
+- RDF/XML *(input only)*
 
 Support for additional types can be added by registering an RDF/JS-compliant parser and/or serializer using the [`@rdf-esm/formats-common`](https://npm.im/@rdf-esm/formats-common)
 package:
