@@ -63,7 +63,7 @@ serializers.set('application/trix', async () => {
 
 | Property         | Attribute      | Modifiers | Type                       | Default       | Description                                      |
 |------------------|----------------|-----------|----------------------------|---------------|--------------------------------------------------|
-| `formats`        | `formats`      |           | `string`                   | ""            | comma-separated list of output formats           |
+| `formats`        | `formats`      |           | `string`                   |               | comma-separated list of output formats           |
 | `input`          |                |           | `string`                   |               | set the input serialized value (ignored when `<script>` is used) |
 | `inputFormat`    | `input-format` |           | `string`                   | "text/turtle" | set the format of the input (ignored when `<script>` is used) |
 | `layout`         | `layout`       |           | `"vertical"\|"horizontal"` |               | controls the position of selection buttons       |
