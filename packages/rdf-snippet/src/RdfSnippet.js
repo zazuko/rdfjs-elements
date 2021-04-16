@@ -172,9 +172,11 @@ export class RdfSnippet extends LitElement {
 
   get _outputFormats() {
     const outputFormats = this.formats.split(',').map(f => f.trim())
-    const inputFormatInFormats = this.formats.indexOf(this.inputFormat)
-    if (inputFormatInFormats >= 0) {
-      outputFormats.splice(inputFormatInFormats, 1)
+    if (!this.onlyOutput) {
+      const inputFormatInFormats = this.formats.indexOf(this.inputFormat)
+      if (inputFormatInFormats >= 0) {
+        outputFormats.splice(inputFormatInFormats, 1)
+      }
     }
     return outputFormats
   }
