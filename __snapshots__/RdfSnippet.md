@@ -48,13 +48,13 @@
   <ol>
     <li
       input=""
-      part="format input selected"
+      part="format input "
     >
       RDF/XML
     </li>
     <li
       output=""
-      part="format output "
+      part="format output selected"
     >
       JSON‑LD
     </li>
@@ -63,13 +63,13 @@
     format="application/rdf+xml"
     id="input"
     readonly=""
-    visible=""
   >
   </rdf-editor>
   <rdf-editor
     format="application/ld+json"
     id="output"
     readonly=""
+    visible=""
   >
   </rdf-editor>
 </div>
