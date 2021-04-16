@@ -163,29 +163,43 @@ describe('RdfSnippet', () => {
     expect(value).to.equal('rdf-xml')
   })
 
-  it('does not render input format button when [only-output] is set', async () => {
-    // given
-    serializers.set('text/n3', 'n3')
-    const snippet = await fixture(html`<rdf-snippet
-      only-output
-      formats="text/n3"
-    >
-      <script type="application/rdf+xml">
-        rdf-xml
-      </script>
-    </rdf-snippet>`)
-    const changedToOutput = oneEvent(snippet, 'value-changed')
+  describe('[only-output]', () => {
+    it('does not exclude input from output formats', async () => {
+      // given
+      const snippet = await fixture(html`<rdf-snippet
+        formats="application/rdf+xml"
+        only-output
+      >
+        <script type="application/rdf+xml"></script>
+      </rdf-snippet>`)
 
-    // when
-    await changedToOutput
+      // then
+      expect(snippet._outputFormats).to.have.length(1)
+    })
 
-    // then
-    const input = snippet.renderRoot.querySelector('li[input]')
-    const selectedOutput = snippet.renderRoot.querySelector(
-      'li[output][part~=selected]'
-    )
-    expect(input).to.be.null
-    expect(selectedOutput).not.to.be.null
+    it('does not render input format button', async () => {
+      // given
+      serializers.set('text/n3', 'n3')
+      const snippet = await fixture(html`<rdf-snippet
+        only-output
+        formats="text/n3"
+      >
+        <script type="application/rdf+xml">
+          rdf-xml
+        </script>
+      </rdf-snippet>`)
+
+      // when
+      await oneEvent(snippet, 'value-changed')
+
+      // then
+      const input = snippet.renderRoot.querySelector('li[input]')
+      const selectedOutput = snippet.renderRoot.querySelector(
+        'li[output][part~=selected]'
+      )
+      expect(input).to.be.null
+      expect(selectedOutput).not.to.be.null
+    })
   })
 
   describe('.value', () => {
