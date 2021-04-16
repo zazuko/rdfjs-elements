@@ -1,5 +1,16 @@
 # @rdfjs-elements/rdf-snippet
 
+## 0.3.0
+
+### Minor Changes
+
+- 1213c7b: Use all formats as default output
+
+### Patch Changes
+
+- 62776da: [only-output] attribute should not hide input from selection
+- ec58cb3: Output woud not be serialized if `.onlyOutput` was initially true
+
 ## 0.2.3
 
 ### Patch Changes
