@@ -212,6 +212,7 @@ export class RdfSnippet extends LitElement {
         .serialized="${this.input}"
         .format="${this.inputFormat}"
         ?visible="${this[Show] === 'input' && !this.onlyOutput}"
+        @quads-changed="${this.__inputParsed}"
       ></rdf-editor>
       <rdf-editor
         id="output"
@@ -260,10 +261,6 @@ export class RdfSnippet extends LitElement {
 
   _showOutput(format) {
     return async () => {
-      if (!this[Quads].length) {
-        await this._editor.updateComplete
-        this[Quads] = this._editor.quads
-      }
       this.selectedFormat = format
       this[Show] = 'output'
       if (format === this[PreviousOutputFormat]) {
@@ -271,6 +268,11 @@ export class RdfSnippet extends LitElement {
       }
       this.requestUpdate()
     }
+  }
+
+  __inputParsed(e) {
+    this[Quads] = e.detail.value
+    this.requestUpdate()
   }
 
   __renderOutputButton(format) {
