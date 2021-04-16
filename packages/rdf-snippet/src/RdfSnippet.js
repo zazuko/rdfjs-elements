@@ -94,7 +94,7 @@ const formatLabels = {
 export class RdfSnippet extends LitElement {
   static get properties() {
     return {
-      formats: { type: String },
+      formats: { type: String, reflect: true },
       input: { type: String, attribute: false },
       inputFormat: { type: String, attribute: 'input-format' },
       selectedFormat: { type: String, attribute: false },
@@ -183,7 +183,7 @@ export class RdfSnippet extends LitElement {
 
   constructor() {
     super()
-    this.formats = ''
+    this.formats = Object.values(formats).join(',')
     this.prefixes = ''
     this[Quads] = []
     this[Show] = 'input'

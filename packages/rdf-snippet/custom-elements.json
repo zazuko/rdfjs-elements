@@ -19,8 +19,7 @@
         {
           "name": "formats",
           "description": "comma-separated list of output formats",
-          "type": "string",
-          "default": "\"\""
+          "type": "string"
         },
         {
           "name": "prefixes",
@@ -67,8 +66,7 @@
           "name": "formats",
           "attribute": "formats",
           "description": "comma-separated list of output formats",
-          "type": "string",
-          "default": "\"\""
+          "type": "string"
         },
         {
           "name": "prefixes",

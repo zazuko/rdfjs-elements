@@ -57,6 +57,17 @@ describe('RdfSnippet', () => {
     expect(snippet._editor.format).to.eq('application/n-triples')
   })
 
+  it('uses all known output formats by default', async () => {
+    // given
+    const snippet = await fixture(html`<rdf-snippet>
+      <script type="application/n-triples"></script>
+    </rdf-snippet>`)
+
+    // then
+    expect(snippet.formats).not.to.eq('')
+    expect(snippet.getAttribute('formats')).not.to.eq('')
+  })
+
   it('renders list items for every displayed format', async () => {
     // given
     const snippet = await fixture(html`<rdf-snippet
