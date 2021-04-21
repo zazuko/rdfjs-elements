@@ -1,5 +1,12 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.3.10
+
+### Patch Changes
+
+- Updated dependencies [34027af]
+  - @rdfjs-elements/formats-pretty@0.2.0
+
 ## 0.3.9
 
 ### Patch Changes

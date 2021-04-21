@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.2.0
+
+### Minor Changes
+
+- 34027af: Use `@graphy` parsers, which preserve blank node identifiers
+
 ## 0.1.1
 
 ### Patch Changes
