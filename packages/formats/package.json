@@ -11,6 +11,7 @@
     "*.js",
     "*.d.ts",
     "serializers",
+    "parsers",
     "*.cjs"
   ],
   "exports": {
