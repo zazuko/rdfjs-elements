@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.2.1
+
+### Patch Changes
+
+- 49551ba: Module `./parsers/graphy.js` missing in build
+
 ## 0.2.0
 
 ### Minor Changes
