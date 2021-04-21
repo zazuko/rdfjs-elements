@@ -28,8 +28,10 @@
     "directory": "packages/formats"
   },
   "dependencies": {
+    "@graphy/content.nq.read": "^4.3.3",
     "@graphy/content.ttl.scribe": "^4.3.3",
     "@graphy/content.xml.scribe": "^4.3.3",
+    "@graphy/content.trig.read": "^4.3.3",
     "@graphy/content.trig.scribe": "^4.3.3",
     "@rdfjs/serializer-jsonld-ext": "^2.0.0",
     "@rdf-esm/formats-common": "^0.5.5",
