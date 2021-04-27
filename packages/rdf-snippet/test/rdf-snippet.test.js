@@ -13,8 +13,10 @@ describe('RdfSnippet', () => {
       </script>
     </rdf-snippet>`)
 
+    await snippet._editor.ready
+
     // then
-    expect(snippet._editor.serialized).to.eq(turtle)
+    expect(snippet._editor.value).to.eq(turtle)
   })
 
   it('sets initial editor contents from property', async () => {
@@ -27,8 +29,10 @@ describe('RdfSnippet', () => {
       ></rdf-snippet>`
     )
 
+    await snippet._editor.ready
+
     // then
-    expect(snippet._editor.serialized).to.eq(turtle)
+    expect(snippet._editor.value).to.eq(turtle)
   })
 
   it('should be read-only by default', async () => {
@@ -115,29 +119,11 @@ describe('RdfSnippet', () => {
     </rdf-snippet>`)
 
     // when
-    snippet.renderRoot.querySelector('li[output]').click()
+    snippet._showOutput('application/ld+json')()
     await snippet.updateComplete
 
     // then
     expect(snippet).shadowDom.to.equalSnapshot()
-  })
-
-  it('switching to output raises event', async () => {
-    // given
-    serializers.set('text/n3', 'n3')
-    const snippet = await fixture(html`<rdf-snippet formats="text/n3">
-      <script type="application/rdf+xml"></script>
-    </rdf-snippet>`)
-
-    // when
-    const changeEvent = oneEvent(snippet, 'value-changed')
-    snippet.renderRoot.querySelector('li[output]').click()
-    const {
-      detail: { value },
-    } = await changeEvent
-
-    // then
-    expect(value).to.equal('n3')
   })
 
   it('switching to input raises event', async () => {
@@ -149,7 +135,7 @@ describe('RdfSnippet', () => {
       </script>
     </rdf-snippet>`)
     const changeToOutput = oneEvent(snippet, 'value-changed')
-    snippet.renderRoot.querySelector('li[output]').click()
+    snippet._showInput()
     await changeToOutput
 
     // when
@@ -189,9 +175,6 @@ describe('RdfSnippet', () => {
         </script>
       </rdf-snippet>`)
 
-      // when
-      await oneEvent(snippet, 'value-changed')
-
       // then
       const input = snippet.renderRoot.querySelector('li[input]')
       const selectedOutput = snippet.renderRoot.querySelector(
@@ -213,33 +196,8 @@ describe('RdfSnippet', () => {
         </script>
       </rdf-snippet>`)
 
-      // when
-      await snippet.updateComplete
-      const { value } = snippet
-
       // then
-      expect(value).to.equal('input')
-    })
-
-    it('gets the output contents when output is shown', async () => {
-      // given
-      serializers.set('text/n3', 'notation 3')
-      const snippet = await fixture(html`<rdf-snippet formats="text/n3">
-        <script type="application/rdf+xml">
-          rdf/xml
-        </script>
-      </rdf-snippet>`)
-
-      // when
-      snippet.renderRoot.querySelector('li[output]').click()
-      await oneEvent(
-        snippet.renderRoot.querySelector('rdf-editor#output'),
-        'serialized'
-      )
-      const { value } = snippet
-
-      // then
-      expect(value).to.equal('notation 3')
+      expect(snippet.value).to.equal('input')
     })
   })
 })
