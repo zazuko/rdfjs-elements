@@ -1,5 +1,13 @@
 # @rdfjs-elements/rdf-snippet
 
+## 0.3.1
+
+### Patch Changes
+
+- af40d94: Editors inside `rdf-snippet` should fill horizontal space in when using `[layout=vertical]`
+- Updated dependencies [3548e77]
+  - @rdfjs-elements/rdf-editor@0.4.0
+
 ## 0.3.0
 
 ### Minor Changes

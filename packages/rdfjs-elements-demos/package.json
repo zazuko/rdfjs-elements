@@ -1,7 +1,7 @@
 {
   "name": "rdfjs-elements-demos",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Webcomponent rdfjs-elements-demos following open-wc recommendations",
   "author": "rdfjs-elements-demos",
   "license": "MIT",
@@ -14,6 +14,6 @@
   "dependencies": {
     "lit-html": "^1.0.0",
     "lit-element": "^2.0.1",
-    "@rdfjs-elements/rdf-editor": "^0.3.4"
+    "@rdfjs-elements/rdf-editor": "^0.4.0"
   }
 }
