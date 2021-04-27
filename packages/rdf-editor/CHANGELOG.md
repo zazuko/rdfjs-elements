@@ -1,5 +1,13 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.4.0
+
+### Minor Changes
+
+- 3548e77: BREAKING: Remove property `.serialized`
+
+  Instead, use the property `.value` which now can be used to replace the text contents of the editor
+
 ## 0.3.10
 
 ### Patch Changes

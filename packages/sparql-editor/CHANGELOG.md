@@ -1,5 +1,11 @@
 # @rdfjs-elements/sparql-editor
 
+## 0.1.3
+
+### Patch Changes
+
+- 3548e77: `.value` property shadowed from base class (#43)
+
 ## 0.1.2
 
 ### Patch Changes
