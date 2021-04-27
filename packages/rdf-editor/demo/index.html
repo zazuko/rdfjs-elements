@@ -36,7 +36,7 @@
 
 <body>
 <section id="api-viewer">
-  <api-viewer exclude-knobs="ready,serialized,quads,isParsing">
+  <api-viewer exclude-knobs="ready,serialized,quads,isParsing,value">
     <template data-element="rdf-editor" data-target="prefix">
       <style>
         rdf-editor::part(CodeMirror-gutters) {
@@ -45,7 +45,7 @@
       </style>
     </template>
     <template data-element="rdf-editor" data-target="host">
-      <rdf-editor style="height: 200px" format="application/trig" serialized='@base <http://example.com> .
+      <rdf-editor style="height: 200px" format="application/trig" value='@base <http://example.com> .
 @prefix schema: <http://schema.org/> .
 
 <john-doe> a schema:Person ;

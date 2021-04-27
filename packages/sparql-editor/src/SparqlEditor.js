@@ -41,7 +41,6 @@ const generator = new Sparql.Generator()
 export class SparqlEditor extends Editor {
   static get properties() {
     return {
-      value: { type: String },
       baseIRI: { type: String, attribute: 'base-iri' },
     }
   }
@@ -58,18 +57,7 @@ export class SparqlEditor extends Editor {
   async updated(_changedProperties) {
     await super.updated(_changedProperties)
 
-    let shouldParse = false
-
-    if (_changedProperties.has('value')) {
-      shouldParse = true
-      await this._updateValue(this.value)
-    }
-
     if (_changedProperties.has('prefixes')) {
-      shouldParse = true
-    }
-
-    if (shouldParse) {
       this.parse()
     }
   }
