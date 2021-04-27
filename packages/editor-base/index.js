@@ -148,9 +148,8 @@ export default class Editor extends LitElement {
 
   set value(value) {
     if (this.codeMirror && this.codeMirror.editor) {
-      const current = this.value
-      this.codeMirror.editor.setValue(value)
-      if (current !== value) {
+      if (this.value !== value) {
+        this.codeMirror.editor.setValue(value)
         this[ParseHandler]()
       }
     } else {
