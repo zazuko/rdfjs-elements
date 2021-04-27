@@ -1,5 +1,11 @@
 # @rdfjs-elements/editor-base
 
+## 0.2.1
+
+### Patch Changes
+
+- efa37df: Setting same value should not move caret position
+
 ## 0.2.0
 
 ### Minor Changes
