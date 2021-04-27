@@ -142,6 +142,10 @@ export class RdfSnippet extends LitElement {
         text-decoration: underline;
       }
 
+      rdf-editor {
+        flex: 1;
+      }
+
       rdf-editor,
       #wrapper {
         height: 100%;
