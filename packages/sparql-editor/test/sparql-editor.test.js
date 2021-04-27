@@ -31,6 +31,7 @@ describe('SparqlEditor', () => {
     )
 
     // when
+    await oneEvent(el, 'parsed')
     const { detail } = await oneEvent(el, 'parsed')
 
     // then
@@ -45,7 +46,6 @@ describe('SparqlEditor', () => {
 
     // when
     el.value = 'SELECT * WHERE { ?s ?p ?o }'
-    await new Promise(resolve => el.codeMirror.editor.on('change', resolve))
     const { detail } = await oneEvent(el, 'parsed')
 
     // then
@@ -58,7 +58,6 @@ describe('SparqlEditor', () => {
 
     // when
     el.value = 'SELECT * WHERE { ?s ?p ?o }'
-    await new Promise(resolve => el.codeMirror.editor.on('change', resolve))
 
     // then
     expect(el.codeMirror.editor.getValue()).to.eq('SELECT * WHERE { ?s ?p ?o }')

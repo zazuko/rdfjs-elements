@@ -16,7 +16,8 @@ describe('RdfjsEditor', () => {
     parsers.set('application/ld+json', quads)
 
     // when
-    await el._updateValue('foo')
+    await el.ready
+    el.codeMirror.editor.setValue('foo')
     CodeMirror.signal(el.codeMirror.editor, 'blur')
     await oneEvent(el, 'quads-changed')
 
@@ -193,7 +194,7 @@ describe('RdfjsEditor', () => {
 
       // then
       expect(el.codeMirror.editor.getValue()).to.equal('foo bar')
-      expect(el.serialized).to.equal('foo bar')
+      expect(el.value).to.equal('foo bar')
     })
 
     it('nicely stringifies JSON-LD', async () => {
@@ -209,7 +210,7 @@ describe('RdfjsEditor', () => {
       await oneEvent(el, 'serialized')
 
       // then
-      expect(el.serialized).to.equal(JSON.stringify({ foo: 'bar' }, null, 2))
+      expect(el.value).to.equal(JSON.stringify({ foo: 'bar' }, null, 2))
     })
 
     it('dispatches event when serializing is done', async () => {
@@ -301,7 +302,7 @@ describe('RdfjsEditor', () => {
 
       // then
       expect(el.codeMirror.editor.getValue()).to.equal('after')
-      expect(el.serialized).to.equal('after')
+      expect(el.value).to.equal('after')
     })
 
     it('setting does not serialize when dataset is empty', async () => {
@@ -316,7 +317,7 @@ describe('RdfjsEditor', () => {
 
       // then
       expect(el.codeMirror.editor.getValue()).to.equal('')
-      expect(el.serialized).to.be.undefined
+      expect(el.value).to.be.eq('')
     })
   })
 })
