@@ -1,5 +1,12 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.4.1
+
+### Patch Changes
+
+- Updated dependencies [f634b3a]
+  - @rdfjs-elements/editor-base@0.2.0
+
 ## 0.4.0
 
 ### Minor Changes
