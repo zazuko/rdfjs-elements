@@ -2,6 +2,7 @@ import { html, css, LitElement } from 'lit-element'
 import '@vanillawc/wc-codemirror'
 import { debounce } from 'throttle-debounce'
 
+const Value = Symbol('Initial value')
 const Dirty = Symbol('Editor dirty')
 const ParseHandler = Symbol('ParseHandler')
 const defaultPrefixes = ['rdf', 'rdfs', 'xsd']
@@ -79,6 +80,7 @@ export default class Editor extends LitElement {
 
   static get properties() {
     return {
+      value: { type: String, noAccessor: true },
       readonly: { type: Boolean, reflect: true },
       prefixes: { type: String, attribute: 'prefixes' },
       isParsing: { type: Boolean, attribute: 'is-parsing', reflect: true },
@@ -144,6 +146,28 @@ export default class Editor extends LitElement {
     return this.codeMirror.editor.getValue()
   }
 
+  set value(value) {
+    if (this.codeMirror && this.codeMirror.editor) {
+      const current = this.value
+      this.codeMirror.editor.setValue(value)
+      if (current !== value) {
+        this[ParseHandler]()
+      }
+    } else {
+      this[Value] = value
+    }
+  }
+
+  async firstUpdated(_changedProperties) {
+    super.firstUpdated(_changedProperties)
+
+    if (this[Value]) {
+      await this.ready
+      this.codeMirror.editor.setValue(this[Value])
+      this[ParseHandler]()
+    }
+  }
+
   updated(_changedProperties) {
     super.updated(_changedProperties)
     if (
@@ -187,11 +211,6 @@ export default class Editor extends LitElement {
     } finally {
       this.isParsing = false
     }
-  }
-
-  async _updateValue(value) {
-    await this.ready
-    this.codeMirror.editor.setValue(value || '')
   }
 
   async _initializeCodeMirror() {

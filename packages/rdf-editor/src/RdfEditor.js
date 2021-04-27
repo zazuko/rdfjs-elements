@@ -48,9 +48,7 @@ const Quads = Symbol('parsed quads')
  *
  * Syntax highlighting is relying on support from CodeMirror.
  *
- * @prop {string} serialized - The string representation of the RDF graph.
- *
- * Note that this property is only used to set the initial value of the editor. For updates `quads` should be used
+ * @prop {string} value - The string representation of the RDF graph.
  *
  * @prop {string} format - Media type of the RDF serialization to use.
  *
@@ -66,7 +64,6 @@ export class RdfEditor extends Editor {
   static get properties() {
     return {
       format: { type: String, reflect: true },
-      serialized: { type: String },
       quads: { type: Array },
     }
   }
@@ -190,8 +187,7 @@ export class RdfEditor extends Editor {
       serialized = JSON.stringify(JSON.parse(serialized), null, 2)
     }
 
-    this._updateValue(serialized)
-    this.serialized = serialized
+    this.value = serialized
     this.dispatchEvent(
       new CustomEvent('serialized', {
         detail: {
@@ -199,21 +195,6 @@ export class RdfEditor extends Editor {
         },
       })
     )
-  }
-
-  async _initializeCodeMirror() {
-    await super._initializeCodeMirror()
-
-    if (this.serialized) {
-      const firstParse = () => {
-        this.parse()
-        this.codeMirror.editor.off('change', firstParse)
-      }
-      this.codeMirror.editor.on('change', firstParse)
-      this._updateValue(this.serialized)
-    } else if (this.quads) {
-      await this.__serialize()
-    }
   }
 
   // eslint-disable-next-line class-methods-use-this
