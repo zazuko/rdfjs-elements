@@ -85,7 +85,8 @@ describe('RdfSnippet', () => {
       'application/ld+json',
       'text/turtle',
     ])
-    expect(snippet).shadowDom.to.equalSnapshot()
+    const buttons = snippet.shadowRoot.querySelectorAll('li[output]')
+    expect(buttons).to.have.length(2)
   })
 
   it('gets input format from script attribute', async () => {
@@ -123,7 +124,9 @@ describe('RdfSnippet', () => {
     await snippet.updateComplete
 
     // then
-    expect(snippet).shadowDom.to.equalSnapshot()
+    expect(snippet.shadowRoot.querySelector('#output').format).to.eq(
+      'application/ld+json'
+    )
   })
 
   it('switching to input raises event', async () => {
