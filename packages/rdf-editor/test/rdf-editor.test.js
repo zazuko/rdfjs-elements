@@ -8,6 +8,11 @@ import '../rdf-editor.js'
 
 const quads = [quad(blankNode(), namedNode('p'), blankNode())]
 describe('RdfjsEditor', () => {
+  before(() => {
+    serializers.set('application/ld+json', '{}')
+    serializers.set('text/turtle', '')
+  })
+
   it('parses content on blur', async () => {
     // given
     const el = await fixture(
@@ -128,9 +133,12 @@ describe('RdfjsEditor', () => {
       el.format = 'text/turtle'
 
       // then
-      el.codeMirror.editor.on('change', value => {
-        expect(value).to.equal('bar')
-      })
+      const value = await new Promise(resolve =>
+        el.codeMirror.editor.on('change', editor => {
+          resolve(editor.getValue())
+        })
+      )
+      expect(value).to.equal('bar')
     })
   })
 
@@ -283,7 +291,7 @@ describe('RdfjsEditor', () => {
       await editor.updateComplete
 
       // then
-      expect(editor).dom.to.equalSnapshot()
+      expect(editor.getAttribute('readonly')).not.to.be.null
     })
   })
 
