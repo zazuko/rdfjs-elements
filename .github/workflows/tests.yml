@@ -39,7 +39,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: npx lerna run build
 
-  karma:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
