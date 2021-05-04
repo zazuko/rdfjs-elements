@@ -6,9 +6,9 @@ import fakeStreamModules from '@rdfjs-elements/testing'
 
 const config = {
   files: [
-    "packages/rdf-editor/*.test.js",
-    "packages/rdf-snippet/*.test.js",
-    "packages/sparql-editor/*.test.js"
+    "packages/rdf-editor/**/*.test.js",
+    "packages/rdf-snippet/**/*.test.js",
+    "packages/sparql-editor/**/*.test.js"
   ],
   nodeResolve: true,
   concurrency: 1,
