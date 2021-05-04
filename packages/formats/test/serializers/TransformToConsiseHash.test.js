@@ -138,7 +138,7 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
       // then
       expect(hash).to.deep.contain({
-        type: 'c4',
+        type: 'c4r',
         value: {
           'ex:john': {
             'ex:john': {
