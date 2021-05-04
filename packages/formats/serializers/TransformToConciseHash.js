@@ -1,4 +1,4 @@
-import { Transform } from 'readable-stream'
+import stream from 'readable-stream'
 import { defaultGraphInstance } from '@rdf-esm/data-model'
 import { rdf, xsd } from '@tpluscode/rdf-ns-builders'
 import TermMap from '@rdf-esm/term-map'
@@ -15,7 +15,7 @@ function shrink(iri, prefixMap) {
   return ''
 }
 
-export class TransformToConciseHash extends Transform {
+export class TransformToConciseHash extends stream.Transform {
   constructor({ prefixes = {}, strict = false } = {}) {
     super({ objectMode: true })
 
