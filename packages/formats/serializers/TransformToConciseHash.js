@@ -1,4 +1,4 @@
-import { Transform } from 'stream'
+import { Transform } from 'readable-stream'
 import { defaultGraphInstance } from '@rdf-esm/data-model'
 import { rdf, xsd } from '@tpluscode/rdf-ns-builders'
 import TermMap from '@rdf-esm/term-map'
