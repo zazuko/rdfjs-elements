@@ -5,7 +5,11 @@ import commonjs from '@rollup/plugin-commonjs'
 import fakeStreamModules from '@rdfjs-elements/testing'
 
 const config = {
-  files: "packages/**/*.test.js",
+  files: [
+    "packages/rdf-editor/*.test.js",
+    "packages/rdf-snippet/*.test.js",
+    "packages/sparql-editor/*.test.js"
+  ],
   nodeResolve: true,
   concurrency: 1,
   plugins: [
