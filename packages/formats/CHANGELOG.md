@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.3.0
+
+### Minor Changes
+
+- 36e1713: Improve Turtle/TriG serialization by using [Concise Quads Hash](https://graphy.link/concise#hash_c4)
+
 ## 0.2.1
 
 ### Patch Changes
