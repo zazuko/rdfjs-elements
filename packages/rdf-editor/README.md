@@ -43,18 +43,19 @@ Syntax highlighting is relying on support from CodeMirror.
 
 ## Properties
 
-| Property     | Attribute    | Modifiers | Type              | Default | Description                                      |
-|--------------|--------------|-----------|-------------------|---------|--------------------------------------------------|
-| `autoParse`  | `auto-parse` |           | `boolean`         |         | if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event |
-| `codeMirror` |              | readonly  | `Element \| null` |         | The underlying `<wc-codemirror>` element         |
-| `format`     | `format`     |           | `string`          |         | Media type of the RDF serialization to use.<br /><br />Custom parsers and serializers must be added to `@rdf-esm/formats-common` |
-| `isParsing`  | `is-parsing` |           | `boolean`         | false   | set to true while the elements parses data when the code has changed |
-| `parseDelay` | `parseDelay` |           | `Number`          | 250     | time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set |
-| `prefixes`   | `prefixes`   |           | `string`          |         | a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used |
-| `quads`      | `quads`      |           | `Quad[]`          |         | get or sets the RDF/JS quads                     |
-| `readonly`   | `readonly`   |           | `boolean`         |         |                                                  |
-| `ready`      |              |           | `Promise<void>`   |         | a one-time promise which resolves when CodeMirror has been initialized |
-| `value`      | `value`      |           | `string`          |         | The string representation of the RDF graph.      |
+| Property         | Attribute        | Modifiers | Type                     | Default | Description                                      |
+|------------------|------------------|-----------|--------------------------|---------|--------------------------------------------------|
+| `autoParse`      | `auto-parse`     |           | `boolean`                |         | if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event |
+| `codeMirror`     |                  | readonly  | `Element \| null`        |         | The underlying `<wc-codemirror>` element         |
+| `customPrefixes` | `customPrefixes` |           | `Record<string, string>` | {}      | a map of custom prefixes or overrides            |
+| `format`         | `format`         |           | `string`                 |         | Media type of the RDF serialization to use.<br /><br />Custom parsers and serializers must be added to `@rdf-esm/formats-common` |
+| `isParsing`      | `is-parsing`     |           | `boolean`                | false   | set to true while the elements parses data when the code has changed |
+| `parseDelay`     | `parseDelay`     |           | `Number`                 | 250     | time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set |
+| `prefixes`       | `prefixes`       |           | `string`                 |         | a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used |
+| `quads`          | `quads`          |           | `Quad[]`                 |         | get or sets the RDF/JS quads                     |
+| `readonly`       | `readonly`       |           | `boolean`                |         |                                                  |
+| `ready`          |                  |           | `Promise<void>`          |         | a one-time promise which resolves when CodeMirror has been initialized |
+| `value`          | `value`          |           | `string`                 |         | The string representation of the RDF graph.      |
 
 ## Methods
 

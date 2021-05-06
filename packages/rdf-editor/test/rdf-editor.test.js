@@ -264,6 +264,84 @@ describe('RdfjsEditor', () => {
       )
     })
 
+    it('serializes using default+additional prefixes+custom', async () => {
+      // given
+      const customPrefixes = {
+        cc: 'http://example.com/cctv#',
+      }
+      const el = await fixture(
+        html`<rdf-editor
+          format="foo/bar"
+          prefixes="schema,cc"
+          .customPrefixes="${customPrefixes}"
+        ></rdf-editor>`
+      )
+      await el.ready
+      serializers.set('foo/bar', 'foo bar')
+
+      // when
+      el.quads = []
+      await oneEvent(el, 'serialized')
+
+      // then
+      expect(serializers.lastImport.options.prefixes).to.have.property(
+        'schema',
+        'http://schema.org/'
+      )
+      expect(serializers.lastImport.options.prefixes).to.have.property(
+        'cc',
+        'http://example.com/cctv#'
+      )
+    })
+
+    it('ignores invalid custom prefixes', async () => {
+      // given
+      const customPrefixes = {
+        foo: null,
+        bar: undefined,
+        baz: '',
+        number: 0,
+        bool: true,
+        obj: {},
+        10: 'http://not/string/prefix',
+        '': 'http://empty/prefix',
+      }
+      const el = await fixture(
+        html`<rdf-editor
+          format="foo/bar"
+          prefixes="schema"
+          .customPrefixes="${customPrefixes}"
+        ></rdf-editor>`
+      )
+      await el.ready
+      serializers.set('foo/bar', 'foo bar')
+
+      // when
+      el.quads = []
+      await oneEvent(el, 'serialized')
+
+      // then
+      expect(serializers.lastImport.options.prefixes).to.have.property('schema')
+      expect(serializers.lastImport.options.prefixes).not.to.have.property(
+        'foo'
+      )
+      expect(serializers.lastImport.options.prefixes).not.to.have.property(
+        'bar'
+      )
+      expect(serializers.lastImport.options.prefixes).not.to.have.property(
+        'baz'
+      )
+      expect(serializers.lastImport.options.prefixes).not.to.have.property(
+        'number'
+      )
+      expect(serializers.lastImport.options.prefixes).not.to.have.property(
+        'bool'
+      )
+      expect(serializers.lastImport.options.prefixes).not.to.have.property(
+        'obj'
+      )
+    })
+
     it('setter ignore falsy value', async () => {
       // given
       const el = await fixture(
