@@ -321,25 +321,14 @@ describe('RdfjsEditor', () => {
       await oneEvent(el, 'serialized')
 
       // then
-      expect(serializers.lastImport.options.prefixes).to.have.property('schema')
-      expect(serializers.lastImport.options.prefixes).not.to.have.property(
-        'foo'
-      )
-      expect(serializers.lastImport.options.prefixes).not.to.have.property(
-        'bar'
-      )
-      expect(serializers.lastImport.options.prefixes).not.to.have.property(
-        'baz'
-      )
-      expect(serializers.lastImport.options.prefixes).not.to.have.property(
-        'number'
-      )
-      expect(serializers.lastImport.options.prefixes).not.to.have.property(
-        'bool'
-      )
-      expect(serializers.lastImport.options.prefixes).not.to.have.property(
-        'obj'
-      )
+      const { prefixes } = serializers.lastImport.options
+      expect(prefixes).to.have.property('schema')
+      expect(prefixes).not.to.have.property('foo')
+      expect(prefixes).not.to.have.property('bar')
+      expect(prefixes).not.to.have.property('baz')
+      expect(prefixes).not.to.have.property('number')
+      expect(prefixes).not.to.have.property('bool')
+      expect(prefixes).not.to.have.property('obj')
     })
 
     it('setter ignore falsy value', async () => {
