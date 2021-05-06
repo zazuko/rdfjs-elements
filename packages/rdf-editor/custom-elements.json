@@ -17,6 +17,12 @@
           "type": "Quad[]"
         },
         {
+          "name": "customPrefixes",
+          "description": "a map of custom prefixes or overrides",
+          "type": "Record<string, string>",
+          "default": "{}"
+        },
+        {
           "name": "readonly",
           "type": "boolean"
         },
@@ -60,6 +66,13 @@
           "attribute": "quads",
           "description": "get or sets the RDF/JS quads",
           "type": "Quad[]"
+        },
+        {
+          "name": "customPrefixes",
+          "attribute": "customPrefixes",
+          "description": "a map of custom prefixes or overrides",
+          "type": "Record<string, string>",
+          "default": "{}"
         },
         {
           "name": "ready",
