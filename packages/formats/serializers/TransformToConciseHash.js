@@ -119,16 +119,16 @@ export class TransformToConciseHash extends stream.Transform {
     if (term.datatype) {
       switch (term.datatype.value) {
         case xsd.integer.value: {
-          const number = Number.parseInt(term.value, 10)
+          const number = +term.value
           if (Number.isInteger(number)) {
             return number
           }
           break
         }
         case xsd.decimal.value: {
-          const float = Number.parseFloat(term.value)
-          if (!Number.isNaN(float)) {
-            return float
+          const dec = +term.value
+          if (!Number.isNaN(dec) && !Number.isInteger(dec)) {
+            return dec
           }
           break
         }
