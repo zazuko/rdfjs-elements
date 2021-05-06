@@ -1,19 +1,7 @@
 import stream from 'readable-stream'
-import { defaultGraphInstance } from '@rdf-esm/data-model'
 import { rdf, xsd } from '@tpluscode/rdf-ns-builders'
 import TermMap from '@rdf-esm/term-map'
-
-function shrink(iri, prefixMap) {
-  const candidates = Array.from(
-    Object.entries(prefixMap)
-  ).filter(([, baseIRI]) => iri.startsWith(baseIRI))
-  if (candidates.length) {
-    candidates.sort(([, iri1], [, iri2]) => iri2.length - iri1.length)
-    const found = candidates[0]
-    return iri.replace(new RegExp(`^${found[1]}`), `${found[0]}:`)
-  }
-  return ''
-}
+import graphy from '@graphy/core.data.factory'
 
 export class TransformToConciseHash extends stream.Transform {
   constructor({ prefixes = {}, strict = false } = {}) {
@@ -127,36 +115,48 @@ export class TransformToConciseHash extends stream.Transform {
     return nodes
   }
 
+  literalHash(term) {
+    if (term.datatype && !term.datatype.equals()) {
+      switch (term.datatype?.value) {
+        case xsd.integer.value: {
+          const number = Number.parseInt(term.value, 10)
+          if (Number.isInteger(number)) {
+            return number
+          }
+          break
+        }
+        case xsd.decimal.value: {
+          const float = Number.parseFloat(term.value)
+          if (!Number.isNaN(float)) {
+            return float
+          }
+          break
+        }
+        case xsd.boolean.value: {
+          if (term.value === 'true') {
+            return true
+          }
+          if (term.value === 'false') {
+            return false
+          }
+          break
+        }
+        default:
+      }
+    }
+
+    return graphy.fromTerm(term).concise(this.prefixes)
+  }
+
   toHashKey(term) {
-    if (term.termType === 'BlankNode') {
-      return `_:${term.value}`
-    }
-
     if (term.termType === 'Literal') {
-      if (term.language) {
-        return `@${term.language}"${term.value}`
-      }
-
-      if (term.datatype && !term.datatype.equals(xsd.string)) {
-        return `^${this.toHashKey(term.datatype)}"${term.value}`
-      }
-
-      return `"${term.value}`
-    }
-
-    if (term.equals(defaultGraphInstance)) {
-      return '*'
+      return this.literalHash(term)
     }
 
     if (term.equals(rdf.type)) {
       return 'a'
     }
 
-    const shrunk = shrink(term.value, this.prefixes)
-    if (shrunk) {
-      return shrunk
-    }
-
-    return `>${term.value}`
+    return graphy.fromTerm(term).concise(this.prefixes)
   }
 }
