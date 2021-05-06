@@ -116,8 +116,8 @@ export class TransformToConciseHash extends stream.Transform {
   }
 
   literalHash(term) {
-    if (term.datatype && !term.datatype.equals()) {
-      switch (term.datatype?.value) {
+    if (term.datatype) {
+      switch (term.datatype.value) {
         case xsd.integer.value: {
           const number = Number.parseInt(term.value, 10)
           if (Number.isInteger(number)) {
