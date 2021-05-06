@@ -12,6 +12,11 @@ module.exports = function factory() {
           body: `export default function() {}`,
         }
       }
+      if (context.url.match(/@graphy\/core.data.factory/)) {
+        return {
+          body: `export default {}`,
+        }
+      }
       if (context.url.match(/node_modules\/into-stream\/index.js$/)) {
         return {
           body: `export { default } from '@rdfjs-elements/testing/into-stream/index.js';`,
