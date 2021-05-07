@@ -9,9 +9,9 @@ For usage see [`@rdfjs/formats-common`](https://npm.im/@rdfjs/formats-common)
 | Format | Pretty or not | Implementation |
 | -- | -- | -- |
 | application/ld+json | 😀 | [@rdfjs/serializer-jsonld-ext](https://npm.im/@rdfjs/serializer-jsonld-ext) |
-| application/trig | 😀 | [@graphy/content.trig.scribe](https://npm.im/@graphy/content.trig.scribe) | 
-| text/n3 | 😀 | [@graphy/content.ttl.scribe](https://npm.im/@graphy/content.ttl.scribe) | 
-| text/turtle | 😀 | [@graphy/content.ttl.scribe](https://npm.im/@graphy/content.ttl.scribe) | 
+| application/trig | 🤩 | [@graphy/content.trig.writer](https://npm.im/@graphy/content.trig.writer) | 
+| text/n3 | 🤩 | [@graphy/content.ttl.writer](https://npm.im/@graphy/content.ttl.writer) | 
+| text/turtle | 🤩 | [@graphy/content.ttl.writer](https://npm.im/@graphy/content.ttl.writer) | 
 | application/n-triples | 😶 | [@rdfjs/serializer-ntriples](https://npm.im/@rdfjs/serializer-ntriples) | 
 | application/n-quads | 😶 | [@rdfjs/serializer-ntriples](https://npm.im/@rdfjs/serializer-ntriples) | 
 | application/rdf+xml | 😶 | [@graphy/content.xml.scribe](https://npm.im/@graphy/content.xml.scribe) |
