@@ -93,6 +93,16 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
       .addOut(schema.name, 'John')
       .addOut(schema.title, $rdf.literal('Phd', 'en'))
       .addOut(schema.age, $rdf.literal('45', xsd.integer))
+      .addOut(schema.contentSize, $rdf.literal('bogus', xsd.integer))
+      .addOut(schema.height, $rdf.literal('170.5', xsd.decimal))
+      .addOut(schema.length, $rdf.literal('170,5', xsd.decimal))
+      .addOut(schema.size, $rdf.literal('170', xsd.decimal))
+      .addOut(schema.baseSalary, $rdf.literal('4500', xsd.int))
+      .addOut(schema.isFamilyFriendly, [
+        $rdf.literal('true', xsd.boolean),
+        $rdf.literal('false', xsd.boolean),
+        $rdf.literal('maybe', xsd.boolean),
+      ])
 
     // when
     const hash = await transform(graph, {
@@ -109,7 +119,13 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
           'ex:john': {
             'schema:name': ['"John'],
             'schema:title': ['@en"Phd'],
-            'schema:age': ['^xsd:integer"45'],
+            'schema:age': [45],
+            'schema:contentSize': ['^xsd:integer"bogus'],
+            'schema:height': [170.5],
+            'schema:length': ['^xsd:decimal"170,5'],
+            'schema:size': ['^xsd:decimal"170'],
+            'schema:baseSalary': ['^xsd:int"4500'],
+            'schema:isFamilyFriendly': [true, false, '^xsd:boolean"maybe'],
           },
         },
       },
