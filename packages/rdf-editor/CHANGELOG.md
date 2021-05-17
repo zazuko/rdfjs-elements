@@ -1,5 +1,13 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.4.3
+
+### Patch Changes
+
+- 7f0e1a9: Add the possibility to define custom prefix map
+- Updated dependencies [76d476a]
+  - @rdfjs-elements/formats-pretty@0.3.1
+
 ## 0.4.2
 
 ### Patch Changes
