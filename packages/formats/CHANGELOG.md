@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.3.1
+
+### Patch Changes
+
+- 76d476a: Have numbers and booleans serialized in short form
+
 ## 0.3.0
 
 ### Minor Changes
