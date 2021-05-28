@@ -1,5 +1,11 @@
 # @rdfjs-elements/editor-base
 
+## 0.3.1
+
+### Patch Changes
+
+- af70a4b: In some cases the editor appears to be half-initialized if it was hidden by styles
+
 ## 0.3.0
 
 ### Minor Changes
