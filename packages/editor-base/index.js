@@ -41,6 +41,8 @@ function whenDefined(getter) {
  *
  * @prop {Number} parseDelay - time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set
  *
+ * @attr {Boolean} ready - set when editor is initialized
+ *
  * @csspart error - Line or part of line highlighted as result of parsing error. By default style is red wavy underline
  * @csspart CodeMirror - The main CodeMirror wrapper element. This and other parts are directly generated from CSS classes set by CodeMirror and should be fairly self-explanatory but not equally useful 😉
  * @csspart CodeMirror-vscrollbar
@@ -71,9 +73,14 @@ export default class Editor extends LitElement {
         text-decoration-style: wavy;
       }
 
-      wc-codemirror {
+      wc-codemirror,
+      #wrapper {
         width: 100%;
         height: 100%;
+      }
+
+      :host(:not([ready])) #wrapper {
+        display: none;
       }
     `
   }
@@ -92,13 +99,23 @@ export default class Editor extends LitElement {
   constructor() {
     super()
     this.parseDelay = 250
+
+    this.__style = document.createElement('link')
+    this.__style.rel = 'stylesheet'
+    this.__style.href =
+      'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.1/codemirror.min.css'
   }
 
   connectedCallback() {
+    const styleLoaded = new Promise(resolve => {
+      this.__style.onload = resolve
+    })
+
     super.connectedCallback()
-    this.ready = whenDefined(
-      () => this.codeMirror && this.codeMirror.__initialized
-    ).then(async () => {
+    this.ready = Promise.resolve().then(async () => {
+      await styleLoaded
+      await this.requestUpdate()
+      await whenDefined(() => this.codeMirror && this.codeMirror.__initialized)
       await this._initializeCodeMirror()
       ;[...this.renderRoot.querySelectorAll('[class^=CodeMirror]')].forEach(
         el => {
@@ -110,6 +127,7 @@ export default class Editor extends LitElement {
         }
       )
       this.codeMirror.editor.refresh()
+      this.setAttribute('ready', '')
     })
   }
 
@@ -178,11 +196,11 @@ export default class Editor extends LitElement {
   }
 
   render() {
-    return html` <style>
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.24.2/codemirror.min.css');
-      </style>
-      <wc-codemirror mode="${this.format}" ?readonly="${this.readonly}">
-      </wc-codemirror>`
+    return html`${this.__style}
+      <div id="wrapper">
+        <wc-codemirror mode="${this.format}" ?readonly="${this.readonly}">
+        </wc-codemirror>
+      </div>`
   }
 
   async parse() {
