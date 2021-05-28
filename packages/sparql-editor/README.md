@@ -36,7 +36,7 @@ const template = html`<rdf-editor prefixes="schema" baseIRI="http://example.com/
 | `prefixes`   | `prefixes`   |           | `string`          |         | a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used |
 | `query`      |              |           | `object`          |         | The JS object representing the query             |
 | `readonly`   | `readonly`   |           | `boolean`         |         |                                                  |
-| `ready`      |              |           | `Promise<void>`   |         | a one-time promise which resolves when CodeMirror has been initialized |
+| `ready`      | `ready`      |           | `Promise<void>`   |         | a one-time promise which resolves when CodeMirror has been initialized |
 | `value`      | `value`      |           | `string`          |         | The raw contents of the code editor              |
 
 ## Methods

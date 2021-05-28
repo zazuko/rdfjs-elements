@@ -1988,10 +1988,10 @@
   resolved "https://registry.yarnpkg.com/@ungap/promise-all-settled/-/promise-all-settled-1.1.2.tgz#aa58042711d6e3275dd37dc597e5d31e8c290a44"
   integrity sha512-sL/cEvJWAnClXw0wHk85/2L0G6Sj8UB0Ctc1TEMbKSsmpRosqhwj9gWgFRZSrBr2f9tiXISwNhCPmlfqUqyb9Q==
 
-"@vanillawc/wc-codemirror@^1.9.1":
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/@vanillawc/wc-codemirror/-/wc-codemirror-1.9.1.tgz#ec2c747f29b6160ed9fc179412c106efc8c4fa15"
-  integrity sha512-6Np09pPSZ9dVHo6P8JprlG9mdU33KYbkN0Rkdu1juSm0Kht4/RUtj3q76Lp1BiQ48IUMkH+rrjT+OoGIsM6XFA==
+"@vanillawc/wc-codemirror@^1.9.7":
+  version "1.9.7"
+  resolved "https://registry.yarnpkg.com/@vanillawc/wc-codemirror/-/wc-codemirror-1.9.7.tgz#2d0e1a925fa7f3281c244210acf4dc92d6a6e28b"
+  integrity sha512-GD84ziBwszPs1PGPHMFIxm5OTHRwpCrkKmXm/fJvYO6AcD0A3x37SxrPYb/P+ddgbujNZb5S8/3ufGvBngFwBg==
 
 "@web/browser-logs@^0.2.1", "@web/browser-logs@^0.2.2":
   version "0.2.2"
@@ -3549,10 +3549,10 @@ co@^4.6.0:
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
   integrity sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ=
 
-codemirror@^5.56.0:
-  version "5.56.0"
-  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.56.0.tgz#675640fcc780105cd22d3faa738b5d7ea6426f61"
-  integrity sha512-MfKVmYgifXjQpLSgpETuih7A7WTTIsxvKfSLGseTY5+qt0E1UD1wblZGM6WLenORo8sgmf+3X+WTe2WF7mufyw==
+codemirror@^5.61.1:
+  version "5.61.1"
+  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.61.1.tgz#ccfc8a43b8fcfb8b12e8e75b5ffde48d541406e0"
+  integrity sha512-+D1NZjAucuzE93vJGbAaXzvoBHwp9nJZWWWF9utjv25+5AZUiah6CIlfb4ikG4MoDsFsCG8niiJH5++OO2LgIQ==
 
 collection-visit@^1.0.0:
   version "1.0.0"

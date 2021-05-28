@@ -23,6 +23,11 @@
           "default": "{}"
         },
         {
+          "name": "ready",
+          "description": "a one-time promise which resolves when CodeMirror has been initialized",
+          "type": "Promise<void>"
+        },
+        {
           "name": "readonly",
           "type": "boolean"
         },
@@ -76,6 +81,7 @@
         },
         {
           "name": "ready",
+          "attribute": "ready",
           "description": "a one-time promise which resolves when CodeMirror has been initialized",
           "type": "Promise<void>"
         },
