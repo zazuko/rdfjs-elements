@@ -126,8 +126,8 @@ export default class Editor extends LitElement {
           })
         }
       )
-      this.codeMirror.editor.refresh()
       this.setAttribute('ready', '')
+      this.codeMirror.editor.refresh()
     })
   }
 
