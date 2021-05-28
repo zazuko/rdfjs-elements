@@ -159,7 +159,7 @@ export class RdfEditor extends Editor {
 
   async __serialize() {
     if (!this.format) return
-    
+
     await this.ready
 
     const formats = await import('@rdfjs-elements/formats-pretty')
