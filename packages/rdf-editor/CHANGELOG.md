@@ -1,5 +1,14 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.4.4
+
+### Patch Changes
+
+- c9fe730: wait for `<code-mirror>` to be ready before serialising `.quads`
+- Updated dependencies [bbd4a99]
+- Updated dependencies [1d5ee27]
+  - @rdfjs-elements/editor-base@0.3.0
+
 ## 0.4.3
 
 ### Patch Changes
