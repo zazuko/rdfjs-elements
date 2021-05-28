@@ -1,5 +1,18 @@
 # @rdfjs-elements/editor-base
 
+## 0.3.0
+
+### Minor Changes
+
+- 1d5ee27: Improve loading code-mirror styles:
+
+  - prevent broken layout if styles do not load on time
+  - no FOUC - editor is hidden until ready to display
+
+### Patch Changes
+
+- bbd4a99: fix: error thrown when element gets detached
+
 ## 0.2.1
 
 ### Patch Changes
