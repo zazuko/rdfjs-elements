@@ -221,6 +221,10 @@ export default class Editor extends LitElement {
   }
 
   __setParseHandler() {
+    if (!this.codeMirror.editor) {
+      return
+    }
+
     if (this[ParseHandler]) {
       this.codeMirror.editor.off('blur', this[ParseHandler])
       this.codeMirror.editor.off('change', this[ParseHandler])
