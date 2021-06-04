@@ -101,6 +101,7 @@ export class RdfSnippet extends LitElement {
       layout: { type: String, reflect: true },
       prefixes: { type: String },
       onlyOutput: { type: Boolean, attribute: 'only-output' },
+      customPrefixes: { type: Object },
     }
   }
 
@@ -192,6 +193,7 @@ export class RdfSnippet extends LitElement {
     this[Quads] = []
     this[Show] = 'input'
     this.inputFormat = 'text/turtle'
+    this.customPrefixes = {}
   }
 
   connectedCallback() {
@@ -221,6 +223,7 @@ export class RdfSnippet extends LitElement {
       <rdf-editor
         id="output"
         readonly
+        .customPrefixes="${this.customPrefixes}"
         .prefixes="${this.prefixes}"
         .quads="${this[Quads]}"
         .format="${this.selectedFormat}"

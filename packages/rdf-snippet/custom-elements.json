@@ -32,6 +32,11 @@
           "description": "set the format of the input (ignored when `<script>` is used)",
           "type": "string",
           "default": "\"text/turtle\""
+        },
+        {
+          "name": "customPrefixes",
+          "type": "object",
+          "default": "{}"
         }
       ],
       "properties": [
@@ -81,6 +86,12 @@
           "description": "set the format of the input (ignored when `<script>` is used)",
           "type": "string",
           "default": "\"text/turtle\""
+        },
+        {
+          "name": "customPrefixes",
+          "attribute": "customPrefixes",
+          "type": "object",
+          "default": "{}"
         }
       ],
       "events": [
