@@ -57,6 +57,7 @@ describe('SparqlEditor', () => {
     const el = await fixture(html`<sparql-editor></sparql-editor>`)
 
     // when
+    await el.ready
     el.value = 'SELECT * WHERE { ?s ?p ?o }'
 
     // then

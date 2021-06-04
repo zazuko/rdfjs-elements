@@ -45,6 +45,12 @@
           "description": "time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set",
           "type": "Number",
           "default": "250"
+        },
+        {
+          "name": "customPrefixes",
+          "description": "a map of custom prefixes or overrides",
+          "type": "Record<string, string>",
+          "default": "{}"
         }
       ],
       "properties": [
@@ -109,6 +115,13 @@
           "description": "time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set",
           "type": "Number",
           "default": "250"
+        },
+        {
+          "name": "customPrefixes",
+          "attribute": "customPrefixes",
+          "description": "a map of custom prefixes or overrides",
+          "type": "Record<string, string>",
+          "default": "{}"
         }
       ],
       "events": [
