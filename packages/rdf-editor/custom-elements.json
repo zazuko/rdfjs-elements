@@ -17,12 +17,6 @@
           "type": "Quad[]"
         },
         {
-          "name": "customPrefixes",
-          "description": "a map of custom prefixes or overrides",
-          "type": "Record<string, string>",
-          "default": "{}"
-        },
-        {
           "name": "ready",
           "description": "a one-time promise which resolves when CodeMirror has been initialized",
           "type": "Promise<void>"
@@ -57,6 +51,12 @@
           "description": "time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set",
           "type": "Number",
           "default": "250"
+        },
+        {
+          "name": "customPrefixes",
+          "description": "a map of custom prefixes or overrides",
+          "type": "Record<string, string>",
+          "default": "{}"
         }
       ],
       "properties": [
@@ -71,13 +71,6 @@
           "attribute": "quads",
           "description": "get or sets the RDF/JS quads",
           "type": "Quad[]"
-        },
-        {
-          "name": "customPrefixes",
-          "attribute": "customPrefixes",
-          "description": "a map of custom prefixes or overrides",
-          "type": "Record<string, string>",
-          "default": "{}"
         },
         {
           "name": "ready",
@@ -126,6 +119,13 @@
           "description": "time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set",
           "type": "Number",
           "default": "250"
+        },
+        {
+          "name": "customPrefixes",
+          "attribute": "customPrefixes",
+          "description": "a map of custom prefixes or overrides",
+          "type": "Record<string, string>",
+          "default": "{}"
         }
       ],
       "events": [

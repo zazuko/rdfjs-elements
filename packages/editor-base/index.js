@@ -99,6 +99,7 @@ export default class Editor extends LitElement {
   constructor() {
     super()
     this.parseDelay = 250
+    this[Value] = ''
 
     this.__style = document.createElement('link')
     this.__style.rel = 'stylesheet'
@@ -115,7 +116,12 @@ export default class Editor extends LitElement {
     this.ready = Promise.resolve().then(async () => {
       await styleLoaded
       await this.requestUpdate()
-      await whenDefined(() => this.codeMirror && this.codeMirror.__initialized)
+      await whenDefined(
+        () =>
+          this.codeMirror &&
+          this.codeMirror.editor &&
+          this.codeMirror.__initialized
+      )
       await this._initializeCodeMirror()
       ;[...this.renderRoot.querySelectorAll('[class^=CodeMirror]')].forEach(
         el => {
@@ -128,6 +134,9 @@ export default class Editor extends LitElement {
       )
       this.setAttribute('ready', '')
       this.codeMirror.editor.refresh()
+      if (this[Value]) {
+        this.codeMirror.editor.setValue(this[Value])
+      }
     })
   }
 
@@ -161,11 +170,17 @@ export default class Editor extends LitElement {
    * @returns {string}
    */
   get value() {
-    return this.codeMirror.editor.getValue()
+    if (this.hasAttribute('ready')) {
+      return this.codeMirror.editor.getValue()
+    }
+
+    return this[Value] || ''
   }
 
   set value(value) {
-    if (this.codeMirror && this.codeMirror.editor) {
+    if (typeof value !== 'string') return
+
+    if (this.hasAttribute('ready')) {
       if (this.value !== value) {
         this.codeMirror.editor.setValue(value)
         this[ParseHandler]()
@@ -182,6 +197,7 @@ export default class Editor extends LitElement {
       await this.ready
       this.codeMirror.editor.setValue(this[Value])
       this[ParseHandler]()
+      this[Value] = undefined
     }
   }
 
@@ -217,7 +233,7 @@ export default class Editor extends LitElement {
       await this._parse()
     } catch (error) {
       if (typeof this._errorLine === 'function') {
-        this.__highlightError(this._errorLine(error))
+        await this.__highlightError(this._errorLine(error))
       }
 
       this.dispatchEvent(
@@ -268,7 +284,9 @@ export default class Editor extends LitElement {
     this[Dirty] = false
   }
 
-  __highlightError(range) {
+  async __highlightError(range) {
+    if (!this.ready) return
+
     let from = { line: 0, ch: 0 }
     let to = { line: 0, ch: Number.MAX_SAFE_INTEGER }
 
@@ -280,6 +298,7 @@ export default class Editor extends LitElement {
     }
     const title = range ? range.message : ''
 
+    await this.ready
     this.__errorMarker = this.codeMirror.editor.getDoc().markText(from, to, {
       attributes: { part: 'error', title },
     })
