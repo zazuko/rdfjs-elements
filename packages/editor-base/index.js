@@ -43,6 +43,8 @@ function whenDefined(getter) {
  *
  * @attr {Boolean} ready - set when editor is initialized
  *
+ * @prop {Record<string, string>} customPrefixes - a map of custom prefixes or overrides
+ *
  * @csspart error - Line or part of line highlighted as result of parsing error. By default style is red wavy underline
  * @csspart CodeMirror - The main CodeMirror wrapper element. This and other parts are directly generated from CSS classes set by CodeMirror and should be fairly self-explanatory but not equally useful 😉
  * @csspart CodeMirror-vscrollbar
@@ -93,6 +95,7 @@ export default class Editor extends LitElement {
       isParsing: { type: Boolean, attribute: 'is-parsing', reflect: true },
       autoParse: { type: Boolean, attribute: 'auto-parse' },
       parseDelay: { type: Number },
+      customPrefixes: { type: Object },
     }
   }
 
@@ -100,6 +103,7 @@ export default class Editor extends LitElement {
     super()
     this.parseDelay = 250
     this[Value] = ''
+    this.customPrefixes = {}
 
     this.__style = document.createElement('link')
     this.__style.rel = 'stylesheet'
@@ -303,5 +307,23 @@ export default class Editor extends LitElement {
       attributes: { part: 'error', title },
     })
     this.codeMirror.editor.scrollIntoView(from)
+  }
+
+  async _combinePrefixes() {
+    return Object.entries(this.customPrefixes).reduce((clean, [prefix, ns]) => {
+      if (
+        !ns ||
+        !prefix ||
+        typeof ns !== 'string' ||
+        typeof prefix !== 'string'
+      ) {
+        return clean
+      }
+
+      return {
+        ...clean,
+        [prefix]: ns,
+      }
+    }, await this._prefixes())
   }
 }

@@ -56,8 +56,6 @@ const Quads = Symbol('parsed quads')
  *
  * @prop {Quad[]} quads - get or sets the RDF/JS quads
  *
- * @prop {Record<string, string>} customPrefixes - a map of custom prefixes or overrides
- *
  * @fires {CustomEvent<{ quads: Quad[]; }>} quads-changed - when the editor contents have changed and have been successfully parsed
  * @fires {CustomEvent<{ notFound?: boolean; error?: Error; }>} parsing-failed - when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason
  *
@@ -67,14 +65,12 @@ export class RdfEditor extends Editor {
     return {
       format: { type: String, reflect: true },
       quads: { type: Array },
-      customPrefixes: { type: Object },
     }
   }
 
   constructor() {
     super()
     this.isParsing = false
-    this.customPrefixes = {}
   }
 
   disconnectedCallback() {
@@ -179,7 +175,7 @@ export class RdfEditor extends Editor {
     })
 
     const quadStream = formats.serializers.import(this.format, stream, {
-      prefixes: await this.__combinePrefixes(),
+      prefixes: await this._combinePrefixes(),
     })
 
     if (!quadStream) {
@@ -219,23 +215,5 @@ export class RdfEditor extends Editor {
     }
 
     return errorDetails
-  }
-
-  async __combinePrefixes() {
-    return Object.entries(this.customPrefixes).reduce((clean, [prefix, ns]) => {
-      if (
-        !ns ||
-        !prefix ||
-        typeof ns !== 'string' ||
-        typeof prefix !== 'string'
-      ) {
-        return clean
-      }
-
-      return {
-        ...clean,
-        [prefix]: ns,
-      }
-    }, await this._prefixes())
   }
 }

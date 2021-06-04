@@ -38,6 +38,28 @@ describe('SparqlEditor', () => {
     expect(detail.query.queryType).to.eq('SELECT')
   })
 
+  it('parses query with custom prefixes', async () => {
+    // given
+    const value = 'SELECT * WHERE { ?s a schema:Person ; foaf:name ?name }'
+    const prefixes = {
+      schema: 'http://schema.org/',
+    }
+    const el = await fixture(
+      html`<sparql-editor
+        prefixes="foaf"
+        .customPrefixes="${prefixes}"
+        .value="${value}"
+      ></sparql-editor>`
+    )
+
+    // when
+    await oneEvent(el, 'parsed')
+    const { detail } = await oneEvent(el, 'parsed')
+
+    // then
+    expect(detail.query.queryType).to.eq('SELECT')
+  })
+
   it('parses when value is set', async () => {
     // given
     const el = await fixture(

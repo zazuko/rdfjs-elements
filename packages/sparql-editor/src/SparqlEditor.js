@@ -57,7 +57,10 @@ export class SparqlEditor extends Editor {
   async updated(_changedProperties) {
     await super.updated(_changedProperties)
 
-    if (_changedProperties.has('prefixes')) {
+    if (
+      _changedProperties.has('prefixes') ||
+      _changedProperties.has('customPrefixes')
+    ) {
       this.parse()
     }
   }
@@ -66,7 +69,7 @@ export class SparqlEditor extends Editor {
     try {
       const parser = new Sparql.Parser({
         baseIRI: this.baseIRI,
-        prefixes: await this._prefixes(),
+        prefixes: await this._combinePrefixes(),
       })
 
       const query = parser.parse(this.value)
