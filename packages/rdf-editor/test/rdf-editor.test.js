@@ -228,6 +228,23 @@ describe('RdfjsEditor', () => {
       expect(el.value).to.equal('foo bar')
     })
 
+    it('sets serialized string to the editor, no matter the no-reserialize property', async () => {
+      // given
+      const el = await fixture(
+        html`<rdf-editor format="foo/bar" no-reserialize></rdf-editor>`
+      )
+      await el.ready
+      serializers.set('foo/bar', 'foo bar')
+
+      // when
+      el.quads = []
+      await oneEvent(el, 'serialized')
+
+      // then
+      expect(el.codeMirror.editor.getValue()).to.equal('foo bar')
+      expect(el.value).to.equal('foo bar')
+    })
+
     it('nicely stringifies JSON-LD', async () => {
       // given
       const el = await fixture(
@@ -390,6 +407,27 @@ describe('RdfjsEditor', () => {
       // given
       const el = await fixture(
         html`<rdf-editor format="foo/bar" .quads="${quads}"></rdf-editor>`
+      )
+      await el.ready
+      serializers.set('foo/bar', 'after')
+
+      // when
+      el.prefixes = 'schema'
+      await oneEvent(el, 'serialized')
+
+      // then
+      expect(el.codeMirror.editor.getValue()).to.equal('after')
+      expect(el.value).to.equal('after')
+    })
+
+    it('setting triggers serialization, also when no-reserialize is set', async () => {
+      // given
+      const el = await fixture(
+        html`<rdf-editor
+          format="foo/bar"
+          .quads="${quads}"
+          no-reserialize
+        ></rdf-editor>`
       )
       await el.ready
       serializers.set('foo/bar', 'after')
