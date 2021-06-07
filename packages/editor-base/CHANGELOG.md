@@ -1,5 +1,12 @@
 # @rdfjs-elements/editor-base
 
+## 0.3.2
+
+### Patch Changes
+
+- 2c65633: Fixes some issues with synchronization (fixes #62)
+- 91c0f7b: Move `customPrefixes` to base editor class
+
 ## 0.3.1
 
 ### Patch Changes
