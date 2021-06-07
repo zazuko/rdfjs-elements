@@ -1,5 +1,11 @@
 # @rdfjs-elements/rdf-snippet
 
+## 0.3.2
+
+### Patch Changes
+
+- 91c0f7b: Add `customPrefixes` property, applied to the serialized output
+
 ## 0.3.1
 
 ### Patch Changes

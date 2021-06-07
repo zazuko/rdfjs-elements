@@ -1,5 +1,14 @@
 # @rdfjs-elements/sparql-editor
 
+## 0.1.6
+
+### Patch Changes
+
+- 91c0f7b: Adds support for setting custom prefixes to parse
+- Updated dependencies [2c65633]
+- Updated dependencies [91c0f7b]
+  - @rdfjs-elements/editor-base@0.3.2
+
 ## 0.1.5
 
 ### Patch Changes
