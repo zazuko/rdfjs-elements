@@ -52,9 +52,9 @@ const Quads = Symbol('parsed quads')
  *
  * @prop {string} format - Media type of the RDF serialization to use.
  *
- * @prop {boolean} noReserialize - Prevents the editor from serializing the quads when format changes
- *
  * Custom parsers and serializers must be added to `@rdf-esm/formats-common`
+ *
+ * @prop {boolean} noReserialize - Prevents the editor from serializing the quads when format changes
  *
  * @prop {Quad[]} quads - get or sets the RDF/JS quads
  *
