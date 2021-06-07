@@ -52,6 +52,8 @@ const Quads = Symbol('parsed quads')
  *
  * @prop {string} format - Media type of the RDF serialization to use.
  *
+ * @prop {boolean} noReserialize - Prevents the editor from serializing the quads when format changes
+ *
  * Custom parsers and serializers must be added to `@rdf-esm/formats-common`
  *
  * @prop {Quad[]} quads - get or sets the RDF/JS quads
@@ -65,12 +67,14 @@ export class RdfEditor extends Editor {
     return {
       format: { type: String, reflect: true },
       quads: { type: Array },
+      noReserialize: { type: Boolean, attribute: 'no-reserialize' },
     }
   }
 
   constructor() {
     super()
     this.isParsing = false
+    this.noReserialize = false
   }
 
   disconnectedCallback() {
@@ -115,7 +119,7 @@ export class RdfEditor extends Editor {
       shouldSerialize = hasQuads
     }
 
-    if (shouldSerialize) {
+    if (shouldSerialize && !this.noReserialize) {
       this.__serialize()
     }
   }
@@ -179,7 +183,7 @@ export class RdfEditor extends Editor {
     })
 
     if (!quadStream) {
-      this.serialized = `No serializer found for media type ${this.format}`
+      this.value = `No serializer found for media type ${this.format}`
       return
     }
 

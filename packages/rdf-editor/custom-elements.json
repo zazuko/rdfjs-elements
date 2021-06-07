@@ -8,13 +8,19 @@
       "attributes": [
         {
           "name": "format",
-          "description": "Media type of the RDF serialization to use.\n\nCustom parsers and serializers must be added to `@rdf-esm/formats-common`",
+          "description": "Media type of the RDF serialization to use.",
           "type": "string"
         },
         {
           "name": "quads",
           "description": "get or sets the RDF/JS quads",
           "type": "Quad[]"
+        },
+        {
+          "name": "no-reserialize",
+          "description": "Prevents the editor from serializing the quads when format changes\n\nCustom parsers and serializers must be added to `@rdf-esm/formats-common`",
+          "type": "boolean",
+          "default": "false"
         },
         {
           "name": "ready",
@@ -63,7 +69,7 @@
         {
           "name": "format",
           "attribute": "format",
-          "description": "Media type of the RDF serialization to use.\n\nCustom parsers and serializers must be added to `@rdf-esm/formats-common`",
+          "description": "Media type of the RDF serialization to use.",
           "type": "string"
         },
         {
@@ -71,6 +77,13 @@
           "attribute": "quads",
           "description": "get or sets the RDF/JS quads",
           "type": "Quad[]"
+        },
+        {
+          "name": "noReserialize",
+          "attribute": "no-reserialize",
+          "description": "Prevents the editor from serializing the quads when format changes\n\nCustom parsers and serializers must be added to `@rdf-esm/formats-common`",
+          "type": "boolean",
+          "default": "false"
         },
         {
           "name": "ready",
