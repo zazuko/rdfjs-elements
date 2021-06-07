@@ -122,7 +122,7 @@ describe('RdfjsEditor', () => {
       const el = await fixture(
         html`<rdf-editor
           format="application/ld+json"
-          .serialized="${before}"
+          .value="${before}"
           .quads="${quads}"
         ></rdf-editor>`
       )
@@ -139,6 +139,29 @@ describe('RdfjsEditor', () => {
         })
       )
       expect(value).to.equal('bar')
+    })
+
+    it('does not serializes quads in new format when no-reserialize is set', async () => {
+      // given
+      const before = 'foo'
+      const after = 'bar'
+      const el = await fixture(
+        html`<rdf-editor
+          format="application/ld+json"
+          .value="${before}"
+          .quads="${quads}"
+          no-reserialize
+        ></rdf-editor>`
+      )
+      await el.ready
+      serializers.set('text/turtle', after)
+
+      // when
+      el.format = 'application/ld+json'
+
+      // then
+      await el.updateComplete
+      expect(el.value).to.equal('foo')
     })
   })
 

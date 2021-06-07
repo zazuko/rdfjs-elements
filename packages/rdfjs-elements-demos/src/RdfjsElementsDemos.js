@@ -55,7 +55,7 @@ export class RdfjsElementsDemos extends LitElement {
         <rdf-editor
           id="input"
           format="application/ld+json"
-          .serialized="${this.input}"
+          .value="${this.input}"
         ></rdf-editor>
       </div>
       <button @click="${this._translate}">&gt;</button>
