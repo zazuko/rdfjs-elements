@@ -27,7 +27,7 @@ const jsonld = {
 
 const initialValue = JSON.stringify(jsonld, null, 2)
 
-const template = html`<rdf-editor format="application/ld+json" .serialized="${initialValue}"></rdf-editor>`
+const template = html`<rdf-editor format="application/ld+json" .value="${initialValue}"></rdf-editor>`
 ```
 
 By default most common formats are supported
