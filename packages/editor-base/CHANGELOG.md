@@ -1,5 +1,11 @@
 # @rdfjs-elements/editor-base
 
+## 0.3.3
+
+### Patch Changes
+
+- 6d9de99: Update rdf-ns-builders
+
 ## 0.3.2
 
 ### Patch Changes
