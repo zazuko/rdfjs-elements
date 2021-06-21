@@ -1,5 +1,14 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.4.6
+
+### Patch Changes
+
+- 6d9de99: Update rdf-ns-builders
+- Updated dependencies [6d9de99]
+  - @rdfjs-elements/editor-base@0.3.3
+  - @rdfjs-elements/formats-pretty@0.3.2
+
 ## 0.4.5
 
 ### Patch Changes
