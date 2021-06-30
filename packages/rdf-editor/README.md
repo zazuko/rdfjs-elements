@@ -7,7 +7,7 @@ A text editor custom element which parses and serializes RDF/JS Quads using a se
 The element requires a single property/attribute `format` which should be an RDF serialization media type supported by
 `@rdf-esm/formats-common` package.
 
-The element is easiest to bootstrap by setting the `serialized` property **before** first render. This property is
+The element is easiest to bootstrap by setting the `value` property **before** first render. This property is
 only used to provide the initial contents of the editor as it is parsed on first render, when the element has been added
 to the page.
 
