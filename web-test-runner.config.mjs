@@ -6,6 +6,7 @@ import fakeStreamModules from '@rdfjs-elements/testing'
 
 const config = {
   files: [
+    "packages/editor-base/**/*.test.js",
     "packages/rdf-editor/**/*.test.js",
     "packages/rdf-snippet/**/*.test.js",
     "packages/sparql-editor/**/*.test.js"
