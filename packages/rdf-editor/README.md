@@ -46,6 +46,7 @@ Syntax highlighting is relying on support from CodeMirror.
 | Property         | Attribute        | Modifiers | Type                     | Default | Description                                      |
 |------------------|------------------|-----------|--------------------------|---------|--------------------------------------------------|
 | `autoParse`      | `auto-parse`     |           | `boolean`                |         | if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event |
+| `autoRefresh`    | `auto-refresh`   |           | `Number`                 |         | controls the [autoRefresh addon](https://codemirror.net/doc/manual.html#addon_autorefresh) delay |
 | `codeMirror`     |                  | readonly  | `Element \| null`        |         | The underlying `<wc-codemirror>` element         |
 | `customPrefixes` | `customPrefixes` |           | `Record<string, string>` | {}      | a map of custom prefixes or overrides            |
 | `format`         | `format`         |           | `string`                 |         | Media type of the RDF serialization to use.<br /><br />Custom parsers and serializers must be added to `@rdf-esm/formats-common` |

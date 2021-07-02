@@ -1,6 +1,7 @@
 import { html, css, LitElement } from 'lit-element'
 import '@vanillawc/wc-codemirror'
 import { debounce } from 'throttle-debounce'
+import { autoRefresh } from './lib/autorefresh.js'
 
 const Value = Symbol('Initial value')
 const Dirty = Symbol('Editor dirty')
@@ -44,6 +45,8 @@ function whenDefined(getter) {
  * @attr {Boolean} ready - set when editor is initialized
  *
  * @prop {Record<string, string>} customPrefixes - a map of custom prefixes or overrides
+ *
+ * @prop {Number} autoRefresh - controls the [autoRefresh addon](https://codemirror.net/doc/manual.html#addon_autorefresh) delay
  *
  * @csspart error - Line or part of line highlighted as result of parsing error. By default style is red wavy underline
  * @csspart CodeMirror - The main CodeMirror wrapper element. This and other parts are directly generated from CSS classes set by CodeMirror and should be fairly self-explanatory but not equally useful 😉
@@ -94,6 +97,7 @@ export default class Editor extends LitElement {
       prefixes: { type: String, attribute: 'prefixes' },
       isParsing: { type: Boolean, attribute: 'is-parsing', reflect: true },
       autoParse: { type: Boolean, attribute: 'auto-parse' },
+      autoRefresh: { type: Number, attribute: 'auto-refresh' },
       parseDelay: { type: Number },
       customPrefixes: { type: Object },
     }
@@ -251,6 +255,11 @@ export default class Editor extends LitElement {
   }
 
   async _initializeCodeMirror() {
+    autoRefresh(this.codeMirror.editor.constructor)
+    this.codeMirror.editor.setOption(
+      'autoRefresh',
+      this.autoRefresh ? { delay: this.autoRefresh } : true
+    )
     this.codeMirror.editor.setSize('100%', '100%')
     this.__setParseHandler()
     this.codeMirror.editor.on('change', () => {
