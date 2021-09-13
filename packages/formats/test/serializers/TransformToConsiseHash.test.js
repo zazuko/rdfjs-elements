@@ -1,11 +1,10 @@
-import chai from 'chai'
+import { expect } from 'chai'
 import $rdf from 'rdf-ext'
 import clownface from 'clownface'
 import { rdf, schema, xsd } from '@tpluscode/rdf-ns-builders'
 import namespace from '@rdfjs/namespace'
 import { TransformToConciseHash } from '../../serializers/TransformToConciseHash.js'
 
-const { expect } = chai
 const ex = namespace('http://example.com/')
 
 function transform(graph, prefixes, strict = false) {
