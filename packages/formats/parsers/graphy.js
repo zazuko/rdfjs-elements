@@ -2,8 +2,8 @@ async function parser(module) {
   const create = (await module).default
 
   return {
-    import(quadStream) {
-      return quadStream.pipe(create())
+    import(quadStream, options) {
+      return quadStream.pipe(create(options))
     },
   }
 }
