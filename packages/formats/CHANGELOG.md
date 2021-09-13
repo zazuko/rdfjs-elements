@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.3.3
+
+### Patch Changes
+
+- 2519449: Options were not forwarded to graphy parsers
+
 ## 0.3.2
 
 ### Patch Changes
