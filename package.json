@@ -10,7 +10,7 @@
     "packages/*"
   ],
   "scripts": {
-    "analyze": "npx lerna run analyze",
+    "analyze": "wsrun -pmc analyze",
     "test": "run-s test:*",
     "test:components": "wtr",
     "test:formats": "c8 -o coverage/formats node_modules/mocha/bin/mocha packages/formats/**/*.test.js",
@@ -45,7 +45,8 @@
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^5.1.1"
+    "webpack-merge": "^5.1.1",
+    "wsrun": "^5.2.4"
   },
   "resolutions": {
     "rdfxml-streaming-parser/readable-stream": "3.6.0"
@@ -63,7 +64,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npx lerna run analyze && git add **/custom-elements.json **/README.md"
+      "pre-commit": "lint-staged && yarn analyze && git add **/custom-elements.json **/README.md"
     }
   },
   "lint-staged": {
