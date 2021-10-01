@@ -296,6 +296,7 @@ export default class Editor extends LitElement {
 
     if (range && range.from) {
       from = range.from
+      this.codeMirror.editor.scrollIntoView(from)
     }
     if (range && range.to) {
       to = range.to
@@ -306,7 +307,6 @@ export default class Editor extends LitElement {
     this.__errorMarker = this.codeMirror.editor.getDoc().markText(from, to, {
       attributes: { part: 'error', title },
     })
-    this.codeMirror.editor.scrollIntoView(from)
   }
 
   async _combinePrefixes() {
