@@ -24,7 +24,7 @@ jobs:
           build_directory: dist
           deploy_alias: ${{ env.BRANCH_NAME }}
           NETLIFY_DEPLOY_TO_PROD: false
-          build_command: npx lerna run build
+          build_command: npx wsrun -mpc build
 
       - name: Status check
         uses: Sibz/github-status-action@v1.1.1
