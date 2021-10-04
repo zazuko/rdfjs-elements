@@ -5,7 +5,7 @@ import { debounce } from 'throttle-debounce'
 const Value = Symbol('Initial value')
 const Dirty = Symbol('Editor dirty')
 const ParseHandler = Symbol('ParseHandler')
-const defaultPrefixes = ['rdf', 'rdfs', 'xsd']
+export const defaultPrefixes = ['rdf', 'rdfs', 'xsd']
 
 function whenDefined(getter) {
   const interval = 10

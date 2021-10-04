@@ -1,4 +1,5 @@
-import Editor from '@rdfjs-elements/editor-base'
+import * as builders from '@tpluscode/rdf-ns-builders'
+import Editor, { defaultPrefixes } from '@rdfjs-elements/editor-base'
 import './mode/javascript.js'
 import './mode/turtle.js'
 import './mode/ntriples.js'
@@ -60,6 +61,7 @@ const Quads = Symbol('parsed quads')
  *
  * @fires {CustomEvent<{ quads: Quad[]; }>} quads-changed - when the editor contents have changed and have been successfully parsed
  * @fires {CustomEvent<{ notFound?: boolean; error?: Error; }>} parsing-failed - when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason
+ * @fires {CustomEvent<{ prefixes: Record<string, string>; }>} prefixes-parsed - prefixes returned by parser
  *
  */
 export class RdfEditor extends Editor {
@@ -130,6 +132,7 @@ export class RdfEditor extends Editor {
 
     const inputStream = toStream(this.value)
     const quads = []
+    const prefixes = {}
 
     const quadStream = parsers.import(this.format, inputStream)
     if (!quadStream) {
@@ -143,6 +146,9 @@ export class RdfEditor extends Editor {
       return
     }
 
+    quadStream.on('prefix', (prefix, ns) => {
+      prefixes[prefix] = ns
+    })
     for await (const quad of quadStream) {
       quads.push(quad)
     }
@@ -155,6 +161,7 @@ export class RdfEditor extends Editor {
         },
       })
     )
+    this.__notifyParsedPrefixes(prefixes)
   }
 
   async __serialize() {
@@ -219,5 +226,30 @@ export class RdfEditor extends Editor {
     }
 
     return errorDetails
+  }
+
+  __notifyParsedPrefixes(parsedPrefixes) {
+    const prefixes = {}
+    const customPrefixes = { ...parsedPrefixes }
+
+    for (const [prefix, ns] of Object.entries(parsedPrefixes)) {
+      if (defaultPrefixes.includes(prefix)) {
+        delete customPrefixes[prefix]
+      } else if (prefix in builders) {
+        prefixes[prefix] = ns
+        delete customPrefixes[prefix]
+      }
+    }
+
+    this.dispatchEvent(
+      new CustomEvent('prefixes-parsed', {
+        detail: {
+          prefixes: {
+            ...prefixes,
+            ...customPrefixes,
+          },
+        },
+      })
+    )
   }
 }

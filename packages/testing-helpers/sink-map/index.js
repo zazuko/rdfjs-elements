@@ -20,13 +20,18 @@ export class FakeSinkMap {
     return result
   }
 
-  set(format, results) {
+  set(format, results, prefixes = {}) {
     if (results instanceof Error) {
       this._mocks.set(format, results)
     } else {
       const fakeSink = {
         import() {
           return results
+        },
+        on(ev, handler) {
+          if (ev === 'prefix') {
+            Object.entries(prefixes).forEach(pair => handler(...pair))
+          }
         },
         [Symbol.iterator]() {
           return results[Symbol.iterator]()

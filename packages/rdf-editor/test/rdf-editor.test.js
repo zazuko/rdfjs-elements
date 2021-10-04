@@ -47,6 +47,31 @@ describe('RdfjsEditor', () => {
     expect(el.quads).to.eq(quads)
   })
 
+  it('emits even when prefixes are returned as parser events', async () => {
+    // given
+    const el = await fixture(
+      html`<rdf-editor
+        format="application/ld+json"
+        .quads="${quads}"
+      ></rdf-editor> `
+    )
+    parsers.set('application/ld+json', quads, {
+      schema: 'http://schema.org/',
+    })
+    await el.ready
+
+    // when
+    CodeMirror.signal(el.codeMirror.editor, 'blur')
+    const {
+      detail: { prefixes },
+    } = await oneEvent(el, 'prefixes-parsed')
+
+    // then
+    expect(prefixes).to.include({
+      schema: 'http://schema.org/',
+    })
+  })
+
   describe('.format', () => {
     it('setting via property set code mirror mode', async () => {
       // given
