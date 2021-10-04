@@ -3,7 +3,7 @@ async function parser(module) {
 
   return {
     import(quadStream, options) {
-      return quadStream.pipe(create(options))
+      return quadStream.pipe(options ? create(options) : create())
     },
   }
 }
