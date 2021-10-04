@@ -151,6 +151,10 @@
           "description": "when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason"
         },
         {
+          "name": "prefixes-parsed",
+          "description": "prefixes returned by parser"
+        },
+        {
           "name": "serialized"
         }
       ],

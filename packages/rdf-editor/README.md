@@ -66,11 +66,12 @@ Syntax highlighting is relying on support from CodeMirror.
 
 ## Events
 
-| Event            | Type                                             | Description                                      |
-|------------------|--------------------------------------------------|--------------------------------------------------|
-| `parsing-failed` | `CustomEvent<{ notFound?: boolean; error?: Error; }>` | when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason |
-| `quads-changed`  | `CustomEvent<{ quads: Quad[]; }>`                | when the editor contents have changed and have been successfully parsed |
-| `serialized`     | `CustomEvent<{ value: string; }>`                |                                                  |
+| Event             | Type                                             | Description                                      |
+|-------------------|--------------------------------------------------|--------------------------------------------------|
+| `parsing-failed`  | `CustomEvent<{ notFound?: boolean; error?: Error; }>` | when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason |
+| `prefixes-parsed` | `CustomEvent<{ prefixes: Record<string, string>; }>` | prefixes returned by parser                      |
+| `quads-changed`   | `CustomEvent<{ quads: Quad[]; }>`                | when the editor contents have changed and have been successfully parsed |
+| `serialized`      | `CustomEvent<{ value: string; }>`                |                                                  |
 
 ## CSS Shadow Parts
 

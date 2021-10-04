@@ -24,6 +24,7 @@
     "@rdf-esm/data-model": "^0.5.4",
     "@rdfjs-elements/editor-base": "^0.3.3",
     "@rdfjs-elements/formats-pretty": "^0.3.2",
+    "@tpluscode/rdf-ns-builders": "^1.0.0",
     "readable-stream": "^3",
     "string-to-stream": "^3.0.1"
   },
