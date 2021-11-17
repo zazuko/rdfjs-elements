@@ -1,5 +1,15 @@
 # @rdfjs-elements/editor-base
 
+## 0.4.0
+
+### Minor Changes
+
+- 970c196: Update to lit@2
+
+### Patch Changes
+
+- 473d6dd: In certain serializations the editor would scroll up to the top on parse errors. This would have happened if the precise line could not have been determined from the error raised by the respective parser
+
 ## 0.3.3
 
 ### Patch Changes
