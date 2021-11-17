@@ -20,7 +20,8 @@
     "format:prettier": "prettier \"**/*.js\" --write --ignore-path .eslintignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "postinstall": "yarn-deduplicate"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.11.0",
@@ -29,9 +30,9 @@
     "@open-wc/building-webpack": "^2.13.40",
     "@open-wc/eslint-config": "^2.0.0",
     "@rollup/plugin-commonjs": "^18.0.0",
-    "@web/dev-server-esbuild": "^0.2.12",
-    "@web/dev-server-rollup": "^0.3.3",
-    "@web/test-runner": "^0.13.2",
+    "@web/dev-server-esbuild": "^0.2.16",
+    "@web/dev-server-rollup": "^0.3.13",
+    "@web/test-runner": "^0.13.22",
     "c8": "^7.7.2",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.11.0",
@@ -46,7 +47,8 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.1.1",
-    "wsrun": "^5.2.4"
+    "wsrun": "^5.2.4",
+    "yarn-deduplicate": "^3.1.0"
   },
   "resolutions": {
     "rdfxml-streaming-parser/readable-stream": "3.6.0"

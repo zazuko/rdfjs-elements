@@ -12,8 +12,7 @@
     "analyze:lit": "lit-analyzer --strict --quiet --rules.no-invalid-css off"
   },
   "dependencies": {
-    "lit-html": "^1.0.0",
-    "lit-element": "^2.0.1",
+    "lit": "^2",
     "@rdfjs-elements/rdf-editor": "^0.4.0"
   }
 }

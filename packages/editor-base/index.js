@@ -1,4 +1,4 @@
-import { html, css, LitElement } from 'lit-element'
+import { html, css, LitElement } from 'lit'
 import '@vanillawc/wc-codemirror'
 import { debounce } from 'throttle-debounce'
 

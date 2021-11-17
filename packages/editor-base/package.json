@@ -16,7 +16,7 @@
     "@tpluscode/rdf-ns-builders": "^1.0.0",
     "@vanillawc/wc-codemirror": "^1.9.7",
     "codemirror": "^5.61.1",
-    "lit-element": "^2.2.1",
+    "lit": "^2",
     "throttle-debounce": "^3.0.1"
   },
   "repository": {

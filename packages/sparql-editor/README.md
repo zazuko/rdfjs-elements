@@ -11,7 +11,7 @@ so that they don't have to be explicitly added in the SPARQL string
 
 ```js
 import '@rdfjs-elements/sparql-editor'
-import { html } from 'lit-html'
+import { html } from 'lit'
 
 const value = `CONSTRUCT { ?s ?p ?o }
 FROM <john-doe>
