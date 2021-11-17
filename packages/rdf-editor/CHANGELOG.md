@@ -1,5 +1,21 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.5.0
+
+### Minor Changes
+
+- 970c196: Update to lit@2
+
+### Patch Changes
+
+- 473d6dd: In certain serializations the editor would scroll up to the top on parse errors. This would have happened if the precise line could not have been determined from the error raised by the respective parser
+- c0e1f44: Emit a `prefixes-parsed` event with prefix map parsed from the editor's contents
+- Updated dependencies [5f52d07]
+- Updated dependencies [473d6dd]
+- Updated dependencies [970c196]
+  - @rdfjs-elements/formats-pretty@0.3.4
+  - @rdfjs-elements/editor-base@0.4.0
+
 ## 0.4.6
 
 ### Patch Changes

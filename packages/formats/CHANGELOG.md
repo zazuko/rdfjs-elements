@@ -1,5 +1,13 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.3.4
+
+### Patch Changes
+
+- 5f52d07: Do not pass `undefined` to graphy parser
+
+  The PR #73 apparently introduced a bug because `undefined` options are not gracefully handled by graphy
+
 ## 0.3.3
 
 ### Patch Changes

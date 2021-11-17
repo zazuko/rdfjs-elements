@@ -1,5 +1,14 @@
 # rdfjs-elements-demos
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies [473d6dd]
+- Updated dependencies [c0e1f44]
+- Updated dependencies [970c196]
+  - @rdfjs-elements/rdf-editor@0.5.0
+
 ## 0.0.2
 
 ### Patch Changes

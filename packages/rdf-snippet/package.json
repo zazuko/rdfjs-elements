@@ -1,6 +1,6 @@
 {
   "name": "@rdfjs-elements/rdf-snippet",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Simple RDF viewer with buttons for switching between serializations",
   "author": "Zazuko GmbH",
   "license": "MIT",
@@ -21,7 +21,7 @@
   },
   "homepage": "https://zazuko.github.io/rdfjs-elements/rdf-snippet/",
   "dependencies": {
-    "@rdfjs-elements/rdf-editor": "^0.4.0",
+    "@rdfjs-elements/rdf-editor": "^0.5.0",
     "lit": "^2"
   },
   "devDependencies": {
