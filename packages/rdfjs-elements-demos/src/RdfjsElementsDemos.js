@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit-element'
+import { LitElement, html, css } from 'lit'
 import '@rdfjs-elements/rdf-editor/rdf-editor.js'
 
 export class RdfjsElementsDemos extends LitElement {

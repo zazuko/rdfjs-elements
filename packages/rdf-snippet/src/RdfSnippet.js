@@ -1,5 +1,5 @@
-import { css, html, LitElement } from 'lit-element'
-import { repeat } from 'lit-html/directives/repeat'
+import { css, html, LitElement } from 'lit'
+import { repeat } from 'lit/directives/repeat.js'
 import { formats } from '@rdfjs-elements/rdf-editor/index.js'
 
 import '@rdfjs-elements/rdf-editor'

@@ -13,7 +13,7 @@ to the page.
 
 ```js
 import '@rdfjs-elements/rdf-editor'
-import { html } from 'lit-html'
+import { html } from 'lit'
 
 const jsonld = {
    '@context': {
