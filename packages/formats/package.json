@@ -35,7 +35,7 @@
     "@graphy/content.trig.read": "^4.3.3",
     "@graphy/content.trig.write": "^4.3.3",
     "@graphy/core.data.factory": "^4.3.3",
-    "@rdfjs/serializer-jsonld-ext": "^2.0.0",
+    "@rdfjs/serializer-jsonld-ext": "^3.0.0",
     "@rdf-esm/formats-common": "^0.5.5",
     "@rdf-esm/sink-map": "^0.5.4",
     "@rdf-esm/term-map": "^0.5.0",
