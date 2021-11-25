@@ -1,5 +1,11 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.5.2
+
+### Patch Changes
+
+- b8dca60: Editor would sometimes not parse on initial change of `.format` property
+
 ## 0.5.1
 
 ### Patch Changes
