@@ -107,9 +107,11 @@ export class RdfEditor extends Editor {
     super.updated(_changedProperties)
 
     let shouldSerialize = false
+    let shouldParse = false
     const hasQuads = this.quads && this.quads.length > 0
-    if (_changedProperties.get('format')) {
+    if (_changedProperties.has('format')) {
       shouldSerialize = hasQuads && !this.noReserialize
+      shouldParse = !shouldSerialize
     }
     if (_changedProperties.has('quads')) {
       shouldSerialize = true
@@ -121,7 +123,9 @@ export class RdfEditor extends Editor {
       shouldSerialize = hasQuads
     }
 
-    if (shouldSerialize) {
+    if (shouldParse) {
+      this.parse()
+    } else if (shouldSerialize) {
       this.__serialize()
     }
   }

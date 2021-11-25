@@ -22,6 +22,7 @@ describe('RdfjsEditor', () => {
 
     // when
     await el.ready
+    parsers.set('application/ld+json', quads)
     el.codeMirror.editor.setValue('foo')
     CodeMirror.signal(el.codeMirror.editor, 'blur')
     await oneEvent(el, 'quads-changed')
