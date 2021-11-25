@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.4.0
+
+### Minor Changes
+
+- e31f1ac: Update JSON-LD serializer. It is a potential breaking change for caller doing framing
+
 ## 0.3.4
 
 ### Patch Changes
