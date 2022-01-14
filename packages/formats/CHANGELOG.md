@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.4.1
+
+### Patch Changes
+
+- 568d00e: Incorrect exports field prevented importing in node (`ERR_PACKAGE_PATH_NOT_EXPORTED`)
+
 ## 0.4.0
 
 ### Minor Changes
