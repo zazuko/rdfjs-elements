@@ -13,7 +13,7 @@
     "analyze": "wsrun -pmc analyze",
     "test": "run-s test:*",
     "test:components": "wtr",
-    "test:formats": "c8 -o coverage/formats node_modules/mocha/bin/mocha packages/formats/**/*.test.js",
+    "test:formats": "c8 -o coverage/formats node_modules/mocha/bin/mocha packages/formats",
     "lint:eslint": "eslint --quiet --ext .js,.html . --ignore-path .eslintignore",
     "format:eslint": "eslint --quiet --ext .js,.html . --fix --ignore-path .eslintignore",
     "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .eslintignore",
