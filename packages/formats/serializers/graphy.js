@@ -1,10 +1,15 @@
 import { TransformToConciseHash } from './TransformToConciseHash.js'
 
-async function serializer(importScribe, strict) {
+async function serializer(importScribe, { strict, ...defaults } = {}) {
   const create = (await importScribe).default
 
   return {
-    import(quadStream, { prefixes = {} } = {}) {
+    import(quadStream, options = {}) {
+      const prefixes = {
+        ...(defaults.prefixes || {}),
+        ...(options.prefixes || {}),
+      }
+
       const writer = create({
         prefixes,
       })
@@ -18,7 +23,9 @@ async function serializer(importScribe, strict) {
   }
 }
 
-export const turtle = () => serializer(import('@graphy/content.ttl.write'))
-export const rdfXml = () =>
-  serializer(import('@graphy/content.xml.scribe'), true)
-export const trig = () => serializer(import('@graphy/content.trig.write'))
+export const turtle = ({ prefixes } = {}) =>
+  serializer(import('@graphy/content.ttl.write'), { prefixes })
+export const rdfXml = ({ prefixes } = {}) =>
+  serializer(import('@graphy/content.xml.scribe'), { strict: true, prefixes })
+export const trig = ({ prefixes } = {}) =>
+  serializer(import('@graphy/content.trig.write'), { prefixes })
