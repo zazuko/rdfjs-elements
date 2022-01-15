@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.4.2
+
+### Patch Changes
+
+- 005847c: Export serializer sink factories with option to set default prefixes
+
 ## 0.4.1
 
 ### Patch Changes
