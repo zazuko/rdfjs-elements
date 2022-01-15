@@ -3,7 +3,9 @@ import clownface from 'clownface'
 import $rdf from 'rdf-ext'
 import { expect } from 'chai'
 import { rdf } from '@tpluscode/rdf-ns-builders/strict'
-import { parsers } from '../index.js'
+import * as ns from '@tpluscode/rdf-ns-builders'
+import getStream from 'get-stream'
+import { formats, parsers, serializers } from '../index.js'
 
 describe('@rdfjs-elements/formats-pretty', () => {
   describe('parsers', () => {
@@ -15,7 +17,7 @@ describe('@rdfjs-elements/formats-pretty', () => {
 }`
 
         // when
-        const quads = parsers.import('application/trig', toStream(input), {
+        const quads = parsers.import(formats.trig, toStream(input), {
           baseIRI: 'https://example.com/foo/',
         })
         const dataset = await $rdf.dataset().import(quads)
@@ -32,6 +34,27 @@ describe('@rdfjs-elements/formats-pretty', () => {
             .out(rdf.type)
             .term.equals($rdf.namedNode('https://example.com/foo/Bar'))
         )
+      })
+    })
+  })
+
+  describe('serializers', () => {
+    describe('trig', () => {
+      it('produces output', async () => {
+        // given
+        const dataset = $rdf.dataset()
+        const john = $rdf.namedNode('https://example.com/john')
+        clownface({ dataset, graph: john })
+          .namedNode(john)
+          .addOut(ns.dcterms.type, ns.schema.Person)
+
+        // when
+        const serialized = await getStream(
+          serializers.import(formats.trig, dataset.toStream())
+        )
+
+        // then
+        expect(serialized).to.contain('<https://example.com/john> {')
       })
     })
   })
