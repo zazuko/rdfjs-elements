@@ -2,7 +2,7 @@
 
 Common RDF/JS parsers and serializers, the latter returning a nicely formatted output.
 
-For usage see [`@rdfjs/formats-common`](https://npm.im/@rdfjs/formats-common)
+For basic usage see [`@rdfjs/formats-common`](https://npm.im/@rdfjs/formats-common)
 
 ## Serializers
 
@@ -15,6 +15,20 @@ For usage see [`@rdfjs/formats-common`](https://npm.im/@rdfjs/formats-common)
 | application/n-triples | 😶 | [@rdfjs/serializer-ntriples](https://npm.im/@rdfjs/serializer-ntriples) | 
 | application/n-quads | 😶 | [@rdfjs/serializer-ntriples](https://npm.im/@rdfjs/serializer-ntriples) | 
 | application/rdf+xml | 😶 | [@graphy/content.xml.scribe](https://npm.im/@graphy/content.xml.scribe) |
+
+Individual serializer skins can also be created by importing from `@rdfjs-elements/formats-pretty/serializers`. This 
+allows for initializing a sink preloaded with a given set of prefixes.
+
+```js
+import prefixes from '@zazuko/rdf-vocabularies/prefixes'
+import { turtle } from '@rdfjs-elements/formats-pretty/serializers'
+
+const { schema, dcterms, foaf } = prefixes
+
+const sink = await turtle({
+  prefixes: { schema, dcterms, foaf }
+})
+```
 
 ## Parsers
 

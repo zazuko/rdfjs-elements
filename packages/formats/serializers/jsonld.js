@@ -1,4 +1,4 @@
-export default async function () {
+export default async function (defaults = {}) {
   const JsonLdSerializer = (await import('@rdfjs/serializer-jsonld-ext'))
     .default
 
@@ -6,6 +6,7 @@ export default async function () {
     import(stream, { prefixes = {} } = {}) {
       return super.import(stream, {
         context: {
+          ...(defaults.prefixes || {}),
           ...prefixes,
         },
       })
