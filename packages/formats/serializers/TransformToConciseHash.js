@@ -136,7 +136,7 @@ export class TransformToConciseHash extends stream.Transform {
   }
 
   literalHash(term) {
-    if (term.datatype) {
+    if (term.datatype && !this.strict) {
       switch (term.datatype.value) {
         case xsd.integer.value: {
           const number = +term.value

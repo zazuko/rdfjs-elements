@@ -65,7 +65,7 @@ describe('@rdfjs-elements/formats-pretty', () => {
   })
 
   describe('round-trips', () => {
-    function roundTripCase(file) {
+    function roundTripCase(file, { format = formats.turtle } = {}) {
       return async () => {
         // given
         const graph = await $rdf
@@ -74,11 +74,11 @@ describe('@rdfjs-elements/formats-pretty', () => {
 
         // when
         const serialized = await getStream(
-          serializers.import(formats.turtle, graph.toStream())
+          serializers.import(format, graph.toStream())
         )
         const roundTrip = await $rdf
           .dataset()
-          .import(parsers.import(formats.turtle, toStream(serialized)))
+          .import(parsers.import(format, toStream(serialized)))
 
         // then
         expect(roundTrip.toCanonical()).to.eq(graph.toCanonical())
@@ -86,6 +86,10 @@ describe('@rdfjs-elements/formats-pretty', () => {
     }
 
     it('shacl-report.nq', roundTripCase('shacl-report.nq'))
+    it(
+      'numbers in RDF/XML',
+      roundTripCase('wikidata.ttl', { format: formats.rdfXml })
+    )
     it(
       'list-reused-single-element.ttl',
       roundTripCase('list-reused-single-element.ttl')

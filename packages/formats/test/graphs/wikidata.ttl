@@ -1,0 +1,7 @@
+@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dbr:	<http://dbpedia.org/resource/> .
+@prefix dbo:	<http://dbpedia.org/ontology/> .
+
+dbr:Alkanna_tinctoria
+    dbo:wikiPageID	36940 ;
+.
