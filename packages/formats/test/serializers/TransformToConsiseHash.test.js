@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import $rdf from 'rdf-ext'
 import clownface from 'clownface'
-import { rdf, schema, xsd } from '@tpluscode/rdf-ns-builders'
+import { rdf, schema, xsd, rdfs } from '@tpluscode/rdf-ns-builders/strict'
 import namespace from '@rdfjs/namespace'
 import { TransformToConciseHash } from '../../serializers/TransformToConciseHash.js'
 
@@ -462,6 +462,77 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
           [listNode]: {
             'rdf:first': ['"a'],
             'rdf:rest': ['rdf:nil'],
+          },
+        },
+      },
+    })
+  })
+
+  it('removes explicit rdf:type rdf:List', async () => {
+    // given
+    const graph = clownface({ dataset: $rdf.dataset() })
+      .namedNode(ex.foo)
+      .addList(ex.list, ['a', 'b', 'c'])
+    graph.any().has(rdf.first).addOut(rdf.type, rdf.List)
+
+    // when
+    const hash = await transform(graph, {
+      ex: ex().value,
+      rdf: rdf().value,
+    })
+
+    // then
+    expect(hash).to.deep.contain({
+      type: 'c4',
+      value: {
+        '*': {
+          'ex:foo': {
+            'ex:list': [['"a', '"b', '"c']],
+          },
+        },
+      },
+    })
+  })
+
+  it('does not remove other properties from RDF List nodes', async () => {
+    // given
+    const graph = clownface({ dataset: $rdf.dataset() })
+      .namedNode(ex.foo)
+      .addList(ex.list, ['a', 'b'])
+    graph
+      .any()
+      .has(rdf.first)
+      .addOut(rdf.type, ex.List)
+      .addOut(rdfs.comment, 'foo')
+
+    // when
+    const hash = await transform(graph, {
+      ex: ex().value,
+      rdf: rdf().value,
+      rdfs: rdfs().value,
+    })
+
+    // then
+    expect(hash).to.deep.contain({
+      type: 'c4',
+      value: {
+        '*': {
+          'ex:foo': {
+            'ex:list': [
+              {
+                a: ['ex:List'],
+                'rdfs:comment': ['"foo'],
+                'rdf:first': ['"a'],
+                'rdf:rest': [
+                  {
+                    a: ['ex:List'],
+                    'rdfs:comment': ['"foo'],
+                    'rdf:first': ['"b'],
+                    'rdf:rest': ['rdf:nil'],
+                  },
+                ],
+              },
+            ],
           },
         },
       },
