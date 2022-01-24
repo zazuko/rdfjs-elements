@@ -3,6 +3,19 @@ import { rdf, xsd } from '@tpluscode/rdf-ns-builders'
 import TermMap from '@rdf-esm/term-map'
 import graphy from '@graphy/core.data.factory'
 
+function isBareListNode(predicates) {
+  const isList = predicates.has(rdf.first) && predicates.has(rdf.rest)
+  if (predicates.size === 2 && isList) {
+    return true
+  }
+  if (predicates.size === 3 && isList && predicates.has(rdf.type)) {
+    const [type, ...moreTypes] = predicates.get(rdf.type)
+    return rdf.List.equals(type) && moreTypes.length === 0
+  }
+
+  return false
+}
+
 export class TransformToConciseHash extends stream.Transform {
   constructor({ prefixes = {}, strict = false } = {}) {
     super({ objectMode: true })
@@ -80,12 +93,7 @@ export class TransformToConciseHash extends stream.Transform {
       return this.toHashKey(node)
     }
 
-    if (
-      !this.strict &&
-      predicates.size === 2 &&
-      predicates.has(rdf.first) &&
-      predicates.has(rdf.rest)
-    ) {
+    if (!this.strict && isBareListNode(predicates)) {
       const [first] = predicates.get(rdf.first)
       const [restNode] = predicates.get(rdf.rest)
 
