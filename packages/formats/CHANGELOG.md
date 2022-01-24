@@ -1,5 +1,13 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.4.3
+
+### Patch Changes
+
+- 0c89baf: Explicit `rdf:type rdf:List` would prevent shorthand list syntax
+- 965c98a: Shared RDF List nodes would fail to serialize to turtle (re blake-regalia/graphy.js#54)
+- 2de691c: Number would fail RDF/XML serialization (fixes #87)
+
 ## 0.4.2
 
 ### Patch Changes
