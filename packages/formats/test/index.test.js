@@ -65,34 +65,30 @@ describe('@rdfjs-elements/formats-pretty', () => {
   })
 
   describe('round-trips', () => {
-    function roundTripCase(file, { format = formats.turtle } = {}) {
-      return async () => {
-        // given
-        const graph = await $rdf
-          .dataset()
-          .import(rdfUtil.fromFile(join(__dirname, `graphs/${file}`)))
+    function roundTripCase(file) {
+      for (const format of Object.values(formats)) {
+        it(`graph ${file} in format ${format}`, async () => {
+          // given
+          const graph = await $rdf
+            .dataset()
+            .import(rdfUtil.fromFile(join(__dirname, `graphs/${file}`)))
 
-        // when
-        const serialized = await getStream(
-          serializers.import(format, graph.toStream())
-        )
-        const roundTrip = await $rdf
-          .dataset()
-          .import(parsers.import(format, toStream(serialized)))
+          // when
+          const serialized = await getStream(
+            serializers.import(format, graph.toStream())
+          )
+          const roundTrip = await $rdf
+            .dataset()
+            .import(parsers.import(format, toStream(serialized)))
 
-        // then
-        expect(roundTrip.toCanonical()).to.eq(graph.toCanonical())
+          // then
+          expect(roundTrip.toCanonical()).to.eq(graph.toCanonical())
+        })
       }
     }
 
-    it('shacl-report.nq', roundTripCase('shacl-report.nq'))
-    it(
-      'numbers in RDF/XML',
-      roundTripCase('wikidata.ttl', { format: formats.rdfXml })
-    )
-    it(
-      'list-reused-single-element.ttl',
-      roundTripCase('list-reused-single-element.ttl')
-    )
+    roundTripCase('shacl-report.nq')
+    roundTripCase('wikidata.ttl')
+    roundTripCase('list-reused-single-element.ttl')
   })
 })
