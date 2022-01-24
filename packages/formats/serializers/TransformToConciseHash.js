@@ -67,13 +67,13 @@ export class TransformToConciseHash extends stream.Transform {
     }
   }
 
-  createPropertyMap(graph, predicates) {
+  createPropertyMap(graph, predicates, level = 0) {
     const nestedObject = node => {
       if (!this.strict && this.blankNodes.get(node) === 1) {
         const entry = this.graphs.get(graph).get(node)
 
         if (entry) {
-          return this.createPropertyMap(graph, entry.predicates)
+          return this.createPropertyMap(graph, entry.predicates, level + 1)
         }
       }
 
@@ -88,6 +88,18 @@ export class TransformToConciseHash extends stream.Transform {
     ) {
       const [first] = predicates.get(rdf.first)
       const [restNode] = predicates.get(rdf.rest)
+
+      // top-level list node
+      if (level === 0) {
+        const rest = restNode.equals(rdf.nil)
+          ? this.toHashKey(rdf.nil)
+          : [...nestedObject(restNode)]
+
+        return {
+          [this.toHashKey(rdf.first)]: [nestedObject(first)],
+          [this.toHashKey(rdf.rest)]: [rest],
+        }
+      }
 
       if (restNode.equals(rdf.nil)) {
         return [nestedObject(first)]

@@ -5,7 +5,12 @@ import { expect } from 'chai'
 import { rdf } from '@tpluscode/rdf-ns-builders/strict'
 import * as ns from '@tpluscode/rdf-ns-builders'
 import getStream from 'get-stream'
+import rdfUtil from 'rdf-utils-fs'
+import { join, dirname } from 'path'
+import { fileURLToPath } from 'url'
 import { formats, parsers, serializers } from '../index.js'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 describe('@rdfjs-elements/formats-pretty', () => {
   describe('parsers', () => {
@@ -57,5 +62,33 @@ describe('@rdfjs-elements/formats-pretty', () => {
         expect(serialized).to.contain('<https://example.com/john> {')
       })
     })
+  })
+
+  describe('round-trips', () => {
+    function roundTripCase(file) {
+      return async () => {
+        // given
+        const graph = await $rdf
+          .dataset()
+          .import(rdfUtil.fromFile(join(__dirname, `graphs/${file}`)))
+
+        // when
+        const serialized = await getStream(
+          serializers.import(formats.turtle, graph.toStream())
+        )
+        const roundTrip = await $rdf
+          .dataset()
+          .import(parsers.import(formats.turtle, toStream(serialized)))
+
+        // then
+        expect(roundTrip.toCanonical()).to.eq(graph.toCanonical())
+      }
+    }
+
+    it('shacl-report.nq', roundTripCase('shacl-report.nq'))
+    it(
+      'list-reused-single-element.ttl',
+      roundTripCase('list-reused-single-element.ttl')
+    )
   })
 })
