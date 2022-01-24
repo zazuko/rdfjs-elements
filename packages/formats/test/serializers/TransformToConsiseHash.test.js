@@ -391,4 +391,80 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
       },
     })
   })
+
+  it('handles RDF lists shared by multiple subjects', async () => {
+    // given
+    const graph = clownface({ dataset: $rdf.dataset() })
+      .namedNode(ex.foo)
+      .addList(ex.list, ['a', 'b', 'c'])
+    graph.namedNode(ex.bar).addOut(ex.list, graph.out(ex.list))
+    graph.namedNode(ex.baz).addOut(ex.list, graph.out(ex.list))
+
+    // when
+    const hash = await transform(graph, {
+      ex: ex().value,
+      rdf: rdf().value,
+    })
+
+    // then
+    const listNode = `_:${graph.out(ex.list).value}`
+    expect(hash).to.deep.contain({
+      type: 'c4',
+      value: {
+        '*': {
+          'ex:foo': {
+            'ex:list': [listNode],
+          },
+          'ex:bar': {
+            'ex:list': [listNode],
+          },
+          'ex:baz': {
+            'ex:list': [listNode],
+          },
+          [listNode]: {
+            'rdf:first': ['"a'],
+            'rdf:rest': [['"b', '"c']],
+          },
+        },
+      },
+    })
+  })
+
+  it('handles single-element RDF lists shared by multiple subjects', async () => {
+    // given
+    const graph = clownface({ dataset: $rdf.dataset() })
+      .namedNode(ex.foo)
+      .addList(ex.list, ['a'])
+    graph.namedNode(ex.bar).addOut(ex.list, graph.out(ex.list))
+    graph.namedNode(ex.baz).addOut(ex.list, graph.out(ex.list))
+
+    // when
+    const hash = await transform(graph, {
+      ex: ex().value,
+      rdf: rdf().value,
+    })
+
+    // then
+    const listNode = `_:${graph.out(ex.list).value}`
+    expect(hash).to.deep.contain({
+      type: 'c4',
+      value: {
+        '*': {
+          'ex:foo': {
+            'ex:list': [listNode],
+          },
+          'ex:bar': {
+            'ex:list': [listNode],
+          },
+          'ex:baz': {
+            'ex:list': [listNode],
+          },
+          [listNode]: {
+            'rdf:first': ['"a'],
+            'rdf:rest': ['rdf:nil'],
+          },
+        },
+      },
+    })
+  })
 })
