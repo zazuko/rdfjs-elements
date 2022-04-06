@@ -26,8 +26,39 @@ import { turtle } from '@rdfjs-elements/formats-pretty/serializers'
 const { schema, dcterms, foaf } = prefixes
 
 const sink = await turtle({
-  prefixes: { schema, dcterms, foaf }
+  prefixes: { schema, dcterms, foaf, ex:'http://example/org/' }
 })
+```
+
+This sink can then be used to produce pretty-printed RDF
+
+```js
+import rdf from '@rdfjs/data-model'
+import { Readable } from 'readable-stream'
+import getStream from 'get-stream'
+
+// Example data
+const data = [
+  rdf.quad(rdf.namedNode('http://example/org/s1'), rdf.namedNode('http://schema.org/name'), rdf.literal('Alice')),
+  rdf.quad(rdf.namedNode('http://example/org/s1'), rdf.namedNode('http://xmlns.com/foaf/0.1/knows'), rdf.namedNode('http://example/org/o1')),
+  rdf.quad(rdf.namedNode('http://example/org/o1'), rdf.namedNode('http://schema.org/name'), rdf.literal('Bob'))
+]
+
+const stream = await sink.import(Readable.from(data))
+console.log(await getStream(stream))
+
+// Outputs:
+
+// @prefix schema: <http://schema.org/> .
+// @prefix dcterms: <http://purl.org/dc/terms/> .
+// @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+// @prefix ex: <http://example/org/> .
+//
+//   ex:s1 schema:name "Alice" ;
+//        foaf:knows ex:o1 .
+//
+//   ex:o1 schema:name "Bob" .
+
 ```
 
 ## Parsers
