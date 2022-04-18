@@ -30,7 +30,6 @@ const sink = await turtle({
 })
 ```
 
-
 This sink can then be used to produce pretty-printed RDF
 
 ```js
