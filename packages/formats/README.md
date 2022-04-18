@@ -30,6 +30,7 @@ const sink = await turtle({
 })
 ```
 
+
 This sink can then be used to produce pretty-printed RDF
 
 ```js
@@ -59,6 +60,30 @@ console.log(await getStream(stream))
 //
 //   ex:o1 schema:name "Bob" .
 
+```
+
+To get an output in n-triples, n-quads or n3 format the mime-type must be specified:
+
+```js
+import rdf from '@rdfjs/data-model'
+import prefixes from '@zazuko/rdf-vocabularies/prefixes'
+import { serializers } from '@rdfjs-elements/formats-pretty/serializers'
+import { Readable } from 'readable-stream'
+import getStream from 'get-stream'
+
+// Example data
+const data = [
+  rdf.quad(rdf.namedNode('http://example/org/s1'), rdf.namedNode('http://schema.org/name'), rdf.literal('Alice')),
+  rdf.quad(rdf.namedNode('http://example/org/s1'), rdf.namedNode('http://xmlns.com/foaf/0.1/knows'), rdf.namedNode('http://example/org/o1')),
+  rdf.quad(rdf.namedNode('http://example/org/o1'), rdf.namedNode('http://schema.org/name'), rdf.literal('Bob'))
+]
+
+const { schema, dcterms, foaf } = prefixes
+
+const stream = serialisers.import('application/n-triples', Readable.from(data), { schema, dcterms, foaf, ex:'http://example/org/' }
+}))
+
+console.log(await getStream(stream))
 ```
 
 ## Parsers
