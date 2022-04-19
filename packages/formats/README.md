@@ -61,7 +61,7 @@ console.log(await getStream(stream))
 
 ```
 
-To get an output in n-triples, n-quads or n3 format the mime-type must be specified:
+To get an output in n-triples, n-quads or n3 format the sink map interface can be used where media type must be specified:
 
 ```js
 import rdf from '@rdfjs/data-model'
