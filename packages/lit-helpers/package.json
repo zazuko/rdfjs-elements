@@ -7,6 +7,9 @@
     "*.js",
     "*.d.ts"
   ],
+  "scripts": {
+    "prepack": "tsc --allowJs --declaration --emitDeclarationOnly *.js"
+  },
   "dependencies": {
     "@tpluscode/rdf-ns-builders": "^1",
     "lit": "^2"
