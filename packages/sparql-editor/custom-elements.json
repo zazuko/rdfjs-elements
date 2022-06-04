@@ -4,7 +4,7 @@
     {
       "name": "sparql-editor",
       "path": "./sparql-editor.js",
-      "description": "A text editor custom element which highlights and parses SPARQL queries.\n\nIt uses [sparqljs](https://npm.im/sparqljs) to parse the query text.\n\n## Usage\n\nSimply add the element to a page. It is possible to provide common prefixes and a base IRI\nso that they don't have to be explicitly added in the SPARQL string\n\n```js\nimport '@rdfjs-elements/sparql-editor'\nimport { html } from 'lit'\n\nconst value = `CONSTRUCT { ?s ?p ?o }\nFROM <john-doe>\nWHERE {\n   <john-doe> a schema:Person ;\n   schema:name \"John Doe\" .\n}`\n\nconst template = html`<rdf-editor prefixes=\"schema\" baseIRI=\"http://example.com/\" .value=\"${value}\"></rdf-editor>`\n```",
+      "description": "A text editor custom element which highlights and parses SPARQL queries.\n\nIt uses [sparqljs](https://npm.im/sparqljs) to parse the query text.\n\n## Usage\n\nSimply add the element to a page. It is possible to provide common prefixes and a base IRI\nso that they don't have to be explicitly added in the SPARQL string\n\n```js\nimport '@rdfjs-elements/sparql-editor'\nimport { html } from 'lit'\n\nconst value = `CONSTRUCT { ?s ?p ?o }\nFROM <john-doe>\nWHERE {\n  <john-doe> a schema:Person ;\n  schema:name \"John Doe\" .\n}`\n\nconst template = html`<rdf-editor prefixes=\"schema\" baseIRI=\"http://example.com/\" .value=\"${value}\"></rdf-editor>`\n```",
       "attributes": [
         {
           "name": "base-iri",

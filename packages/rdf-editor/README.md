@@ -16,13 +16,13 @@ import '@rdfjs-elements/rdf-editor'
 import { html } from 'lit'
 
 const jsonld = {
-   '@context': {
-     '@base': 'http://example.com/',
-     '@vocab': 'http://schema.org/'
-   },
-   '@id': 'john-doe',
-   '@type': 'Person',
-   '@name': 'John Doe'
+  '@context': {
+    '@base': 'http://example.com/',
+    '@vocab': 'http://schema.org/'
+  },
+  '@id': 'john-doe',
+  '@type': 'Person',
+  '@name': 'John Doe'
 }
 
 const initialValue = JSON.stringify(jsonld, null, 2)
