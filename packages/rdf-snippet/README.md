@@ -9,13 +9,13 @@ RDF media type. The element's `formats` property selects the media types which s
 
 ```html
 <rdf-snippet formats="application/ld+json,application/n-quads">
-   <script type="text/turtle">
+  <script type="text/turtle">
 ＠base <http://example.com/> .
 ＠prefix schema: <http://schema.org/> .
 
 <john> a schema:Person ;
-   schema:name "John Doe" .
-   </script>
+  schema:name "John Doe" .
+  </script>
 </rdf-snippet>
 ```
 
@@ -49,13 +49,13 @@ import { parsers, serializers } from '@rdf-esm/formats-common'
 
 // by importing dynamically, the code will only be loaded when needed
 parsers.set('application/trix', async () => {
-   const TrixParser = await import('@hypothetical/trix-parser')
-   return new TrixParser()
+  const TrixParser = await import('@hypothetical/trix-parser')
+  return new TrixParser()
 })
 
 serializers.set('application/trix', async () => {
-   const TrixSerializer = await import('@hypothetical/trix-serializer')
-   return new TrixSerializer()
+  const TrixSerializer = await import('@hypothetical/trix-serializer')
+  return new TrixSerializer()
 })
 ```
 

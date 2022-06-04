@@ -16,8 +16,8 @@ import { html } from 'lit'
 const value = `CONSTRUCT { ?s ?p ?o }
 FROM <john-doe>
 WHERE {
-   <john-doe> a schema:Person ;
-   schema:name "John Doe" .
+  <john-doe> a schema:Person ;
+  schema:name "John Doe" .
 }`
 
 const template = html`<rdf-editor prefixes="schema" baseIRI="http://example.com/" .value="${value}"></rdf-editor>`
