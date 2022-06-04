@@ -91,6 +91,23 @@ describe('@rdfjs-elements/lit-helpers/taggedLiteral.js', () => {
     expect(el).dom.to.equal(`<p><span>Apple</span><span>Orange</span></p>`)
   })
 
+  it('updates existing fallback usages when language is changed', async () => {
+    // given
+    const pointer = clownface({ dataset: $rdf.dataset() })
+    const fruit = pointer.blankNode()
+
+    // when
+    const el = await fixture(
+      html`<span>${taggedLiteral(fruit, { fallback: 'a fruit' })}</span>`
+    )
+    await nextFrame()
+    setLanguages('en')
+    await nextFrame()
+
+    // then
+    expect(el).dom.to.equal(`<span>a fruit</span>`)
+  })
+
   it('renders fallback when no label is found', async () => {
     // given
     const pointer = clownface({ dataset: $rdf.dataset() })

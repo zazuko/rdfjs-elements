@@ -47,6 +47,11 @@ class TaggedLiteralDirective extends AsyncDirective {
      * @type {import('@rdfjs/types').NamedNode}
      */
     this.property = property
+    /**
+     * @private
+     * @type {string}
+     */
+    this.fallback = fallback
     if (resource) {
       /**
        * @private
@@ -55,7 +60,7 @@ class TaggedLiteralDirective extends AsyncDirective {
       this.pointer = 'pointer' in resource ? resource.pointer : resource
     }
 
-    return this.getTranslation() || fallback
+    return this.getTranslation()
   }
 
   disconnected() {
@@ -67,13 +72,13 @@ class TaggedLiteralDirective extends AsyncDirective {
    */
   getTranslation() {
     if (!this.property || !this.pointer) {
-      return ''
+      return this.fallback
     }
 
     return (
       this.pointer
         .out(this.property, { language: [...this.languages, '*'] })
-        .values.shift() || ''
+        .values.shift() || this.fallback
     )
   }
 }
