@@ -44,9 +44,11 @@ let apple: GraphPointer
 
 function render() {
   // renders apple's rdfs:label property
-  return html`<span>${taggedLiteral(apple)}</span>`
+  return html`<span>${taggedLiteral(apple, { fallback: 'a fruit' })}</span>`
 }
 ```
+
+_The second parameter is optional. `fallback` will be rendered if no label was found_
 
 #### Using different predicate
 
@@ -62,7 +64,7 @@ let fruit: GraphPointer
 
 function render() {
   // renders PropertyShape's sh:name property
-  return html`<span>${taggedLiteral(fruit.out(sh.property), sh.name)}</span>`
+  return html`<span>${taggedLiteral(fruit.out(sh.property), { property: sh.name })}</span>`
 }
 ```
 
@@ -100,6 +102,6 @@ const fruit = fromPointer(fruitPointer)
 
 function render() {
   // renders PropertyShape's sh:name property
-  return html`<span>${taggedLiteral(fruit.property[0], sh.name)}</span>`
+  return html`<span>${taggedLiteral(fruit.property[0], { property: sh.name })}</span>`
 }
 ```
