@@ -1,0 +1,35 @@
+{
+  "name": "@rdfjs-elements/lit-helpers",
+  "version": "0.0.0",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "*.js",
+    "*.d.ts"
+  ],
+  "dependencies": {
+    "@tpluscode/rdf-ns-builders": "^1",
+    "lit": "^2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zazuko/rdfjs-elements.git",
+    "directory": "packages/lit-helpers"
+  },
+  "homepage": "https://github.com/zazuko/lit-helpers/tree/master/packages/formats#readme",
+  "peerDependencies": {
+    "@rdfjs/types": "^1",
+    "@tpluscode/rdfine": "^0.5",
+    "@types/clownface": "^1"
+  },
+  "devDependencies": {
+    "@open-wc/testing": "^3.1.5",
+    "@rdfine/rdfs": "^0.6.9",
+    "@rdfjs/dataset": "^2",
+    "@rdfjs/types": "^1.1.0",
+    "@tpluscode/rdfine": "^0.5.38",
+    "@types/clownface": "^1.5.0",
+    "clownface": "^1.5.1",
+    "typescript": "^4.7.2"
+  }
+}
