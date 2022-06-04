@@ -1,7 +1,7 @@
 import { html, fixture, expect, nextFrame } from '@open-wc/testing'
 import clownface from 'clownface'
 import $rdf from '@rdfjs/dataset'
-import { rdfs } from '@tpluscode/rdf-ns-builders'
+import { rdfs, sh } from '@tpluscode/rdf-ns-builders'
 import { fromPointer } from '@rdfine/rdfs/lib/Resource'
 import { taggedLiteral, setLanguages } from '../taggedLiteral.js'
 
@@ -89,5 +89,41 @@ describe('@rdfjs-elements/lit-helpers/taggedLiteral.js', () => {
 
     // then
     expect(el).dom.to.equal(`<p><span>Apple</span><span>Orange</span></p>`)
+  })
+
+  it('renders fallback when no label is found', async () => {
+    // given
+    const pointer = clownface({ dataset: $rdf.dataset() })
+    const res = pointer.blankNode()
+
+    // when
+    const el = await fixture(
+      html`<span>${taggedLiteral(res, { fallback: 'Fallback' })}</span>`
+    )
+
+    // then
+    expect(el).dom.to.equal(`<span>Fallback</span>`)
+  })
+
+  it('supports changing the label property', async () => {
+    // given
+    const pointer = clownface({ dataset: $rdf.dataset() }).addOut(
+      sh.name,
+      'Property'
+    )
+    const res = pointer.blankNode()
+
+    // when
+    const el = await fixture(
+      html`<span
+        >${taggedLiteral(res, {
+          property: sh.name,
+          fallback: 'Fallback',
+        })}</span
+      >`
+    )
+
+    // then
+    expect(el).dom.to.equal(`<span>Fallback</span>`)
   })
 })

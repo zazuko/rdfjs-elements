@@ -5,7 +5,7 @@ let defaultLanguages = [...navigator.languages]
 const dispatcher = document.createElement('p')
 
 /**
- * @typedef {import('clownface').AnyPointer | import('@tpluscode/rdfine').RdfResource} PointerLike
+ * @typedef {import('clownface').AnyPointer | import('@tpluscode/rdfine').RdfResource | undefined} PointerLike
  */
 
 class TaggedLiteralDirective extends AsyncDirective {
@@ -36,10 +36,12 @@ class TaggedLiteralDirective extends AsyncDirective {
   /**
    *
    * @param {PointerLike} resource
-   * @param {import('@rdfjs/types').NamedNode} property
+   * @param {object} [options]
+   * @param {import('@rdfjs/types').NamedNode} [options.property]
+   * @param {string} [options.fallback]
    * @returns {string|*}
    */
-  render(resource, property = rdfs.label) {
+  render(resource, { property = rdfs.label, fallback = '' } = {}) {
     /**
      * @private
      * @type {import('@rdfjs/types').NamedNode}
@@ -53,7 +55,7 @@ class TaggedLiteralDirective extends AsyncDirective {
       this.pointer = 'pointer' in resource ? resource.pointer : resource
     }
 
-    return this.getTranslation()
+    return this.getTranslation() || fallback
   }
 
   disconnected() {
