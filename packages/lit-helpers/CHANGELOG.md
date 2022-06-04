@@ -1,5 +1,11 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.2.1
+
+### Patch Changes
+
+- 4d8687e: Fallback value would get "lost" after calling `setLanguages`
+
 ## 0.2.0
 
 ### Minor Changes
