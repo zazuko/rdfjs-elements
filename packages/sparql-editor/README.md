@@ -34,7 +34,7 @@ const template = html`<rdf-editor prefixes="schema" baseIRI="http://example.com/
 | `format`         |                  | readonly  | `string`                 |         |                                                  |
 | `isParsing`      | `is-parsing`     |           | `boolean`                |         | set to true while the elements parses data when the code has changed |
 | `parseDelay`     | `parseDelay`     |           | `Number`                 | 250     | time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set |
-| `prefixes`       | `prefixes`       |           | `string`                 |         | a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used |
+| `prefixes`       | `prefixes`       |           | `string`                 |         | a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used |
 | `query`          |                  |           | `object`                 |         | The JS object representing the query             |
 | `readonly`       | `readonly`       |           | `boolean`                |         |                                                  |
 | `ready`          | `ready`          |           | `Promise<void>`          |         | a one-time promise which resolves when CodeMirror has been initialized |

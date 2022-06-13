@@ -1,5 +1,5 @@
 import * as builders from '@tpluscode/rdf-ns-builders'
-import Editor, { defaultPrefixes } from '@rdfjs-elements/editor-base'
+import Editor from '@rdfjs-elements/editor-base'
 import './mode/javascript.js'
 import './mode/turtle.js'
 import './mode/ntriples.js'
@@ -237,9 +237,7 @@ export class RdfEditor extends Editor {
     const customPrefixes = { ...parsedPrefixes }
 
     for (const [prefix, ns] of Object.entries(parsedPrefixes)) {
-      if (defaultPrefixes.includes(prefix)) {
-        delete customPrefixes[prefix]
-      } else if (prefix in builders) {
+      if (prefix in builders) {
         prefixes[prefix] = ns
         delete customPrefixes[prefix]
       }

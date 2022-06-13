@@ -52,7 +52,7 @@ Syntax highlighting is relying on support from CodeMirror.
 | `isParsing`      | `is-parsing`     |           | `boolean`                | false   | set to true while the elements parses data when the code has changed |
 | `noReserialize`  | `no-reserialize` |           | `boolean`                | false   | Prevents the editor from serializing the quads when format changes |
 | `parseDelay`     | `parseDelay`     |           | `Number`                 | 250     | time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set |
-| `prefixes`       | `prefixes`       |           | `string`                 |         | a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used |
+| `prefixes`       | `prefixes`       |           | `string`                 |         | a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used |
 | `quads`          | `quads`          |           | `Quad[]`                 |         | get or sets the RDF/JS quads                     |
 | `readonly`       | `readonly`       |           | `boolean`                |         |                                                  |
 | `ready`          | `ready`          |           | `Promise<void>`          |         | a one-time promise which resolves when CodeMirror has been initialized |

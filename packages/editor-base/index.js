@@ -5,7 +5,6 @@ import { debounce } from 'throttle-debounce'
 const Value = Symbol('Initial value')
 const Dirty = Symbol('Editor dirty')
 const ParseHandler = Symbol('ParseHandler')
-export const defaultPrefixes = ['rdf', 'rdfs', 'xsd']
 
 function whenDefined(getter) {
   const interval = 10
@@ -33,7 +32,7 @@ function whenDefined(getter) {
  *
  * @prop {Promise<void>} ready - a one-time promise which resolves when CodeMirror has been initialized
  *
- * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
+ * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
  *
  * @prop {boolean} isParsing - set to true while the elements parses data when the code has changed
  *
@@ -152,7 +151,7 @@ export default class Editor extends LitElement {
         .split(',')
         .map(prefix => prefix.trim())
 
-      return [...defaultPrefixes, ...prefixes].reduce((map, prefix) => {
+      return prefixes.reduce((map, prefix) => {
         if (prefix in ns) {
           return { ...map, [prefix]: ns[prefix]().value }
         }
