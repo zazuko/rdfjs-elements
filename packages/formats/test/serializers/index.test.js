@@ -4,7 +4,12 @@ import * as ns from '@tpluscode/rdf-ns-builders'
 import $rdf from 'rdf-ext'
 import clownface from 'clownface'
 import getStream from 'get-stream'
+import rdfUtil from 'rdf-utils-fs'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
 import { turtle, jsonld } from '../../serializers/index.js'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 describe('@rdfjs-elements/formats-pretty/serializers', () => {
   describe('turtle', () => {
@@ -30,6 +35,47 @@ describe('@rdfjs-elements/formats-pretty/serializers', () => {
       expect(serialized).to.contain(`prefix schema: <${schema}>`)
       expect(serialized).to.contain(`prefix dcterms: <${dcterms}>`)
       expect(serialized).to.contain(`dcterms:type schema:Person`)
+    })
+
+    it('removes excess rdf List node properties by default', async () => {
+      // given
+      const { owl, as } = prefixes
+      const graph = rdfUtil.fromFile(
+        join(__dirname, `../graphs/list-with-extras.ttl`)
+      )
+      const sink = await turtle({
+        prefixes: { owl, as },
+      })
+
+      // when
+      const serialized = await getStream(sink.import(graph))
+
+      // then
+      expect(serialized).to.match(/owl:unionOf \(\s+as:Object\s+as:Link\s+\)/m)
+    })
+
+    it('does not remove excess rdf List node properties when option set', async () => {
+      // given
+      const { owl, as, rdf, rdfs } = prefixes
+      const graph = rdfUtil.fromFile(
+        join(__dirname, `../graphs/list-with-extras.ttl`)
+      )
+      const sink = await turtle({
+        prefixes: { owl, as, rdf, rdfs },
+      })
+
+      // when
+      const serialized = await getStream(
+        sink.import(graph, { preserveListNodeProperties: true })
+      )
+
+      // then
+      expect(serialized).to.match(
+        /rdf:first as:Object ;\s+rdf:type rdfs:Resource, rdf:List ;/m
+      )
+      expect(serialized).to.match(
+        /rdf:first as:Link ;\s+rdf:type rdf:List ;\s+rdf:rest rdf:nil ;/m
+      )
     })
   })
 

@@ -3,27 +3,23 @@ import { rdf, xsd } from '@tpluscode/rdf-ns-builders'
 import TermMap from '@rdf-esm/term-map'
 import graphy from '@graphy/core.data.factory'
 
-function isBareListNode(predicates) {
-  const isList = predicates.has(rdf.first) && predicates.has(rdf.rest)
-  if (predicates.size === 2 && isList) {
-    return true
-  }
-  if (predicates.size === 3 && isList && predicates.has(rdf.type)) {
-    const [type, ...moreTypes] = predicates.get(rdf.type)
-    return rdf.List.equals(type) && moreTypes.length === 0
-  }
-
-  return false
+function isListNode(predicates) {
+  return predicates.has(rdf.first) && predicates.has(rdf.rest)
 }
 
 export class TransformToConciseHash extends stream.Transform {
-  constructor({ prefixes = {}, strict = false } = {}) {
+  constructor({
+    prefixes = {},
+    strict = false,
+    preserveListNodeProperties = false,
+  } = {}) {
     super({ objectMode: true })
 
     this.prefixes = prefixes
     this.graphs = new TermMap()
     this.blankNodes = new TermMap()
     this.strict = strict
+    this.preserveListNodeProperties = preserveListNodeProperties
   }
 
   _transform({ subject, predicate, object, graph }, _, cb) {
@@ -93,7 +89,11 @@ export class TransformToConciseHash extends stream.Transform {
       return this.toHashKey(node)
     }
 
-    if (!this.strict && isBareListNode(predicates)) {
+    if (
+      !this.strict &&
+      isListNode(predicates) &&
+      !this.preserveListNodeProperties
+    ) {
       const [first] = predicates.get(rdf.first)
       const [restNode] = predicates.get(rdf.rest)
 
