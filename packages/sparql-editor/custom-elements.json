@@ -22,7 +22,7 @@
         },
         {
           "name": "prefixes",
-          "description": "a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
+          "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
           "type": "string"
         },
         {
@@ -83,7 +83,7 @@
         {
           "name": "prefixes",
           "attribute": "prefixes",
-          "description": "a comma-separated list of prefixes to use for serializing. Always includes `rdf`, `rdfs` and `xsd` Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
+          "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
           "type": "string"
         },
         {
