@@ -7,9 +7,17 @@ import { TransformToConciseHash } from '../../serializers/TransformToConciseHash
 
 const ex = namespace('http://example.com/')
 
-function transform(graph, prefixes, strict = false) {
+function transform(
+  graph,
+  prefixes,
+  { strict = false, preserveListNodeProperties } = {}
+) {
   return new Promise(resolve => {
-    const output = new TransformToConciseHash({ prefixes, strict })
+    const output = new TransformToConciseHash({
+      prefixes,
+      strict,
+      preserveListNodeProperties,
+    })
     graph.dataset.toStream().pipe(output)
     output.on('data', resolve)
   })
@@ -148,7 +156,7 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
         {
           ex: ex().value,
         },
-        true
+        { strict: true }
       )
 
       // then
@@ -183,7 +191,7 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
           ex: ex().value,
           rdf: rdf().value,
         },
-        true
+        { strict: true }
       )
 
       // then
@@ -206,7 +214,7 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
           ex: ex().value,
           rdf: rdf().value,
         },
-        true
+        { strict: true }
       )
 
       // then
@@ -506,11 +514,17 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
       .addOut(rdfs.comment, 'foo')
 
     // when
-    const hash = await transform(graph, {
-      ex: ex().value,
-      rdf: rdf().value,
-      rdfs: rdfs().value,
-    })
+    const hash = await transform(
+      graph,
+      {
+        ex: ex().value,
+        rdf: rdf().value,
+        rdfs: rdfs().value,
+      },
+      {
+        preserveListNodeProperties: true,
+      }
+    )
 
     // then
     expect(hash).to.deep.contain({
