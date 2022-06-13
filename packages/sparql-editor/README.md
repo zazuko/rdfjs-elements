@@ -28,6 +28,7 @@ const template = html`<rdf-editor prefixes="schema" baseIRI="http://example.com/
 | Property         | Attribute        | Modifiers | Type                     | Default | Description                                      |
 |------------------|------------------|-----------|--------------------------|---------|--------------------------------------------------|
 | `autoParse`      | `auto-parse`     |           | `boolean`                |         | if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event |
+| `autoRefresh`    | `auto-refresh`   |           | `Number`                 |         | controls the [autoRefresh addon](https://codemirror.net/doc/manual.html#addon_autorefresh) delay |
 | `baseIRI`        | `base-iri`       |           | `string`                 |         | Value of the `BASE` directive which will be injected to the query |
 | `codeMirror`     |                  | readonly  | `Element \| null`        |         | The underlying `<wc-codemirror>` element         |
 | `customPrefixes` | `customPrefixes` |           | `Record<string, string>` | {}      | a map of custom prefixes or overrides            |

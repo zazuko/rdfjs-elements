@@ -48,6 +48,11 @@
           "type": "boolean"
         },
         {
+          "name": "auto-refresh",
+          "description": "controls the [autoRefresh addon](https://codemirror.net/doc/manual.html#addon_autorefresh) delay",
+          "type": "Number"
+        },
+        {
           "name": "value",
           "description": "The string representation of the RDF graph.",
           "type": "string"
@@ -114,6 +119,12 @@
           "attribute": "auto-parse",
           "description": "if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event",
           "type": "boolean"
+        },
+        {
+          "name": "autoRefresh",
+          "attribute": "auto-refresh",
+          "description": "controls the [autoRefresh addon](https://codemirror.net/doc/manual.html#addon_autorefresh) delay",
+          "type": "Number"
         },
         {
           "name": "codeMirror",
