@@ -4,7 +4,7 @@ async function serializer(importScribe, { strict, ...defaults } = {}) {
   const create = (await importScribe).default
 
   return {
-    import(quadStream, options = {}) {
+    import(quadStream, { preserveListNodeProperties, ...options } = {}) {
       const prefixes = {
         ...(defaults.prefixes || {}),
         ...(options.prefixes || {}),
@@ -15,7 +15,13 @@ async function serializer(importScribe, { strict, ...defaults } = {}) {
       })
 
       quadStream
-        .pipe(new TransformToConciseHash({ prefixes, strict }))
+        .pipe(
+          new TransformToConciseHash({
+            prefixes,
+            strict,
+            preserveListNodeProperties,
+          })
+        )
         .pipe(writer)
 
       return writer
