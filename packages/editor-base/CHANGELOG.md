@@ -1,5 +1,11 @@
 # @rdfjs-elements/editor-base
 
+## 0.4.1
+
+### Patch Changes
+
+- 0164e64: Remove the default prefixes `rdf, rdfs, xsd` (closes #95)
+
 ## 0.4.0
 
 ### Minor Changes
