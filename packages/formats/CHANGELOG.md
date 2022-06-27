@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.5.1
+
+### Patch Changes
+
+- fbd5755: Update `@tpluscode/rdf-ns-builders` to v2
+
 ## 0.5.0
 
 ### Minor Changes

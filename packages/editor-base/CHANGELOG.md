@@ -1,5 +1,11 @@
 # @rdfjs-elements/editor-base
 
+## 0.4.2
+
+### Patch Changes
+
+- fbd5755: Update `@tpluscode/rdf-ns-builders` to v2
+
 ## 0.4.1
 
 ### Patch Changes

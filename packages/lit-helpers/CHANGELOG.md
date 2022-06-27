@@ -1,5 +1,11 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.2.2
+
+### Patch Changes
+
+- fbd5755: Update `@tpluscode/rdf-ns-builders` to v2
+
 ## 0.2.1
 
 ### Patch Changes

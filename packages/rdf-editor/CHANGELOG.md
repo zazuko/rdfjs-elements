@@ -1,5 +1,14 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.5.4
+
+### Patch Changes
+
+- fbd5755: Update `@tpluscode/rdf-ns-builders` to v2
+- Updated dependencies [fbd5755]
+  - @rdfjs-elements/editor-base@0.4.2
+  - @rdfjs-elements/formats-pretty@0.5.1
+
 ## 0.5.3
 
 ### Patch Changes
