@@ -2,7 +2,6 @@ import toStream from 'string-to-stream'
 import clownface from 'clownface'
 import $rdf from 'rdf-ext'
 import { expect } from 'chai'
-import { rdf } from '@tpluscode/rdf-ns-builders/strict'
 import * as ns from '@tpluscode/rdf-ns-builders'
 import getStream from 'get-stream'
 import rdfUtil from 'rdf-utils-fs'
@@ -36,7 +35,7 @@ describe('@rdfjs-elements/formats-pretty', () => {
         expect(
           pointer
             .node(term)
-            .out(rdf.type)
+            .out(ns.rdf.type)
             .term.equals($rdf.namedNode('https://example.com/foo/Bar'))
         )
       })

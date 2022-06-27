@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import $rdf from 'rdf-ext'
 import clownface from 'clownface'
-import { rdf, schema, xsd, rdfs } from '@tpluscode/rdf-ns-builders/strict'
+import { rdf, schema, xsd, rdfs } from '@tpluscode/rdf-ns-builders'
 import namespace from '@rdfjs/namespace'
 import { TransformToConciseHash } from '../../serializers/TransformToConciseHash.js'
 
