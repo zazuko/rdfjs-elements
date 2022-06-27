@@ -24,14 +24,13 @@
     "@rdf-esm/data-model": "^0.5.4",
     "@rdfjs-elements/editor-base": "^0.4.1",
     "@rdfjs-elements/formats-pretty": "^0.5.0",
-    "@tpluscode/rdf-ns-builders": "^1.0.0",
+    "@tpluscode/rdf-ns-builders": "^2.0.0",
     "readable-stream": "^3",
     "string-to-stream": "^3.0.1"
   },
   "devDependencies": {
     "@open-wc/testing": "^3.0.3",
     "@rdfjs-elements/testing": "^0.1.0",
-    "@tpluscode/rdf-ns-builders": "^1.0.0",
     "api-viewer-element": "^0.5.0"
   },
   "publishConfig": {

@@ -11,7 +11,7 @@
     "prepack": "tsc --allowJs --declaration --emitDeclarationOnly *.js"
   },
   "dependencies": {
-    "@tpluscode/rdf-ns-builders": "^1",
+    "@tpluscode/rdf-ns-builders": "^2",
     "lit": "^2"
   },
   "repository": {
@@ -22,15 +22,15 @@
   "homepage": "https://github.com/zazuko/lit-helpers/tree/master/packages/formats#readme",
   "peerDependencies": {
     "@rdfjs/types": "^1",
-    "@tpluscode/rdfine": "^0.5",
+    "@tpluscode/rdfine": "^0.5.39",
     "@types/clownface": "^1"
   },
   "devDependencies": {
     "@open-wc/testing": "^3.1.5",
-    "@rdfine/rdfs": "^0.6.9",
+    "@rdfine/rdfs": "^0.6.10",
     "@rdfjs/dataset": "^2",
     "@rdfjs/types": "^1.1.0",
-    "@tpluscode/rdfine": "^0.5.38",
+    "@tpluscode/rdfine": "^0.5.39",
     "@types/clownface": "^1.5.0",
     "clownface": "^1.5.1",
     "typescript": "^4.7.2"

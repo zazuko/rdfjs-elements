@@ -1426,24 +1426,24 @@
   resolved "https://registry.yarnpkg.com/@rdf-esm/to-ntriples/-/to-ntriples-0.5.0.tgz#4a2c294e6d740509571e3b0efde8277c4824b928"
   integrity sha512-VIcqRv68V/s0NS6bFy58CcsHwV0UCM/DHhAc1MYLB/yue1nyhKsX4uyu/SB5gbbY2r4BIH4G6O+arxf59KzgwQ==
 
-"@rdfine/rdf@^0.5.6":
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/@rdfine/rdf/-/rdf-0.5.6.tgz#8b5a1dd87086c898e636f6da61db3ed0164f11b0"
-  integrity sha512-ttq3mqiFdp+YBGslvFFwXM7niNw4haNq7tpaUhxbblzfTsLAwEyPC4+3DsiLtUsdwpv274miBW6U38xLWxLaag==
+"@rdfine/rdf@^0.5.7":
+  version "0.5.7"
+  resolved "https://registry.yarnpkg.com/@rdfine/rdf/-/rdf-0.5.7.tgz#0910adc1f15874e89eef10156ae836e697db62b1"
+  integrity sha512-FayJzXGwYgL31g4R2T4XD9TTrThfNw1aLus6nxPFItcTIN/3TdQ6Ls4Bjmf8ZPi4XtowVvJt+npJMRii2lkt5A==
   dependencies:
     "@rdf-esm/data-model" "^0.5.3"
-    "@tpluscode/rdf-ns-builders" "^1.0.0"
-    "@tpluscode/rdfine" "^0.5.34"
+    "@tpluscode/rdf-ns-builders" "^2.0.1"
+    "@tpluscode/rdfine" "^0.5.39"
 
-"@rdfine/rdfs@^0.6.9":
-  version "0.6.9"
-  resolved "https://registry.yarnpkg.com/@rdfine/rdfs/-/rdfs-0.6.9.tgz#58a094bc8813ad947989ad58258ad0a64c214852"
-  integrity sha512-7+S2elxBBAM9rdG6E5HnNPfXDbwTLXox37qMI5I/muhd0OR/taAF4jvw2daqBz8hopbid45R7lfBfk8XY0sWAQ==
+"@rdfine/rdfs@^0.6.10":
+  version "0.6.10"
+  resolved "https://registry.yarnpkg.com/@rdfine/rdfs/-/rdfs-0.6.10.tgz#4de37074ce1a4e72428356bf40e861eefd46e68b"
+  integrity sha512-VqQLSkdR1MKzRS4Lt4IULiW/EmzkAtPjS1XuogBZBnwXzpqXaekaeTHp4bLuhpL1mZxYT4kkxDkKpQl+3fnkxQ==
   dependencies:
     "@rdf-esm/data-model" "^0.5.3"
-    "@rdfine/rdf" "^0.5.6"
-    "@tpluscode/rdf-ns-builders" "^1.0.0"
-    "@tpluscode/rdfine" "^0.5.34"
+    "@rdfine/rdf" "^0.5.7"
+    "@tpluscode/rdf-ns-builders" "^2.0.1"
+    "@tpluscode/rdfine" "^0.5.39"
 
 "@rdfjs/data-model@^1.0.1", "@rdfjs/data-model@^1.1.0", "@rdfjs/data-model@^1.1.1", "@rdfjs/data-model@^1.2":
   version "1.2.0"
@@ -1612,26 +1612,27 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@tpluscode/rdf-ns-builders@^1", "@tpluscode/rdf-ns-builders@^1.0.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@tpluscode/rdf-ns-builders/-/rdf-ns-builders-1.1.0.tgz#92baf7c2c08c080396161c7944081804507c9490"
-  integrity sha512-/4mH/GL9DXKQLtAw+11DRtu67rsRiqB4XkShnaiNa1UTtyTbNWNOMr8Hxb8VsteuVOs/16wloLzxI1o6TwfS/g==
+"@tpluscode/rdf-ns-builders@^2", "@tpluscode/rdf-ns-builders@^2.0.0", "@tpluscode/rdf-ns-builders@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@tpluscode/rdf-ns-builders/-/rdf-ns-builders-2.0.1.tgz#1074666a538f6ea2946bf67dac12da191fd2d928"
+  integrity sha512-P/pwfjhcj/JOZF3epheHiDd/f9tSkceydQBqBuqThpNX2NIg+4BSgwtG2YfKBa24mmGFfyzN6RVeFclhA8wZBw==
   dependencies:
+    "@rdf-esm/data-model" "^0.5.4"
     "@rdf-esm/namespace" "^0.5.1"
     "@rdfjs/types" "*"
     commander "^7.2.0"
     fs-extra "^10.0.0"
 
-"@tpluscode/rdfine@^0.5.34", "@tpluscode/rdfine@^0.5.38":
-  version "0.5.38"
-  resolved "https://registry.yarnpkg.com/@tpluscode/rdfine/-/rdfine-0.5.38.tgz#d79b3d108badff48984e97a85a2456d4ef7549f2"
-  integrity sha512-29pAXu2b5lLdH/EV+yP4gI1qR6AsjR0kgYmlcDB4jBjkx+mp9/tcL38/XFGJEeI+yyTzTv3D4HQFQozntW3dCQ==
+"@tpluscode/rdfine@^0.5.39":
+  version "0.5.39"
+  resolved "https://registry.yarnpkg.com/@tpluscode/rdfine/-/rdfine-0.5.39.tgz#0023c9bfd8c0e0b4d5fd441ce501736433a5b02f"
+  integrity sha512-BviMCXx19E7sD6gmTpXYj7RagUEs2vj+u5H5NcvllXtnnSEIGLKM4T64Q5MrPq44Akr2B2RiQxXWA56x3Xdnjg==
   dependencies:
     "@rdf-esm/data-model" "^0.5.3"
     "@rdf-esm/namespace" "^0.5.2"
     "@rdf-esm/term-map" "^0.5.0"
     "@rdf-esm/term-set" "^0.5.0"
-    "@tpluscode/rdf-ns-builders" "^1.0.0"
+    "@tpluscode/rdf-ns-builders" "^2.0.1"
     "@types/clownface" "^1.2.6"
     clownface "^1"
     once "^1.4.0"
@@ -3097,7 +3098,7 @@ braces@^2.3.1, braces@^2.3.2:
     split-string "^3.0.2"
     to-regex "^3.0.1"
 
-braces@^3.0.1, braces@^3.0.2, braces@~3.0.2:
+braces@^3.0.2, braces@~3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/braces/-/braces-3.0.2.tgz#3454e1a462ee8d599e236df336cd9ea4f8afe107"
   integrity sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==
@@ -5573,7 +5574,7 @@ glob-parent@^3.1.0:
     is-glob "^3.1.0"
     path-dirname "^1.0.0"
 
-glob-parent@^5.0.0, glob-parent@^5.1.0, glob-parent@^5.1.2, glob-parent@~5.1.0:
+glob-parent@^5.0.0, glob-parent@^5.1.2, glob-parent@~5.1.0:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.2.tgz#869832c58034fe68a4093c17dc15e8340d8401c4"
   integrity sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==
@@ -8216,7 +8217,7 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-picomatch@^2.0.4, picomatch@^2.0.5, picomatch@^2.2.1, picomatch@^2.2.2, picomatch@^2.3.1:
+picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.2, picomatch@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
