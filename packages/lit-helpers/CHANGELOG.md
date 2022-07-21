@@ -20,13 +20,13 @@
 
 ### Patch Changes
 
-- 350ddfe: Type declaration diid not allow falsey pointer argument
+- 350ddfe: Type declaration did not allow falsy pointer argument
 
 ## 0.1.1
 
 ### Patch Changes
 
-- 36c2fa2: Add TypeScript type decrations
+- 36c2fa2: Add TypeScript type declarations
 
 ## 0.1.0
 
