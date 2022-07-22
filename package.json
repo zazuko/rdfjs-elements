@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.11.0",
-    "@changesets/cli": "^2.9.2",
+    "@changesets/cli": "^2.24.0",
     "@esm-bundle/chai": "^4.3.4",
     "@open-wc/building-webpack": "^2.13.40",
     "@open-wc/eslint-config": "^2.0.0",
