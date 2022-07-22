@@ -7,11 +7,17 @@
     "*.js",
     "*.d.ts"
   ],
+  "main": "index.js",
+  "exports": {
+    "./taggedLiteral.js": "./taggedLiteral.js",
+    "./localizedLabel.js": "./localizedLabel.js"
+  },
   "scripts": {
     "prepack": "tsc --allowJs --declaration --emitDeclarationOnly *.js"
   },
   "dependencies": {
     "@tpluscode/rdf-ns-builders": "^2",
+    "clownface": "^1.5.1",
     "lit": "^2"
   },
   "repository": {
@@ -32,7 +38,6 @@
     "@rdfjs/types": "^1.1.0",
     "@tpluscode/rdfine": "^0.5.39",
     "@types/clownface": "^1.5.0",
-    "clownface": "^1.5.1",
     "typescript": "^4.7.2"
   }
 }

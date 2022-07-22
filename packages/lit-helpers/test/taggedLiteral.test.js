@@ -3,9 +3,10 @@ import clownface from 'clownface'
 import $rdf from '@rdfjs/dataset'
 import { rdfs, sh } from '@tpluscode/rdf-ns-builders'
 import { fromPointer } from '@rdfine/rdfs/lib/Resource'
-import { taggedLiteral, setLanguages } from '../taggedLiteral.js'
+import { setLanguages } from '../index.js'
+import { localizedLabel } from '../localizedLabel.js'
 
-describe('@rdfjs-elements/lit-helpers/taggedLiteral.js', () => {
+describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
   it("renders pointer's rdfs:label property in preferred language", async () => {
     // given
     const pointer = clownface({ dataset: $rdf.dataset() }).blankNode()
@@ -16,7 +17,7 @@ describe('@rdfjs-elements/lit-helpers/taggedLiteral.js', () => {
     setLanguages('pl')
 
     // when
-    const el = await fixture(html`<span>${taggedLiteral(pointer)}</span>`)
+    const el = await fixture(html`<span>${localizedLabel(pointer)}</span>`)
 
     // then
     expect(el).dom.to.equal(`<span>Jabłko</span>`)
@@ -32,7 +33,7 @@ describe('@rdfjs-elements/lit-helpers/taggedLiteral.js', () => {
     setLanguages('fr', 'pl')
 
     // when
-    const el = await fixture(html`<span>${taggedLiteral(pointer)}</span>`)
+    const el = await fixture(html`<span>${localizedLabel(pointer)}</span>`)
 
     // then
     expect(el).dom.to.equal(`<span>Jabłko</span>`)
@@ -45,7 +46,7 @@ describe('@rdfjs-elements/lit-helpers/taggedLiteral.js', () => {
     setLanguages('fr', 'pl')
 
     // when
-    const el = await fixture(html`<span>${taggedLiteral(pointer)}</span>`)
+    const el = await fixture(html`<span>${localizedLabel(pointer)}</span>`)
 
     // then
     expect(el).dom.to.equal(`<span>Apfel</span>`)
@@ -59,7 +60,7 @@ describe('@rdfjs-elements/lit-helpers/taggedLiteral.js', () => {
     })
 
     // when
-    const el = await fixture(html`<span>${taggedLiteral(resource)}</span>`)
+    const el = await fixture(html`<span>${localizedLabel(resource)}</span>`)
 
     // then
     expect(el).dom.to.equal(`<span>Apple</span>`)
@@ -80,8 +81,8 @@ describe('@rdfjs-elements/lit-helpers/taggedLiteral.js', () => {
 
     // when
     const el = await fixture(html`<p>
-      <span>${taggedLiteral(apple)}</span>
-      <span>${taggedLiteral(orange)}</span>
+      <span>${localizedLabel(apple)}</span>
+      <span>${localizedLabel(orange)}</span>
     </p>`)
     await nextFrame()
     setLanguages('en', 'pl')
@@ -98,7 +99,7 @@ describe('@rdfjs-elements/lit-helpers/taggedLiteral.js', () => {
 
     // when
     const el = await fixture(
-      html`<span>${taggedLiteral(fruit, { fallback: 'a fruit' })}</span>`
+      html`<span>${localizedLabel(fruit, { fallback: 'a fruit' })}</span>`
     )
     await nextFrame()
     setLanguages('en')
@@ -115,7 +116,7 @@ describe('@rdfjs-elements/lit-helpers/taggedLiteral.js', () => {
 
     // when
     const el = await fixture(
-      html`<span>${taggedLiteral(res, { fallback: 'Fallback' })}</span>`
+      html`<span>${localizedLabel(res, { fallback: 'Fallback' })}</span>`
     )
 
     // then
@@ -133,7 +134,7 @@ describe('@rdfjs-elements/lit-helpers/taggedLiteral.js', () => {
     // when
     const el = await fixture(
       html`<span
-        >${taggedLiteral(res, {
+        >${localizedLabel(res, {
           property: sh.name,
           fallback: 'Fallback',
         })}</span
