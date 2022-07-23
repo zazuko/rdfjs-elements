@@ -10,6 +10,7 @@
   ],
   "main": "index.js",
   "exports": {
+    ".": "./index.js",
     "./taggedLiteral.js": "./taggedLiteral.js",
     "./localizedLabel.js": "./localizedLabel.js"
   },
