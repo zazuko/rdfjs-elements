@@ -25,6 +25,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@babel/core": "^7",
     "@babel/preset-env": "^7.11.0",
     "@changesets/cli": "^2.24.0",
     "@esm-bundle/chai": "^4.3.4",
