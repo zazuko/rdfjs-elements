@@ -1,5 +1,11 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.3.2
+
+### Patch Changes
+
+- 9dd26ee: `lib` missing in package
+
 ## 0.3.1
 
 ### Patch Changes
