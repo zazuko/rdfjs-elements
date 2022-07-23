@@ -29,7 +29,7 @@
     "@babel/preset-env": "^7.11.0",
     "@changesets/cli": "^2.24.0",
     "@esm-bundle/chai": "^4.3.4",
-    "@open-wc/building-webpack": "^2.13.40",
+    "@open-wc/building-webpack": "^2.13.46",
     "@open-wc/eslint-config": "^7.0.0",
     "@rollup/plugin-commonjs": "^18.0.0",
     "@web/dev-server-esbuild": "^0.2.16",
