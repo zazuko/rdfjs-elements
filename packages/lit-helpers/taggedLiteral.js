@@ -1,7 +1,10 @@
 import { AsyncDirective, directive } from 'lit/async-directive.js'
-import only from 'clownface/filter.js'
 import { dispatcher } from './lib/dispatcher.js'
-import { displayLanguages } from './index.js'
+import { getLocalizedLabel } from './index.js'
+
+/**
+ * @typedef {import('clownface').AnyPointer | undefined} Pointer
+ */
 
 class TaggedLiteralDirective extends AsyncDirective {
   /**
@@ -13,15 +16,9 @@ class TaggedLiteralDirective extends AsyncDirective {
 
     /**
      * @private
-     */
-    this.languages = displayLanguages()
-
-    /**
-     * @private
      * @readonly
      */
-    this.languageUpdated = e => {
-      this.languages = e.detail
+    this.languageUpdated = () => {
       this.setValue(this.getTranslation())
     }
 
@@ -30,7 +27,7 @@ class TaggedLiteralDirective extends AsyncDirective {
 
   /**
    *
-   * @param {import('clownface').AnyPointer | undefined} pointer
+   * @param {Pointer} pointer
    * @param {object} [options]
    * @param {string} [options.fallback]
    * @returns {string|*}
@@ -54,11 +51,7 @@ class TaggedLiteralDirective extends AsyncDirective {
       return this.fallback
     }
 
-    return (
-      this.pointer
-        .filter(only.taggedLiteral([...this.languages, '*']))
-        .values.shift() || this.fallback
-    )
+    return getLocalizedLabel(this.pointer) || this.fallback
   }
 }
 

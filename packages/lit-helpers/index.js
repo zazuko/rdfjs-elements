@@ -1,3 +1,4 @@
+import only from 'clownface/filter.js'
 import { dispatcher } from './lib/dispatcher.js'
 
 let currentLanguages = navigator.languages
@@ -21,4 +22,15 @@ export function setLanguages(...preferredLanguages) {
       detail: preferredLanguages,
     })
   )
+}
+
+/**
+ *
+ * @param {import('clownface').MultiPointer} pointer
+ * @return {string}
+ */
+export function getLocalizedLabel(pointer) {
+  return pointer
+    .filter(only.taggedLiteral([...currentLanguages, '*']))
+    .values.shift()
 }
