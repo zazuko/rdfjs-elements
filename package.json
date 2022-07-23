@@ -44,12 +44,12 @@
     "prettier": "^2.0.4",
     "rdfjs-eds-plugin": "^0.1.1",
     "web-component-analyzer": "^2.0.0-next.4",
-    "webpack": "^4.44.1",
+    "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
+    "webpack-dev-server": "^3.11.3",
     "webpack-merge": "^5.1.1",
     "wsrun": "^5.2.4",
-    "yarn-deduplicate": "^3.1.0"
+    "yarn-deduplicate": "^5.0.0"
   },
   "resolutions": {
     "rdfxml-streaming-parser/readable-stream": "3.6.0"
