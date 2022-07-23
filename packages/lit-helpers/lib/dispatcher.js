@@ -1,1 +1,3 @@
-export const dispatcher = document.createElement('p')
+import EventTarget from '@ungap/event-target'
+
+export const dispatcher = new EventTarget()

@@ -1,7 +1,9 @@
 import only from 'clownface/filter.js'
 import { dispatcher } from './lib/dispatcher.js'
 
-let currentLanguages = navigator.languages
+const { navigator } = typeof global !== 'undefined' ? global : window
+
+let currentLanguages = navigator?.languages || []
 
 /**
  *
