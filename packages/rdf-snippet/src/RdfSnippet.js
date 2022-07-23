@@ -250,13 +250,31 @@ export class RdfSnippet extends LitElement {
         this[Show] === 'input' ? 'selected' : ''
       }`
 
-      return html`<li input part="${inputParts}" @click="${this._showInput}">
+      return html`<li
+        input
+        part="${inputParts}"
+        @click="${this._showInput}"
+        @keydown="${this._onKey(this._showInput)}"
+      >
         ${formatLabels[this.inputFormat] || this.inputFormat}
       </li>`
     }
 
     return html` ${this.onlyOutput ? '' : inputFormatButton()}
     ${repeat(this._outputFormats, this.__renderOutputButton.bind(this))}`
+  }
+
+  _onKey(cb) {
+    const onKey = cb.bind(this)
+
+    /**
+     * @param {KeyboardEvent} e
+     */
+    return e => {
+      if (e.key === 'Enter') {
+        onKey(this)
+      }
+    }
   }
 
   async _showInput() {
@@ -291,7 +309,12 @@ export class RdfSnippet extends LitElement {
         : ''
     }`
 
-    return html`<li output part="${parts}" @click="${this._showOutput(format)}">
+    return html`<li
+      output
+      part="${parts}"
+      @click="${this._showOutput(format)}"
+      @keydown="${this._onKey(this._showOutput(format))}"
+    >
       ${formatLabels[format] || format}
     </li>`
   }
