@@ -1,5 +1,11 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.3.1
+
+### Patch Changes
+
+- 8b8c947: Extract separate function to get translated label of any pointer
+
 ## 0.3.0
 
 ### Minor Changes
