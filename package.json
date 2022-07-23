@@ -53,7 +53,6 @@
     "yarn-deduplicate": "^5.0.0"
   },
   "resolutions": {
-    "rdfxml-streaming-parser/readable-stream": "3.6.0",
     "@web/dev-server-rollup/**/@rollup/plugin-node-resolve": "11.2.1"
   },
   "eslintConfig": {
