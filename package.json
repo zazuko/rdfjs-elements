@@ -34,7 +34,7 @@
     "@rollup/plugin-commonjs": "^18.0.0",
     "@web/dev-server-esbuild": "^0.2.16",
     "@web/dev-server-rollup": "^0.3.13",
-    "@web/test-runner": "^0.13.29",
+    "@web/test-runner": "^0.13.30",
     "c8": "^7.7.2",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^7.2.0",
@@ -53,7 +53,8 @@
     "yarn-deduplicate": "^5.0.0"
   },
   "resolutions": {
-    "rdfxml-streaming-parser/readable-stream": "3.6.0"
+    "rdfxml-streaming-parser/readable-stream": "3.6.0",
+    "@web/dev-server-rollup": "0.3.15"
   },
   "eslintConfig": {
     "extends": [
