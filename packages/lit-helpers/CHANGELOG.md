@@ -1,5 +1,12 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.3.3
+
+### Patch Changes
+
+- d53ef0a: Package needs `.` export to load in some environments
+- 304f151: The use of `document` and `navigator` prevented importing in node
+
 ## 0.3.2
 
 ### Patch Changes
