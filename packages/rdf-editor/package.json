@@ -8,7 +8,7 @@
   "module": "rdf-editor.js",
   "scripts": {
     "analyze": "run-p analyze:*",
-    "analyze:wc": "wca --format json --outFile ./custom-elements.json",
+    "analyze:wc": "cem analyze --litelement",
     "analyze:readme": "wca --outFile ./README.md",
     "analyze:lit": "lit-analyzer --strict --quiet --rules.no-invalid-css off",
     "start": "webpack-dev-server --mode development",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@open-wc/testing": "^3.0.3",
     "@rdfjs-elements/testing": "^0.1.0",
-    "api-viewer-element": "^0.5.0"
+    "api-viewer-element": "^1.0.0-pre.3"
   },
   "publishConfig": {
     "access": "public"

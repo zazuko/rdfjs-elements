@@ -1,120 +1,287 @@
 {
-  "version": "experimental",
-  "tags": [
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
     {
-      "name": "rdf-snippet",
-      "path": "./rdf-snippet.js",
-      "description": "An RDF viewer which allows switching between various serializations.\n\n## Default usage\n\nThe initial text of the RDF snippet must be added inside a child `<script>` element with `type` attribute set to the appropriate\nRDF media type. The element's `formats` property selects the media types which should be available as alternative serializations.\n\n```html\n<rdf-snippet formats=\"application/ld+json,application/n-quads\">\n  <script type=\"text/turtle\">\n＠base <http://example.com/> .\n＠prefix schema: <http://schema.org/> .\n\n<john> a schema:Person ;\n  schema:name \"John Doe\" .\n  </script>\n</rdf-snippet>\n```\n\nThe initial RDF representation remains unchanged, while selecting the output formats re-serializes the actual triples and presents the output.\n\n## Usage with properties\n\nIn case when a `<script>` cannot be used, the snippet can be initialized by passing the serialized input and input format using properties/attributes\n\n```html\n<rdf-snippet .input=\"${turtle}\" input-format=\"text/turtle\">\n</rdf-snippet>\n```\n\n## Supported types\n\nOut of the box all common RDF formats are supported, where some can only be used for the input (no serializer available):\n\n- JSON-LD\n- N-Triples\n- N-Quads\n- Turtle/N3\n- TriG *(input only)*\n- RDF/XML *(input only)*\n\nSupport for additional types can be added by registering an RDF/JS-compliant parser and/or serializer using the [`@rdf-esm/formats-common`](https://npm.im/@rdf-esm/formats-common)\npackage:\n\n```js\nimport { parsers, serializers } from '@rdf-esm/formats-common'\n\n// by importing dynamically, the code will only be loaded when needed\nparsers.set('application/trix', async () => {\n  const TrixParser = await import('@hypothetical/trix-parser')\n  return new TrixParser()\n})\n\nserializers.set('application/trix', async () => {\n  const TrixSerializer = await import('@hypothetical/trix-serializer')\n  return new TrixSerializer()\n})\n```",
-      "attributes": [
+      "kind": "javascript-module",
+      "path": "rdf-snippet.js",
+      "declarations": [],
+      "exports": [
         {
-          "name": "layout",
-          "description": "controls the position of selection buttons",
-          "type": "\"vertical\"|\"horizontal\""
-        },
+          "kind": "custom-element-definition",
+          "name": "rdf-snippet",
+          "declaration": {
+            "name": "RdfSnippet",
+            "module": "/src/RdfSnippet.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/index.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/RdfSnippet.js",
+      "declarations": [
         {
-          "name": "only-output",
-          "description": "hides the input editor and only shows the outputs",
-          "type": "boolean"
-        },
-        {
-          "name": "formats",
-          "description": "comma-separated list of output formats",
-          "type": "string"
-        },
-        {
-          "name": "prefixes",
-          "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
-          "type": "string",
-          "default": "\"\""
-        },
-        {
-          "name": "input-format",
-          "description": "set the format of the input (ignored when `<script>` is used)",
-          "type": "string",
-          "default": "\"text/turtle\""
-        },
-        {
-          "name": "customPrefixes",
-          "type": "object",
-          "default": "{}"
+          "kind": "class",
+          "description": "An RDF viewer which allows switching between various serializations.\n\n## Default usage\n\nThe initial text of the RDF snippet must be added inside a child `<script>` element with `type` attribute set to the appropriate\nRDF media type. The element's `formats` property selects the media types which should be available as alternative serializations.\n\n```html\n<rdf-snippet formats=\"application/ld+json,application/n-quads\">\n  <script type=\"text/turtle\">\n＠base <http://example.com/> .\n＠prefix schema: <http://schema.org/> .\n\n<john> a schema:Person ;\n  schema:name \"John Doe\" .\n  </script>\n</rdf-snippet>\n```\n\nThe initial RDF representation remains unchanged, while selecting the output formats re-serializes the actual triples and presents the output.\n\n## Usage with properties\n\nIn case when a `<script>` cannot be used, the snippet can be initialized by passing the serialized input and input format using properties/attributes\n\n```html\n<rdf-snippet .input=\"${turtle}\" input-format=\"text/turtle\">\n</rdf-snippet>\n```\n\n## Supported types\n\nOut of the box all common RDF formats are supported, where some can only be used for the input (no serializer available):\n\n- JSON-LD\n- N-Triples\n- N-Quads\n- Turtle/N3\n- TriG *(input only)*\n- RDF/XML *(input only)*\n\nSupport for additional types can be added by registering an RDF/JS-compliant parser and/or serializer using the [`@rdf-esm/formats-common`](https://npm.im/@rdf-esm/formats-common)\npackage:\n\n```js\nimport { parsers, serializers } from '@rdf-esm/formats-common'\n\n// by importing dynamically, the code will only be loaded when needed\nparsers.set('application/trix', async () => {\n  const TrixParser = await import('@hypothetical/trix-parser')\n  return new TrixParser()\n})\n\nserializers.set('application/trix', async () => {\n  const TrixSerializer = await import('@hypothetical/trix-serializer')\n  return new TrixSerializer()\n})\n```",
+          "name": "RdfSnippet",
+          "cssParts": [
+            {
+              "description": "every format selection button",
+              "name": "format"
+            },
+            {
+              "description": "selection button for the input format",
+              "name": "input"
+            },
+            {
+              "description": "selection button for the output formats",
+              "name": "output"
+            },
+            {
+              "description": "the currently selected format button",
+              "name": "selected"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "value",
+              "description": "Gets the text contents of the currently showing editor",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_editor"
+            },
+            {
+              "kind": "field",
+              "name": "_outputEditor"
+            },
+            {
+              "kind": "field",
+              "name": "_outputFormats"
+            },
+            {
+              "kind": "method",
+              "name": "_renderButtons"
+            },
+            {
+              "kind": "method",
+              "name": "_onKey",
+              "parameters": [
+                {
+                  "name": "cb"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_showInput"
+            },
+            {
+              "kind": "method",
+              "name": "_showOutput",
+              "parameters": [
+                {
+                  "name": "format"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "__inputParsed",
+              "parameters": [
+                {
+                  "name": "e"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "__renderOutputButton",
+              "parameters": [
+                {
+                  "name": "format"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "__dispatchChangeEvent"
+            },
+            {
+              "kind": "field",
+              "name": "formats",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "comma-separated list of output formats",
+              "attribute": "formats",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "prefixes",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
+              "attribute": "prefixes"
+            },
+            {
+              "kind": "field",
+              "type": {
+                "text": "array"
+              },
+              "default": "'input'"
+            },
+            {
+              "kind": "field",
+              "name": "inputFormat",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "'text/turtle'",
+              "description": "set the format of the input (ignored when `<script>` is used)",
+              "attribute": "input-format"
+            },
+            {
+              "kind": "field",
+              "name": "customPrefixes",
+              "privacy": "public",
+              "type": {
+                "text": "object"
+              },
+              "default": "{}",
+              "attribute": "customPrefixes"
+            },
+            {
+              "kind": "field",
+              "name": "selectedFormat",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "gets the selected output format"
+            },
+            {
+              "kind": "field",
+              "name": "input",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "set the input serialized value (ignored when `<script>` is used)"
+            },
+            {
+              "kind": "field",
+              "name": "onlyOutput",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "hides the input editor and only shows the outputs",
+              "attribute": "only-output"
+            },
+            {
+              "kind": "field",
+              "name": "layout",
+              "privacy": "public",
+              "attribute": "layout",
+              "reflects": true
+            }
+          ],
+          "events": [
+            {
+              "name": "value-changed",
+              "type": {
+                "text": "CustomEvent"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "\"vertical\"|\"horizontal\""
+              },
+              "description": "controls the position of selection buttons",
+              "name": "layout",
+              "fieldName": "layout"
+            },
+            {
+              "name": "formats",
+              "type": {
+                "text": "string"
+              },
+              "description": "comma-separated list of output formats",
+              "fieldName": "formats"
+            },
+            {
+              "name": "input-format",
+              "type": {
+                "text": "string"
+              },
+              "default": "'text/turtle'",
+              "description": "set the format of the input (ignored when `<script>` is used)",
+              "fieldName": "inputFormat"
+            },
+            {
+              "name": "prefixes",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
+              "fieldName": "prefixes"
+            },
+            {
+              "name": "only-output",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "hides the input editor and only shows the outputs",
+              "fieldName": "onlyOutput"
+            },
+            {
+              "name": "customPrefixes",
+              "type": {
+                "text": "object"
+              },
+              "default": "{}",
+              "fieldName": "customPrefixes"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "rdf-snippet",
+          "customElement": true
         }
       ],
-      "properties": [
+      "exports": [
         {
-          "name": "input",
-          "description": "set the input serialized value (ignored when `<script>` is used)",
-          "type": "string"
-        },
-        {
-          "name": "selectedFormat",
-          "description": "gets the selected output format",
-          "type": "string"
-        },
-        {
-          "name": "layout",
-          "attribute": "layout",
-          "description": "controls the position of selection buttons",
-          "type": "\"vertical\"|\"horizontal\""
-        },
-        {
-          "name": "onlyOutput",
-          "attribute": "only-output",
-          "description": "hides the input editor and only shows the outputs",
-          "type": "boolean"
-        },
-        {
-          "name": "value",
-          "description": "Gets the text contents of the currently showing editor",
-          "type": "string"
-        },
-        {
-          "name": "formats",
-          "attribute": "formats",
-          "description": "comma-separated list of output formats",
-          "type": "string"
-        },
-        {
-          "name": "prefixes",
-          "attribute": "prefixes",
-          "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
-          "type": "string",
-          "default": "\"\""
-        },
-        {
-          "name": "inputFormat",
-          "attribute": "input-format",
-          "description": "set the format of the input (ignored when `<script>` is used)",
-          "type": "string",
-          "default": "\"text/turtle\""
-        },
-        {
-          "name": "customPrefixes",
-          "attribute": "customPrefixes",
-          "type": "object",
-          "default": "{}"
-        }
-      ],
-      "events": [
-        {
-          "name": "value-changed"
-        }
-      ],
-      "cssParts": [
-        {
-          "name": "format",
-          "description": "every format selection button"
-        },
-        {
-          "name": "input",
-          "description": "selection button for the input format"
-        },
-        {
-          "name": "output",
-          "description": "selection button for the output formats"
-        },
-        {
-          "name": "selected",
-          "description": "the currently selected format button"
+          "kind": "js",
+          "name": "RdfSnippet",
+          "declaration": {
+            "name": "RdfSnippet",
+            "module": "src/RdfSnippet.js"
+          }
         }
       ]
     }

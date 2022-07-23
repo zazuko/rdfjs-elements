@@ -1,209 +1,287 @@
 {
-  "version": "experimental",
-  "tags": [
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
     {
-      "name": "rdf-editor",
-      "path": "./rdf-editor.js",
-      "description": "A text editor custom element which parses and serializes RDF/JS Quads using a selected RDF format.\n\n## Usage\n\nThe element requires a single property/attribute `format` which should be an RDF serialization media type supported by\n`@rdf-esm/formats-common` package.\n\nThe element is easiest to bootstrap by setting the `value` property **before** first render. This property is\nonly used to provide the initial contents of the editor as it is parsed on first render, when the element has been added\nto the page.\n\n```js\nimport '@rdfjs-elements/rdf-editor'\nimport { html } from 'lit'\n\nconst jsonld = {\n  '@context': {\n    '@base': 'http://example.com/',\n    '@vocab': 'http://schema.org/'\n  },\n  '@id': 'john-doe',\n  '@type': 'Person',\n  '@name': 'John Doe'\n}\n\nconst initialValue = JSON.stringify(jsonld, null, 2)\n\nconst template = html`<rdf-editor format=\"application/ld+json\" .value=\"${initialValue}\"></rdf-editor>`\n```\n\nBy default most common formats are supported\n\n- JSON-LD\n- N-Triples\n- N-Quads\n- RDF/XML\n- Turtle/N3\n- TriG *(no highlighting)*\n\nSyntax highlighting is relying on support from CodeMirror.",
-      "attributes": [
+      "kind": "javascript-module",
+      "path": "formats.js",
+      "declarations": [],
+      "exports": [
         {
-          "name": "format",
-          "description": "Media type of the RDF serialization to use.\n\nCustom parsers and serializers must be added to `@rdf-esm/formats-common`",
-          "type": "string"
-        },
-        {
-          "name": "quads",
-          "description": "get or sets the RDF/JS quads",
-          "type": "Quad[]"
-        },
-        {
-          "name": "no-reserialize",
-          "description": "Prevents the editor from serializing the quads when format changes",
-          "type": "boolean",
-          "default": "false"
-        },
-        {
-          "name": "ready",
-          "description": "a one-time promise which resolves when CodeMirror has been initialized",
-          "type": "Promise<void>"
-        },
-        {
-          "name": "readonly",
-          "type": "boolean"
-        },
-        {
-          "name": "prefixes",
-          "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
-          "type": "string"
-        },
-        {
-          "name": "is-parsing",
-          "description": "set to true while the elements parses data when the code has changed",
-          "type": "boolean",
-          "default": "false"
-        },
-        {
-          "name": "auto-parse",
-          "description": "if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event",
-          "type": "boolean"
-        },
-        {
-          "name": "value",
-          "description": "The string representation of the RDF graph.",
-          "type": "string"
-        },
-        {
-          "name": "parseDelay",
-          "description": "time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set",
-          "type": "Number",
-          "default": "250"
-        },
-        {
-          "name": "customPrefixes",
-          "description": "a map of custom prefixes or overrides",
-          "type": "Record<string, string>",
-          "default": "{}"
-        }
-      ],
-      "properties": [
-        {
-          "name": "format",
-          "attribute": "format",
-          "description": "Media type of the RDF serialization to use.\n\nCustom parsers and serializers must be added to `@rdf-esm/formats-common`",
-          "type": "string"
-        },
-        {
-          "name": "quads",
-          "attribute": "quads",
-          "description": "get or sets the RDF/JS quads",
-          "type": "Quad[]"
-        },
-        {
-          "name": "noReserialize",
-          "attribute": "no-reserialize",
-          "description": "Prevents the editor from serializing the quads when format changes",
-          "type": "boolean",
-          "default": "false"
-        },
-        {
-          "name": "ready",
-          "attribute": "ready",
-          "description": "a one-time promise which resolves when CodeMirror has been initialized",
-          "type": "Promise<void>"
-        },
-        {
-          "name": "readonly",
-          "attribute": "readonly",
-          "type": "boolean"
-        },
-        {
-          "name": "prefixes",
-          "attribute": "prefixes",
-          "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
-          "type": "string"
-        },
-        {
-          "name": "isParsing",
-          "attribute": "is-parsing",
-          "description": "set to true while the elements parses data when the code has changed",
-          "type": "boolean",
-          "default": "false"
-        },
-        {
-          "name": "autoParse",
-          "attribute": "auto-parse",
-          "description": "if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event",
-          "type": "boolean"
-        },
-        {
-          "name": "codeMirror",
-          "description": "The underlying `<wc-codemirror>` element",
-          "type": "Element | null"
-        },
-        {
-          "name": "value",
-          "attribute": "value",
-          "description": "The string representation of the RDF graph.",
-          "type": "string"
-        },
-        {
-          "name": "parseDelay",
-          "attribute": "parseDelay",
-          "description": "time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set",
-          "type": "Number",
-          "default": "250"
-        },
-        {
-          "name": "customPrefixes",
-          "attribute": "customPrefixes",
-          "description": "a map of custom prefixes or overrides",
-          "type": "Record<string, string>",
-          "default": "{}"
-        }
-      ],
-      "events": [
-        {
-          "name": "quads-changed",
-          "description": "when the editor contents have changed and have been successfully parsed"
-        },
-        {
-          "name": "parsing-failed",
-          "description": "when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason"
-        },
-        {
-          "name": "prefixes-parsed",
-          "description": "prefixes returned by parser"
-        },
-        {
-          "name": "serialized"
-        }
-      ],
-      "cssParts": [
-        {
-          "name": "error",
-          "description": "Line or part of line highlighted as result of parsing error. By default style is red wavy underline"
-        },
-        {
-          "name": "CodeMirror",
-          "description": "The main CodeMirror wrapper element. This and other parts are directly generated from CSS classes set by CodeMirror and should be fairly self-explanatory but not equally useful 😉"
-        },
-        {
-          "name": "CodeMirror-vscrollbar"
-        },
-        {
-          "name": "CodeMirror-hscrollbar"
-        },
-        {
-          "name": "CodeMirror-scrollbar-filler"
-        },
-        {
-          "name": "CodeMirror-gutter-filler"
-        },
-        {
-          "name": "CodeMirror-scroll"
-        },
-        {
-          "name": "CodeMirror-sizer"
-        },
-        {
-          "name": "CodeMirror-lines"
-        },
-        {
-          "name": "CodeMirror-measure"
-        },
-        {
-          "name": "CodeMirror-cursors"
-        },
-        {
-          "name": "CodeMirror-code"
-        },
-        {
-          "name": "CodeMirror-gutters"
-        },
-        {
-          "name": "CodeMirror-linenumbers"
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "@rdfjs-elements/formats-pretty"
+          }
         }
       ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "index.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "RdfEditor",
+          "declaration": {
+            "name": "RdfEditor",
+            "module": "./src/RdfEditor.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "formats",
+          "declaration": {
+            "name": "formats",
+            "package": "@rdfjs-elements/formats-pretty"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "rdf-editor.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "rdf-editor",
+          "declaration": {
+            "name": "RdfEditor",
+            "module": "/src/RdfEditor.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/index.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/RdfEditor.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "A text editor custom element which parses and serializes RDF/JS Quads using a selected RDF format.\n\n## Usage\n\nThe element requires a single property/attribute `format` which should be an RDF serialization media type supported by\n`@rdf-esm/formats-common` package.\n\nThe element is easiest to bootstrap by setting the `value` property **before** first render. This property is\nonly used to provide the initial contents of the editor as it is parsed on first render, when the element has been added\nto the page.\n\n```js\nimport '@rdfjs-elements/rdf-editor'\nimport { html } from 'lit'\n\nconst jsonld = {\n  '@context': {\n    '@base': 'http://example.com/',\n    '@vocab': 'http://schema.org/'\n  },\n  '@id': 'john-doe',\n  '@type': 'Person',\n  '@name': 'John Doe'\n}\n\nconst initialValue = JSON.stringify(jsonld, null, 2)\n\nconst template = html`<rdf-editor format=\"application/ld+json\" .value=\"${initialValue}\"></rdf-editor>`\n```\n\nBy default most common formats are supported\n\n- JSON-LD\n- N-Triples\n- N-Quads\n- RDF/XML\n- Turtle/N3\n- TriG *(no highlighting)*\n\nSyntax highlighting is relying on support from CodeMirror.",
+          "name": "RdfEditor",
+          "members": [
+            {
+              "kind": "field",
+              "name": "quads",
+              "privacy": "public",
+              "description": "get or sets the RDF/JS quads",
+              "return": {
+                "type": {
+                  "text": "Quad[]"
+                }
+              },
+              "type": {
+                "text": "Quad[]"
+              },
+              "attribute": "quads"
+            },
+            {
+              "kind": "method",
+              "name": "_parse"
+            },
+            {
+              "kind": "method",
+              "name": "__serialize"
+            },
+            {
+              "kind": "method",
+              "name": "_errorLine",
+              "parameters": [
+                {
+                  "name": "error"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "__notifyParsedPrefixes",
+              "parameters": [
+                {
+                  "name": "parsedPrefixes"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "isParsing",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "noReserialize",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Prevents the editor from serializing the quads when format changes",
+              "attribute": "no-reserialize"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "The string representation of the RDF graph.",
+              "name": "value",
+              "kind": "field"
+            },
+            {
+              "kind": "field",
+              "name": "format",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "Media type of the RDF serialization to use. Custom parsers and serializers must be added to `@rdf-esm/formats-common`",
+              "attribute": "format",
+              "reflects": true
+            }
+          ],
+          "events": [
+            {
+              "name": "parsing-failed",
+              "type": {
+                "text": "CustomEvent<{ notFound?: boolean; error?: Error; }>"
+              },
+              "description": "when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason"
+            },
+            {
+              "name": "quads-changed",
+              "type": {
+                "text": "CustomEvent<{ quads: Quad[]; }>"
+              },
+              "description": "when the editor contents have changed and have been successfully parsed"
+            },
+            {
+              "name": "serialized",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "name": "prefixes-parsed",
+              "type": {
+                "text": "CustomEvent<{ prefixes: Record<string, string>; }>"
+              },
+              "description": "prefixes returned by parser"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "format",
+              "type": {
+                "text": "string"
+              },
+              "description": "Media type of the RDF serialization to use. Custom parsers and serializers must be added to `@rdf-esm/formats-common`",
+              "fieldName": "format"
+            },
+            {
+              "name": "quads",
+              "description": "get or sets the RDF/JS quads",
+              "return": {
+                "type": {
+                  "text": "Quad[]"
+                }
+              },
+              "type": {
+                "text": "Quad[]"
+              },
+              "fieldName": "quads"
+            },
+            {
+              "name": "no-reserialize",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Prevents the editor from serializing the quads when format changes",
+              "fieldName": "noReserialize"
+            }
+          ],
+          "superclass": {
+            "name": "Editor",
+            "package": "@rdfjs-elements/editor-base"
+          },
+          "tagName": "rdf-editor",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "RdfEditor",
+          "declaration": {
+            "name": "RdfEditor",
+            "module": "src/RdfEditor.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/stream.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "toStream",
+          "default": "stringToStream"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Readable",
+          "declaration": {
+            "name": "Readable",
+            "package": "readable-stream"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "toStream",
+          "declaration": {
+            "name": "toStream",
+            "module": "src/stream.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mode/javascript.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mode/ntriples.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mode/turtle.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mode/xml.js",
+      "declarations": [],
+      "exports": []
     }
   ]
 }

@@ -1,185 +1,127 @@
 {
-  "version": "experimental",
-  "tags": [
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
     {
-      "name": "sparql-editor",
-      "path": "./sparql-editor.js",
-      "description": "A text editor custom element which highlights and parses SPARQL queries.\n\nIt uses [sparqljs](https://npm.im/sparqljs) to parse the query text.\n\n## Usage\n\nSimply add the element to a page. It is possible to provide common prefixes and a base IRI\nso that they don't have to be explicitly added in the SPARQL string\n\n```js\nimport '@rdfjs-elements/sparql-editor'\nimport { html } from 'lit'\n\nconst value = `CONSTRUCT { ?s ?p ?o }\nFROM <john-doe>\nWHERE {\n  <john-doe> a schema:Person ;\n  schema:name \"John Doe\" .\n}`\n\nconst template = html`<rdf-editor prefixes=\"schema\" baseIRI=\"http://example.com/\" .value=\"${value}\"></rdf-editor>`\n```",
-      "attributes": [
+      "kind": "javascript-module",
+      "path": "sparql-editor.js",
+      "declarations": [],
+      "exports": [
         {
-          "name": "base-iri",
-          "description": "Value of the `BASE` directive which will be injected to the query",
-          "type": "string"
-        },
-        {
-          "name": "ready",
-          "description": "a one-time promise which resolves when CodeMirror has been initialized",
-          "type": "Promise<void>"
-        },
-        {
-          "name": "readonly",
-          "type": "boolean"
-        },
-        {
-          "name": "prefixes",
-          "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
-          "type": "string"
-        },
-        {
-          "name": "is-parsing",
-          "description": "set to true while the elements parses data when the code has changed",
-          "type": "boolean"
-        },
-        {
-          "name": "auto-parse",
-          "description": "if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event",
-          "type": "boolean"
-        },
-        {
-          "name": "value",
-          "description": "The raw contents of the code editor",
-          "type": "string"
-        },
-        {
-          "name": "parseDelay",
-          "description": "time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set",
-          "type": "Number",
-          "default": "250"
-        },
-        {
-          "name": "customPrefixes",
-          "description": "a map of custom prefixes or overrides",
-          "type": "Record<string, string>",
-          "default": "{}"
-        }
-      ],
-      "properties": [
-        {
-          "name": "baseIRI",
-          "attribute": "base-iri",
-          "description": "Value of the `BASE` directive which will be injected to the query",
-          "type": "string"
-        },
-        {
-          "name": "format",
-          "type": "string"
-        },
-        {
-          "name": "query",
-          "description": "The JS object representing the query",
-          "type": "object"
-        },
-        {
-          "name": "ready",
-          "attribute": "ready",
-          "description": "a one-time promise which resolves when CodeMirror has been initialized",
-          "type": "Promise<void>"
-        },
-        {
-          "name": "readonly",
-          "attribute": "readonly",
-          "type": "boolean"
-        },
-        {
-          "name": "prefixes",
-          "attribute": "prefixes",
-          "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
-          "type": "string"
-        },
-        {
-          "name": "isParsing",
-          "attribute": "is-parsing",
-          "description": "set to true while the elements parses data when the code has changed",
-          "type": "boolean"
-        },
-        {
-          "name": "autoParse",
-          "attribute": "auto-parse",
-          "description": "if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event",
-          "type": "boolean"
-        },
-        {
-          "name": "codeMirror",
-          "description": "The underlying `<wc-codemirror>` element",
-          "type": "Element | null"
-        },
-        {
-          "name": "value",
-          "attribute": "value",
-          "description": "The raw contents of the code editor",
-          "type": "string"
-        },
-        {
-          "name": "parseDelay",
-          "attribute": "parseDelay",
-          "description": "time in milliseconds after which parsing will begin while typing. Only applies when `autoParse` is set",
-          "type": "Number",
-          "default": "250"
-        },
-        {
-          "name": "customPrefixes",
-          "attribute": "customPrefixes",
-          "description": "a map of custom prefixes or overrides",
-          "type": "Record<string, string>",
-          "default": "{}"
-        }
-      ],
-      "events": [
-        {
-          "name": "parsed",
-          "description": "when the editor contents have changed and have been successfully parsed"
-        },
-        {
-          "name": "parsing-failed",
-          "description": "when there as in an error in parsing the query"
-        }
-      ],
-      "cssParts": [
-        {
-          "name": "error",
-          "description": "Line or part of line highlighted as result of parsing error. By default style is red wavy underline"
-        },
-        {
-          "name": "CodeMirror",
-          "description": "The main CodeMirror wrapper element. This and other parts are directly generated from CSS classes set by CodeMirror and should be fairly self-explanatory but not equally useful 😉"
-        },
-        {
-          "name": "CodeMirror-vscrollbar"
-        },
-        {
-          "name": "CodeMirror-hscrollbar"
-        },
-        {
-          "name": "CodeMirror-scrollbar-filler"
-        },
-        {
-          "name": "CodeMirror-gutter-filler"
-        },
-        {
-          "name": "CodeMirror-scroll"
-        },
-        {
-          "name": "CodeMirror-sizer"
-        },
-        {
-          "name": "CodeMirror-lines"
-        },
-        {
-          "name": "CodeMirror-measure"
-        },
-        {
-          "name": "CodeMirror-cursors"
-        },
-        {
-          "name": "CodeMirror-code"
-        },
-        {
-          "name": "CodeMirror-gutters"
-        },
-        {
-          "name": "CodeMirror-linenumbers"
+          "kind": "custom-element-definition",
+          "name": "sparql-editor",
+          "declaration": {
+            "name": "SparqlEditor",
+            "module": "/src/SparqlEditor.js"
+          }
         }
       ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/index.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/SparqlEditor.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "A text editor custom element which highlights and parses SPARQL queries.\n\nIt uses [sparqljs](https://npm.im/sparqljs) to parse the query text.\n\n## Usage\n\nSimply add the element to a page. It is possible to provide common prefixes and a base IRI\nso that they don't have to be explicitly added in the SPARQL string\n\n```js\nimport '@rdfjs-elements/sparql-editor'\nimport { html } from 'lit'\n\nconst value = `CONSTRUCT { ?s ?p ?o }\nFROM <john-doe>\nWHERE {\n  <john-doe> a schema:Person ;\n  schema:name \"John Doe\" .\n}`\n\nconst template = html`<rdf-editor prefixes=\"schema\" baseIRI=\"http://example.com/\" .value=\"${value}\"></rdf-editor>`\n```",
+          "name": "SparqlEditor",
+          "members": [
+            {
+              "kind": "field",
+              "name": "format"
+            },
+            {
+              "kind": "field",
+              "name": "query"
+            },
+            {
+              "kind": "method",
+              "name": "_parse"
+            },
+            {
+              "kind": "method",
+              "name": "_errorLine",
+              "parameters": [
+                {
+                  "name": "error"
+                }
+              ]
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "The raw contents of the code editor",
+              "name": "value",
+              "kind": "field"
+            },
+            {
+              "kind": "field",
+              "name": "baseIRI",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "Value of the `BASE` directive which will be injected to the query",
+              "attribute": "base-iri"
+            }
+          ],
+          "events": [
+            {
+              "name": "parsed",
+              "type": {
+                "text": "CustomEvent<{ value: string; query: object }>"
+              },
+              "description": "when the editor contents have changed and have been successfully parsed"
+            },
+            {
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "when there as in an error in parsing the query",
+              "name": "parsing-failed"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "base-iri",
+              "type": {
+                "text": "string"
+              },
+              "description": "Value of the `BASE` directive which will be injected to the query",
+              "fieldName": "baseIRI"
+            }
+          ],
+          "superclass": {
+            "name": "Editor",
+            "package": "@rdfjs-elements/editor-base"
+          },
+          "tagName": "sparql-editor",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SparqlEditor",
+          "declaration": {
+            "name": "SparqlEditor",
+            "module": "src/SparqlEditor.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mode/sparql.js",
+      "declarations": [],
+      "exports": []
     }
   ]
 }
