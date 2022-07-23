@@ -4,7 +4,7 @@ import { html } from 'lit'
 import { taggedLiteral } from './taggedLiteral.js'
 
 /**
- * @typedef {import('clownface').AnyPointer<import('rdf-js').NamedNode | import('rdf-js').BlankNode> | import('@tpluscode/rdfine').RdfResource | undefined} PointerLike
+ * @typedef {import('clownface').AnyPointer | import('@tpluscode/rdfine').RdfResource | undefined} PointerLike
  */
 
 class LocalizedLabelDirective extends Directive {
