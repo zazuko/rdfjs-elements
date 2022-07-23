@@ -13,7 +13,7 @@
     "./localizedLabel.js": "./localizedLabel.js"
   },
   "scripts": {
-    "prepack": "tsc --allowJs --declaration --emitDeclarationOnly *.js"
+    "prepack": "tsc --allowJs --declaration --emitDeclarationOnly *.js --skipLibCheck"
   },
   "dependencies": {
     "@tpluscode/rdf-ns-builders": "^2",
