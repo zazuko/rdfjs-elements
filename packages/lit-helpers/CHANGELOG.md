@@ -1,5 +1,12 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.3.0
+
+### Minor Changes
+
+- 9997d14: - Renamed `taggedLiteral` to `localizedLabel`. It renders a resource's label in display language
+  - Create a new `taggedLiteral` which takes as argument a literal pointer
+
 ## 0.2.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @rdfjs-elements/rdf-snippet
 
+## 0.4.2
+
+### Patch Changes
+
+- 6c4b3ad: Accessibility: showing input/output should be possible using keyboard
+
 ## 0.4.1
 
 ### Patch Changes
