@@ -21,7 +21,8 @@
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
     "release": "changeset publish",
-    "postinstall": "yarn-deduplicate"
+    "postinstall": "yarn-deduplicate",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.11.0",
@@ -36,8 +37,8 @@
     "c8": "^7.7.2",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^7.2.0",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "lit-analyzer": "^2.0.0-pre.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
@@ -63,11 +64,6 @@
     "singleQuote": true,
     "arrowParens": "avoid",
     "semi": false
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && yarn analyze && git add **/custom-elements.json **/README.md"
-    }
   },
   "lint-staged": {
     "*.js": [
