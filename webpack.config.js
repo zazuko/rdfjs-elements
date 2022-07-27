@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { merge } = require('webpack-merge')
 const { createDefaultConfig } = require('@open-wc/building-webpack')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = ({ input, output, contentBase, options = {} }) =>
   merge(
@@ -37,5 +38,13 @@ module.exports = ({ input, output, contentBase, options = {} }) =>
         contentBase,
         watchContentBase: true,
       },
+      plugins: [
+        new CopyPlugin({
+          patterns: [{
+            from: './custom-elements.json',
+            noErrorOnMissing: true
+          }],
+        }),
+      ],
     }
   )
