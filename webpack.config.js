@@ -40,10 +40,12 @@ module.exports = ({ input, output, contentBase, options = {} }) =>
       },
       plugins: [
         new CopyPlugin({
-          patterns: [{
-            from: './custom-elements.json',
-            noErrorOnMissing: true
-          }],
+          patterns: [
+            {
+              from: './custom-elements.json',
+              noErrorOnMissing: true,
+            },
+          ],
         }),
       ],
     }
