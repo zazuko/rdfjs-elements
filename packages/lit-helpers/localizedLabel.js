@@ -1,6 +1,5 @@
 import { directive, Directive } from 'lit/directive.js'
 import { rdfs } from '@tpluscode/rdf-ns-builders'
-import { html } from 'lit'
 import { taggedLiteral } from './taggedLiteral.js'
 
 /**
@@ -36,7 +35,7 @@ class LocalizedLabelDirective extends Directive {
     }
 
     const label = this.pointer?.out(this.property)
-    return html`${taggedLiteral(label, { fallback })}`
+    return taggedLiteral(label, { fallback })
   }
 }
 
