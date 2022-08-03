@@ -144,4 +144,48 @@ describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
     // then
     expect(el).dom.to.equal(`<span>Fallback</span>`)
   })
+
+  it('binds to property', async () => {
+    // given
+    const pointer = clownface({ dataset: $rdf.dataset() }).addOut(
+      sh.name,
+      'Property'
+    )
+    const res = pointer.blankNode()
+
+    // when
+    const el = await fixture(
+      html`<input
+        .value="${localizedLabel(res, {
+          property: sh.name,
+          fallback: 'Fallback',
+        })}"
+      />`
+    )
+
+    // then
+    expect(el.value).to.equal(`Fallback`)
+  })
+
+  it('binds to attribute', async () => {
+    // given
+    const pointer = clownface({ dataset: $rdf.dataset() }).addOut(
+      sh.name,
+      'Property'
+    )
+    const res = pointer.blankNode()
+
+    // when
+    const el = await fixture(
+      html`<input
+        .value="${localizedLabel(res, {
+          property: sh.name,
+          fallback: 'Fallback',
+        })}"
+      />`
+    )
+
+    // then
+    expect(el.value).to.equal(`Fallback`)
+  })
 })
