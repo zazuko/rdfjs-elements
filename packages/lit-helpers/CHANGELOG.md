@@ -1,5 +1,11 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.3.4
+
+### Patch Changes
+
+- 3c2a711: Binding to properties and attributes would set a string `"[object Object]"`
+
 ## 0.3.3
 
 ### Patch Changes
