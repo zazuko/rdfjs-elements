@@ -11,7 +11,7 @@ class LocalizedLabelDirective extends Directive {
    *
    * @param {PointerLike} resource
    * @param {object} [options]
-   * @param {import('@rdfjs/types').NamedNode} [options.property]
+   * @param {import('@rdfjs/types').NamedNode | Array<import('@rdfjs/types').NamedNode>} [options.property]
    * @param {string} [options.fallback]
    * @returns {string|*}
    */
