@@ -1,5 +1,11 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.3.5
+
+### Patch Changes
+
+- 358a11e: Support multiple properties to selecte label for translation
+
 ## 0.3.4
 
 ### Patch Changes
