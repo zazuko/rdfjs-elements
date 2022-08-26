@@ -1,7 +1,7 @@
 import { html, fixture, expect, nextFrame } from '@open-wc/testing'
 import clownface from 'clownface'
 import $rdf from '@rdfjs/dataset'
-import { rdfs, sh } from '@tpluscode/rdf-ns-builders'
+import { rdfs, sh, skos } from '@tpluscode/rdf-ns-builders'
 import { fromPointer } from '@rdfine/rdfs/lib/Resource'
 import { setLanguages } from '../index.js'
 import { localizedLabel } from '../localizedLabel.js'
@@ -143,5 +143,24 @@ describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
 
     // then
     expect(el).dom.to.equal(`<span>Fallback</span>`)
+  })
+
+  it('supports multiple alternative label properties', async () => {
+    // given
+    const pointer = clownface({ dataset: $rdf.dataset() }).blankNode()
+    pointer.addOut(skos.altLabel, pointer.literal('Malus domestica'))
+
+    // when
+    const el = await fixture(
+      html`<span
+        >${localizedLabel(pointer, {
+          property: [skos.prefLabel, skos.altLabel],
+          fallback: 'wrong',
+        })}</span
+      >`
+    )
+
+    // then
+    expect(el).dom.to.equal(`<span>Malus domestica</span>`)
   })
 })
