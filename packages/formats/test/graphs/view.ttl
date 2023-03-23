@@ -1,0 +1,86 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<>
+  rdf:type <https://cube.link/view/View> ;
+  <https://cube.link/view/dimension>
+    _:b18,
+    _:b20,
+    _:b22,
+    _:b24,
+    _:b377_b375 ;
+  <https://cube.link/view/filter>
+    [
+      rdf:type <https://cube.link/view/Filter> ;
+      <https://cube.link/view/argument>
+        <https://ld.stadt-zuerich.ch/statistics/code/R00022>,
+        <https://ld.stadt-zuerich.ch/statistics/code/R00074>,
+        <https://ld.stadt-zuerich.ch/statistics/code/R00073>,
+        <https://ld.stadt-zuerich.ch/statistics/code/R00071> ;
+      <https://cube.link/view/dimension> _:b377_b375 ;
+      <https://cube.link/view/operation> <https://cube.link/view/In> ;
+      <urn:ssz:baseDimension> _:b22 ;
+      <urn:ssz:filterTermSet> <https://ld.stadt-zuerich.ch/statistics/termset/QuartiereZH>
+    ] ;
+  <https://cube.link/view/projection>
+    [
+      <https://cube.link/view/columns> _:b19
+    ] ;
+  <urn:ssz:source> <source/o2C8J1Ol_jDWmx8-jkh2e> .
+<source/o2C8J1Ol_jDWmx8-jkh2e>
+  rdf:type <https://cube.link/view/CubeSource> ;
+  rdfs:label "Wirtschaftliche Umzüge nach Umzugsquartier, Umzugskreis" ;
+  <https://cube.link/view/cube> <https://ld.stadt-zuerich.ch/statistics/000045> ;
+  <urn:ssz:keyFigure> <https://ld.stadt-zuerich.ch/statistics/measure/UMZ> .
+_:b18
+  rdf:type <https://cube.link/view/Dimension> ;
+  rdfs:label "Measure Umzüge von Personen (wirtschaftlich) (Wirtschaftliche Umzüge nach Umzugsquartier, Umzugskreis)" ;
+  <https://cube.link/view/from> _:b19 ;
+  <urn:ssz:generated> true .
+_:b20
+  rdf:first _:b20 ;
+  rdf:rest _:b21 ;
+  rdf:type <https://cube.link/view/Dimension> ;
+  rdfs:label "Key Zeit" ;
+  <https://cube.link/view/from> _:b21 ;
+  <urn:ssz:generated> true .
+_:b22
+  rdf:first _:b24 ;
+  rdf:rest rdf:nil ;
+  rdf:type <https://cube.link/view/Dimension> ;
+  rdfs:label "Key Raum" ;
+  <https://cube.link/view/from>
+    [
+      <https://cube.link/view/path> <https://ld.stadt-zuerich.ch/statistics/property/RAUM> ;
+      <https://cube.link/view/source> <source/o2C8J1Ol_jDWmx8-jkh2e>
+    ] ;
+  <urn:ssz:generated> true .
+_:b24
+  rdf:type <https://cube.link/view/Dimension> ;
+  rdfs:label "Key Ort" ;
+  <https://cube.link/view/from>
+    [
+      <https://cube.link/view/path> <https://ld.stadt-zuerich.ch/statistics/property/ORT> ;
+      <https://cube.link/view/source> <source/o2C8J1Ol_jDWmx8-jkh2e>
+    ] ;
+  <urn:ssz:generated> true .
+_:b377_b375
+  rdf:type
+    <https://cube.link/view/Dimension>,
+    <urn:ssz:FilterDimension> ;
+  <https://cube.link/view/from>
+    [
+      <https://cube.link/view/path> <https://ld.stadt-zuerich.ch/statistics/property/RAUM> ;
+      <https://cube.link/view/source> <source/o2C8J1Ol_jDWmx8-jkh2e>
+    ] .
+
+_:b19
+  rdf:first _:b18 ;
+  rdf:rest _:b20 ;
+  <https://cube.link/view/path> <https://ld.stadt-zuerich.ch/statistics/measure/UMZ> ;
+  <https://cube.link/view/source> <source/o2C8J1Ol_jDWmx8-jkh2e> .
+_:b21
+  rdf:first _:b22 ;
+  rdf:rest _:b22 ;
+  <https://cube.link/view/path> <https://ld.stadt-zuerich.ch/statistics/property/ZEIT> ;
+  <https://cube.link/view/source> <source/o2C8J1Ol_jDWmx8-jkh2e> .
