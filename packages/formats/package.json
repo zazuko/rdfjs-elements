@@ -33,12 +33,12 @@
     "directory": "packages/formats"
   },
   "dependencies": {
-    "@graphy/content.nq.read": "^4.3.3",
-    "@graphy/content.ttl.write": "^4.3.3",
-    "@graphy/content.xml.scribe": "^4.3.3",
-    "@graphy/content.trig.read": "^4.3.3",
-    "@graphy/content.trig.write": "^4.3.3",
-    "@graphy/core.data.factory": "^4.3.3",
+    "@graphy/content.nq.read": "^4.3.4",
+    "@graphy/content.ttl.write": "^4.3.4",
+    "@graphy/content.xml.scribe": "^4.3.4",
+    "@graphy/content.trig.read": "^4.3.4",
+    "@graphy/content.trig.write": "^4.3.4",
+    "@graphy/core.data.factory": "^4.3.4",
     "@rdfjs/serializer-jsonld-ext": "^3.0.0",
     "@rdf-esm/formats-common": "^0.5.5",
     "@rdf-esm/sink-map": "^0.5.4",
