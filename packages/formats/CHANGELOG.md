@@ -1,5 +1,12 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.5.2
+
+### Patch Changes
+
+- 4161f0b: List where some of their nodes are reused failed to serialize (fixes #15)
+- ffbbcba: Updated graphy packages to `v4.3.4`
+
 ## 0.5.1
 
 ### Patch Changes
