@@ -404,7 +404,7 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
     // given
     const graph = clownface({ dataset: $rdf.dataset() })
       .namedNode(ex.foo)
-      .addList(ex.list, ['a', 'b', 'c'])
+      .addList(ex.list, ['foo', 'bar', 'baz'])
     graph.namedNode(ex.bar).addOut(ex.list, graph.out(ex.list))
     graph.namedNode(ex.baz).addOut(ex.list, graph.out(ex.list))
 
@@ -430,8 +430,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
             'ex:list': [listNode],
           },
           [listNode]: {
-            'rdf:first': ['"a'],
-            'rdf:rest': [['"b', '"c']],
+            'rdf:first': ['"foo'],
+            'rdf:rest': [['"bar', '"baz']],
           },
         },
       },
@@ -470,6 +470,44 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
           [listNode]: {
             'rdf:first': ['"a'],
             'rdf:rest': ['rdf:nil'],
+          },
+        },
+      },
+    })
+  })
+
+  it('handles two-element RDF lists shared by multiple subjects', async () => {
+    // given
+    const graph = clownface({ dataset: $rdf.dataset() })
+      .namedNode(ex.foo)
+      .addList(ex.list, ['foo', 'bar'])
+    graph.namedNode(ex.bar).addOut(ex.list, graph.out(ex.list))
+    graph.namedNode(ex.baz).addOut(ex.list, graph.out(ex.list))
+
+    // when
+    const hash = await transform(graph, {
+      ex: ex().value,
+      rdf: rdf().value,
+    })
+
+    // then
+    const listNode = `_:${graph.out(ex.list).value}`
+    expect(hash).to.deep.contain({
+      type: 'c4',
+      value: {
+        '*': {
+          'ex:foo': {
+            'ex:list': [listNode],
+          },
+          'ex:bar': {
+            'ex:list': [listNode],
+          },
+          'ex:baz': {
+            'ex:list': [listNode],
+          },
+          [listNode]: {
+            'rdf:first': ['"foo'],
+            'rdf:rest': [['"bar']],
           },
         },
       },
