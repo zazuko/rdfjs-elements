@@ -25,7 +25,7 @@ jobs:
           deploy_alias: ${{ env.BRANCH_NAME }}
           NETLIFY_DEPLOY_TO_PROD: false
           build_command: npx wsrun -mpc build
-          node_version: 18
+          node_version: 16
 
       - name: Status check
         uses: Sibz/github-status-action@v1.1.1
