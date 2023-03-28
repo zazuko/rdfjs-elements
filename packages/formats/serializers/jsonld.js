@@ -1,21 +1,26 @@
-export default async function (defaults = {}) {
-  const JsonLdSerializer = (await import('@rdfjs/serializer-jsonld-ext'))
-    .default
+// eslint-disable-next-line max-classes-per-file
+import { lazySink } from '@zazuko/formats-lazy/LazySink.js'
 
-  class Serializer extends JsonLdSerializer {
-    import(stream, { prefixes = {} } = {}) {
-      return super.import(stream, {
-        context: {
-          ...(defaults.prefixes || {}),
-          ...prefixes,
-        },
+export default lazySink(async () => {
+  const Impl = (await import('@rdfjs/serializer-jsonld-ext')).default
+
+  return class Serializer extends Impl {
+    constructor(options) {
+      super({
+        compact: true,
+        skipGraphProperty: true,
+        encoding: 'string',
+        ...options,
       })
     }
-  }
 
-  return new Serializer({
-    compact: true,
-    skipGraphProperty: true,
-    encoding: 'string',
-  })
-}
+    import(stream, { prefixes } = {}) {
+      const context = {}
+      if (prefixes) {
+        context.prefixes = prefixes
+      }
+
+      return super.import(stream, { context })
+    }
+  }
+})

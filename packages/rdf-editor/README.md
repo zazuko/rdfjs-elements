@@ -45,6 +45,7 @@ Syntax highlighting is relying on support from CodeMirror.
 
 | Property         | Attribute        | Modifiers | Type                     | Default | Description                                      |
 |------------------|------------------|-----------|--------------------------|---------|--------------------------------------------------|
+| `$rdf`           |                  |           |                          |         |                                                  |
 | `autoParse`      | `auto-parse`     |           | `boolean`                |         | if set to true, parses the contents automatically when typing. Otherwise, parses on `blur` event |
 | `codeMirror`     |                  | readonly  | `Element \| null`        |         | The underlying `<wc-codemirror>` element         |
 | `customPrefixes` | `customPrefixes` |           | `Record<string, string>` | {}      | a map of custom prefixes or overrides            |

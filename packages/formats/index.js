@@ -1,13 +1,22 @@
-import * as formatsCommon from '@rdf-esm/formats-common'
-import { SinkMap } from '@rdf-esm/sink-map'
-import * as graphy from './serializers/graphy.js'
-import * as graphyReader from './parsers/graphy.js'
-import jsonld from './serializers/jsonld.js'
+import formatsCommon from '@zazuko/formats-lazy'
+import Formats from '@rdfjs/environment/lib/Formats.js'
+import {
+  TurtleSerializer,
+  RdfXmlSerializer,
+  TrigSerializer,
+} from './serializers/graphy.js'
+import { TrigParser, NQuadsParser } from './parsers/graphy.js'
+import JsonLdSerializer from './serializers/jsonld.js'
 
-export const serializers = new SinkMap([...formatsCommon.serializers])
-export const parsers = new SinkMap([...formatsCommon.parsers])
+const formats = new Formats({})
+formats.import(formatsCommon)
 
-export const formats = {
+export default formats
+export * from './parsers/graphy.js'
+export * from './serializers/graphy.js'
+export { default as JsonLdSerializer } from './serializers/jsonld.js'
+
+export const mediaTypes = {
   jsonLd: 'application/ld+json',
   ntriples: 'application/n-triples',
   nquads: 'application/n-quads',
@@ -17,14 +26,14 @@ export const formats = {
   turtle: 'text/turtle',
 }
 
-serializers.set(formats.jsonLd, jsonld)
-serializers.set(formats.notation3, graphy.turtle)
-serializers.set(formats.turtle, graphy.turtle)
-serializers.set(formats.trig, graphy.trig)
-serializers.set(formats.rdfXml, graphy.rdfXml)
+formats.serializers.set(mediaTypes.jsonLd, new JsonLdSerializer())
+formats.serializers.set(mediaTypes.notation3, new TurtleSerializer())
+formats.serializers.set(mediaTypes.turtle, new TurtleSerializer())
+formats.serializers.set(mediaTypes.trig, new TrigSerializer())
+formats.serializers.set(mediaTypes.rdfXml, new RdfXmlSerializer())
 
-parsers.set(formats.notation3, graphyReader.trig)
-parsers.set(formats.turtle, graphyReader.trig)
-parsers.set(formats.trig, graphyReader.trig)
-parsers.set(formats.ntriples, graphyReader.nq)
-parsers.set(formats.nquads, graphyReader.nq)
+formats.parsers.set(mediaTypes.notation3, new TrigParser())
+formats.parsers.set(mediaTypes.turtle, new TrigParser())
+formats.parsers.set(mediaTypes.trig, new TrigParser())
+formats.parsers.set(mediaTypes.ntriples, new NQuadsParser())
+formats.parsers.set(mediaTypes.nquads, new NQuadsParser())

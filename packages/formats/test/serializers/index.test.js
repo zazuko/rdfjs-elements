@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import prefixes from '@zazuko/rdf-vocabularies/prefixes'
+import prefixes from '@zazuko/prefixes'
 import * as ns from '@tpluscode/rdf-ns-builders'
 import $rdf from 'rdf-ext'
 import clownface from 'clownface'
@@ -7,7 +7,11 @@ import getStream from 'get-stream'
 import rdfUtil from 'rdf-utils-fs'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
-import { turtle, jsonld } from '../../serializers/index.js'
+import JsonldSerializer from '../../serializers/jsonld.js'
+import { TurtleSerializer } from '../../serializers/graphy.js'
+
+const turtle = new TurtleSerializer()
+const jsonld = new JsonldSerializer()
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 

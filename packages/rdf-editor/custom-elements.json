@@ -131,6 +131,11 @@
               "attribute": "no-reserialize"
             },
             {
+              "kind": "field",
+              "name": "$rdf",
+              "default": "new Environment([FormatsFactory])"
+            },
+            {
               "type": {
                 "text": "string"
               },

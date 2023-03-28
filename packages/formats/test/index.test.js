@@ -7,8 +7,9 @@ import getStream from 'get-stream'
 import rdfUtil from 'rdf-utils-fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { formats, parsers, serializers } from '../index.js'
+import formats, { mediaTypes } from '../index.js'
 
+const { parsers, serializers } = formats
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 describe('@rdfjs-elements/formats-pretty', () => {
@@ -21,7 +22,7 @@ describe('@rdfjs-elements/formats-pretty', () => {
 }`
 
         // when
-        const quads = parsers.import(formats.trig, toStream(input), {
+        const quads = parsers.import(mediaTypes.trig, toStream(input), {
           baseIRI: 'https://example.com/foo/',
         })
         const dataset = await $rdf.dataset().import(quads)
@@ -54,7 +55,7 @@ describe('@rdfjs-elements/formats-pretty', () => {
 
         // when
         const serialized = await getStream(
-          serializers.import(formats.trig, dataset.toStream())
+          serializers.import(mediaTypes.trig, dataset.toStream())
         )
 
         // then

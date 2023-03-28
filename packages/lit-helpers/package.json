@@ -18,7 +18,7 @@
     "prepack": "tsc --allowJs --declaration --emitDeclarationOnly *.js --skipLibCheck"
   },
   "dependencies": {
-    "@tpluscode/rdf-ns-builders": "^2",
+    "@tpluscode/rdf-ns-builders": "^3.0.2",
     "@ungap/event-target": "^0.2.3",
     "clownface": "^1.5.1",
     "lit": "^2"

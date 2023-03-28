@@ -1,6 +1,6 @@
 import stream from 'readable-stream'
 import { rdf, xsd } from '@tpluscode/rdf-ns-builders'
-import TermMap from '@rdf-esm/term-map'
+import TermMap from '@rdfjs/term-map'
 import graphy from '@graphy/core.data.factory'
 
 function isListNode(predicates) {

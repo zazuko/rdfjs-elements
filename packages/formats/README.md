@@ -20,13 +20,13 @@ Individual serializer skins can also be created by importing from `@rdfjs-elemen
 allows for initializing a sink preloaded with a given set of prefixes.
 
 ```js
-import prefixes from '@zazuko/rdf-vocabularies/prefixes'
-import { turtle } from '@rdfjs-elements/formats-pretty/serializers'
+import prefixes from '@zazuko/prefixes'
+import { TurtleSerializer } from '@rdfjs-elements/formats-pretty'
 
 const { schema, dcterms, foaf } = prefixes
 
-const sink = await turtle({
-  prefixes: { schema, dcterms, foaf, ex:'http://example/org/' }
+const sink = new TurtleSerializer({
+  prefixes: { schema, dcterms, foaf, ex: 'http://example/org/' }
 })
 ```
 
@@ -65,8 +65,8 @@ To get an output in n-triples, n-quads or n3 format the sink map interface can b
 
 ```js
 import rdf from '@rdfjs/data-model'
-import prefixes from '@zazuko/rdf-vocabularies/prefixes'
-import { serializers } from '@rdfjs-elements/formats-pretty/serializers'
+import prefixes from '@zazuko/prefixes'
+import formats from '@rdfjs-elements/formats-pretty'
 import { Readable } from 'readable-stream'
 import getStream from 'get-stream'
 
@@ -79,8 +79,7 @@ const data = [
 
 const { schema, dcterms, foaf } = prefixes
 
-const stream = serialisers.import('application/n-triples', Readable.from(data), { schema, dcterms, foaf, ex:'http://example/org/' }
-}))
+const stream = formats.serialisers.import('application/n-triples', Readable.from(data), { schema, dcterms, foaf, ex:'http://example/org/' })
 
 console.log(await getStream(stream))
 ```

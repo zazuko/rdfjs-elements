@@ -1,10 +1,11 @@
 /* global CodeMirror */
 import { html, fixture, expect, nextFrame, oneEvent } from '@open-wc/testing'
-import { quad, blankNode, namedNode } from '@rdf-esm/data-model'
+import { quad, blankNode, namedNode } from '@rdfjs/data-model'
 import { rdf, schema } from '@tpluscode/rdf-ns-builders'
-import { parsers, serializers } from '@rdfjs-elements/formats-pretty'
-
+import formats from '@rdfjs-elements/formats-pretty'
 import '../rdf-editor.js'
+
+const { parsers, serializers } = formats
 
 const quads = [quad(blankNode(), namedNode('p'), blankNode())]
 describe('RdfjsEditor', () => {

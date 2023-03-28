@@ -1,9 +1,11 @@
+import { lazySink } from '@zazuko/formats-lazy/LazySink.js'
 import { TransformToConciseHash } from './TransformToConciseHash.js'
 
 async function serializer(importScribe, { strict, ...defaults } = {}) {
   const create = (await importScribe).default
 
-  return {
+  return class {
+    // eslint-disable-next-line class-methods-use-this
     import(quadStream, { preserveListNodeProperties, ...options } = {}) {
       const prefixes = {
         ...(defaults.prefixes || {}),
@@ -25,13 +27,16 @@ async function serializer(importScribe, { strict, ...defaults } = {}) {
         .pipe(writer)
 
       return writer
-    },
+    }
   }
 }
 
-export const turtle = ({ prefixes } = {}) =>
-  serializer(import('@graphy/content.ttl.write'), { prefixes })
-export const rdfXml = ({ prefixes } = {}) =>
-  serializer(import('@graphy/content.xml.scribe'), { strict: true, prefixes })
-export const trig = ({ prefixes } = {}) =>
-  serializer(import('@graphy/content.trig.write'), { prefixes })
+export const TurtleSerializer = lazySink(() =>
+  serializer(import('@graphy/content.ttl.write'))
+)
+export const RdfXmlSerializer = lazySink(() =>
+  serializer(import('@graphy/content.xml.scribe'), { strict: true })
+)
+export const TrigSerializer = lazySink(() =>
+  serializer(import('@graphy/content.trig.write'), { strict: true })
+)
