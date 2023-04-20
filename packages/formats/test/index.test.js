@@ -66,7 +66,7 @@ describe('@rdfjs-elements/formats-pretty', () => {
 
   describe('round-trips', () => {
     function roundTripCase(file) {
-      for (const format of Object.values(formats)) {
+      for (const format of Object.values(mediaTypes)) {
         it(`graph ${file} in format ${format}`, async () => {
           // given
           const graph = await $rdf

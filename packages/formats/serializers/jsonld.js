@@ -14,11 +14,8 @@ export default lazySink(async () => {
       })
     }
 
-    import(stream, { prefixes } = {}) {
-      const context = {}
-      if (prefixes) {
-        context.prefixes = prefixes
-      }
+    import(stream, { prefixes = {} } = {}) {
+      const context = { ...prefixes }
 
       return super.import(stream, { context })
     }

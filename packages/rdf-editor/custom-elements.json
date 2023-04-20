@@ -14,6 +14,14 @@
             "name": "*",
             "package": "@rdfjs-elements/formats-pretty"
           }
+        },
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "formats",
+            "module": "formats.js"
+          }
         }
       ]
     },
@@ -32,9 +40,9 @@
         },
         {
           "kind": "js",
-          "name": "formats",
+          "name": "mediaTypes",
           "declaration": {
-            "name": "formats",
+            "name": "mediaTypes",
             "package": "@rdfjs-elements/formats-pretty"
           }
         }
@@ -133,7 +141,7 @@
             {
               "kind": "field",
               "name": "$rdf",
-              "default": "new Environment([FormatsFactory])"
+              "default": "new Environment([FormatsFactory, DataFactory])"
             },
             {
               "type": {

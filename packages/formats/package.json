@@ -28,12 +28,12 @@
     "@graphy/content.trig.read": "^4.3.3",
     "@graphy/content.trig.write": "^4.3.3",
     "@graphy/core.data.factory": "^4.3.3",
-    "@rdfjs/serializer-jsonld-ext": "^3.0.0",
+    "@rdfjs/serializer-jsonld-ext": "^4.0.0",
     "@rdfjs/environment": "^0.1.2",
     "@rdfjs/term-map": "^2.0.0",
     "@tpluscode/rdf-ns-builders": "^3.0.2",
     "@zazuko/formats-lazy": "^1.0.1",
-    "readable-stream": "^3.6.0"
+    "readable-stream": ">=3.6.0"
   },
   "devDependencies": {
     "@rdfjs/namespace": "^1.1.0",

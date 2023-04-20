@@ -41,23 +41,8 @@ Out of the box all common RDF formats are supported, where some can only be used
 - TriG *(input only)*
 - RDF/XML *(input only)*
 
-Support for additional types can be added by registering an RDF/JS-compliant parser and/or serializer using the [`@rdf-esm/formats-common`](https://npm.im/@rdf-esm/formats-common)
-package:
-
-```js
-import { parsers, serializers } from '@rdf-esm/formats-common'
-
-// by importing dynamically, the code will only be loaded when needed
-parsers.set('application/trix', async () => {
-  const TrixParser = await import('@hypothetical/trix-parser')
-  return new TrixParser()
-})
-
-serializers.set('application/trix', async () => {
-  const TrixSerializer = await import('@hypothetical/trix-serializer')
-  return new TrixSerializer()
-})
-```
+Support for additional types can be added by registering an RDF/JS-compliant parser and/or serializer using the [`@rdfjs/formats-common`](https://npm.im/@rdfjs/formats-common)
+package.
 
 ## Properties
 

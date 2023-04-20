@@ -1,13 +1,13 @@
 /* global CodeMirror */
 import { html, fixture, expect, nextFrame, oneEvent } from '@open-wc/testing'
-import { quad, blankNode, namedNode } from '@rdfjs/data-model'
+import RDF from '@rdfjs/data-model'
 import { rdf, schema } from '@tpluscode/rdf-ns-builders'
 import formats from '@rdfjs-elements/formats-pretty'
 import '../rdf-editor.js'
 
 const { parsers, serializers } = formats
 
-const quads = [quad(blankNode(), namedNode('p'), blankNode())]
+const quads = [RDF.quad(RDF.blankNode(), RDF.namedNode('p'), RDF.blankNode())]
 describe('RdfjsEditor', () => {
   before(() => {
     serializers.set('application/ld+json', '{}')
@@ -228,7 +228,7 @@ describe('RdfjsEditor', () => {
       // given
       const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
       await el.ready
-      const expected = [quad(blankNode(), rdf.type, schema.Person)]
+      const expected = [RDF.quad(RDF.blankNode(), rdf.type, schema.Person)]
       parsers.set('foo/bar', expected)
       el.parse()
 

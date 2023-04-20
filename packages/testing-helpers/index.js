@@ -30,7 +30,11 @@ export { default } from '@rdfjs-elements/testing/stream/index.js';`,
       }
       if (context.url.match(/node_modules\/.+\/sink-map\/index.js$/)) {
         return {
-          body: `export { FakeSinkMap as SinkMap } from '@rdfjs-elements/testing/sink-map/index.js';`,
+          body: `
+            import { FakeSinkMap } from '@rdfjs-elements/testing/sink-map/index.js';
+            export { FakeSinkMap as SinkMap } from '@rdfjs-elements/testing/sink-map/index.js';
+            export default FakeSinkMap;
+          `,
         }
       }
       return context

@@ -36,7 +36,8 @@
 
 <body>
 <section id="api-viewer">
-  <api-viewer exclude-knobs="ready,serialized,quads,isParsing,value,codeMirror,customPrefixes" src="./custom-elements.json">
+  <api-viewer exclude-knobs="ready,serialized,quads,isParsing,value,codeMirror,customPrefixes,$rdf"
+              src="./custom-elements.json">
     <template data-element="rdf-editor" data-target="prefix">
       <style>
         rdf-editor::part(CodeMirror-gutters) {
