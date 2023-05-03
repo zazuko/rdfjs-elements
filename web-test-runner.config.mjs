@@ -17,21 +17,6 @@ const config = {
     esbuildPlugin({ target: 'auto' }),
     rdfjs,
     fakeStreamModules(),
-    {
-      name: 'fake-node-modules',
-      transform(context) {
-        if (context.url.match(/SparqlParser\.js/)) {
-          // For the love of Tim BL, I have no idea how to set up rollup to handle this module
-          // There that one line which import built-in node modules and it fails to transform
-          return {
-            body: context.body
-              .replace(/require\('fs'\).+/, "''")
-              .replace('require.main', "''"),
-          }
-        }
-        return context
-      },
-    },
     fromRollup(commonjs)({
       exclude: [
         '**/node_modules/@open-wc/**/*',
