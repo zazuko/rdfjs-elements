@@ -2,11 +2,6 @@ module.exports = function factory() {
   return {
     name: 'stream-faker',
     transform(context) {
-      if (context.url.match(/@rdfjs\/formats-common\/index.js$/)) {
-        return {
-          body: `export { parsers, serializers } from '@rdfjs-elements/testing/formats-common/index.js';`,
-        }
-      }
       if (context.url.match(/string-to-stream/)) {
         return {
           body: `export default function() {}`,
