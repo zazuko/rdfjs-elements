@@ -8,4 +8,7 @@ import { RdfEditor } from './src/RdfEditor.js'
 const $rdf = new Environment([FormatsFactory, DataFactory])
 $rdf.formats.import(formats)
 
-window.customElements.define('rdf-editor', class extends EnvironmentMixin(RdfEditor, $rdf) {})
+window.customElements.define(
+  'rdf-editor',
+  class extends EnvironmentMixin(RdfEditor, $rdf) {}
+)
