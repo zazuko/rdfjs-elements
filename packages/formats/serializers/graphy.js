@@ -1,14 +1,18 @@
 import { lazySink } from '@zazuko/formats-lazy/LazySink.js'
 import { TransformToConciseHash } from './TransformToConciseHash.js'
 
-async function serializer(importScribe, { strict, ...defaults } = {}) {
+async function serializer(importScribe, { strict } = {}) {
   const create = (await importScribe).default
 
   return class {
+    constructor(defaults = {}) {
+      this.defaults = defaults
+    }
+
     // eslint-disable-next-line class-methods-use-this
     import(quadStream, { preserveListNodeProperties, ...options } = {}) {
       const prefixes = {
-        ...(defaults.prefixes || {}),
+        ...(this.defaults.prefixes || {}),
         ...(options.prefixes || {}),
       }
 

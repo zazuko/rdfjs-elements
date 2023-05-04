@@ -10,9 +10,6 @@ import { fileURLToPath } from 'url'
 import JsonldSerializer from '../../serializers/jsonld.js'
 import { TurtleSerializer } from '../../serializers/graphy.js'
 
-const turtle = new TurtleSerializer()
-const jsonld = new JsonldSerializer()
-
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 describe('@rdfjs-elements/formats-pretty/serializers', () => {
@@ -20,7 +17,7 @@ describe('@rdfjs-elements/formats-pretty/serializers', () => {
     it('combines default and import prefixes', async () => {
       // given
       const { dcterms, schema } = prefixes
-      const sink = await turtle({
+      const sink = new TurtleSerializer({
         prefixes: { schema },
       })
       const dataset = $rdf.dataset()
@@ -47,7 +44,7 @@ describe('@rdfjs-elements/formats-pretty/serializers', () => {
       const graph = rdfUtil.fromFile(
         join(__dirname, `../graphs/list-with-extras.ttl`)
       )
-      const sink = await turtle({
+      const sink = new TurtleSerializer({
         prefixes: { owl, as },
       })
 
@@ -64,7 +61,7 @@ describe('@rdfjs-elements/formats-pretty/serializers', () => {
       const graph = rdfUtil.fromFile(
         join(__dirname, `../graphs/list-with-extras.ttl`)
       )
-      const sink = await turtle({
+      const sink = new TurtleSerializer({
         prefixes: { owl, as, rdf, rdfs },
       })
 
@@ -86,7 +83,7 @@ describe('@rdfjs-elements/formats-pretty/serializers', () => {
       // given
       const { owl, as, rdf, rdfs } = prefixes
       const graph = rdfUtil.fromFile(join(__dirname, `../graphs/view.ttl`))
-      const sink = await turtle({
+      const sink = new TurtleSerializer({
         prefixes: { owl, as, rdf, rdfs },
       })
 
@@ -102,7 +99,7 @@ describe('@rdfjs-elements/formats-pretty/serializers', () => {
     it('combines default and import prefixes', async () => {
       // given
       const { dcterms, schema } = prefixes
-      const sink = await jsonld({
+      const sink = new JsonldSerializer({
         prefixes: { schema },
       })
       const dataset = $rdf.dataset()

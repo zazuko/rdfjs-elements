@@ -5,17 +5,18 @@ export default lazySink(async () => {
   const Impl = (await import('@rdfjs/serializer-jsonld-ext')).default
 
   return class Serializer extends Impl {
-    constructor(options) {
+    constructor({ prefixes = {}, ...options } = {}) {
       super({
         compact: true,
         skipGraphProperty: true,
         encoding: 'string',
         ...options,
       })
+      this.prefixes = prefixes
     }
 
     import(stream, { prefixes = {} } = {}) {
-      const context = { ...prefixes }
+      const context = { ...this.prefixes, ...prefixes }
 
       return super.import(stream, { context })
     }
