@@ -1,6 +1,6 @@
 {
   "name": "@rdfjs-elements/formats-pretty",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "RDF/JS Sink Maps with serializers configured for pretty printing",
   "author": "Zazuko GmbH",
   "license": "MIT",
@@ -22,12 +22,12 @@
     "directory": "packages/formats"
   },
   "dependencies": {
-    "@graphy/content.nq.read": "^4.3.3",
-    "@graphy/content.ttl.write": "^4.3.3",
-    "@graphy/content.xml.scribe": "^4.3.3",
-    "@graphy/content.trig.read": "^4.3.3",
-    "@graphy/content.trig.write": "^4.3.3",
-    "@graphy/core.data.factory": "^4.3.3",
+    "@graphy/content.nq.read": "^4.3.4",
+    "@graphy/content.ttl.write": "^4.3.4",
+    "@graphy/content.xml.scribe": "^4.3.4",
+    "@graphy/content.trig.read": "^4.3.4",
+    "@graphy/content.trig.write": "^4.3.4",
+    "@graphy/core.data.factory": "^4.3.4",
     "@rdfjs/serializer-jsonld-ext": "^4.0.0",
     "@rdfjs/environment": "^0.1.2",
     "@rdfjs/term-map": "^2.0.0",

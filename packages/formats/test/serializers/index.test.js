@@ -81,6 +81,21 @@ describe('@rdfjs-elements/formats-pretty/serializers', () => {
         /rdf:first as:Link ;\s+rdf:type rdf:List ;\s+rdf:rest rdf:nil ;/m
       )
     })
+
+    it('serializes successfully a complex graph with reused nodes', async () => {
+      // given
+      const { owl, as, rdf, rdfs } = prefixes
+      const graph = rdfUtil.fromFile(join(__dirname, `../graphs/view.ttl`))
+      const sink = await turtle({
+        prefixes: { owl, as, rdf, rdfs },
+      })
+
+      // when
+      const serialized = await getStream(sink.import(graph))
+
+      // then
+      expect(serialized).to.be.ok
+    })
   })
 
   describe('jsonld', () => {

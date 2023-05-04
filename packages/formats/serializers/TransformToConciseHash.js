@@ -99,9 +99,13 @@ export class TransformToConciseHash extends stream.Transform {
 
       // top-level list node
       if (level === 0) {
-        const rest = restNode.equals(rdf.nil)
-          ? this.toHashKey(rdf.nil)
-          : [...nestedObject(restNode)]
+        let rest
+        if (restNode.equals(rdf.nil)) {
+          rest = this.toHashKey(rdf.nil)
+        } else {
+          const hashes = nestedObject(restNode)
+          rest = Array.isArray(hashes) ? [...hashes] : [hashes]
+        }
 
         return {
           [this.toHashKey(rdf.first)]: [nestedObject(first)],
