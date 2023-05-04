@@ -1,11 +1,14 @@
 /* global CodeMirror */
 import { html, fixture, expect, nextFrame, oneEvent } from '@open-wc/testing'
-import RDF from '@rdfjs/data-model'
 import { rdf, schema } from '@tpluscode/rdf-ns-builders'
-import formats from '@rdfjs-elements/formats-pretty'
-import '../rdf-editor.js'
+import EnvironmentMixin from '@rdfjs-elements/editor-base/EnvironmentMixin.js'
+import TestEnvironment from '@rdfjs-elements/testing/TestEnvironment.js'
+import { RdfEditor } from '../src/RdfEditor.js'
 
-const { parsers, serializers } = formats
+const RDF = TestEnvironment()
+customElements.define('rdf-editor', EnvironmentMixin(RdfEditor, RDF))
+
+const { parsers, serializers } = RDF.formats
 
 const quads = [RDF.quad(RDF.blankNode(), RDF.namedNode('p'), RDF.blankNode())]
 describe('RdfjsEditor', () => {

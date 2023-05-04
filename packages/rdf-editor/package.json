@@ -21,7 +21,6 @@
   },
   "homepage": "https://zazuko.github.io/rdfjs-elements/rdf-editor/",
   "dependencies": {
-    "@rdfjs/data-model": "^2.0.1",
     "@rdfjs/environment": "^0.1.2",
     "@rdfjs-elements/editor-base": "^0.4.2",
     "@rdfjs-elements/formats-pretty": "^0.5.1",

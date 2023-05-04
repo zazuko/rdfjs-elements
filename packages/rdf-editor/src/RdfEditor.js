@@ -1,7 +1,4 @@
-import formats, { mediaTypes } from '@rdfjs-elements/formats-pretty'
-import Environment from '@rdfjs/environment/Environment.js'
-import FormatsFactory from '@rdfjs/environment/FormatsFactory.js'
-import DataFactory from '@rdfjs/environment/DataFactory.js'
+import { mediaTypes } from '@rdfjs-elements/formats-pretty'
 import * as builders from '@tpluscode/rdf-ns-builders'
 import Editor from '@rdfjs-elements/editor-base'
 import './mode/javascript.js'
@@ -81,8 +78,6 @@ export class RdfEditor extends Editor {
     super()
     this.isParsing = false
     this.noReserialize = false
-    this.$rdf = new Environment([FormatsFactory, DataFactory])
-    this.$rdf.formats.import(formats)
   }
 
   disconnectedCallback() {
