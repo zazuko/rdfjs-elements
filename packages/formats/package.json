@@ -7,6 +7,9 @@
   "main": "index.js",
   "module": "index.js",
   "type": "module",
+  "scripts": {
+    "postinstall": "patch-package"
+  },
   "files": [
     "*.js",
     "*.d.ts",
