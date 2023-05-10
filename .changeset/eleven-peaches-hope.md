@@ -2,4 +2,4 @@
 '@rdfjs-elements/formats-pretty': minor
 ---
 
-The package is not ESM-only
+The package is now ESM-only
