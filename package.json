@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "RDJ/JS Web Components",
   "main": "index.js",
+  "type": "module",
   "author": "Zazuko GmbH",
   "license": "MIT",
   "private": true,
