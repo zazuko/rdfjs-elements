@@ -1,4 +1,4 @@
-module.exports = function factory() {
+export default function factory() {
   return {
     name: 'stream-faker',
     transform(context) {

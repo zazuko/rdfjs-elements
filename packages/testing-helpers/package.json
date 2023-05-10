@@ -1,6 +1,8 @@
 {
   "name": "@rdfjs-elements/testing",
   "version": "0.1.0",
+  "type": "module",
+  "main": "index.js",
   "author": "Zazuko GmbH",
   "license": "MIT",
   "repository": {
