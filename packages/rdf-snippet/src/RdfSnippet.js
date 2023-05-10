@@ -67,7 +67,7 @@ const formatLabels = {
  * @prop {string} selectedFormat - gets the selected output format
  * @prop {string} input - set the input serialized value (ignored when `<script>` is used)
  * @prop {string} inputFormat - set the format of the input (ignored when `<script>` is used)
- * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
+ * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
  * @prop {boolean} onlyOutput - hides the input editor and only shows the outputs
  * @attr {"vertical"|"horizontal"} layout - controls the position of selection buttons
  *

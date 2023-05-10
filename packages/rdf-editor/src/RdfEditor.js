@@ -14,7 +14,7 @@ const Quads = Symbol('parsed quads')
  * ## Usage
  *
  * The element requires a single property/attribute `format` which should be an RDF serialization media type supported by
- * `@rdf-esm/formats-common` package.
+ * `@rdfjs/formats-common` package.
  *
  * The element is easiest to bootstrap by setting the `value` property **before** first render. This property is
  * only used to provide the initial contents of the editor as it is parsed on first render, when the element has been added
@@ -54,7 +54,7 @@ const Quads = Symbol('parsed quads')
  *
  * @prop {string} format - Media type of the RDF serialization to use.
  *
- * Custom parsers and serializers must be added to `@rdf-esm/formats-common`
+ * Custom parsers and serializers must be added to `@rdfjs/formats-common`
  *
  * @prop {boolean} noReserialize - Prevents the editor from serializing the quads when format changes
  *

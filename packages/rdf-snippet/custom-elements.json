@@ -139,7 +139,7 @@
                 "text": "string"
               },
               "default": "''",
-              "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
+              "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
               "attribute": "prefixes"
             },
             {
@@ -246,7 +246,7 @@
                 "text": "string"
               },
               "default": "''",
-              "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
+              "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
               "fieldName": "prefixes"
             },
             {

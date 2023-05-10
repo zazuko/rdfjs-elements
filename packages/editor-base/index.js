@@ -32,7 +32,7 @@ function whenDefined(getter) {
  *
  * @prop {Promise<void>} ready - a one-time promise which resolves when CodeMirror has been initialized
  *
- * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
+ * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
  *
  * @prop {boolean} isParsing - set to true while the elements parses data when the code has changed
  *

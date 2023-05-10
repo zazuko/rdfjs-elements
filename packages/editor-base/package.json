@@ -14,7 +14,7 @@
     "analyze:lit": "lit-analyzer --strict --quiet --rules.no-invalid-css off"
   },
   "dependencies": {
-    "@tpluscode/rdf-ns-builders": "^3.0.2",
+    "@tpluscode/rdf-ns-builders": ">=3.0.2",
     "@vanillawc/wc-codemirror": "^1.9.7",
     "codemirror": "^5.61.1",
     "lit": "^2",
