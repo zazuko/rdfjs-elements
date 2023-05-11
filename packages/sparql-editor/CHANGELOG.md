@@ -1,5 +1,14 @@
 # @rdfjs-elements/sparql-editor
 
+## 0.2.1
+
+### Patch Changes
+
+- 51cb152: Updated `sparqljs` to v3.6.2
+- Updated dependencies [90ebc06]
+- Updated dependencies [90ebc06]
+  - @rdfjs-elements/editor-base@0.5.0
+
 ## 0.2.0
 
 ### Minor Changes

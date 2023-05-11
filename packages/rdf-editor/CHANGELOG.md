@@ -1,5 +1,20 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.5.5
+
+### Patch Changes
+
+- 90ebc06: Update to ESM-only dependencies
+- 8309e10: Updated `readable-stream` to v4
+- Updated dependencies [90ebc06]
+- Updated dependencies [90ebc06]
+- Updated dependencies [90ebc06]
+- Updated dependencies [90ebc06]
+- Updated dependencies [90ebc06]
+- Updated dependencies [90ebc06]
+  - @rdfjs-elements/formats-pretty@0.6.0
+  - @rdfjs-elements/editor-base@0.5.0
+
 ## 0.5.4
 
 ### Patch Changes
