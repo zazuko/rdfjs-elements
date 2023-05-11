@@ -1,3 +1,4 @@
+import { mediaTypes } from '@rdfjs-elements/formats-pretty'
 import * as builders from '@tpluscode/rdf-ns-builders'
 import Editor from '@rdfjs-elements/editor-base'
 import './mode/javascript.js'
@@ -13,7 +14,7 @@ const Quads = Symbol('parsed quads')
  * ## Usage
  *
  * The element requires a single property/attribute `format` which should be an RDF serialization media type supported by
- * `@rdf-esm/formats-common` package.
+ * `@rdfjs/formats-common` package.
  *
  * The element is easiest to bootstrap by setting the `value` property **before** first render. This property is
  * only used to provide the initial contents of the editor as it is parsed on first render, when the element has been added
@@ -53,7 +54,7 @@ const Quads = Symbol('parsed quads')
  *
  * @prop {string} format - Media type of the RDF serialization to use.
  *
- * Custom parsers and serializers must be added to `@rdf-esm/formats-common`
+ * Custom parsers and serializers must be added to `@rdfjs/formats-common`
  *
  * @prop {boolean} noReserialize - Prevents the editor from serializing the quads when format changes
  *
@@ -131,14 +132,16 @@ export class RdfEditor extends Editor {
   }
 
   async _parse() {
-    const { parsers } = await import('@rdfjs-elements/formats-pretty')
     const { toStream } = await import('./stream')
 
     const inputStream = toStream(this.value)
     const quads = []
     const prefixes = {}
 
-    const quadStream = parsers.import(this.format, inputStream)
+    const quadStream = this.$rdf.formats.parsers.import(
+      this.format,
+      inputStream
+    )
     if (!quadStream) {
       this.dispatchEvent(
         new CustomEvent('parsing-failed', {
@@ -173,7 +176,6 @@ export class RdfEditor extends Editor {
 
     await this.ready
 
-    const formats = await import('@rdfjs-elements/formats-pretty')
     const { Readable } = await import('./stream')
 
     const quads = [...(this.quads || [])]
@@ -189,9 +191,13 @@ export class RdfEditor extends Editor {
       },
     })
 
-    const quadStream = formats.serializers.import(this.format, stream, {
-      prefixes: await this._combinePrefixes(),
-    })
+    const quadStream = this.$rdf.formats.serializers.import(
+      this.format,
+      stream,
+      {
+        prefixes: await this._combinePrefixes(),
+      }
+    )
 
     if (!quadStream) {
       this.value = `No serializer found for media type ${this.format}`
@@ -203,7 +209,7 @@ export class RdfEditor extends Editor {
       serialized += chunk
     }
 
-    if (this.format === formats.formats.jsonLd) {
+    if (this.format === mediaTypes.jsonLd) {
       serialized = JSON.stringify(JSON.parse(serialized), null, 2)
     }
 

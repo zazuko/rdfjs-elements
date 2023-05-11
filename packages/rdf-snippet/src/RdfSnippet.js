@@ -1,6 +1,6 @@
 import { css, html, LitElement } from 'lit'
 import { repeat } from 'lit/directives/repeat.js'
-import { formats } from '@rdfjs-elements/rdf-editor/index.js'
+import { mediaTypes } from '@rdfjs-elements/rdf-editor/index.js'
 
 import '@rdfjs-elements/rdf-editor'
 
@@ -9,13 +9,13 @@ const PreviousOutputFormat = Symbol('previous output')
 const Show = Symbol('Shown editor')
 
 const formatLabels = {
-  [formats.turtle]: 'Turtle',
-  [formats.jsonLd]: html`JSON&#8209;LD`,
-  [formats.trig]: 'TriG',
-  [formats.nquads]: html`N&#8209;Quads`,
-  [formats.ntriples]: html`N&#8209;Triples`,
-  [formats.notation3]: 'Notation3',
-  [formats.rdfXml]: 'RDF/XML',
+  [mediaTypes.turtle]: 'Turtle',
+  [mediaTypes.jsonLd]: html`JSON&#8209;LD`,
+  [mediaTypes.trig]: 'TriG',
+  [mediaTypes.nquads]: html`N&#8209;Quads`,
+  [mediaTypes.ntriples]: html`N&#8209;Triples`,
+  [mediaTypes.notation3]: 'Notation3',
+  [mediaTypes.rdfXml]: 'RDF/XML',
 }
 
 /**
@@ -60,29 +60,14 @@ const formatLabels = {
  * - TriG *(input only)*
  * - RDF/XML *(input only)*
  *
- * Support for additional types can be added by registering an RDF/JS-compliant parser and/or serializer using the [`@rdf-esm/formats-common`](https://npm.im/@rdf-esm/formats-common)
- * package:
- *
- * ```js
- * import { parsers, serializers } from '@rdf-esm/formats-common'
- *
- * // by importing dynamically, the code will only be loaded when needed
- * parsers.set('application/trix', async () => {
- *   const TrixParser = await import('@hypothetical/trix-parser')
- *   return new TrixParser()
- * })
- *
- * serializers.set('application/trix', async () => {
- *   const TrixSerializer = await import('@hypothetical/trix-serializer')
- *   return new TrixSerializer()
- * })
- * ```
+ * Support for additional types can be added by registering an RDF/JS-compliant parser and/or serializer using the [`@rdfjs/formats-common`](https://npm.im/@rdfjs/formats-common)
+ * package.
  *
  * @prop {string} formats - comma-separated list of output formats
  * @prop {string} selectedFormat - gets the selected output format
  * @prop {string} input - set the input serialized value (ignored when `<script>` is used)
  * @prop {string} inputFormat - set the format of the input (ignored when `<script>` is used)
- * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
+ * @prop {string} prefixes - a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used
  * @prop {boolean} onlyOutput - hides the input editor and only shows the outputs
  * @attr {"vertical"|"horizontal"} layout - controls the position of selection buttons
  *
@@ -188,7 +173,7 @@ export class RdfSnippet extends LitElement {
 
   constructor() {
     super()
-    this.formats = Object.values(formats).join(',')
+    this.formats = Object.values(mediaTypes).join(',')
     this.prefixes = ''
     this[Quads] = []
     this[Show] = 'input'

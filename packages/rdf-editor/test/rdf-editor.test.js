@@ -1,12 +1,16 @@
 /* global CodeMirror */
 import { html, fixture, expect, nextFrame, oneEvent } from '@open-wc/testing'
-import { quad, blankNode, namedNode } from '@rdf-esm/data-model'
 import { rdf, schema } from '@tpluscode/rdf-ns-builders'
-import { parsers, serializers } from '@rdfjs-elements/formats-pretty'
+import EnvironmentMixin from '@rdfjs-elements/editor-base/EnvironmentMixin.js'
+import TestEnvironment from '@rdfjs-elements/testing/TestEnvironment.js'
+import { RdfEditor } from '../src/RdfEditor.js'
 
-import '../rdf-editor.js'
+const RDF = TestEnvironment()
+customElements.define('rdf-editor', EnvironmentMixin(RdfEditor, RDF))
 
-const quads = [quad(blankNode(), namedNode('p'), blankNode())]
+const { parsers, serializers } = RDF.formats
+
+const quads = [RDF.quad(RDF.blankNode(), RDF.namedNode('p'), RDF.blankNode())]
 describe('RdfjsEditor', () => {
   before(() => {
     serializers.set('application/ld+json', '{}')
@@ -227,7 +231,7 @@ describe('RdfjsEditor', () => {
       // given
       const el = await fixture(html`<rdf-editor format="foo/bar"></rdf-editor>`)
       await el.ready
-      const expected = [quad(blankNode(), rdf.type, schema.Person)]
+      const expected = [RDF.quad(RDF.blankNode(), rdf.type, schema.Person)]
       parsers.set('foo/bar', expected)
       el.parse()
 

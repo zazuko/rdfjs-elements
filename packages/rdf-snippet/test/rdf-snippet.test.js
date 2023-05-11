@@ -1,5 +1,5 @@
 import { html, fixture, expect, oneEvent } from '@open-wc/testing'
-import { serializers } from '@rdfjs-elements/rdf-editor/formats.js'
+import formats from '@rdfjs-elements/rdf-editor/formats.js'
 
 import '../rdf-snippet.js'
 
@@ -131,7 +131,7 @@ describe('RdfSnippet', () => {
 
   it('switching to input raises event', async () => {
     // given
-    serializers.set('text/n3', 'n3')
+    formats.serializers.set('text/n3', 'n3')
     const snippet = await fixture(html`<rdf-snippet formats="text/n3">
       <script type="application/rdf+xml">
         rdf-xml
@@ -168,7 +168,7 @@ describe('RdfSnippet', () => {
 
     it('does not render input format button', async () => {
       // given
-      serializers.set('text/n3', 'n3')
+      formats.serializers.set('text/n3', 'n3')
       const snippet = await fixture(html`<rdf-snippet
         only-output
         formats="text/n3"

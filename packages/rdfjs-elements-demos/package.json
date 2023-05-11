@@ -6,8 +6,8 @@
   "author": "rdfjs-elements-demos",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production --config webpack.config.cjs",
+    "start": "webpack-dev-server --mode development --config webpack.config.cjs",
     "analyze": "run-p analyze:*",
     "analyze:lit": "lit-analyzer --strict --quiet --rules.no-invalid-css off"
   },

@@ -1,6 +1,7 @@
 {
   "name": "@rdfjs-elements/rdf-editor",
   "version": "0.5.4",
+  "type": "module",
   "description": "Code Mirror editor for RDF",
   "author": "Zazuko GmbH",
   "license": "MIT",
@@ -11,8 +12,8 @@
     "analyze:wc": "cem analyze --litelement",
     "analyze:readme": "wca --outFile ./README.md",
     "analyze:lit": "lit-analyzer --strict --quiet --rules.no-invalid-css off",
-    "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "start": "webpack-dev-server --mode development --config webpack.config.cjs",
+    "build": "webpack --mode production --config webpack.config.cjs"
   },
   "repository": {
     "type": "git",
@@ -21,10 +22,10 @@
   },
   "homepage": "https://zazuko.github.io/rdfjs-elements/rdf-editor/",
   "dependencies": {
-    "@rdf-esm/data-model": "^0.5.4",
+    "@rdfjs/environment": "^0.1.2",
     "@rdfjs-elements/editor-base": "^0.4.2",
     "@rdfjs-elements/formats-pretty": "^0.5.1",
-    "@tpluscode/rdf-ns-builders": "^2.0.0",
+    "@tpluscode/rdf-ns-builders": ">=3.0.2",
     "readable-stream": "^3",
     "string-to-stream": "^3.0.1"
   },

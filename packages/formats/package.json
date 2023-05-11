@@ -7,25 +7,17 @@
   "main": "index.js",
   "module": "index.js",
   "type": "module",
+  "scripts": {
+    "postinstall": "patch-package"
+  },
   "files": [
     "*.js",
     "*.d.ts",
     "serializers",
-    "parsers",
-    "*.cjs"
+    "parsers"
   ],
   "exports": {
-    ".": {
-      "require": "./index.cjs",
-      "import": "./index.js"
-    },
-    "./serializers": {
-      "require": "./serializers/index.cjs",
-      "import": "./serializers/index.js"
-    }
-  },
-  "scripts": {
-    "prepack": "babel . --out-file-extension .cjs --out-dir ."
+    ".": "./index.js"
   },
   "repository": {
     "type": "git",
@@ -39,25 +31,21 @@
     "@graphy/content.trig.read": "^4.3.4",
     "@graphy/content.trig.write": "^4.3.4",
     "@graphy/core.data.factory": "^4.3.4",
-    "@rdfjs/serializer-jsonld-ext": "^3.0.0",
-    "@rdf-esm/formats-common": "^0.5.5",
-    "@rdf-esm/sink-map": "^0.5.4",
-    "@rdf-esm/term-map": "^0.5.0",
-    "@tpluscode/rdf-ns-builders": "^2",
-    "readable-stream": "^3.6.0"
+    "@rdfjs/serializer-jsonld-ext": "^4.0.0",
+    "@rdfjs/environment": "^0.1.2",
+    "@rdfjs/term-map": "^2.0.0",
+    "@tpluscode/rdf-ns-builders": ">=3.0.2",
+    "@zazuko/formats-lazy": "^1.0.1",
+    "readable-stream": ">=3.6.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.11.6",
-    "@babel/preset-env": "^7.11.5",
-    "@rdfjs/namespace": "^1.1.0",
-    "@types/rdfjs__serializer-jsonld-ext": "^2.0.2",
-    "@zazuko/rdf-vocabularies": ">=2020",
-    "babel-plugin-add-import-extension": "^1.4.3",
+    "@rdfjs/namespace": "^2.0.0",
+    "@zazuko/prefixes": "^2.0.0",
     "chai": "^4.3.4",
     "clownface": "^1.2.0",
     "get-stream": "^6.0.1",
     "mocha": "^10.0.0",
-    "rdf-ext": "^1.3.1",
+    "rdf-ext": "^2.2.0",
     "rdf-utils-fs": "^2.2.0",
     "string-to-stream": "^3.0.1"
   },

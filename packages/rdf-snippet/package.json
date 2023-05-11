@@ -1,6 +1,7 @@
 {
   "name": "@rdfjs-elements/rdf-snippet",
   "version": "0.4.2",
+  "type": "module",
   "description": "Simple RDF viewer with buttons for switching between serializations",
   "author": "Zazuko GmbH",
   "license": "MIT",
@@ -11,8 +12,8 @@
     "analyze:wc": "cem analyze --litelement",
     "analyze:readme": "wca --outFile ./README.md",
     "analyze:lit": "lit-analyzer --strict --quiet",
-    "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "start": "webpack-dev-server --mode development --config webpack.config.cjs",
+    "build": "webpack --mode production --config webpack.config.cjs"
   },
   "repository": {
     "type": "git",

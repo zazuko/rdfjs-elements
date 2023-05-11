@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "RDJ/JS Web Components",
   "main": "index.js",
+  "type": "module",
   "author": "Zazuko GmbH",
   "license": "MIT",
   "private": true,
@@ -25,16 +26,13 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@babel/core": "^7",
-    "@babel/preset-env": "^7.11.0",
     "@changesets/cli": "^2.24.0",
     "@custom-elements-manifest/analyzer": "^0.6.3",
-    "@esm-bundle/chai": "^4.3.4",
     "@open-wc/building-webpack": "^2.13.46",
     "@open-wc/eslint-config": "^7.0.0",
     "@rollup/plugin-commonjs": "^18.0.0",
-    "@web/dev-server-esbuild": "^0.3.1",
-    "@web/dev-server-rollup": "^0.3.13",
+    "@web/dev-server-esbuild": "^0.4.1",
+    "@web/dev-server-rollup": "^0.5.0",
     "@web/test-runner": "^0.13.30",
     "c8": "^7.7.2",
     "copy-webpack-plugin": "^6",
@@ -44,6 +42,8 @@
     "lint-staged": "^13.0.3",
     "lit-analyzer": "^2.0.0-pre.2",
     "npm-run-all": "^4.1.5",
+    "patch-package": "^7.0.0",
+    "postinstall-postinstall": "^2.1.0",
     "prettier": "^2.0.4",
     "rdfjs-eds-plugin": "^0.1.1",
     "webpack": "^4.46.0",
@@ -52,9 +52,6 @@
     "webpack-merge": "^5.1.1",
     "wsrun": "^5.2.4",
     "yarn-deduplicate": "^5.0.0"
-  },
-  "resolutions": {
-    "@web/dev-server-rollup/**/@rollup/plugin-node-resolve": "11.2.1"
   },
   "eslintConfig": {
     "extends": [

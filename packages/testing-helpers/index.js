@@ -1,12 +1,7 @@
-module.exports = function factory() {
+export default function factory() {
   return {
     name: 'stream-faker',
     transform(context) {
-      if (context.url.match(/@rdf-esm\/formats-common\/index.js$/)) {
-        return {
-          body: `export { parsers, serializers } from '@rdfjs-elements/testing/formats-common/index.js';`,
-        }
-      }
       if (context.url.match(/string-to-stream/)) {
         return {
           body: `export default function() {}`,
@@ -22,7 +17,10 @@ module.exports = function factory() {
           body: `export { default } from '@rdfjs-elements/testing/into-stream/index.js';`,
         }
       }
-      if (context.url.match(/node_modules\/readable-stream\/readable.js$/)) {
+      if (
+        context.url.match(/node_modules\/readable-stream\/readable.js$/) ||
+        context.url.match(/node_modules\/readable-stream\/lib\/ours\/index.js$/)
+      ) {
         return {
           body: `export * from '@rdfjs-elements/testing/stream/index.js';
 export { default } from '@rdfjs-elements/testing/stream/index.js';`,
@@ -30,7 +28,11 @@ export { default } from '@rdfjs-elements/testing/stream/index.js';`,
       }
       if (context.url.match(/node_modules\/.+\/sink-map\/index.js$/)) {
         return {
-          body: `export { FakeSinkMap as SinkMap } from '@rdfjs-elements/testing/sink-map/index.js';`,
+          body: `
+            import { FakeSinkMap } from '@rdfjs-elements/testing/sink-map/index.js';
+            export { FakeSinkMap as SinkMap } from '@rdfjs-elements/testing/sink-map/index.js';
+            export default FakeSinkMap;
+          `,
         }
       }
       return context

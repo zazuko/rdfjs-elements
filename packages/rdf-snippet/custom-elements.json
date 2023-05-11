@@ -29,7 +29,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "An RDF viewer which allows switching between various serializations.\n\n## Default usage\n\nThe initial text of the RDF snippet must be added inside a child `<script>` element with `type` attribute set to the appropriate\nRDF media type. The element's `formats` property selects the media types which should be available as alternative serializations.\n\n```html\n<rdf-snippet formats=\"application/ld+json,application/n-quads\">\n  <script type=\"text/turtle\">\n＠base <http://example.com/> .\n＠prefix schema: <http://schema.org/> .\n\n<john> a schema:Person ;\n  schema:name \"John Doe\" .\n  </script>\n</rdf-snippet>\n```\n\nThe initial RDF representation remains unchanged, while selecting the output formats re-serializes the actual triples and presents the output.\n\n## Usage with properties\n\nIn case when a `<script>` cannot be used, the snippet can be initialized by passing the serialized input and input format using properties/attributes\n\n```html\n<rdf-snippet .input=\"${turtle}\" input-format=\"text/turtle\">\n</rdf-snippet>\n```\n\n## Supported types\n\nOut of the box all common RDF formats are supported, where some can only be used for the input (no serializer available):\n\n- JSON-LD\n- N-Triples\n- N-Quads\n- Turtle/N3\n- TriG *(input only)*\n- RDF/XML *(input only)*\n\nSupport for additional types can be added by registering an RDF/JS-compliant parser and/or serializer using the [`@rdf-esm/formats-common`](https://npm.im/@rdf-esm/formats-common)\npackage:\n\n```js\nimport { parsers, serializers } from '@rdf-esm/formats-common'\n\n// by importing dynamically, the code will only be loaded when needed\nparsers.set('application/trix', async () => {\n  const TrixParser = await import('@hypothetical/trix-parser')\n  return new TrixParser()\n})\n\nserializers.set('application/trix', async () => {\n  const TrixSerializer = await import('@hypothetical/trix-serializer')\n  return new TrixSerializer()\n})\n```",
+          "description": "An RDF viewer which allows switching between various serializations.\n\n## Default usage\n\nThe initial text of the RDF snippet must be added inside a child `<script>` element with `type` attribute set to the appropriate\nRDF media type. The element's `formats` property selects the media types which should be available as alternative serializations.\n\n```html\n<rdf-snippet formats=\"application/ld+json,application/n-quads\">\n  <script type=\"text/turtle\">\n＠base <http://example.com/> .\n＠prefix schema: <http://schema.org/> .\n\n<john> a schema:Person ;\n  schema:name \"John Doe\" .\n  </script>\n</rdf-snippet>\n```\n\nThe initial RDF representation remains unchanged, while selecting the output formats re-serializes the actual triples and presents the output.\n\n## Usage with properties\n\nIn case when a `<script>` cannot be used, the snippet can be initialized by passing the serialized input and input format using properties/attributes\n\n```html\n<rdf-snippet .input=\"${turtle}\" input-format=\"text/turtle\">\n</rdf-snippet>\n```\n\n## Supported types\n\nOut of the box all common RDF formats are supported, where some can only be used for the input (no serializer available):\n\n- JSON-LD\n- N-Triples\n- N-Quads\n- Turtle/N3\n- TriG *(input only)*\n- RDF/XML *(input only)*\n\nSupport for additional types can be added by registering an RDF/JS-compliant parser and/or serializer using the [`@rdfjs/formats-common`](https://npm.im/@rdfjs/formats-common)\npackage.",
           "name": "RdfSnippet",
           "cssParts": [
             {
@@ -139,7 +139,7 @@
                 "text": "string"
               },
               "default": "''",
-              "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
+              "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
               "attribute": "prefixes"
             },
             {
@@ -246,7 +246,7 @@
                 "text": "string"
               },
               "default": "''",
-              "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/rdf-vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
+              "description": "a comma-separated list of prefixes to use for serializing. Any prefix included in the [`@zazuko/vocabularies` package](https://github.com/zazuko/rdf-vocabularies/tree/master/ontologies) can be used",
               "fieldName": "prefixes"
             },
             {
