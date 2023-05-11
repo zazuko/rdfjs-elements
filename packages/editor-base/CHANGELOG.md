@@ -1,5 +1,15 @@
 # @rdfjs-elements/editor-base
 
+## 0.5.0
+
+### Minor Changes
+
+- 90ebc06: The package is now explicitly marked as ESM-only
+
+### Patch Changes
+
+- 90ebc06: Update to ESM-only dependencies
+
 ## 0.4.2
 
 ### Patch Changes

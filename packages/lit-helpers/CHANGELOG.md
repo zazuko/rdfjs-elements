@@ -1,5 +1,11 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.3.6
+
+### Patch Changes
+
+- 90ebc06: Update to ESM-only dependencies
+
 ## 0.3.5
 
 ### Patch Changes

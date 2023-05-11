@@ -1,5 +1,26 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.6.0
+
+### Minor Changes
+
+- 90ebc06: Rename the named export `formats` to `mediaTypes`
+- 90ebc06: The package is now ESM-only
+- 90ebc06: Removed exports of instances of sinks. Instead, classes are exported. For example
+
+  ```diff
+  -import { jsonld } from '@rdfjs-elements/formats-pretty'
+  +import { JsonLdSerializer } from '@rdfjs-elements/formats-pretty'
+  +
+  +const jsonld = new JsonLdSerializer()
+  ```
+
+- 90ebc06: Instead of exporting `parsers` and `serializers`, default-exports a `Formats` object
+
+### Patch Changes
+
+- 90ebc06: Update to ESM-only dependencies
+
 ## 0.5.2
 
 ### Patch Changes
