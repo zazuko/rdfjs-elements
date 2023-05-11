@@ -1,0 +1,11 @@
+PREFIX ex: <http://example.org/>
+
+ex:a ex:b "The first line\nThe second line\n  more" .
+
+ex:x ex:y "Long\ndescription\nwith datatype"^^ex:multiline .
+
+ex:m ex:n "multiline\nwith language"@en-US .
+
+ex:f ex:g "The first line\n\"The quoted line\"\n  more" .
+
+ex:r ex:q "Quote\nat end\"" .

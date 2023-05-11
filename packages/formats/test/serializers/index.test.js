@@ -1,4 +1,5 @@
-import { expect } from 'chai'
+import chai, { expect } from 'chai'
+import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot'
 import prefixes from '@zazuko/prefixes'
 import * as ns from '@tpluscode/rdf-ns-builders'
 import $rdf from 'rdf-ext'
@@ -13,6 +14,8 @@ import { TurtleSerializer } from '../../serializers/graphy.js'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 describe('@rdfjs-elements/formats-pretty/serializers', () => {
+  chai.use(jestSnapshotPlugin())
+
   describe('turtle', () => {
     it('combines default and import prefixes', async () => {
       // given
@@ -92,6 +95,38 @@ describe('@rdfjs-elements/formats-pretty/serializers', () => {
 
       // then
       expect(serialized).to.be.ok
+    })
+
+    it('preserves line breaks in literals', async () => {
+      // given
+      const graph = rdfUtil.fromFile(
+        join(__dirname, `../graphs/multiline-literals.ttl`)
+      )
+      const sink = new TurtleSerializer()
+
+      // when
+      const serialized = await getStream(sink.import(graph))
+
+      // then
+      expect(serialized).toMatchSnapshot()
+    })
+
+    it('preserves line breaks in literals when using prefixes', async () => {
+      // given
+      const graph = rdfUtil.fromFile(
+        join(__dirname, `../graphs/multiline-literals.ttl`)
+      )
+      const sink = new TurtleSerializer({
+        prefixes: {
+          ex: 'http://example.org/',
+        },
+      })
+
+      // when
+      const serialized = await getStream(sink.import(graph))
+
+      // then
+      expect(serialized).toMatchSnapshot()
     })
   })
 
