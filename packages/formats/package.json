@@ -36,6 +36,7 @@
     "@rdfjs/term-map": "^2.0.0",
     "@tpluscode/rdf-ns-builders": ">=3.0.2",
     "@zazuko/formats-lazy": "^1.0.1",
+    "@zazuko/prefixes": "^2.0.0",
     "readable-stream": ">=3.6.0"
   },
   "devDependencies": {
@@ -45,6 +46,7 @@
     "clownface": "^1.2.0",
     "get-stream": "^6.0.1",
     "mocha": "^10.0.0",
+    "mocha-chai-jest-snapshot": "^1.1.4",
     "rdf-ext": "^2.2.0",
     "rdf-utils-fs": "^2.2.0",
     "string-to-stream": "^3.0.1"

@@ -2,6 +2,7 @@ import stream from 'readable-stream'
 import { rdf, xsd } from '@tpluscode/rdf-ns-builders'
 import TermMap from '@rdfjs/term-map'
 import graphy from '@graphy/core.data.factory'
+import { LongLiteral } from './graphy/coercions.js'
 
 function isListNode(predicates) {
   return predicates.has(rdf.first) && predicates.has(rdf.rest)
@@ -167,6 +168,10 @@ export class TransformToConciseHash extends stream.Transform {
         }
         default:
       }
+    }
+
+    if (term.value.includes('\n')) {
+      return new LongLiteral(term)
     }
 
     return graphy.fromTerm(term).concise(this.prefixes)
