@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.6.3
+
+### Patch Changes
+
+- 55e0590: Remove that postinstall script after all
+
 ## 0.6.2
 
 ### Patch Changes
