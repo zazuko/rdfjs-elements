@@ -23,7 +23,7 @@
     "format": "npm run format:eslint && npm run format:prettier",
     "release": "changeset publish",
     "postinstall": "yarn-deduplicate",
-    "prepare": "husky install"
+    "prepare": "husky install; wsrun -m patch-package"
   },
   "devDependencies": {
     "@changesets/cli": "^2.24.0",

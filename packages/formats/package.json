@@ -8,7 +8,7 @@
   "module": "index.js",
   "type": "module",
   "scripts": {
-    "postinstall": "npx -y if-env NODE_ENV=production && exit 0 || patch-package"
+    "patch-package": "patch-package"
   },
   "files": [
     "*.js",
