@@ -8,7 +8,7 @@
   "module": "index.js",
   "type": "module",
   "scripts": {
-    "postinstall": "patch-package"
+    "postinstall": "[ \"$NODE_ENV\" = \"development\" ] && exit 0; patch-package"
   },
   "files": [
     "*.js",
