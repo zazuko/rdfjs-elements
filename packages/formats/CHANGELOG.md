@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.6.1
+
+### Patch Changes
+
+- def9930: Fix postinstall script which should run only in dev env
+
 ## 0.6.0
 
 ### Minor Changes
