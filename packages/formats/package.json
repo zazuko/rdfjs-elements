@@ -1,6 +1,6 @@
 {
   "name": "@rdfjs-elements/formats-pretty",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "RDF/JS Sink Maps with serializers configured for pretty printing",
   "author": "Zazuko GmbH",
   "license": "MIT",
