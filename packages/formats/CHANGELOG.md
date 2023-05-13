@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.6.2
+
+### Patch Changes
+
+- 0e8db35: Using `npx` to run postinstall script
+
 ## 0.6.1
 
 ### Patch Changes
