@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@rdfjs/namespace": "^2.0.0",
+    "@types/rdfjs__environment": "^0.1.9",
     "@zazuko/prefixes": "^2.0.0",
     "chai": "^4.3.4",
     "clownface": "^1.2.0",
