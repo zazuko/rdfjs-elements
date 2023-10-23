@@ -1,7 +1,7 @@
 import { Stream, Sink } from '@rdfjs/types'
-import type { SinkMap } from '@rdfjs/sink-map'
 import { EventEmitter } from 'events';
-import type { Environment } from '@rdfjs/Environment/Environment.js';
+import type { Environment } from '@rdfjs/environment/Environment.js';
+import type Formats from '@rdfjs/environment/lib/Formats.js';
 
 export const mediaTypes: {
   jsonLd: 'application/ld+json',
@@ -24,9 +24,6 @@ export const JsonLdSerializer: SinkConstructor<EventEmitter, Stream>
 export const TrigParser: SinkConstructor<Stream, EventEmitter>
 export const NQuadsParser: SinkConstructor<Stream, EventEmitter>
 
-declare const formats: {
-  serializers: SinkMap<EventEmitter, Stream>
-  parsers: SinkMap<Stream, EventEmitter>
-}
+declare const formats: Pick<Formats, 'parsers' | 'serializers'>
 
 export default formats

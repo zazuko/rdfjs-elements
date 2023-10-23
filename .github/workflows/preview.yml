@@ -9,14 +9,15 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 16
 
       - run: yarn install --frozen-lockfile
+      - run: npx wsrun -mpc build
 
       - uses: nelonoel/branch-name@v1.0.1
 
       - name: Publish preview
-        uses: jsmrcaga/action-netlify-deploy@v1.7.1
+        uses: jsmrcaga/action-netlify-deploy@v2.1.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -24,8 +25,8 @@ jobs:
           build_directory: dist
           deploy_alias: ${{ env.BRANCH_NAME }}
           NETLIFY_DEPLOY_TO_PROD: false
-          build_command: npx wsrun -mpc build
-          node_version: 16
+          build_command: echo ""
+          monorepo_package: rdfjs-elements-demo
 
       - name: Status check
         uses: Sibz/github-status-action@v1.1.1
