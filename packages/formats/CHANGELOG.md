@@ -1,5 +1,12 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.6.4
+
+### Patch Changes
+
+- c8f0724: Preserve line breaks when serialising Turtle and Trig (fixes #139)
+- 80cf005: Improves the exported type of default export
+
 ## 0.6.3
 
 ### Patch Changes
