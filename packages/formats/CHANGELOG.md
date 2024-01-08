@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.6.5
+
+### Patch Changes
+
+- bdb533b: Add CHANGELOG
+
 ## 0.6.4
 
 ### Patch Changes
