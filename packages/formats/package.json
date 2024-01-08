@@ -14,7 +14,8 @@
     "*.js",
     "*.d.ts",
     "serializers",
-    "parsers"
+    "parsers",
+    "CHANGELOG.md"
   ],
   "exports": {
     ".": "./index.js"
