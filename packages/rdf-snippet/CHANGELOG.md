@@ -1,5 +1,11 @@
 # @rdfjs-elements/rdf-snippet
 
+## 0.4.3
+
+### Patch Changes
+
+- bdb533b: Fixed import of media types
+
 ## 0.4.2
 
 ### Patch Changes
