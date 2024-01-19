@@ -68,7 +68,9 @@ describe('@rdfjs-elements/formats-pretty', () => {
       for (const format of Object.values(mediaTypes)) {
         it(`graph ${file} in format ${format}`, async () => {
           // given
-          const graph = await $rdf.fromFile(join(__dirname, `graphs/${file}`))
+          const graph = await $rdf
+            .dataset()
+            .import($rdf.fromFile(join(__dirname, `graphs/${file}`)))
 
           // when
           const serialized = await getStream(
