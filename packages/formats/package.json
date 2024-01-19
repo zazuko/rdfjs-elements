@@ -30,7 +30,7 @@
     "@graphy/content.trig.write": "^4.3.7",
     "@graphy/core.data.factory": "^4.3.7",
     "@rdfjs/serializer-jsonld-ext": "^4.0.0",
-    "@rdfjs/environment": "0 - 1",
+    "@rdfjs/environment": "^1",
     "@rdfjs/formats": "^4.0.0",
     "@rdfjs/term-map": "^2.0.0",
     "@tpluscode/rdf-ns-builders": ">=3.0.2",
