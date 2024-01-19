@@ -1,7 +1,7 @@
 import { Stream, Sink } from '@rdfjs/types'
 import { EventEmitter } from 'events';
 import type { Environment } from '@rdfjs/environment/Environment.js';
-import type Formats from '@rdfjs/environment/lib/Formats.js';
+import type { Formats } from '@rdfjs/formats';
 
 export const mediaTypes: {
   jsonLd: 'application/ld+json',

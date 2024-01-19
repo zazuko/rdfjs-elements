@@ -1,10 +1,9 @@
 import toStream from 'string-to-stream'
 import clownface from 'clownface'
-import $rdf from 'rdf-ext'
+import $rdf from '@zazuko/env-node'
 import { expect } from 'chai'
 import * as ns from '@tpluscode/rdf-ns-builders'
 import getStream from 'get-stream'
-import rdfUtil from 'rdf-utils-fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import formats, { mediaTypes } from '../index.js'
@@ -69,9 +68,7 @@ describe('@rdfjs-elements/formats-pretty', () => {
       for (const format of Object.values(mediaTypes)) {
         it(`graph ${file} in format ${format}`, async () => {
           // given
-          const graph = await $rdf
-            .dataset()
-            .import(rdfUtil.fromFile(join(__dirname, `graphs/${file}`)))
+          const graph = await $rdf.fromFile(join(__dirname, `graphs/${file}`))
 
           // when
           const serialized = await getStream(

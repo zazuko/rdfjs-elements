@@ -1,5 +1,5 @@
 import formatsCommon from '@zazuko/formats-lazy'
-import Formats from '@rdfjs/environment/lib/Formats.js'
+import Formats from '@rdfjs/formats/lib/Formats.js'
 import {
   TurtleSerializer,
   RdfXmlSerializer,

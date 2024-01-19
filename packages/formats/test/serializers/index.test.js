@@ -2,10 +2,10 @@ import chai, { expect } from 'chai'
 import { jestSnapshotPlugin } from 'mocha-chai-jest-snapshot'
 import prefixes from '@zazuko/prefixes'
 import * as ns from '@tpluscode/rdf-ns-builders'
-import $rdf from 'rdf-ext'
+import $rdf from '@zazuko/env-node'
 import clownface from 'clownface'
 import getStream from 'get-stream'
-import rdfUtil from 'rdf-utils-fs'
+import { fromFile } from '@zazuko/rdf-utils-fs'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 import JsonldSerializer from '../../serializers/jsonld.js'
@@ -44,7 +44,8 @@ describe('@rdfjs-elements/formats-pretty/serializers', () => {
     it('removes excess rdf List node properties by default', async () => {
       // given
       const { owl, as } = prefixes
-      const graph = rdfUtil.fromFile(
+      const graph = fromFile(
+        $rdf,
         join(__dirname, `../graphs/list-with-extras.ttl`)
       )
       const sink = new TurtleSerializer({
@@ -61,7 +62,8 @@ describe('@rdfjs-elements/formats-pretty/serializers', () => {
     it('does not remove excess rdf List node properties when option set', async () => {
       // given
       const { owl, as, rdf, rdfs } = prefixes
-      const graph = rdfUtil.fromFile(
+      const graph = fromFile(
+        $rdf,
         join(__dirname, `../graphs/list-with-extras.ttl`)
       )
       const sink = new TurtleSerializer({
@@ -85,7 +87,7 @@ describe('@rdfjs-elements/formats-pretty/serializers', () => {
     it('serializes successfully a complex graph with reused nodes', async () => {
       // given
       const { owl, as, rdf, rdfs } = prefixes
-      const graph = rdfUtil.fromFile(join(__dirname, `../graphs/view.ttl`))
+      const graph = fromFile($rdf, join(__dirname, `../graphs/view.ttl`))
       const sink = new TurtleSerializer({
         prefixes: { owl, as, rdf, rdfs },
       })
@@ -99,7 +101,8 @@ describe('@rdfjs-elements/formats-pretty/serializers', () => {
 
     it('preserves line breaks in literals', async () => {
       // given
-      const graph = rdfUtil.fromFile(
+      const graph = fromFile(
+        $rdf,
         join(__dirname, `../graphs/multiline-literals.ttl`)
       )
       const sink = new TurtleSerializer()
@@ -113,7 +116,8 @@ describe('@rdfjs-elements/formats-pretty/serializers', () => {
 
     it('preserves line breaks in literals when using prefixes', async () => {
       // given
-      const graph = rdfUtil.fromFile(
+      const graph = fromFile(
+        $rdf,
         join(__dirname, `../graphs/multiline-literals.ttl`)
       )
       const sink = new TurtleSerializer({
