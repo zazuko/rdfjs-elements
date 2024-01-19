@@ -20,7 +20,7 @@
   "dependencies": {
     "@tpluscode/rdf-ns-builders": ">=3.0.2",
     "@ungap/event-target": "^0.2.3",
-    "clownface": "^1.5.1",
+    "clownface": "^2",
     "lit": "^2"
   },
   "repository": {
@@ -31,16 +31,19 @@
   "homepage": "https://github.com/zazuko/lit-helpers/tree/master/packages/formats#readme",
   "peerDependencies": {
     "@rdfjs/types": "^1",
-    "@tpluscode/rdfine": "^0.6.0",
-    "@types/clownface": "^1"
+    "@tpluscode/rdfine": "^0.7.5",
+    "@types/clownface": "^2.0.7"
   },
   "devDependencies": {
     "@open-wc/testing": "^3.1.6",
-    "@rdfine/rdfs": "^0.7.0",
+    "@rdfjs/environment": "^1",
+    "@rdfine/rdfs": "^0.8.4",
+    "@rdfjs/data-model": "^2",
     "@rdfjs/dataset": "^2",
     "@rdfjs/types": "^1.1.0",
-    "@tpluscode/rdfine": "^0.6.0",
-    "@types/clownface": "^1.5.0",
+    "@tpluscode/rdfine": "^0.7.5",
+    "@types/clownface": "^2.0.7",
+    "crypto-js": "^4.2.0",
     "typescript": "^4.7.2"
   }
 }

@@ -121,10 +121,14 @@ setLanguages('de-CH', 'de')
 import { html } from 'lit'
 import { localizedLabel } from '@rdfjs-elements/lit-helpers/localizedLabel.js'
 import type { GraphPointer } from 'clownface'
-import { fromPointer } from '@rdfine/shacl/lib/NodeShape'
+import Environment from '@zazuko/env/Environment.js'
+import RdfineEnv from '@rdfine/env'
+import Shacl from '@rdfine/shacl/Factory'
+
+const env = new Environment([Shacl], { parent: RdfineEnv })
 
 let fruitPointer: GraphPointer
-const fruit = fromPointer(fruitPointer)
+const fruit = env.rdfine.sh.NodeShape(fruitPointer)
 
 function render() {
   // renders PropertyShape's sh:name property

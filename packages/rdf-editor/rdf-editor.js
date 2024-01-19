@@ -1,7 +1,7 @@
 import EnvironmentMixin from '@rdfjs-elements/editor-base/EnvironmentMixin'
 import Environment from '@rdfjs/environment'
-import FormatsFactory from '@rdfjs/environment/FormatsFactory'
-import DataFactory from '@rdfjs/environment/DataFactory'
+import FormatsFactory from '@rdfjs/formats/Factory.js'
+import DataFactory from '@rdfjs/data-model/Factory.js'
 import formats from '@rdfjs-elements/formats-pretty'
 import { RdfEditor } from './src/RdfEditor.js'
 

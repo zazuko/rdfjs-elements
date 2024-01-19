@@ -11,7 +11,9 @@
     "directory": "packages/testing-helpers"
   },
   "dependencies": {
-    "@rdfjs/environment": "^0.1.2"
+    "@rdfjs/data-model": "^2",
+    "@rdfjs/environment": "^1",
+    "@rdfjs/formats": "^4"
   },
   "publishConfig": {
     "access": "public"

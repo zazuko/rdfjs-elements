@@ -1,4 +1,4 @@
-import only from 'clownface/filter.js'
+import { taggedLiteral } from 'clownface/filter.js'
 import { dispatcher } from './lib/dispatcher.js'
 
 const { navigator } = typeof global !== 'undefined' ? global : window
@@ -33,6 +33,6 @@ export function setLanguages(...preferredLanguages) {
  */
 export function getLocalizedLabel(pointer) {
   return pointer
-    .filter(only.taggedLiteral([...currentLanguages, '*']))
+    .filter(taggedLiteral([...currentLanguages, '*']))
     .values.shift()
 }

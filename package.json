@@ -23,13 +23,14 @@
     "format": "npm run format:eslint && npm run format:prettier",
     "release": "changeset publish",
     "postinstall": "yarn-deduplicate",
-    "prepare": "husky install; wsrun -m patch-package"
+    "prepare": "husky install; patch-package"
   },
   "devDependencies": {
     "@changesets/cli": "^2.24.0",
     "@custom-elements-manifest/analyzer": "^0.6.3",
     "@open-wc/building-webpack": "^2.13.46",
     "@open-wc/eslint-config": "^7.0.0",
+    "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-commonjs": "^18.0.0",
     "@web/dev-server-esbuild": "^0.4.1",
     "@web/dev-server-rollup": "^0.5.0",

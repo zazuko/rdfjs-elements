@@ -1,6 +1,5 @@
 import { expect } from 'chai'
-import $rdf from 'rdf-ext'
-import clownface from 'clownface'
+import $rdf from '@zazuko/env-node'
 import { rdf, schema, xsd, rdfs } from '@tpluscode/rdf-ns-builders'
 import namespace from '@rdfjs/namespace'
 import { TransformToConciseHash } from '../../serializers/TransformToConciseHash.js'
@@ -26,7 +25,8 @@ function transform(
 describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', () => {
   it('creates hash for default graph', async () => {
     // given
-    const graph = clownface({ dataset: $rdf.dataset() })
+    const graph = $rdf
+      .clownface({ dataset: $rdf.dataset() })
       .namedNode(ex.john)
       .addOut(rdf.type, schema.Person)
 
@@ -48,7 +48,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
   it('creates hash for named graph', async () => {
     // given
-    const graph = clownface({ dataset: $rdf.dataset(), graph: ex.john })
+    const graph = $rdf
+      .clownface({ dataset: $rdf.dataset(), graph: ex.john })
       .namedNode(ex.john)
       .addOut(rdf.type, schema.Person)
 
@@ -70,7 +71,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
   it('abbreviates terms in known namespaces', async () => {
     // given
-    const graph = clownface({ dataset: $rdf.dataset(), graph: ex.john })
+    const graph = $rdf
+      .clownface({ dataset: $rdf.dataset(), graph: ex.john })
       .namedNode(ex.john)
       .addOut(rdf.type, schema.Person)
 
@@ -95,7 +97,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
   it('handles various literals', async () => {
     // given
-    const graph = clownface({ dataset: $rdf.dataset(), graph: ex.john })
+    const graph = $rdf
+      .clownface({ dataset: $rdf.dataset(), graph: ex.john })
       .namedNode(ex.john)
       .addOut(schema.name, 'John')
       .addOut(schema.title, $rdf.literal('Phd', 'en'))
@@ -142,7 +145,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
   describe('strict mode', () => {
     it('does not inline blank nodes', async () => {
       // given
-      const graph = clownface({ dataset: $rdf.dataset(), graph: ex.john })
+      const graph = $rdf
+        .clownface({ dataset: $rdf.dataset(), graph: ex.john })
         .namedNode(ex.john)
         .addOut(ex.foo, $rdf.blankNode('foo'), foo => {
           foo.addOut(ex.bar, $rdf.blankNode('bar'), bar => {
@@ -180,7 +184,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
     it('does not inline RDF Lists', async () => {
       // given
-      const graph = clownface({ dataset: $rdf.dataset() })
+      const graph = $rdf
+        .clownface({ dataset: $rdf.dataset() })
         .namedNode(ex.hasList)
         .addList(ex.list, ['A', 'B'])
 
@@ -203,7 +208,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
     it('returns c4r event', async () => {
       // given
-      const graph = clownface({ dataset: $rdf.dataset() })
+      const graph = $rdf
+        .clownface({ dataset: $rdf.dataset() })
         .namedNode(ex.john)
         .addOut(rdf.type, schema.Person)
 
@@ -224,7 +230,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
   it('inlines blank nodes', async () => {
     // given
-    const graph = clownface({ dataset: $rdf.dataset(), graph: ex.john })
+    const graph = $rdf
+      .clownface({ dataset: $rdf.dataset(), graph: ex.john })
       .namedNode(ex.john)
       .addOut(ex.foo, foo => {
         foo.addOut(ex.bar, bar => {
@@ -260,7 +267,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
   it('does not inline blank nodes if they are used twice', async () => {
     // given
-    const graph = clownface({ dataset: $rdf.dataset() })
+    const graph = $rdf
+      .clownface({ dataset: $rdf.dataset() })
       .namedNode(ex.count)
       .addOut(ex.one, $rdf.blankNode('mississippi'))
       .addOut(ex.two, $rdf.blankNode('mississippi'))
@@ -294,7 +302,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
   it('inlines RDF List', async () => {
     // given
-    const graph = clownface({ dataset: $rdf.dataset() })
+    const graph = $rdf
+      .clownface({ dataset: $rdf.dataset() })
       .namedNode(ex.hasList)
       .addList(ex.list, ['A', 'B', 'C'])
 
@@ -319,7 +328,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
   it('inlines RDF List with blank nodes inlined', async () => {
     // given
-    const graph = clownface({ dataset: $rdf.dataset() })
+    const graph = $rdf
+      .clownface({ dataset: $rdf.dataset() })
       .namedNode(ex.hasList)
       .addList(ex.list, [
         $rdf.blankNode('foo'),
@@ -366,7 +376,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
   it('inlines RDF List with reused blank nodes', async () => {
     // given
-    const graph = clownface({ dataset: $rdf.dataset() })
+    const graph = $rdf
+      .clownface({ dataset: $rdf.dataset() })
       .namedNode(ex.hasList)
       .addList(ex.list, [
         $rdf.blankNode('foo'),
@@ -402,7 +413,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
   it('handles RDF lists shared by multiple subjects', async () => {
     // given
-    const graph = clownface({ dataset: $rdf.dataset() })
+    const graph = $rdf
+      .clownface({ dataset: $rdf.dataset() })
       .namedNode(ex.foo)
       .addList(ex.list, ['foo', 'bar', 'baz'])
     graph.namedNode(ex.bar).addOut(ex.list, graph.out(ex.list))
@@ -440,7 +452,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
   it('handles single-element RDF lists shared by multiple subjects', async () => {
     // given
-    const graph = clownface({ dataset: $rdf.dataset() })
+    const graph = $rdf
+      .clownface({ dataset: $rdf.dataset() })
       .namedNode(ex.foo)
       .addList(ex.list, ['a'])
     graph.namedNode(ex.bar).addOut(ex.list, graph.out(ex.list))
@@ -478,7 +491,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
   it('handles two-element RDF lists shared by multiple subjects', async () => {
     // given
-    const graph = clownface({ dataset: $rdf.dataset() })
+    const graph = $rdf
+      .clownface({ dataset: $rdf.dataset() })
       .namedNode(ex.foo)
       .addList(ex.list, ['foo', 'bar'])
     graph.namedNode(ex.bar).addOut(ex.list, graph.out(ex.list))
@@ -516,7 +530,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
   it('removes explicit rdf:type rdf:List', async () => {
     // given
-    const graph = clownface({ dataset: $rdf.dataset() })
+    const graph = $rdf
+      .clownface({ dataset: $rdf.dataset() })
       .namedNode(ex.foo)
       .addList(ex.list, ['a', 'b', 'c'])
     graph.any().has(rdf.first).addOut(rdf.type, rdf.List)
@@ -542,7 +557,8 @@ describe('@rdfjs-elements/formats-pretty/serializers/TransformToConciseHash', ()
 
   it('does not remove other properties from RDF List nodes', async () => {
     // given
-    const graph = clownface({ dataset: $rdf.dataset() })
+    const graph = $rdf
+      .clownface({ dataset: $rdf.dataset() })
       .namedNode(ex.foo)
       .addList(ex.list, ['a', 'b'])
     graph

@@ -2,9 +2,9 @@ import { html, fixture, expect, nextFrame } from '@open-wc/testing'
 import clownface from 'clownface'
 import $rdf from '@rdfjs/dataset'
 import { rdfs, sh, skos } from '@tpluscode/rdf-ns-builders'
-import { fromPointer } from '@rdfine/rdfs/lib/Resource'
 import { setLanguages } from '../index.js'
 import { localizedLabel } from '../localizedLabel.js'
+import env from './env.js'
 
 describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
   it("renders pointer's rdfs:label property in preferred language", async () => {
@@ -55,7 +55,7 @@ describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
   it('works with rdfine object', async () => {
     // given
     const pointer = clownface({ dataset: $rdf.dataset() }).blankNode()
-    const resource = fromPointer(pointer, {
+    const resource = env.rdfine.rdfs.Resource(pointer, {
       label: 'Apple',
     })
 
