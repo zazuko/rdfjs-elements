@@ -1,5 +1,11 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.3.7
+
+### Patch Changes
+
+- aef831f: Update clownface
+
 ## 0.3.6
 
 ### Patch Changes
