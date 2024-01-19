@@ -17,7 +17,9 @@ jobs:
       - uses: nelonoel/branch-name@v1.0.1
 
       - name: Publish preview
+        id: netlify
         uses: jsmrcaga/action-netlify-deploy@v2.1.0
+        continue-on-error: true
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -27,6 +29,9 @@ jobs:
           NETLIFY_DEPLOY_TO_PROD: false
           build_command: echo ""
           monorepo_package: rdfjs-elements-demo
+
+      - name: Netlify output
+        run: echo ${{ steps.netlify.outputs.NETLIFY_OUTPUT }}
 
       - name: Status check
         uses: Sibz/github-status-action@v1.1.1
