@@ -36,11 +36,14 @@
   },
   "devDependencies": {
     "@open-wc/testing": "^3.1.6",
+    "@rdfjs/environment": "^1",
     "@rdfine/rdfs": "^0.8.4",
+    "@rdfjs/data-model": "^2",
     "@rdfjs/dataset": "^2",
     "@rdfjs/types": "^1.1.0",
     "@tpluscode/rdfine": "^0.7.5",
     "@types/clownface": "^2.0.7",
+    "crypto-js": "^4.2.0",
     "typescript": "^4.7.2"
   }
 }

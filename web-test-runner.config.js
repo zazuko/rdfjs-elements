@@ -4,6 +4,7 @@ import rdfjs from 'rdfjs-eds-plugin'
 import { fromRollup } from '@web/dev-server-rollup'
 import commonjs from '@rollup/plugin-commonjs'
 import fakeStreamModules from '@rdfjs-elements/testing'
+import alias from '@rollup/plugin-alias'
 
 const config = {
   files: [
@@ -18,6 +19,9 @@ const config = {
     esbuildPlugin({ target: 'auto' }),
     rdfjs,
     fakeStreamModules(),
+    fromRollup(alias)({
+      entries: [{ find: 'crypto', replacement: 'crypto-js' }],
+    }),
     fromRollup(commonjs)({
       exclude: [
         '**/node_modules/@open-wc/**/*',
