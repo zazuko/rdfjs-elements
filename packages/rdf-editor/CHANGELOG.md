@@ -1,5 +1,13 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.5.7
+
+### Patch Changes
+
+- 94a5e85: More strict dependency on `@rdfjs/environment`
+- Updated dependencies [94a5e85]
+  - @rdfjs-elements/formats-pretty@0.6.7
+
 ## 0.5.6
 
 ### Patch Changes

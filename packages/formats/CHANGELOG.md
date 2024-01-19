@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.6.7
+
+### Patch Changes
+
+- 94a5e85: More strict dependency on `@rdfjs/environment`
+
 ## 0.6.6
 
 ### Patch Changes
