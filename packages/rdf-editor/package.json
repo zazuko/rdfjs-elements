@@ -1,6 +1,6 @@
 {
   "name": "@rdfjs-elements/rdf-editor",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "type": "module",
   "description": "Code Mirror editor for RDF",
   "author": "Zazuko GmbH",
@@ -26,7 +26,7 @@
     "@rdfjs/data-model": "^2",
     "@rdfjs/formats": "^4",
     "@rdfjs-elements/editor-base": "^0.5.0",
-    "@rdfjs-elements/formats-pretty": "^0.6.0",
+    "@rdfjs-elements/formats-pretty": "^0.6.6",
     "@tpluscode/rdf-ns-builders": ">=3.0.2",
     "readable-stream": "^3",
     "string-to-stream": "^3.0.1"
