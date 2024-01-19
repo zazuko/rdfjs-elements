@@ -1,5 +1,14 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.5.6
+
+### Patch Changes
+
+- aef831f: Update to `@rdfjs/environment` v1
+- Updated dependencies [91040b2]
+- Updated dependencies [aef831f]
+  - @rdfjs-elements/formats-pretty@0.6.6
+
 ## 0.5.5
 
 ### Patch Changes
