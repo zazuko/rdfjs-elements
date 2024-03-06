@@ -1,5 +1,11 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.3.8
+
+### Patch Changes
+
+- c2957f5: The `fallback` parameter of `localizedLabel` should allow any type and let lit render it
+
 ## 0.3.7
 
 ### Patch Changes
