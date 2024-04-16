@@ -12,8 +12,8 @@
     "analyze:wc": "cem analyze --litelement",
     "analyze:readme": "wca --outFile ./README.md",
     "analyze:lit": "lit-analyzer --strict --quiet",
-    "start": "webpack-dev-server --mode development --config webpack.config.cjs",
-    "build": "webpack --mode production --config webpack.config.cjs"
+    "start": "vite",
+    "build": "vite build"
   },
   "repository": {
     "type": "git",

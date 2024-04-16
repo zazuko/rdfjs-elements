@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: yarn analyze
 
   lint:
@@ -26,7 +26,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: yarn lint
 
   build-demos:
@@ -34,9 +34,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-        with:
-          node-version: "16"
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: npx wsrun -mpc build
 
   tests:
@@ -46,7 +44,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
-      - run: yarn install --frozen-lockfile
+      - run: npm ci
       - run: yarn test
       - name: Codecov
         uses: codecov/codecov-action@v3

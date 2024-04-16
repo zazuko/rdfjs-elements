@@ -22,13 +22,12 @@
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
     "release": "changeset publish",
-    "postinstall": "yarn-deduplicate",
     "prepare": "husky install; patch-package"
   },
   "devDependencies": {
     "@changesets/cli": "^2.24.0",
     "@custom-elements-manifest/analyzer": "^0.6.3",
-    "@open-wc/building-webpack": "^2.13.46",
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@open-wc/eslint-config": "^7.0.0",
     "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-commonjs": "^18.0.0",
@@ -36,7 +35,6 @@
     "@web/dev-server-rollup": "^0.5.0",
     "@web/test-runner": "^0.13.30",
     "c8": "^7.7.2",
-    "copy-webpack-plugin": "^6",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^7.2.0",
     "husky": "^8.0.1",
@@ -47,12 +45,10 @@
     "postinstall-postinstall": "^2.1.0",
     "prettier": "^2.0.4",
     "rdfjs-eds-plugin": "^0.1.1",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.3",
-    "webpack-merge": "^5.1.1",
-    "wsrun": "^5.2.4",
-    "yarn-deduplicate": "^5.0.0"
+    "rollup-plugin-node-polyfills": "^0.2.1",
+    "vite": "^5.2.9",
+    "vite-plugin-static-copy": "^1.0.2",
+    "wsrun": "^5.2.4"
   },
   "eslintConfig": {
     "extends": [
