@@ -4,10 +4,11 @@
   "version": "0.0.3",
   "description": "Webcomponent rdfjs-elements-demos following open-wc recommendations",
   "author": "rdfjs-elements-demos",
+  "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode production --config webpack.config.cjs",
-    "start": "webpack-dev-server --mode development --config webpack.config.cjs",
+    "build": "vite build",
+    "start": "vite",
     "analyze": "run-p analyze:*",
     "analyze:lit": "lit-analyzer --strict --quiet --rules.no-invalid-css off"
   },

@@ -11,42 +11,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - run: yarn install --frozen-lockfile
+          node-version: 20
+      - run: npm ci
       - run: yarn analyze
 
   lint:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - run: yarn install --frozen-lockfile
+          node-version: 20
+      - run: npm ci
       - run: yarn lint
 
   build-demos:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "16"
-      - run: yarn install --frozen-lockfile
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: npm ci
       - run: npx wsrun -mpc build
 
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "18"
-      - run: yarn install --frozen-lockfile
+          node-version: 20
+      - run: npm ci
       - run: yarn test
       - name: Codecov
         uses: codecov/codecov-action@v3

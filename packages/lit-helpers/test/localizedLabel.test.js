@@ -1,6 +1,4 @@
 import { html, fixture, expect, nextFrame } from '@open-wc/testing'
-import clownface from 'clownface'
-import $rdf from '@rdfjs/dataset'
 import { rdfs, sh } from '@tpluscode/rdf-ns-builders'
 import { setLanguages } from '../index.js'
 import { localizedLabel } from '../localizedLabel.js'
@@ -9,7 +7,7 @@ import env from './env.js'
 describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
   it("renders pointer's rdfs:label property in preferred language", async () => {
     // given
-    const pointer = clownface({ dataset: $rdf.dataset() }).blankNode()
+    const pointer = env.clownface().blankNode()
     pointer
       .addOut(rdfs.label, pointer.literal('Apfel', 'de'))
       .addOut(rdfs.label, pointer.literal('Apple', 'en'))
@@ -25,7 +23,7 @@ describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
 
   it('skips languages not found', async () => {
     // given
-    const pointer = clownface({ dataset: $rdf.dataset() }).blankNode()
+    const pointer = env.clownface().blankNode()
     pointer
       .addOut(rdfs.label, pointer.literal('Apfel', 'de'))
       .addOut(rdfs.label, pointer.literal('Apple', 'en'))
@@ -41,7 +39,7 @@ describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
 
   it('falls back to any language when no matching tag is found', async () => {
     // given
-    const pointer = clownface({ dataset: $rdf.dataset() }).blankNode()
+    const pointer = env.clownface().blankNode()
     pointer.addOut(rdfs.label, pointer.literal('Apfel', 'de'))
     setLanguages('fr', 'pl')
 
@@ -54,7 +52,7 @@ describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
 
   it('works with rdfine object', async () => {
     // given
-    const pointer = clownface({ dataset: $rdf.dataset() }).blankNode()
+    const pointer = env.clownface().blankNode()
     const resource = env.rdfine.rdfs.Resource(pointer, {
       label: 'Apple',
     })
@@ -68,7 +66,7 @@ describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
 
   it('updates existing usages when language is changed', async () => {
     // given
-    const pointer = clownface({ dataset: $rdf.dataset() })
+    const pointer = env.clownface()
     const apple = pointer
       .blankNode()
       .addOut(rdfs.label, pointer.literal('Apple', 'en'))
@@ -94,7 +92,7 @@ describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
 
   it('updates existing fallback usages when language is changed', async () => {
     // given
-    const pointer = clownface({ dataset: $rdf.dataset() })
+    const pointer = env.clownface()
     const fruit = pointer.blankNode()
 
     // when
@@ -111,7 +109,7 @@ describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
 
   it('renders fallback when no label is found', async () => {
     // given
-    const pointer = clownface({ dataset: $rdf.dataset() })
+    const pointer = env.clownface()
     const res = pointer.blankNode()
 
     // when
@@ -125,10 +123,7 @@ describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
 
   it('supports changing the label property', async () => {
     // given
-    const pointer = clownface({ dataset: $rdf.dataset() }).addOut(
-      sh.name,
-      'Property'
-    )
+    const pointer = env.clownface().addOut(sh.name, 'Property')
     const res = pointer.blankNode()
 
     // when
@@ -147,10 +142,7 @@ describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
 
   it('binds to property', async () => {
     // given
-    const pointer = clownface({ dataset: $rdf.dataset() }).addOut(
-      sh.name,
-      'Property'
-    )
+    const pointer = env.clownface().addOut(sh.name, 'Property')
     const res = pointer.blankNode()
 
     // when
@@ -169,10 +161,7 @@ describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
 
   it('binds to attribute', async () => {
     // given
-    const pointer = clownface({ dataset: $rdf.dataset() }).addOut(
-      sh.name,
-      'Property'
-    )
+    const pointer = env.clownface().addOut(sh.name, 'Property')
     const res = pointer.blankNode()
 
     // when
