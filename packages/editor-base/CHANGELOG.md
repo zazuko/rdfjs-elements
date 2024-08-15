@@ -1,5 +1,11 @@
 # @rdfjs-elements/editor-base
 
+## 0.5.1
+
+### Patch Changes
+
+- ff2a29e: Updated lit to v3
+
 ## 0.5.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @rdfjs-elements/sparql-editor
 
+## 0.2.2
+
+### Patch Changes
+
+- ff2a29e: Updated lit to v3
+- Updated dependencies [ff2a29e]
+  - @rdfjs-elements/editor-base@0.5.1
+
 ## 0.2.1
 
 ### Patch Changes
