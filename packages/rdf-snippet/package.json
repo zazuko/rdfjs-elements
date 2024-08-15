@@ -23,13 +23,13 @@
   "homepage": "https://zazuko.github.io/rdfjs-elements/rdf-snippet/",
   "dependencies": {
     "@rdfjs-elements/rdf-editor": "^0.5.3",
-    "lit": "^2"
+    "lit": "^3"
   },
   "devDependencies": {
-    "@open-wc/testing": "^3.0.3",
-    "@open-wc/testing-helpers": "^2.0.2",
+    "@open-wc/testing": "^4.0.0",
+    "@open-wc/testing-helpers": "^3.0.1",
     "@rdfjs-elements/testing": "^0.1.0",
-    "api-viewer-element": "^1.0.0-pre.3"
+    "api-viewer-element": "^1.0.0-pre.10"
   },
   "publishConfig": {
     "access": "public"
