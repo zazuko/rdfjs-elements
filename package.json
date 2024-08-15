@@ -1,7 +1,7 @@
 {
   "name": "rdfjs-elements",
   "version": "0.0.0",
-  "description": "RDJ/JS Web Components",
+  "description": "RDF/JS Web Components",
   "main": "index.js",
   "type": "module",
   "author": "Zazuko GmbH",

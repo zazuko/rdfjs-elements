@@ -32,9 +32,9 @@
     "string-to-stream": "^3.0.1"
   },
   "devDependencies": {
-    "@open-wc/testing": "^3.0.3",
+    "@open-wc/testing": "^4.0.0",
     "@rdfjs-elements/testing": "^0.1.0",
-    "api-viewer-element": "^1.0.0-pre.3"
+    "api-viewer-element": "^1.0.0-pre.10"
   },
   "publishConfig": {
     "access": "public"

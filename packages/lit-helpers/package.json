@@ -21,7 +21,7 @@
     "@tpluscode/rdf-ns-builders": ">=3.0.2",
     "@ungap/event-target": "^0.2.3",
     "clownface": "^2",
-    "lit": "^2"
+    "lit": "^3"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,7 @@
     "@types/clownface": "^2.0.7"
   },
   "devDependencies": {
-    "@open-wc/testing": "^3.1.6",
+    "@open-wc/testing": "^4.0.0",
     "@rdfine/rdfs": "^0.8.4",
     "@rdfjs/types": "^1.1.0",
     "@tpluscode/rdfine": "^0.7.5",
