@@ -1,5 +1,11 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.3.9
+
+### Patch Changes
+
+- ff2a29e: Updated lit to v3
+
 ## 0.3.8
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 {
   "name": "rdfjs-elements-demos",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Webcomponent rdfjs-elements-demos following open-wc recommendations",
   "author": "rdfjs-elements-demos",
   "type": "module",
@@ -14,6 +14,6 @@
   },
   "dependencies": {
     "lit": "^3",
-    "@rdfjs-elements/rdf-editor": "^0.5.0"
+    "@rdfjs-elements/rdf-editor": "^0.5.8"
   }
 }

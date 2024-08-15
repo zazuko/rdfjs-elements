@@ -1,5 +1,13 @@
 # @rdfjs-elements/rdf-snippet
 
+## 0.4.4
+
+### Patch Changes
+
+- ff2a29e: Updated lit to v3
+- Updated dependencies [ff2a29e]
+  - @rdfjs-elements/rdf-editor@0.5.8
+
 ## 0.4.3
 
 ### Patch Changes
