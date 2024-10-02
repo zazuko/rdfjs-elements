@@ -8,6 +8,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname)
 export default mergeConfig(
   config,
   defineConfig({
+    base: '/converter/',
     build: {
       outDir: path.resolve(__dirname, '../../dist/converter'),
     },

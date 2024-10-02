@@ -9,6 +9,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname)
 export default mergeConfig(
   config,
   defineConfig({
+    base: '/rdf-editor/',
     root: path.resolve(__dirname, 'demo'),
     build: {
       outDir: path.resolve(__dirname, '../../dist/rdf-editor'),
