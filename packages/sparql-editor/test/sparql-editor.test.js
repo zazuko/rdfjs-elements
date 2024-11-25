@@ -31,7 +31,6 @@ describe('SparqlEditor', () => {
     )
 
     // when
-    await oneEvent(el, 'parsed')
     const { detail } = await oneEvent(el, 'parsed')
 
     // then
@@ -53,7 +52,6 @@ describe('SparqlEditor', () => {
     )
 
     // when
-    await oneEvent(el, 'parsed')
     const { detail } = await oneEvent(el, 'parsed')
 
     // then
@@ -67,6 +65,7 @@ describe('SparqlEditor', () => {
     )
 
     // when
+    await el.ready
     el.value = 'SELECT * WHERE { ?s ?p ?o }'
     const { detail } = await oneEvent(el, 'parsed')
 

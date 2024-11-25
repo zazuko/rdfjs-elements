@@ -18,6 +18,7 @@ function whenDefined(getter) {
       if (value) {
         clearInterval(awaiter)
         resolve()
+        return
       }
       counter += 1
       if (counter === maxWaits) {
