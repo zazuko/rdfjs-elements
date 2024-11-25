@@ -16,10 +16,15 @@ jobs:
 
       - uses: nelonoel/branch-name@v1.0.1
 
-      - run: npm i -g netlify-cli
-
       - name: Publish preview
-        run: netlify deploy --dir dist -a ${{ secrets.NETLIFY_AUTH_TOKEN }} -s ${{ secrets.NETLIFY_SITE_ID }} --filter rdfjs-elements-demos -m "Preview ${{ env.BRANCH_NAME }}" --alias ${{ env.BRANCH_NAME }}
+        uses: jsmrcaga/action-netlify-deploy@v2.3.0
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          build_directory: dist
+          monorepo_package: rdfjs-elements-demos
+          deploy_alias: ${{ env.BRANCH_NAME }}
+          NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME }} == 'master'
 
       - name: Status check
         uses: Sibz/github-status-action@v1.1.1
