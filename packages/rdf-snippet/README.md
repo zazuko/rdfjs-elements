@@ -60,10 +60,10 @@ package.
 
 ## Events
 
-| Event           | Type                              |
-|-----------------|-----------------------------------|
-| `quads-changed` | `CustomEvent<{ value: any[]; }>`  |
-| `value-changed` | `CustomEvent<{ value: string; }>` |
+| Event           | Type                              | Description                                |
+|-----------------|-----------------------------------|--------------------------------------------|
+| `quads-changed` | `CustomEvent<{ value: Quad[] }>`  | dispatched when the input quads are parsed |
+| `value-changed` | `CustomEvent<{ value: string; }>` |                                            |
 
 ## CSS Shadow Parts
 

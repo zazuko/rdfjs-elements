@@ -75,6 +75,8 @@ const formatLabels = {
  * @csspart input - selection button for the input format
  * @csspart output - selection button for the output formats
  * @csspart selected - the currently selected format button
+ *
+ * @event {CustomEvent<{ value: Quad[] }>} quads-changed - dispatched when the input quads are parsed
  */
 export class RdfSnippet extends LitElement {
   static get properties() {
