@@ -1,3 +1,4 @@
+import ns from '@tpluscode/rdf-ns-builders'
 import { html, css, LitElement } from 'lit'
 import '@vanillawc/wc-codemirror'
 import { debounce } from 'throttle-debounce'
@@ -147,8 +148,6 @@ export default class Editor extends LitElement {
 
   get _prefixes() {
     return async () => {
-      const ns = await import('@tpluscode/rdf-ns-builders')
-
       const prefixes = (this.prefixes || '')
         .split(',')
         .map(prefix => prefix.trim())
@@ -311,20 +310,23 @@ export default class Editor extends LitElement {
   }
 
   async _combinePrefixes() {
-    return Object.entries(this.customPrefixes).reduce((clean, [prefix, ns]) => {
-      if (
-        !ns ||
-        !prefix ||
-        typeof ns !== 'string' ||
-        typeof prefix !== 'string'
-      ) {
-        return clean
-      }
+    return Object.entries(this.customPrefixes).reduce(
+      (clean, [prefix, namespace]) => {
+        if (
+          !namespace ||
+          !prefix ||
+          typeof namespace !== 'string' ||
+          typeof prefix !== 'string'
+        ) {
+          return clean
+        }
 
-      return {
-        ...clean,
-        [prefix]: ns,
-      }
-    }, await this._prefixes())
+        return {
+          ...clean,
+          [prefix]: namespace,
+        }
+      },
+      await this._prefixes()
+    )
   }
 }
