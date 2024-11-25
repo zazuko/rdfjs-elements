@@ -208,6 +208,13 @@
           ],
           "events": [
             {
+              "name": "quads-changed",
+              "type": {
+                "text": "CustomEvent<{ value: Quad[] }>"
+              },
+              "description": "dispatched when the input quads are parsed"
+            },
+            {
               "name": "value-changed",
               "type": {
                 "text": "CustomEvent"
