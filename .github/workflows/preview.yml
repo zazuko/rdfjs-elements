@@ -12,7 +12,6 @@ jobs:
           node-version: lts/*
 
       - run: npm ci
-      - run: npx wsrun -mpc build
 
       - uses: nelonoel/branch-name@v1.0.1
 
@@ -21,6 +20,7 @@ jobs:
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          build_command: 'npx wsrun -mpc build'
           build_directory: dist
           monorepo_package: rdfjs-elements-demos
           deploy_alias: ${{ env.BRANCH_NAME }}
