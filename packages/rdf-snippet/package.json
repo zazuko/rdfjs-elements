@@ -29,7 +29,8 @@
     "@open-wc/testing": "^4.0.0",
     "@open-wc/testing-helpers": "^3.0.1",
     "@rdfjs-elements/testing": "^0.1.0",
-    "api-viewer-element": "^1.0.0-pre.10"
+    "api-viewer-element": "^1.0.0-pre.10",
+    "process": "^0.11.10"
   },
   "publishConfig": {
     "access": "public"

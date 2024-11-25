@@ -62,6 +62,7 @@ package.
 
 | Event           | Type                              |
 |-----------------|-----------------------------------|
+| `quads-changed` | `CustomEvent<{ value: any[]; }>`  |
 | `value-changed` | `CustomEvent<{ value: string; }>` |
 
 ## CSS Shadow Parts

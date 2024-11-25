@@ -285,6 +285,14 @@ export class RdfSnippet extends LitElement {
   __inputParsed(e) {
     this[Quads] = e.detail.value
     this.requestUpdate()
+
+    this.dispatchEvent(
+      new CustomEvent('quads-changed', {
+        detail: {
+          value: this[Quads],
+        },
+      })
+    )
   }
 
   __renderOutputButton(format) {

@@ -208,6 +208,12 @@
           ],
           "events": [
             {
+              "name": "quads-changed",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
               "name": "value-changed",
               "type": {
                 "text": "CustomEvent"

@@ -104,10 +104,12 @@ export default class Editor extends LitElement {
     this[Value] = ''
     this.customPrefixes = {}
 
-    this.__style = document.createElement('link')
-    this.__style.rel = 'stylesheet'
-    this.__style.href =
-      'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.1/codemirror.min.css'
+    if (navigator.onLine) {
+      this.__style = document.createElement('link')
+      this.__style.rel = 'stylesheet'
+      this.__style.href =
+        'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.1/codemirror.min.css'
+    }
   }
 
   connectedCallback() {
