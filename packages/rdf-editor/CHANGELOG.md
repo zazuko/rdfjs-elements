@@ -1,5 +1,13 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.5.9
+
+### Patch Changes
+
+- 75abbc7: `prefixes` property was not correctly applied to serialised output
+- Updated dependencies [75abbc7]
+  - @rdfjs-elements/editor-base@0.5.2
+
 ## 0.5.8
 
 ### Patch Changes
