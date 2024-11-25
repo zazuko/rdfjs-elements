@@ -1,5 +1,14 @@
 # @rdfjs-elements/rdf-snippet
 
+## 0.4.5
+
+### Patch Changes
+
+- 75abbc7: `prefixes` property was not correctly applied to serialised output
+- 7185df6: Fire `quads-changed` event when input is parsed
+- Updated dependencies [75abbc7]
+  - @rdfjs-elements/rdf-editor@0.5.9
+
 ## 0.4.4
 
 ### Patch Changes
