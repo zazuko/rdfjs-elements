@@ -1,4 +1,4 @@
-import ns from '@tpluscode/rdf-ns-builders'
+import * as ns from '@tpluscode/rdf-ns-builders'
 import { html, css, LitElement } from 'lit'
 import '@vanillawc/wc-codemirror'
 import { debounce } from 'throttle-debounce'
