@@ -7,6 +7,7 @@ import {
 } from './serializers/graphy.js'
 import { TrigParser, NQuadsParser } from './parsers/graphy.js'
 import JsonLdSerializer from './serializers/jsonld.js'
+import { N3Parser } from './parsers/n3.js'
 
 const formats = new Formats({})
 formats.import(formatsCommon)
@@ -32,7 +33,7 @@ formats.serializers.set(mediaTypes.turtle, new TurtleSerializer())
 formats.serializers.set(mediaTypes.trig, new TrigSerializer())
 formats.serializers.set(mediaTypes.rdfXml, new RdfXmlSerializer())
 
-formats.parsers.set(mediaTypes.notation3, new TrigParser())
+formats.parsers.set(mediaTypes.notation3, new N3Parser())
 formats.parsers.set(mediaTypes.turtle, new TrigParser())
 formats.parsers.set(mediaTypes.trig, new TrigParser())
 formats.parsers.set(mediaTypes.ntriples, new NQuadsParser())

@@ -6,6 +6,7 @@ import * as ns from '@tpluscode/rdf-ns-builders'
 import getStream from 'get-stream'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { Transform } from 'readable-stream'
 import formats, { mediaTypes } from '../index.js'
 
 const { parsers, serializers } = formats
@@ -40,6 +41,25 @@ describe('@rdfjs-elements/formats-pretty', () => {
         )
       })
     })
+
+    describe('n3', () => {
+      it('parses a N3 document with rules', async () => {
+        // given
+        const input = `{
+  ?s a ?o .
+  ?o <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?o2 .
+} => {
+  ?s a ?o2 .
+} .`
+
+        // when
+        const quads = parsers.import(mediaTypes.notation3, toStream(input))
+        const dataset = await $rdf.dataset().import(quads)
+
+        // then
+        expect(dataset.size).to.eq(4)
+      })
+    })
   })
 
   describe('serializers', () => {
@@ -68,20 +88,28 @@ describe('@rdfjs-elements/formats-pretty', () => {
       for (const format of Object.values(mediaTypes)) {
         it(`graph ${file} in format ${format}`, async () => {
           // given
-          const graph = await $rdf
+          const data = await $rdf
             .dataset()
             .import($rdf.fromFile(join(__dirname, `graphs/${file}`)))
 
           // when
           const serialized = await getStream(
-            serializers.import(format, graph.toStream())
+            serializers.import(format, data.toStream())
           )
-          const roundTrip = await $rdf
-            .dataset()
-            .import(parsers.import(format, toStream(serialized)))
+          const parserStream = parsers
+            .import(format, toStream(serialized))
+            .pipe(
+              new Transform({
+                objectMode: true,
+                transform({ subject, predicate, object, graph }, _, callback) {
+                  callback(null, $rdf.quad(subject, predicate, object, graph))
+                },
+              })
+            )
+          const roundTrip = await $rdf.dataset().import(parserStream)
 
           // then
-          expect(roundTrip.toCanonical()).to.eq(graph.toCanonical())
+          expect(roundTrip.toCanonical()).to.eq(data.toCanonical())
         })
       }
     }
