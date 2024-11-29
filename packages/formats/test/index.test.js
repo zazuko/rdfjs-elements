@@ -6,7 +6,6 @@ import * as ns from '@tpluscode/rdf-ns-builders'
 import getStream from 'get-stream'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { Transform } from 'readable-stream'
 import formats, { mediaTypes } from '../index.js'
 
 const { parsers, serializers } = formats
@@ -96,16 +95,7 @@ describe('@rdfjs-elements/formats-pretty', () => {
           const serialized = await getStream(
             serializers.import(format, data.toStream())
           )
-          const parserStream = parsers
-            .import(format, toStream(serialized))
-            .pipe(
-              new Transform({
-                objectMode: true,
-                transform({ subject, predicate, object, graph }, _, callback) {
-                  callback(null, $rdf.quad(subject, predicate, object, graph))
-                },
-              })
-            )
+          const parserStream = parsers.import(format, toStream(serialized))
           const roundTrip = await $rdf.dataset().import(parserStream)
 
           // then
