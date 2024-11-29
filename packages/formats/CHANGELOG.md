@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.6.8
+
+### Patch Changes
+
+- f67b4da: Parsing n3 rules would fail. Using the package [n3](https://npm.im/n3) to support them.
+
 ## 0.6.7
 
 ### Patch Changes

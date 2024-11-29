@@ -1,5 +1,13 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.5.10
+
+### Patch Changes
+
+- f67b4da: Parsing n3 rules would fail. Using the package [n3](https://npm.im/n3) to support them.
+- Updated dependencies [f67b4da]
+  - @rdfjs-elements/formats-pretty@0.6.8
+
 ## 0.5.9
 
 ### Patch Changes
