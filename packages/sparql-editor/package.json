@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@rdfjs-elements/editor-base": "^0.5.1",
-    "sparqljs": "^3.6.2"
+    "sparqljs": "^3.7.3"
   },
   "devDependencies": {
     "@open-wc/testing": "^4.0.0",

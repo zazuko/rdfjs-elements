@@ -30,16 +30,16 @@
   },
   "homepage": "https://github.com/zazuko/lit-helpers/tree/master/packages/formats#readme",
   "peerDependencies": {
-    "@rdfjs/types": "^1",
-    "@tpluscode/rdfine": "^0.7.5",
+    "@rdfjs/types": ">=1",
+    "@tpluscode/rdfine": "^0.7.11",
     "@types/clownface": "^2.0.7"
   },
   "devDependencies": {
     "@open-wc/testing": "^4.0.0",
-    "@rdfine/rdfs": "^0.8.4",
-    "@rdfjs/types": "^1.1.0",
-    "@tpluscode/rdfine": "^0.7.10",
-    "@zazuko/env": "^2.1.1",
+    "@rdfine/rdfs": "^0.8.6",
+    "@rdfjs/types": "^2",
+    "@tpluscode/rdfine": "^0.7.11",
+    "@zazuko/env": "^3",
     "crypto-js": "^4.2.0",
     "typescript": "^4.7.2"
   }
