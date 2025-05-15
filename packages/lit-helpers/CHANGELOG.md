@@ -1,5 +1,11 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.3.10
+
+### Patch Changes
+
+- fbe2b71: Relax peer dependency on `@rdfjs/types`
+
 ## 0.3.9
 
 ### Patch Changes

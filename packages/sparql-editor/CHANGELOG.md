@@ -1,5 +1,11 @@
 # @rdfjs-elements/sparql-editor
 
+## 0.2.3
+
+### Patch Changes
+
+- fbe2b71: Updated `sparqljs`
+
 ## 0.2.2
 
 ### Patch Changes
