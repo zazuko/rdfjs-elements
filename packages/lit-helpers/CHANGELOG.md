@@ -1,5 +1,11 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.3.11
+
+### Patch Changes
+
+- 49d0a71: Label would not update when resource became `undefined`
+
 ## 0.3.10
 
 ### Patch Changes

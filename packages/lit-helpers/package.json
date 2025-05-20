@@ -1,6 +1,6 @@
 {
   "name": "@rdfjs-elements/lit-helpers",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "type": "module",
   "sideEffects": false,
   "files": [
