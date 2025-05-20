@@ -1,0 +1,517 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "formats.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "@rdfjs-elements/formats-pretty"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "formats",
+            "module": "formats.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "index.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "RdfEditor",
+          "declaration": {
+            "name": "RdfEditor",
+            "module": "./src/RdfEditor.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "mediaTypes",
+          "declaration": {
+            "name": "mediaTypes",
+            "package": "@rdfjs-elements/formats-pretty"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "rdf-editor.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "anonymous_0",
+          "mixins": [
+            {
+              "name": "EnvironmentMixin",
+              "package": "@rdfjs-elements/editor-base/EnvironmentMixin"
+            }
+          ],
+          "superclass": {
+            "name": "RdfEditor",
+            "module": "/src/RdfEditor.js"
+          },
+          "tagName": "rdf-editor",
+          "customElement": true,
+          "attributes": [
+            {
+              "name": "format",
+              "type": {
+                "text": "string"
+              },
+              "description": "Media type of the RDF serialization to use. Custom parsers and serializers must be added to `@rdfjs/formats-common`",
+              "fieldName": "format",
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            },
+            {
+              "name": "quads",
+              "description": "get or sets the RDF/JS quads",
+              "return": {
+                "type": {
+                  "text": "Quad[]"
+                }
+              },
+              "type": {
+                "text": "Quad[]"
+              },
+              "fieldName": "quads",
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            },
+            {
+              "name": "no-reserialize",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Prevents the editor from serializing the quads when format changes",
+              "fieldName": "noReserialize",
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "quads",
+              "privacy": "public",
+              "description": "get or sets the RDF/JS quads",
+              "return": {
+                "type": {
+                  "text": "Quad[]"
+                }
+              },
+              "type": {
+                "text": "Quad[]"
+              },
+              "attribute": "quads",
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_parse",
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "__serialize",
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_errorLine",
+              "parameters": [
+                {
+                  "name": "error"
+                }
+              ],
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "__notifyParsedPrefixes",
+              "parameters": [
+                {
+                  "name": "parsedPrefixes"
+                }
+              ],
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isParsing",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "noReserialize",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Prevents the editor from serializing the quads when format changes",
+              "attribute": "no-reserialize",
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "The string representation of the RDF graph.",
+              "name": "value",
+              "kind": "field",
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "format",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "Media type of the RDF serialization to use. Custom parsers and serializers must be added to `@rdfjs/formats-common`",
+              "attribute": "format",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "parsing-failed",
+              "type": {
+                "text": "CustomEvent<{ notFound?: boolean; error?: Error; }>"
+              },
+              "description": "when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason",
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            },
+            {
+              "name": "quads-changed",
+              "type": {
+                "text": "CustomEvent<{ quads: Quad[]; }>"
+              },
+              "description": "when the editor contents have changed and have been successfully parsed",
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            },
+            {
+              "name": "serialized",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            },
+            {
+              "name": "prefixes-parsed",
+              "type": {
+                "text": "CustomEvent<{ prefixes: Record<string, string>; }>"
+              },
+              "description": "prefixes returned by parser",
+              "inheritedFrom": {
+                "name": "RdfEditor",
+                "module": "src/RdfEditor.js"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "rdf-editor",
+          "declaration": {
+            "name": "anonymous_0",
+            "module": "rdf-editor.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/index.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/RdfEditor.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "A text editor custom element which parses and serializes RDF/JS Quads using a selected RDF format.\n\n## Usage\n\nThe element requires a single property/attribute `format` which should be an RDF serialization media type supported by\n`@rdfjs/formats-common` package.\n\nThe element is easiest to bootstrap by setting the `value` property **before** first render. This property is\nonly used to provide the initial contents of the editor as it is parsed on first render, when the element has been added\nto the page.\n\n```js\nimport '@rdfjs-elements/rdf-editor'\nimport { html } from 'lit'\n\nconst jsonld = {\n  '@context': {\n    '@base': 'http://example.com/',\n    '@vocab': 'http://schema.org/'\n  },\n  '@id': 'john-doe',\n  '@type': 'Person',\n  '@name': 'John Doe'\n}\n\nconst initialValue = JSON.stringify(jsonld, null, 2)\n\nconst template = html`<rdf-editor format=\"application/ld+json\" .value=\"${initialValue}\"></rdf-editor>`\n```\n\nBy default most common formats are supported\n\n- JSON-LD\n- N-Triples\n- N-Quads\n- RDF/XML\n- Turtle/N3\n- TriG *(no highlighting)*\n\nSyntax highlighting is relying on support from CodeMirror.",
+          "name": "RdfEditor",
+          "members": [
+            {
+              "kind": "field",
+              "name": "quads",
+              "privacy": "public",
+              "description": "get or sets the RDF/JS quads",
+              "return": {
+                "type": {
+                  "text": "Quad[]"
+                }
+              },
+              "type": {
+                "text": "Quad[]"
+              },
+              "attribute": "quads"
+            },
+            {
+              "kind": "method",
+              "name": "_parse"
+            },
+            {
+              "kind": "method",
+              "name": "__serialize"
+            },
+            {
+              "kind": "method",
+              "name": "_errorLine",
+              "parameters": [
+                {
+                  "name": "error"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "__notifyParsedPrefixes",
+              "parameters": [
+                {
+                  "name": "parsedPrefixes"
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "isParsing",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "noReserialize",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Prevents the editor from serializing the quads when format changes",
+              "attribute": "no-reserialize"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "The string representation of the RDF graph.",
+              "name": "value",
+              "kind": "field"
+            },
+            {
+              "kind": "field",
+              "name": "format",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "description": "Media type of the RDF serialization to use. Custom parsers and serializers must be added to `@rdfjs/formats-common`",
+              "attribute": "format",
+              "reflects": true
+            }
+          ],
+          "events": [
+            {
+              "name": "parsing-failed",
+              "type": {
+                "text": "CustomEvent<{ notFound?: boolean; error?: Error; }>"
+              },
+              "description": "when the editor contents have changed and but failed to parse. Check `detail.noParser` (boolean) or `detail.error` properties for the reason"
+            },
+            {
+              "name": "quads-changed",
+              "type": {
+                "text": "CustomEvent<{ quads: Quad[]; }>"
+              },
+              "description": "when the editor contents have changed and have been successfully parsed"
+            },
+            {
+              "name": "serialized",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "name": "prefixes-parsed",
+              "type": {
+                "text": "CustomEvent<{ prefixes: Record<string, string>; }>"
+              },
+              "description": "prefixes returned by parser"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "format",
+              "type": {
+                "text": "string"
+              },
+              "description": "Media type of the RDF serialization to use. Custom parsers and serializers must be added to `@rdfjs/formats-common`",
+              "fieldName": "format"
+            },
+            {
+              "name": "quads",
+              "description": "get or sets the RDF/JS quads",
+              "return": {
+                "type": {
+                  "text": "Quad[]"
+                }
+              },
+              "type": {
+                "text": "Quad[]"
+              },
+              "fieldName": "quads"
+            },
+            {
+              "name": "no-reserialize",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Prevents the editor from serializing the quads when format changes",
+              "fieldName": "noReserialize"
+            }
+          ],
+          "superclass": {
+            "name": "Editor",
+            "package": "@rdfjs-elements/editor-base"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "RdfEditor",
+          "declaration": {
+            "name": "RdfEditor",
+            "module": "src/RdfEditor.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/stream.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "toStream",
+          "default": "stringToStream"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "Readable",
+          "declaration": {
+            "name": "Readable",
+            "package": "readable-stream"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "toStream",
+          "declaration": {
+            "name": "toStream",
+            "module": "src/stream.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mode/javascript.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mode/ntriples.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mode/turtle.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mode/xml.js",
+      "declarations": [],
+      "exports": []
+    }
+  ]
+}
