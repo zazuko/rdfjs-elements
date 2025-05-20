@@ -26,13 +26,12 @@ class LocalizedLabelDirective extends Directive {
      * @type {string}
      */
     this.fallback = fallback
-    if (resource) {
-      /**
-       * @private
-       * @type {PointerLike}
-       */
-      this.pointer = 'pointer' in resource ? resource.pointer : resource
-    }
+    /**
+     * @private
+     * @type {PointerLike | undefined}
+     */
+    this.pointer =
+      resource && 'pointer' in resource ? resource.pointer : resource
 
     const label = this.pointer?.out(this.property)
     return taggedLiteral(label, { fallback })
