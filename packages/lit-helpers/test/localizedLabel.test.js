@@ -1,5 +1,6 @@
 import { html, fixture, expect, nextFrame } from '@open-wc/testing'
 import { rdfs, sh } from '@tpluscode/rdf-ns-builders'
+import { render } from 'lit'
 import { setLanguages } from '../index.js'
 import { localizedLabel } from '../localizedLabel.js'
 import env from './env.js'
@@ -88,6 +89,23 @@ describe('@rdfjs-elements/lit-helpers/localizedLabel.js', () => {
 
     // then
     expect(el).dom.to.equal(`<p><span>Apple</span><span>Orange</span></p>`)
+  })
+
+  it('clears text when resource becomes undefined', () => {
+    // given
+    const pointer = env.clownface()
+    const apple = pointer
+      .blankNode()
+      .addOut(rdfs.label, pointer.literal('Apple'))
+    const template = arg => html`${localizedLabel(arg)}`
+
+    // when
+    const el = document.body.appendChild(document.createElement('p'))
+    render(template(apple), el)
+    render(template(), el)
+
+    // then
+    expect(el).dom.to.equal(`<p></p>`)
   })
 
   it('updates existing fallback usages when language is changed', async () => {
