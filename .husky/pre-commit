@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-yarn lint-staged
-yarn analyze
+npx lint-staged
+npm run analyze
 git add "**/custom-elements.json" "**/README.md"
