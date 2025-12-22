@@ -1,5 +1,11 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.3.12
+
+### Patch Changes
+
+- 6a4ee58: Type declarations used `rdf-js` which is deprecated
+
 ## 0.3.11
 
 ### Patch Changes
