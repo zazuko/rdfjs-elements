@@ -32,5 +32,6 @@
   "homepage": "https://zazuko.github.io/rdfjs-elements/sparql-editor/",
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "customElements": "custom-elements.json"
 }

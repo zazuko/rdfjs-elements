@@ -58,19 +58,23 @@
                 "type": {
                   "text": "string"
                 }
-              }
+              },
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_editor"
+              "name": "_editor",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_outputEditor"
+              "name": "_outputEditor",
+              "readonly": true
             },
             {
               "kind": "field",
-              "name": "_outputFormats"
+              "name": "_outputFormats",
+              "readonly": true
             },
             {
               "kind": "method",
