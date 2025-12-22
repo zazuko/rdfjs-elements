@@ -19,6 +19,12 @@
     },
     {
       "kind": "javascript-module",
+      "path": "demo/index.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/SparqlEditor.js",
       "declarations": [
         {
@@ -110,12 +116,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/index.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
