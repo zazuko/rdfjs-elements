@@ -1,5 +1,11 @@
 # @rdfjs-elements/lit-helpers
 
+## 0.3.13
+
+### Patch Changes
+
+- a514f85: Fix usage of `taggedLiteral` in SSR
+
 ## 0.3.12
 
 ### Patch Changes
