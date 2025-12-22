@@ -1,5 +1,11 @@
 # @rdfjs-elements/rdf-editor
 
+## 0.5.11
+
+### Patch Changes
+
+- 44c8408: Fix import to conform to ES standard
+
 ## 0.5.10
 
 ### Patch Changes
