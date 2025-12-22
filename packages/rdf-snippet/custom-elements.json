@@ -19,6 +19,12 @@
     },
     {
       "kind": "javascript-module",
+      "path": "demo/index.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/RdfSnippet.js",
       "declarations": [
         {
@@ -196,6 +202,9 @@
               "kind": "field",
               "name": "layout",
               "privacy": "public",
+              "type": {
+                "text": "string"
+              },
               "attribute": "layout",
               "reflects": true
             }
@@ -218,7 +227,7 @@
           "attributes": [
             {
               "type": {
-                "text": "\"vertical\"|\"horizontal\""
+                "text": "string"
               },
               "description": "controls the position of selection buttons",
               "name": "layout",
@@ -285,12 +294,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/index.js",
-      "declarations": [],
-      "exports": []
     }
   ]
 }
