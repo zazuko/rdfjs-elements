@@ -132,7 +132,7 @@ export class RdfEditor extends Editor {
   }
 
   async _parse() {
-    const { toStream } = await import('./stream')
+    const { toStream } = await import('./stream.js')
 
     const inputStream = toStream(this.value)
     const quads = []
@@ -176,7 +176,7 @@ export class RdfEditor extends Editor {
 
     await this.ready
 
-    const { Readable } = await import('./stream')
+    const { Readable } = await import('./stream.js')
 
     const quads = [...(this.quads || [])]
     const stream = new Readable({
