@@ -83,14 +83,14 @@
             },
             {
               "name": "quads",
+              "type": {
+                "text": "Quad[]"
+              },
               "description": "get or sets the RDF/JS quads",
               "return": {
                 "type": {
                   "text": "Quad[]"
                 }
-              },
-              "type": {
-                "text": "Quad[]"
               },
               "fieldName": "quads",
               "inheritedFrom": {
@@ -117,14 +117,14 @@
               "kind": "field",
               "name": "quads",
               "privacy": "public",
+              "type": {
+                "text": "Quad[]"
+              },
               "description": "get or sets the RDF/JS quads",
               "return": {
                 "type": {
                   "text": "Quad[]"
                 }
-              },
-              "type": {
-                "text": "Quad[]"
               },
               "attribute": "quads",
               "inheritedFrom": {
@@ -306,14 +306,14 @@
               "kind": "field",
               "name": "quads",
               "privacy": "public",
+              "type": {
+                "text": "Quad[]"
+              },
               "description": "get or sets the RDF/JS quads",
               "return": {
                 "type": {
                   "text": "Quad[]"
                 }
-              },
-              "type": {
-                "text": "Quad[]"
               },
               "attribute": "quads"
             },
@@ -422,14 +422,14 @@
             },
             {
               "name": "quads",
+              "type": {
+                "text": "Quad[]"
+              },
               "description": "get or sets the RDF/JS quads",
               "return": {
                 "type": {
                   "text": "Quad[]"
                 }
-              },
-              "type": {
-                "text": "Quad[]"
               },
               "fieldName": "quads"
             },

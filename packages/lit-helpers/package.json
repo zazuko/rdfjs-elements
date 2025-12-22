@@ -41,6 +41,6 @@
     "@tpluscode/rdfine": "^0.7.11",
     "@zazuko/env": "^3",
     "crypto-js": "^4.2.0",
-    "typescript": "^4.7.2"
+    "typescript": "^5.2"
   }
 }
