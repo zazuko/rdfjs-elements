@@ -1,4 +1,5 @@
 import { AsyncDirective, directive } from 'lit/async-directive.js'
+import { isServer } from 'lit'
 import { dispatcher } from './lib/dispatcher.js'
 import { getLocalizedLabel } from './index.js'
 
@@ -19,7 +20,10 @@ class TaggedLiteralDirective extends AsyncDirective {
      * @readonly
      */
     this.languageUpdated = () => {
-      this.setValue(this.getTranslation())
+      if (!isServer) {
+        // Ignore when running in SSR because async directives are nto supported there
+        this.setValue(this.getTranslation())
+      }
     }
 
     dispatcher.addEventListener('language-set', this.languageUpdated)
