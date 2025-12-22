@@ -19,6 +19,12 @@
     },
     {
       "kind": "javascript-module",
+      "path": "demo/index.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/RdfSnippet.js",
       "declarations": [
         {
@@ -292,12 +298,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/index.js",
-      "declarations": [],
-      "exports": []
     }
   ]
 }
