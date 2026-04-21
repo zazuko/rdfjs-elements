@@ -7,12 +7,19 @@ export class LongLiteral {
   }
 
   toTerm() {
-    const raw = `"""${this.term.value.replace(/"$/, '\\"')}"""`
+    const raw = `"""${LongLiteral.escapeValue(this.term.value)}"""`
 
     return {
       terse: prefixes => raw + this.langOrDatatype(prefixes),
       verbose: prefixes => raw + this.langOrDatatype(prefixes),
     }
+  }
+
+  static escapeValue(value) {
+    return value
+      .replace(/\\/g, '\\\\')
+      .replace(/"""/g, '""\\"')
+      .replace(/"{1,2}$/, match => `${match.slice(0, -1)}\\"`)
   }
 
   langOrDatatype(prefixes) {

@@ -8,8 +8,10 @@ import getStream from 'get-stream'
 import { fromFile } from '@zazuko/rdf-utils-fs'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
+import { Readable } from 'stream'
 import JsonldSerializer from '../../serializers/jsonld.js'
-import { TurtleSerializer } from '../../serializers/graphy.js'
+import formats from '../../index.js'
+import { TurtleSerializer, TrigSerializer } from '../../serializers/graphy.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -132,6 +134,33 @@ describe('@rdfjs-elements/formats-pretty/serializers', () => {
       // then
       expect(serialized).toMatchSnapshot()
     })
+
+    for (const [label, Serializer, mime] of [
+      ['turtle', TurtleSerializer, 'text/turtle'],
+      ['trig', TrigSerializer, 'application/trig'],
+    ]) {
+      it(`serializes parseable multiline literals with backslash before newline in ${label}`, async () => {
+        // given
+        const dataset = $rdf.dataset([
+          $rdf.quad(
+            $rdf.namedNode('http://example/s'),
+            $rdf.namedNode('http://example/p'),
+            $rdf.literal(`hello \\
+world`)
+          ),
+        ])
+        const sink = new Serializer()
+
+        // when
+        const serialized = await getStream(sink.import(dataset.toStream()))
+        const parsed = await $rdf
+          .dataset()
+          .import(formats.parsers.import(mime, Readable.from([serialized])))
+
+        // then
+        expect(parsed.toCanonical()).to.eq(dataset.toCanonical())
+      })
+    }
   })
 
   describe('jsonld', () => {
