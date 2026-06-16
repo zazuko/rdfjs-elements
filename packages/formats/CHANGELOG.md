@@ -1,5 +1,11 @@
 # @rdfjs-elements/formats-pretty
 
+## 0.6.9
+
+### Patch Changes
+
+- 559b3ba: Fixed a bug in @rdfjs-elements/formats-pretty where multiline literals containing a backslash immediately before a newline were emitted as invalid Turtle/TriG
+
 ## 0.6.8
 
 ### Patch Changes
