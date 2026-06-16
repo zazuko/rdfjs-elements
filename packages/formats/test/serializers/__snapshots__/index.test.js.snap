@@ -46,3 +46,21 @@ at end\\\\\\"\\"\\"\\" .
 
 "
 `;
+
+exports[`@rdfjs-elements/formats-pretty/serializers turtle serializes parseable multiline literals with backslash before newline in trig 1`] = `
+"
+{
+	<http://example/s> <http://example/p> \\"\\"\\"hello \\\\\\\\
+world\\"\\"\\" .
+}
+
+"
+`;
+
+exports[`@rdfjs-elements/formats-pretty/serializers turtle serializes parseable multiline literals with backslash before newline in turtle 1`] = `
+"
+<http://example/s> <http://example/p> \\"\\"\\"hello \\\\\\\\
+world\\"\\"\\" .
+
+"
+`;

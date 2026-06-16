@@ -158,6 +158,7 @@ world`)
           .import(formats.parsers.import(mime, Readable.from([serialized])))
 
         // then
+        expect(serialized).toMatchSnapshot()
         expect(parsed.toCanonical()).to.eq(dataset.toCanonical())
       })
     }
