@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import * as path from 'path'
 import { defineConfig, mergeConfig } from 'vite'
 import config from '../../vite.config.js'
