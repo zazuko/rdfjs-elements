@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { esbuildPlugin } from '@web/dev-server-esbuild'
 import rdfjs from 'rdfjs-eds-plugin'
 import { fromRollup } from '@web/dev-server-rollup'
