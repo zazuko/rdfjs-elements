@@ -1,0 +1,1 @@
+var e=class{constructor(e,t){this.Impl=e,this.options=t}import(e,t){let n=new this.Impl(e,{...this.options,...t});return e.on(`end`,()=>{n.readable||n.emit(`end`)}),e.on(`error`,e=>{n.emit(`error`,e)}),n}};export{e as t};
