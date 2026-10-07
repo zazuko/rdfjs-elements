@@ -1,0 +1,1 @@
+var e=new Set([`_write`,`_writableState`,`writable`]);function t(t){return new Proxy(t,{has(t,n){return e.has(n)?!1:Reflect.has(...arguments)},get(t,n){if(e.has(n))return;let r=Reflect.get(...arguments);return r&&typeof r.bind==`function`?r.bind(t):r},set(t,n,r){if(!e.has(n))return Reflect.set(...arguments)}})}export{t};
